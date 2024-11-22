@@ -8,6 +8,11 @@
   <name>BitTE</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+     <dependency>
+      <groupId>org.choco-solver</groupId>
+      <artifactId>choco-solver</artifactId>
+      <version>4.10.14</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
