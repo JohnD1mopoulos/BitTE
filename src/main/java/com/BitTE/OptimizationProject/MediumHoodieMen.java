@@ -1,34 +1,33 @@
-public class MediumHoodieMen extends TshirtMen {
-    public MediumHoodieMen (int value) {
+/**
+ * Represents a specific type of clothing, MediumHoodieMen, which extends TopMen.
+ * Defines a medium hoodie for men with fixed attributes for weight, volume, and size.
+ */
+public class MediumHoodieMen extends TopMen {
+
+    /**
+     * Constructor for MediumHoodieMen with a specified value.
+     *
+     * @param value the value of the medium hoodie
+     */
+    public MediumHoodieMen(int value) {
         super(value, 150, 1680, "Medium");
     }
 
-    public MediumHoodieMen () {
+    /**
+     * Default constructor for MediumHoodieMen with no specified value.
+     * Assigns default weight, volume, and size.
+     */
+    public MediumHoodieMen() {
         super(550, 5850, "Medium");
     }
 
-    public int getValue() {
-        return super.getValue();
-    }
-    
-    public double getWeight() {
-        return super.getWeight();
-    }
-
-    public double getVolume() {
-        return super.getVolume();
-    }
-
-    public String getGender() {
-        return super.getGender();
-    }
-
-    public String getSize() {
-        return super.getSize();
-    }
-
+    /**
+     * Returns a string representation of the MediumHoodieMen object.
+     *
+     * @return a string representation of the medium hoodie
+     */
     @Override
     public String toString() {
-        return super.toString() + "Medium Hoodie Men []";
+        return super.toString() + ", Medium Hoodie Men []";
     }
 }
