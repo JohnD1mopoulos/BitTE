@@ -1,0 +1,14 @@
+9d4bd45 markoulinos 2024-11-25 Refactored TopMen and Clothing class to simplify and clean up code. - Removed redundant getter overrides (getValue, getWeight, getVolume, getSize, getGender)   as they added no additional functionality and relied on inherited behavior. - Simplified the class by retaining only the constructors and a customized toString method. - Ensured adherence to Java style rules for clarity and maintainability. - Focused on leveraging inheritance for inherited methods to reduce code duplication.
+edf4c05 markoulinos 2024-11-25 [200~Updated the following classes to fit Java style rules: - PackageItem - Clothing - TopMen - HoodieMen - SmallHoodieMen - MediumHoodieMen - LargeHoodieMen
+3cbce0b markoulinos 2024-11-25 Refactor PackingItem class for better readability and design
+db39d52 markoulinos 2024-11-25 Added a test class for Small Tshirt Men
+477f66a markoulinos 2024-11-25 changed Junit 3 to Junit 5
+61a1756 markoulinos 2024-11-25 fixed issues with methods in most classes because I accidentally pushed files with unsaved changes
+d05331c markoulinos 2024-11-25 Moved files to src/main/java/com/BitTE/OptimizationProject, excluding src
+3a55743 markoulinos 2024-11-25 Added classes for Packing Item, Clothing, Men's Tops, Men's T-Shirts, Men's Shirts, and Men's Hoodies
+c4c34af Romain 2024-11-24 Add helper methods: checkWeight, checkVolume, checkConstraints and deleteItem.                                             Update method fillEssential to integrate new helper methods
+69753a7 Romain 2024-11-23 Add method to input essential items to Knapsack
+c8f2dc1 Romain 2024-11-23 Creation of ParameterControl file
+0927040 Romain 2024-11-23 Creation of Knapsack file
+a2aa565 JohnDim 2024-11-22 Added the Choco-Solver API to the pom file
+0014b5a JohnDim 2024-11-22 First commit with Maven structure
