@@ -5,13 +5,13 @@ import java.beans.Transient;
 
 public class SmallTshirtMenTest {
 
-    @Test 
+    @Test
     public void testSmallTshirtMenProperties() {
         SmallTshirtMen testTshirtMen = new SmallTshirtMen();
 
-        assertequals(130, SmallTshirtMen.getWeight);
-        assertequals(1400, SmallTshirtMen.getVolume);
-        assertequals("Men", SmallTshirtMen.getGender);
-        assertequals("Small", SmallTshirtMen.getSize);
+        assert.equals(130, testTshirtMen.getWeight());
+        assert.equals(1400, testTshirtMen.getVolume());
+        assert.equals("Men", testTshirtMen.getGender());
+        assert.equals("Small", testTshirtMen.getSize());
     }
 }
