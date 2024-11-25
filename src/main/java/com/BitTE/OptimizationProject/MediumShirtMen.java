@@ -7,14 +7,24 @@ public class MediumShirtMen extends TshirtMen {
         super(130, 1610, "Medium");
     }
 
-    @Override
-    public void setVolume() {
-        this.volume = 1610;
+    public int getValue() {
+        return super.getValue();
+    }
+    
+    public double getWeight() {
+        return super.getWeight();
     }
 
-    @Override
-    public void setWeight() {
-        this.weight = 130;
+    public double getVolume() {
+        return super.getVolume();
+    }
+
+    public String getGender() {
+        return super.getGender();
+    }
+
+    public String getSize() {
+        return super.getSize();
     }
 
     @Override

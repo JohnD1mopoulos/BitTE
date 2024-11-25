@@ -3,17 +3,27 @@ public class SmallShirtMen extends ShirtMen {
         super(value, 110, 1000, "Small");
     }
     public SmallShirtMen () {
-        super(110, 1000);
+        super(110, 1000, "Small");
     }
 
-    @Override
-    public void setVolume() {
-        this.volume = 1000;
+    public int getValue() {
+        return super.getValue();
+    }
+    
+    public double getWeight() {
+        return super.getWeight();
     }
 
-    @Override
-    public void setWeight() {
-        this.weight = 110;
+    public double getVolume() {
+        return super.getVolume();
+    }
+
+    public String getGender() {
+        return super.getGender();
+    }
+
+    public String getSize() {
+        return super.getSize();
     }
 
     @Override

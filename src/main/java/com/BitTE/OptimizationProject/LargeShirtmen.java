@@ -7,14 +7,24 @@ public class LargeShirtMen extends TshirtMen {
         super(150, 2250, "Large");
     }
 
-    @Override
-    public void setVolume() {
-        this.volume = 2250;
+    public int getValue() {
+        return super.getValue();
+    }
+    
+    public double getWeight() {
+        return super.getWeight();
     }
 
-    @Override
-    public void setWeight() {
-        this.weight = 150;
+    public double getVolume() {
+        return super.getVolume();
+    }
+
+    public String getGender() {
+        return super.getGender();
+    }
+
+    public String getSize() {
+        return super.getSize();
     }
 
     @Override

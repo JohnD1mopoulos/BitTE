@@ -1,21 +1,20 @@
-public class SmallHoodieMen extends Tshirt {
+public class SmallHoodieMen extends HoodieMen {
     public SmallHoodieMen(int value) {
         super(value, 450, 3795, "Small");
     }
     public SmallHoodieMen () {
-        super(450, 3795);
+        super(450, 3795, "Small");
     }
-
     public int getValue() {
         return super.getValue();
     }
     
     public double getWeight() {
-        return this.weight();
+        return super.getWeight();
     }
 
     public double getVolume() {
-        return this.Volume();
+        return super.getVolume();
     }
 
     public String getGender() {
@@ -25,6 +24,7 @@ public class SmallHoodieMen extends Tshirt {
     public String getSize() {
         return super.getSize();
     }
+
 
     @Override
     public String toString() {

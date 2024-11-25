@@ -1,19 +1,20 @@
-public class SmallTshirtMen extends TshirtMen {
-    public SmallTshirtMen(int value) {
-        super(value, 130, 1400, "Small");
+public class HoodieMen extends TopMen {
+    public HoodieMen(int value, double weight, double volume, String size) {
+        super(value, weight, volume, size);
     }
-    public SmallTshirtMen () {
-        super(130, 1400, "Small");
+
+    public HoodieMen(double weight, double volume, String size) {
+        super(weight, volume, size);
     }
 
     public int getValue() {
         return super.getValue();
     }
-    
+
     public double getWeight() {
         return super.getWeight();
     }
-
+    
     public double getVolume() {
         return super.getVolume();
     }
@@ -28,6 +29,6 @@ public class SmallTshirtMen extends TshirtMen {
 
     @Override
     public String toString() {
-        return super.toString() + "Small Tshirt Men []";
+        return super.toString() + "Hoodie []";
     }
 }

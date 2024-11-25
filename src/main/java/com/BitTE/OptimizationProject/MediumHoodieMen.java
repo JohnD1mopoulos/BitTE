@@ -12,11 +12,11 @@ public class MediumHoodieMen extends TshirtMen {
     }
     
     public double getWeight() {
-        return this.weight();
+        return super.getWeight();
     }
 
     public double getVolume() {
-        return this.Volume();
+        return super.getVolume();
     }
 
     public String getGender() {
