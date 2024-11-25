@@ -27,58 +27,6 @@ public abstract class TopMen extends Clothing {
         super(weight, volume, size, "Men");
     }
 
-    // Overridden Methods
-
-    /**
-     * Gets the value of the top.
-     *
-     * @return the value of the top
-     */
-    @Override
-    public int getValue() {
-        return super.getValue();
-    }
-
-    /**
-     * Gets the weight of the top.
-     *
-     * @return the weight of the top
-     */
-    @Override
-    public double getWeight() {
-        return super.getWeight();
-    }
-
-    /**
-     * Gets the volume of the top.
-     *
-     * @return the volume of the top
-     */
-    @Override
-    public double getVolume() {
-        return super.getVolume();
-    }
-
-    /**
-     * Gets the size of the top.
-     *
-     * @return the size of the top
-     */
-    @Override
-    public String getSize() {
-        return super.getSize();
-    }
-
-    /**
-     * Gets the gender associated with the top.
-     *
-     * @return the gender of the top (always "Men")
-     */
-    @Override
-    public String getGender() {
-        return super.getGender();
-    }
-
     /**
      * Returns a string representation of the TopMen object.
      *

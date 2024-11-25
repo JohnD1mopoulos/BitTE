@@ -34,48 +34,6 @@ public abstract class Clothing extends PackingItem {
         this.gender = gender;
     }
 
-    // Getters
-
-    /**
-     * Gets the value of the clothing item.
-     *
-     * @return the value of the clothing item
-     */
-    @Override
-    public int getValue() {
-        return super.getValue();
-    }
-
-    /**
-     * Gets the weight of the clothing item.
-     *
-     * @return the weight of the clothing item
-     */
-    @Override
-    public double getWeight() {
-        return super.getWeight();
-    }
-
-    /**
-     * Gets the volume of the clothing item.
-     *
-     * @return the volume of the clothing item
-     */
-    @Override
-    public double getVolume() {
-        return super.getVolume();
-    }
-
-    /**
-     * Gets the size of the clothing item.
-     *
-     * @return the size of the clothing item
-     */
-    @Override
-    public String getSize() {
-        return super.getSize();
-    }
-
     /**
      * Gets the gender associated with the clothing item.
      *
@@ -84,8 +42,6 @@ public abstract class Clothing extends PackingItem {
     public String getGender() {
         return this.gender;
     }
-
-    // Overridden Methods
 
     /**
      * Returns a string representation of the clothing item, 
