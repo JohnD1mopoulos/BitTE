@@ -1,0 +1,34 @@
+===== Commit Summary =====
+
+     8	markoulinos
+     5	JohnDim
+     4	Romain
+     2	Georgia Seinti
+     1	Aliki Potamianaki
+     1	Cathy Mavrou
+     1	Manolis Vondikakis
+
+===== Detailed Commit Messages =====
+
+dc54fd6 by JohnDim on 2024-11-26: Added the code metrics in their respective txt file
+b8b3a5d by Manolis Vondikakis on 2024-11-26: Added changes to HomePage apps
+329e700 by Georgia Seinti on 2024-11-26: Added the image for the background of the homepage
+5d33499 by Georgia Seinti on 2024-11-26: Added homepage background
+5ec6eb9 by Aliki Potamianaki on 2024-11-26: Added the SuitcaseCharacteristics method in the Knapsack class.
+8cf55e0 by Cathy Mavrou on 2024-11-26: Added womens classes
+dc6b366 by JohnDim on 2024-11-25: Updated  the metrics log
+26d7fd0 by JohnDim on 2024-11-25: Added the pip tool for tool experimentation, updated the structure and generated a git log for the code metrics so far, more to be expected in the future
+9d4bd45 by markoulinos on 2024-11-25: Refactored TopMen and Clothing class to simplify and clean up code. - Removed redundant getter overrides (getValue, getWeight, getVolume, getSize, getGender)   as they added no additional functionality and relied on inherited behavior. - Simplified the class by retaining only the constructors and a customized toString method. - Ensured adherence to Java style rules for clarity and maintainability. - Focused on leveraging inheritance for inherited methods to reduce code duplication.
+edf4c05 by markoulinos on 2024-11-25: [200~Updated the following classes to fit Java style rules: - PackageItem - Clothing - TopMen - HoodieMen - SmallHoodieMen - MediumHoodieMen - LargeHoodieMen
+3cbce0b by markoulinos on 2024-11-25: Refactor PackingItem class for better readability and design
+db39d52 by markoulinos on 2024-11-25: Added a test class for Small Tshirt Men
+477f66a by markoulinos on 2024-11-25: changed Junit 3 to Junit 5
+61a1756 by markoulinos on 2024-11-25: fixed issues with methods in most classes because I accidentally pushed files with unsaved changes
+d05331c by markoulinos on 2024-11-25: Moved files to src/main/java/com/BitTE/OptimizationProject, excluding src
+3a55743 by markoulinos on 2024-11-25: Added classes for Packing Item, Clothing, Men's Tops, Men's T-Shirts, Men's Shirts, and Men's Hoodies
+c4c34af by Romain on 2024-11-24: Add helper methods: checkWeight, checkVolume, checkConstraints and deleteItem.                                             Update method fillEssential to integrate new helper methods
+69753a7 by Romain on 2024-11-23: Add method to input essential items to Knapsack
+c8f2dc1 by Romain on 2024-11-23: Creation of ParameterControl file
+0927040 by Romain on 2024-11-23: Creation of Knapsack file
+a2aa565 by JohnDim on 2024-11-22: Added the Choco-Solver API to the pom file
+0014b5a by JohnDim on 2024-11-22: First commit with Maven structure
