@@ -20,8 +20,24 @@ import java.util.Scanner;
     private static final ArrayList<Object> nonEssentialItems = new ArrayList<>();//the corresponding classes
     //Scanner object for user to input choices
     private static Scanner scanner = new Scanner(System.in);
+    //Static variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
+    private static double MaxWeight;
+    private static double MaxVolume;
 
+    //Method which asks the customer about the dimensions of the suitcase and calculates the volume 
+    private static void SuitcaseCharacteristics() {
 
+        System.out.print("Enter the desired weight of the suitcase (in kilograms): ");
+            MaxWeight = scanner.nextDouble();
+        System.out.print("Enter the length of the suitcase (in meters): ");
+            double length = scanner.nextDouble();
+        System.out.print("Enter the width of the suitcase (in meters): ");
+            double width = scanner.nextDouble();
+        System.out.print("Enter the height of the suitcase (in meters): ");
+            double height = scanner.nextDouble();
+        //Calculating volume
+        MaxVolume = length * width * height;
+    }
     /**
     * Fills ArrayList essentialItems with the inputs of the user and confirms if the constraints are met with each added item
     *
