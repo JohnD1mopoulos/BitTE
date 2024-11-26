@@ -1,16 +1,19 @@
 ===== Commit Summary =====
 
+     9	JohnDim
      8	markoulinos
-     7	JohnDim
      4	Romain
+     3	IgnatiosSar
      2	Georgia Seinti
-     2	IgnatiosSar
      1	Aliki Potamianaki
      1	Cathy Mavrou
      1	Manolis Vondikakis
 
 ===== Detailed Commit Messages =====
 
+4a6a7d5 by JohnDim on 2024-11-26: Added optimation changes
+7127285 by JohnDim on 2024-11-26: Added code changes to metrics
+2d67668 by IgnatiosSar on 2024-11-26: Added comments and imports
 8bd27f2 by JohnDim on 2024-11-26: Merged local repository changes
 c0cbab2 by JohnDim on 2024-11-26: Added more info on the metrics
 37bb802 by IgnatiosSar on 2024-11-26: Recreated SpaceOptimizer
