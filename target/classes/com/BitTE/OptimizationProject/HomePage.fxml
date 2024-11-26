@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePageControl">
+    <top>
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #FFFFFF;" />
+    </top>
+
+    <!-- Κεντρικό Μέρος -->
+    <center>
+        <StackPane>
+            <children>
+                <!-- Εικόνα Background -->
+                <ImageView fx:id="backgroundImageView" fitHeight="400.0" fitWidth="268.0" opacity="0.58">
+                    <image>
+                        <Image url="f17f19d3b408585dc22b280be131ab96.jpg" />
+                    </image>
+                </ImageView>
+
+                <AnchorPane>
+                    <children>
+                        <Rectangle fx:id="BackgroundRectangle1" arcHeight="5.0" arcWidth="5.0" fill="#cfae76" height="400.0" stroke="#cfad78" strokeType="INSIDE" width="185.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Rectangle fx:id="BackgroundRectangle2" arcHeight="5.0" arcWidth="5.0" fill="#cfae76" height="400.0" layoutX="453.0" stroke="#cfae76" strokeType="INSIDE" width="185.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+
+                      <!-- Κύριο Μέρος -->
+                <VBox alignment="CENTER" prefWidth="638.0" spacing="15.0">
+                    <children>
+                      <!-- Πάνελ -->
+                      <StackPane fx:id="TitleStackPanel" alignment="BOTTOM_CENTER" prefHeight="42.0" prefWidth="638.0">
+                          <children>
+                              <Rectangle fx:id="StartPageTitleBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="#cfae76" strokeType="INSIDE" width="272.0" />
+                              <Label fx:id="StartPageTitle" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #816b49;" text="PackApp" />
+                          </children>
+                      </StackPane>
+                        <!-- Καλωσορίσατε Μήνυμα -->
+                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+                              <!-- Πεδία Εισαγωγής Μετρήσεων -->
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="59.0" style="-fx-background-color: #816b49; -fx-font-size: 14px;" text="Μήκος " textFill="WHITE" />
+                                <TextField fx:id="lengthTextField" maxWidth="200.0" promptText="Εισάγετε μήκος" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="64.0" style="-fx-background-color: #816b49; -fx-font-size: 14px;" text="Πλάτος" textFill="WHITE" />
+                                <TextField fx:id="widthTextField" maxWidth="200.0" promptText="Εισάγετε πλάτος" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="56.0" style="-fx-background-color: #816b49; -fx-font-size: 14px;" text="Ύψος" textFill="WHITE" />
+                                <TextField fx:id="heightTextField" maxWidth="200.0" promptText="Εισάγετε ύψος" />
+                            </children>
+                        </VBox>
+
+                              <!-- Start Κουμπί -->
+                        <Button fx:id="startButton" style="-fx-background-color: #816b49; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Start" />
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>
