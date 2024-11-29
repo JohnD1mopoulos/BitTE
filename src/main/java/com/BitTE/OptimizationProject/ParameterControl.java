@@ -6,40 +6,65 @@
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
  class ParameterControl {
-     /**
-        * Used to show the remaining weight that can be added in the knapsack
+        /**
+        * Used to return the weight that has been added to the knapsack
         *
-        * @param s Uses the ArrayList essentialItems
-        * @return Float variable that represents difference between the maximum weight value and the current weight value
+        * @param s Uses PackingItem ArrayList 
+        * @return Double variable that represents difference between the maximum weight value and the current weight value
         */
-        protected static float checkWeight(){
-           float totalWeight= 0;
-           for (int i =0; i < Knapsack.essentialItems.size(); i++){
-            totalWeight += Knapsack.essentialItems.get(i).getWeight();
+        protected static double checkWeight(ArrayList<PackingItem> items){
+           double totalWeight= 0;
+           for (int i =0; i < items.size(); i++){
+            totalWeight += items.get(i).getWeight();
            }
            return totalWeight;
         }
-
-        protected static float checkVolume(){
-            float totalVolume= 0;
-            for (int i =0; i < Knapsack.essentialItems.size(); i++){
-             totalWeight += Knapsack.essentialItems.get(i).getVolume();
+        
+        /**
+        * Used to return the volume that has been added to the knapsack
+        *
+        * @param s Uses PackingItem ArrayList 
+        * @return Double variable that represents difference between the maximum weight value and the current weight value
+        */
+        protected static double checkVolume(ArrayList<PackingItem> items){
+            double totalVolume= 0;
+            for (int i =0; i < items.size(); i++){
+             totalWeight += items.get(i).getVolume();
             }
             return totalVolume;
         }
 
-        protected static float getRemainingWeight(float MaxWeight){
+        /**
+        * Used to return the remaining weigth that can be added to the knapsack
+        *
+        * @param s Double MaxWeight representing the maximum weigth that can be added to the knapsack
+        * @return Double value representing difference between the maximum weight value and the current weight value
+        */
+        protected static double getRemainingWeight(double MaxWeight){
            return  MaxWeight - checkWeight();
         }
 
-        protected static float getRemainigVolume(float MaxVolume){
+        /**
+        * Used to return the remaining volume that can be added to the knapsack
+        *
+        * @param s Double MaxVolume representing the maximum volume that can be added to the knapsack
+        * @return Double value representing difference between the maximum volume value and the current volume value
+        */
+        protected static float getRemainigVolume(double MaxVolume){
            return MaxVolume - checkVolume();
         }
 
-        protected static int checkConstraints(float MaxWeight, float MaxVolume){
+        /**
+        * Used to return correspoding values depending on the state of the knapsack's weight and volume
+        *and their respective constraints
+        *
+        * @param s Double MaxVolume representing the maximum volume that can be added to the knapsack
+        *          Double MaxWeight representing the maximum weigth that can be added to the knapsack
+        * @return int value representing the current state of the constraints
+        */
+        protected static int checkConstraints(double MaxWeight, double MaxVolume){
 
             boolean weightConstraintRespected = getRemainingWeight(MaxWeight) > 0;;
             boolean volumeConstraintRepsected = getRemainingVolume(MaxVolume) > 0;;
@@ -57,38 +82,102 @@ import java.util.Scanner;
             }
         }
 
-
-        protected static void showItems(){
-            for (int i =0; i < Knapsack.essentialItems.size(); i++){
-                System.out.println((i+1) + ") " + Knapsack.essentialItems.get(i));
+        /**
+        * Used to show all items that have already been added to the Knapsack
+        *
+        * @param s Uses PackingItem ArrayList 
+        * @return Nothing
+        */
+        protected static void showItems(ArrayList<PackingItem> items){
+            for (int i =0; i < items.size(); i++){
+                System.out.println((i+1) + ") " + items.get(i));
             }
         }
 
-        protected static void inputItem(){
-            Scanner scanner = new Scanner(System.in);
+        /**
+        * Used to set the user's gender
+        *
+        * @param s Scanner object
+        * @return Sex variabe of type char representing the user's gender
+        */
+        protected static char setGender(Scanner scanner) {
+            System.out.println("Please enter your gender: (M for Male, F for Female)");
+            char sex;
+            while (true) { // Infinite loop until valid input is provided
+                String input = scanner.nextLine().trim(); // Read the entire line and trim whitespace
+                if (input.isEmpty()) { // Check for empty input
+                    System.err.println("No input detected. Please enter 'M' for Male or 'F' for Female.");
+                    continue; // Prompt user again
+                }
+                if (input.length() == 1) { // Ensure input is a single character
+                    sex = input.toUpperCase().charAt(0);
+                    if (sex == 'M' || sex == 'F') {
+                        return sex;
+                    }
+                }
+                System.err.println("Invalid input. Please enter 'M' for Male or 'F' for Female.");
+            }
+        }
+
+        /**
+        * Used to set the user's desired size
+        *
+        * @param s Scanner object
+        * @return Size variabe of type char representing the user's choice of size
+        */
+        protected static char setSize(Scanner scanner) {
+            System.out.println("Please enter your desired size: (S for Small, M for Medium, L for Large)");
+            char size;
+            while (true) { // Infinite loop until valid input is provided
+                String input = scanner.nextLine().trim(); // Read the entire line and trim whitespace
+                if (input.isEmpty()) { // Check for empty input
+                    System.err.println("No input detected. Please enter 'S' for Small or 'M' for Medium or 'L' for Large.");
+                    continue; // Prompt user again
+                }
+                if (input.length() == 1) { // Ensure input is a single character
+                    size = input.toUpperCase().charAt(0);
+                    if (size == 'S' || size == 'M' || size == 'L') {
+                        return size;
+                    }
+                }
+                System.err.println("Invalid input. Please enter 'S' for Small or 'M' for Medium or 'L' for Large.");
+            }   
+        }
+        
+
+        //TODO: After consulting between the backend and the data enginners we should finalize the additions of the items
+        protected static void inputEssentialItem(ArrayList<PackingItem> items, Scanner scanner) {
             int choiceOfItem = -1;
             
             try {
                 choiceOfItem = scanner.nextInt();
-                switch (choiceOfItem){
-                    /*case 1:
-                        essentialItems.add(Object X1);
-                        System.out.println("Item "+ "Object "+"was added succesfully");//Object will be changed with the class item when 
-                        //are created
-                        break;
-                    case 2:
-                        essentialItems.add(Object X2);
-                        System.out.println("Item "+ "Object "+"was added succesfully");
-                    case 3:
-                        essentialItems.add(Object X3);
-                        System.out.println("Item "+ "Object "+"was added succesfully");  
-                    case 4:
-                        essentialItems.add(Object X4);
-                        System.out.println("Item "+ "Object "+"was added succesfully");
-                    case 5:
-                        essentialItems.add(Object X5);
-                       System.out.println("Item "+ "Object "+"was added succesfully"); */        
-                };
+                scanner.nextLine();//Clear the newline character
+                    if (choiceOfItem > 0 && choiceOfItem < 11) {//Check for valid choice of item
+                    switch (choiceOfItem) {
+                        case 1:
+                            items.add(new ShirtMen());
+                            System.out.println("Item "+ "Object "+"was added succesfully");
+                            break;
+                        case 2:
+                            items.add(new HoodieMen());
+                            System.out.println("Item "+ "Object "+"was added succesfully");
+                            break;
+                        /*case 3:
+                            items.add(Object X3);
+                            System.out.println("Item "+ "Object "+"was added succesfully");  
+                            break;
+                        case 4:
+                            items.add(Object X4);
+                            System.out.println("Item "+ "Object "+"was added succesfully");
+                            break;
+                        case 5:
+                            items.add(Object X5);
+                            System.out.println("Item "+ "Object "+"was added succesfully"); 
+                            break;*/
+                    }       
+                } else {
+                    System.out.println("Give me an integer ranging from 1 to 11");
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please select a valid integer");
             }
@@ -97,16 +186,13 @@ import java.util.Scanner;
         
         /**
         * Deletes a number of items from ArrayList essentialItems depending on the user's input
-        * @param s None
+        * @param s Uses PackingItem ArrayList
         * @return Nothing
         */
-        // TODO: Waiting the classes to be created so that i can be adjusted for ArrayList nonessenitalItems also
-        protected static void deleteItem() {
-            Scanner scanner = new Scanner(System.in);
-        
+        protected static void deleteItem(ArrayList<PackingItem> items, Scanner scanner) {
             while (true) {
                 // Check if there are items to delete
-                if (Knapsack.essentialItems.isEmpty()) {
+                if (items.isEmpty()) {
                     System.out.println("No items available to delete.");
                     return; // Exit the method
                 }
@@ -126,14 +212,14 @@ import java.util.Scanner;
                     if (choice1 == 0) {
                         System.out.println("Stopping deletion of items.");
                         return; // Exit the method
-                    } else if (choice1 < 1 || choice1 > Knapsack.essentialItems.size()) {
+                    } else if (choice1 < 1 || choice1 > items.size()) {
                         System.out.println("Invalid choice. Please select a valid item number.");
                         continue; // Restart the loop
                     }
         
                     // Delete the chosen item
-                    System.out.println("Item no " + choice1 + " (" + Knapsack.essentialItems.get(choice1 - 1) + ") has been deleted.");
-                    Knapsack.essentialItems.remove(choice1 - 1);
+                    System.out.println("Item no " + choice1 + " (" + iItems.get(choice1 - 1) + ") has been deleted.");
+                    Knapsack.items.remove(choice1 - 1);
 
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter a valid integer.");

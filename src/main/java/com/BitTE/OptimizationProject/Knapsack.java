@@ -16,13 +16,15 @@ import java.util.Scanner;
 
  class Knapsack{
     // Static ArrayLists shared across all methods in this class
-    protected static final ArrayList<Object> essentialItems = new ArrayList<>();//Using Object as data type until we have 
-    private static final ArrayList<Object> nonEssentialItems = new ArrayList<>();//the corresponding classes
+    protected static final ArrayList<PackingItem> essentialItems = new ArrayList<>();//Using PackingItem as data type 
+    private static final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
     //Scanner object for user to input choices
     private static Scanner scanner = new Scanner(System.in);
     //Static variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
     private static double MaxWeight;
     private static double MaxVolume;
+    //Static variable representing the user's sex
+    private static int sex;
 
     //Method which asks the customer about the dimensions of the suitcase and calculates the volume 
     private static void SuitcaseCharacteristics() {
@@ -45,8 +47,8 @@ import java.util.Scanner;
     * @return A boolean variable that confirms the continuation of the operation if the constraints are still met.
     */
 
-    // TODO: Impliment the item classes when created and make the corresponding changes
-    private static boolean fillEssential(float MaxWeight, float MaxVolume){
+    // TODO: Impliment the item classes when created and make the corresponding changes and add parameters sex and size
+    private static boolean fillEssential(double MaxWeight, double MaxVolume){
         
         
         
@@ -55,14 +57,20 @@ import java.util.Scanner;
 
         while (processRunning){
             //Display MENU 
-            System.out.println("Press 1 to add X1/n"
-                              +"Press 2 to add  X2/n"
-                              +"Press 3 to add X3/n"
-                              +"Press 4 to add X4/n"
-                              +"Press 5 to add X5/n");
+            System.out.println("Press 1 to add a T-Shirt\n"
+                              +"Press 2 to add a Shirt\n"
+                              +"Press 3 to add a Hoodie\n"
+                              +"Press 4 to add a Trouser\n"
+                              +"Press 5 to add Sweatpants\n"
+                              +"Press 6 to add Jeans\n"
+                              +"Press 7 to add a Skirt\n"
+                              +"Press 8 to add Underwear\n"
+                              +"Press 9 to add Sneakers\n"
+                              +"Press 10 to add Socks\n"
+                              +"Press 11 to add Boots");
 
             //Input item
-            ParameterControl.inputItem();
+            ParameterControl.inputEssentialItem(essentialItems, scanner);
 
             //Check constraints
             int constraintsMet = ParameterControl.checkConstraints(MaxWeight, MaxVolume);
@@ -100,7 +108,7 @@ import java.util.Scanner;
                         if (userChoice == 1){
                             return false;//Knapsack wasnt filled 
                         } else if (userChoice == 2){
-                            ParameterControl.deleteItem();
+                            ParameterControl.deleteItem(essentialItems, scanner);
                             validChoice = true;//stop loop
                         } else {
                             System.out.println("Invalid choice. Please enter 1 or 2");
