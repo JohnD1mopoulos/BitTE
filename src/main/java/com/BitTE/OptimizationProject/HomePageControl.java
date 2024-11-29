@@ -1,28 +1,43 @@
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
 
 public class HomePageControl {
 
-    @FXML
-    private ImageView BackgroundImage;
 
     @FXML
-    private Rectangle BackgroundRectangle1;
+    private ImageView backgroundImageView;
 
     @FXML
-    private Rectangle BackgroundRectangle2;
+    private TextField lengthTextField;
 
     @FXML
-    private Label StartPageTitle;
+    private TextField widthTextField;
 
     @FXML
-    private Rectangle StartPageTitleBackground;
+    private TextField heightTextField;
 
     @FXML
-    private StackPane TitleStackPanel;
+    private Button startButton;
 
+    @FXML
+    private void initialize() {
+
+
+        // Προσθήκη λειτουργικότητας στο κουμπί "Start"
+        startButton.setOnAction(event -> handleStartButton());
+    }
+
+    private void handleStartButton() {
+        try {
+            double length = Double.parseDouble(lengthTextField.getText());
+            double width = Double.parseDouble(widthTextField.getText());
+            double height = Double.parseDouble(heightTextField.getText());
+
+            System.out.println("Μήκος: " + length + ", Πλάτος: " + width + ", Ύψος: " + height);
+        } catch (NumberFormatException e) {
+            System.out.println("Παρακαλώ εισάγετε έγκυρους αριθμούς.");
+        }
+    }
 }
-
