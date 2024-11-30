@@ -70,7 +70,7 @@ import java.util.Scanner;
                               +"Press 11 to add Boots");
 
             //Input item
-            ParameterControl.inputEssentialItem(essentialItems, scanner);
+            ParameterControl.inputItem(essentialItems, scanner);
 
             //Check constraints
             int constraintsMet = ParameterControl.checkConstraints(MaxWeight, MaxVolume);
@@ -85,7 +85,7 @@ import java.util.Scanner;
                         System.out.println("You still have "+ParameterControl.getRemainingWeight(MaxWeight)+" available kgs"
                         +"and have surpassed the maximum volume by"+(-ParameterControl.getRemainigVolume(MaxVolume))+" by cm2.");
                         break;
-                case 3: //Weigth constraint not respected
+                case 3: //Weight constraint not respected
                         System.out.println("You have surpassed the maximum weigth by "+(-ParameterControl.getRemainingWeight(MaxWeight))
                         +"kgs. But you still have "+ParameterControl.getRemainigVolume(MaxVolume)+" available cm2.");   
                         break;

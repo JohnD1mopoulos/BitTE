@@ -146,40 +146,41 @@ import java.util.InputMismatchException;
         
 
         //TODO: After consulting between the backend and the data enginners we should finalize the additions of the items
-        protected static void inputEssentialItem(ArrayList<PackingItem> items, Scanner scanner) {
+        protected static void inputItem(ArrayList<PackingItem> items, Scanner scanner) {
             int choiceOfItem = -1;
-            
-            try {
-                choiceOfItem = scanner.nextInt();
-                scanner.nextLine();//Clear the newline character
-                    if (choiceOfItem > 0 && choiceOfItem < 11) {//Check for valid choice of item
-                    switch (choiceOfItem) {
-                        case 1:
-                            items.add(new ShirtMen());
-                            System.out.println("Item "+ "Object "+"was added succesfully");
-                            break;
-                        case 2:
-                            items.add(new HoodieMen());
-                            System.out.println("Item "+ "Object "+"was added succesfully");
-                            break;
-                        /*case 3:
-                            items.add(Object X3);
-                            System.out.println("Item "+ "Object "+"was added succesfully");  
-                            break;
-                        case 4:
-                            items.add(Object X4);
-                            System.out.println("Item "+ "Object "+"was added succesfully");
-                            break;
-                        case 5:
-                            items.add(Object X5);
-                            System.out.println("Item "+ "Object "+"was added succesfully"); 
-                            break;*/
-                    }       
-                } else {
-                    System.out.println("Give me an integer ranging from 1 to 11");
+            while (true){//Infinite loop until object has been selected 
+                try {
+                    choiceOfItem = scanner.nextInt();
+                    scanner.nextLine();//Clear the newline character
+                        if (choiceOfItem > 0 && choiceOfItem < 11) {//Check for valid choice of item
+                        switch (choiceOfItem) {
+                            case 1:
+                                items.add(new ShirtMen());
+                                System.out.println("Item "+ "Object "+"was added succesfully");
+                                break;
+                            case 2:
+                                items.add(new HoodieMen());
+                                System.out.println("Item "+ "Object "+"was added succesfully");
+                                break;
+                            /*case 3:
+                                items.add(Object X3);
+                                System.out.println("Item "+ "Object "+"was added succesfully");  
+                                break;
+                            case 4:
+                                items.add(Object X4);
+                                System.out.println("Item "+ "Object "+"was added succesfully");
+                                break;
+                            case 5:
+                                items.add(Object X5);
+                                System.out.println("Item "+ "Object "+"was added succesfully"); 
+                                break;*/
+                        }       
+                    } else {
+                        System.out.println("Give me an integer ranging from 1 to 11");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please select a valid integer");
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please select a valid integer");
             }
         }
 
@@ -218,7 +219,7 @@ import java.util.InputMismatchException;
                     }
         
                     // Delete the chosen item
-                    System.out.println("Item no " + choice1 + " (" + iItems.get(choice1 - 1) + ") has been deleted.");
+                    System.out.println("Item no " + choice1 + " (" + items.get(choice1 - 1) + ") has been deleted.");
                     Knapsack.items.remove(choice1 - 1);
 
                 } catch (InputMismatchException e) {
