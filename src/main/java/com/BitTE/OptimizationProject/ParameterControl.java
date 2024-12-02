@@ -1,3 +1,5 @@
+package main.java.com.BitTE.OptimizationProject;
+
 /**
  * Created to contain all methods used for constraint control
  
@@ -6,12 +8,13 @@
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
  class ParameterControl {
         /**
         * Used to return the weight that has been added to the knapsack
         *
-        * @param s Uses PackingItem ArrayList 
+        * @param items ArrayList representing the Knapsack 
         * @return Double variable that represents difference between the maximum weight value and the current weight value
         */
         protected static double checkWeight(ArrayList<PackingItem> items){
@@ -25,7 +28,7 @@ import java.util.InputMismatchException;
         /**
         * Used to return the volume that has been added to the knapsack
         *
-        * @param s Uses PackingItem ArrayList 
+        * @param  items ArrayList representing the Knapsack 
         * @return Double variable that represents difference between the maximum weight value and the current weight value
         */
         protected static double checkVolume(ArrayList<PackingItem> items){
@@ -39,7 +42,7 @@ import java.util.InputMismatchException;
         /**
         * Used to return the remaining weigth that can be added to the knapsack
         *
-        * @param s Double MaxWeight representing the maximum weigth that can be added to the knapsack
+        * @param  MaxWeight representing the maximum weigth that can be added to the knapsack
         * @return Double value representing difference between the maximum weight value and the current weight value
         */
         protected static double getRemainingWeight(double MaxWeight){
@@ -49,7 +52,7 @@ import java.util.InputMismatchException;
         /**
         * Used to return the remaining volume that can be added to the knapsack
         *
-        * @param s Double MaxVolume representing the maximum volume that can be added to the knapsack
+        * @param  MaxVolume representing the maximum volume that can be added to the knapsack
         * @return Double value representing difference between the maximum volume value and the current volume value
         */
         protected static float getRemainigVolume(double MaxVolume){
@@ -60,8 +63,8 @@ import java.util.InputMismatchException;
         * Used to return correspoding values depending on the state of the knapsack's weight and volume
         *and their respective constraints
         *
-        * @param s Double MaxVolume representing the maximum volume that can be added to the knapsack
-        *          Double MaxWeight representing the maximum weigth that can be added to the knapsack
+        * @param MaxVolume representing the maximum volume that can be added to the knapsack
+        * @param MaxWeight representing the maximum weigth that can be added to the knapsack
         * @return int value representing the current state of the constraints
         */
         protected static int checkConstraints(double MaxWeight, double MaxVolume){
@@ -69,24 +72,22 @@ import java.util.InputMismatchException;
             boolean weightConstraintRespected = getRemainingWeight(MaxWeight) > 0;;
             boolean volumeConstraintRepsected = getRemainingVolume(MaxVolume) > 0;;
             
-    
+            //Return appropriate value for each scenario 
             if (weightConstraintRespected && volumeConstraintRepsected){
-                return 1;
+                return 1;//Both constraints respected
             }else if (weightConstraintRespected){
-
-                return 2;
+                return 2;//Only weight constraint respected
             }else if (volumeConstraintRepsected){
-                return 3;
+                return 3;//Only volume constraint respected
             }else {
-                return 4;
+                return 4;//No constraint respected
             }
         }
 
         /**
         * Used to show all items that have already been added to the Knapsack
         *
-        * @param s Uses PackingItem ArrayList 
-        * @return Nothing
+        * @param items ArrayList representing the Knapsack 
         */
         protected static void showItems(ArrayList<PackingItem> items){
             for (int i =0; i < items.size(); i++){
@@ -95,9 +96,76 @@ import java.util.InputMismatchException;
         }
 
         /**
+        * Prompts the user to choose between inputting a clothing item or an accessory.
+        *
+        * This method ensures robust handling of user input, allowing only valid integers (1 or 2) as choices.
+        * If the input is invalid, the user is repeatedly prompted until a valid input is provided.
+        *
+        * @return An integer representing the user's choice:
+        *         1 for clothing, or 2 for an accessory.
+        */
+        private static int setTypeOfItem(){
+            int choice;
+            while (true){
+                try {
+                    choice = scanner.nextInt();
+                    if (choice == 1 || choice == 2){
+                        return choice;
+                    } else {
+                        System.out.println("Invalid input. Please give me 1 to input clothing or 2 to input an accessory.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid Input. Please give me a valid integer.");
+                    scanner.next();
+                }
+            }
+        }
+
+        /**
+        * Prompts the user to choose pick what item he wants to input depending on if it's a clothing
+        * item or an accessory
+        * 
+        * @param type representing the user's previous choice for the type of item he will be inputting
+        *          1 for clothing, or 2 for an accessory
+        * @return  An integer representing the user's item of choice
+        */
+        protected static int setItemChoice(int type){
+            int choiceOfItem;
+            while (true) {//Infinite loop until object has been selected 
+                if (type == 1) {//Item is a piece of clothing
+                    try {
+                        choiceOfItem = scanner.nextInt();
+                        scanner.nextLine();//Clear the newline character
+                        if (choiceOfItem < 0 || choiceOfItem > 11){
+                            System.out.println("Invalid input. Give me an integer ranging from 1 to 11");
+                        } else {
+                            return choiceOfItem;
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please select a valid integer");
+                        scanner.nextLine();
+                    }
+                } else {//Item is an accessory
+                    try {
+                        choiceOfItem = scanner.nextInt();
+                        scanner.nextLine();//Clear the newline character
+                        if (choiceOfItem < 0 || choiceOfItem > 3){
+                            System.out.println("Invalid input. Give me an integer ranging from 1 to 3");
+                        } else {
+                           return choiceOfItem;
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please select a valid integer");
+                        scanner.nextLine();                    }
+                }
+            }
+        }
+
+
+        /**
         * Used to set the user's gender
         *
-        * @param s Scanner object
+        * @param scanner for user's input
         * @return Sex variabe of type char representing the user's gender
         */
         protected static char setGender(Scanner scanner) {
@@ -122,7 +190,7 @@ import java.util.InputMismatchException;
         /**
         * Used to set the user's desired size
         *
-        * @param s Scanner object
+        * @param scanner for user's input
         * @return Size variabe of type char representing the user's choice of size
         */
         protected static char setSize(Scanner scanner) {
@@ -144,51 +212,25 @@ import java.util.InputMismatchException;
             }   
         }
         
+        /**
+         * Inputs the user's choice of Item in ArrayList PackingItem according to the user's previous choices of 
+         * Item type, choice, sex and size
+         * 
+         * @param items
+         * @param type
+         * @param choice
+         * @param sex
+         * @param size
+         */
+        //TODO: Write the appropriate piece of code according to the Data Engineers instructions
+        protected static void inputItem(ArrayList<PackingItem> items, int type, int choice, char sex, char size ) {
 
-        //TODO: After consulting between the backend and the data enginners we should finalize the additions of the items
-        protected static void inputItem(ArrayList<PackingItem> items, Scanner scanner) {
-            int choiceOfItem = -1;
-            while (true){//Infinite loop until object has been selected 
-                try {
-                    choiceOfItem = scanner.nextInt();
-                    scanner.nextLine();//Clear the newline character
-                        if (choiceOfItem > 0 && choiceOfItem < 11) {//Check for valid choice of item
-                        switch (choiceOfItem) {
-                            case 1:
-                                items.add(new ShirtMen());
-                                System.out.println("Item "+ "Object "+"was added succesfully");
-                                break;
-                            case 2:
-                                items.add(new HoodieMen());
-                                System.out.println("Item "+ "Object "+"was added succesfully");
-                                break;
-                            /*case 3:
-                                items.add(Object X3);
-                                System.out.println("Item "+ "Object "+"was added succesfully");  
-                                break;
-                            case 4:
-                                items.add(Object X4);
-                                System.out.println("Item "+ "Object "+"was added succesfully");
-                                break;
-                            case 5:
-                                items.add(Object X5);
-                                System.out.println("Item "+ "Object "+"was added succesfully"); 
-                                break;*/
-                        }       
-                    } else {
-                        System.out.println("Give me an integer ranging from 1 to 11");
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please select a valid integer");
-                }
-            }
         }
 
         
         /**
         * Deletes a number of items from ArrayList essentialItems depending on the user's input
-        * @param s Uses PackingItem ArrayList
-        * @return Nothing
+        * @param items ArrayList representing the Knapsack 
         */
         protected static void deleteItem(ArrayList<PackingItem> items, Scanner scanner) {
             while (true) {

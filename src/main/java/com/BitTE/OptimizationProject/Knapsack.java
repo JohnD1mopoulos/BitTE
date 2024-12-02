@@ -1,3 +1,5 @@
+package main.java.com.BitTE.OptimizationProject;
+
 /**
  * Represents a dynamic knapsack used to store items, both essential and non-essential.
  
@@ -9,7 +11,7 @@
  * ensuring efficient use of available space and weight capacity.
  */
 
- //
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,8 +25,6 @@ import java.util.Scanner;
     //Static variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
     private static double MaxWeight;
     private static double MaxVolume;
-    //Static variable representing the user's sex
-    private static int sex;
 
     //Method which asks the customer about the dimensions of the suitcase and calculates the volume 
     private static void SuitcaseCharacteristics() {
@@ -40,6 +40,8 @@ import java.util.Scanner;
         //Calculating volume
         MaxVolume = length * width * height;
     }
+
+   
     /**
     * Fills ArrayList essentialItems with the inputs of the user and confirms if the constraints are met with each added item
     *
@@ -47,7 +49,7 @@ import java.util.Scanner;
     * @return A boolean variable that confirms the continuation of the operation if the constraints are still met.
     */
 
-    // TODO: Impliment the item classes when created and make the corresponding changes and add parameters sex and size
+    // TODO: Impliment the work of the Data Engineers when they're done with T-SQL
     private static boolean fillEssential(double MaxWeight, double MaxVolume){
         
         
@@ -56,20 +58,44 @@ import java.util.Scanner;
         boolean processRunning = true;
 
         while (processRunning){
-            //Display MENU 
-            System.out.println("Press 1 to add a T-Shirt\n"
-                              +"Press 2 to add a Shirt\n"
-                              +"Press 3 to add a Hoodie\n"
-                              +"Press 4 to add a Trouser\n"
-                              +"Press 5 to add Sweatpants\n"
-                              +"Press 6 to add Jeans\n"
-                              +"Press 7 to add a Skirt\n"
-                              +"Press 8 to add Underwear\n"
-                              +"Press 9 to add Sneakers\n"
-                              +"Press 10 to add Socks\n"
-                              +"Press 11 to add Boots");
+            //Display MENU for choosing type of Item
+            System.out.println("Press 1 to add Clothing\n"
+                               +"Press 2 to add Accessory");
+            //Make choice 
+            int inputType = ParameterControl.setTypeOfItem;
 
-            //Input item
+            //Display MENU for choosing Item
+            if (inputType == 1) {
+                System.out.println("Press 1 to add a T-Shirt\n"
+                                    +"Press 2 to add a Shirt\n"
+                                    +"Press 3 to add a Hoodie\n"
+                                    +"Press 4 to add a Trouser\n"
+                                    +"Press 5 to add Sweatpants\n"
+                                    +"Press 6 to add Jeans\n"
+                                    +"Press 7 to add a Skirt\n"
+                                    +"Press 8 to add Underwear\n"
+                                    +"Press 9 to add Sneakers\n"
+                                    +"Press 10 to add Socks\n"
+                                    +"Press 11 to add Boots");
+            } else {
+                System.out.println("Press 1 to add Passport\n"
+                                  +"Press 2 to add Computer\n"
+                                  +"Press 3 to add Book");
+            }
+
+            //Choose Item
+            int itemOfChoice = ParameterControl.setItemChoice(inputType);
+
+            //If Item is a piece of Clothing set the prefered sex for the item
+            char itemSex = 'X';
+            if (inputType == 1){
+                itemSex = ParameterControl.setGender(scanner);
+            }
+
+            //Choose the item's size
+            char itemSize = ParameterControl.setSize(scanner);
+
+            //Input item 
             ParameterControl.inputItem(essentialItems, scanner);
 
             //Check constraints
@@ -144,6 +170,6 @@ import java.util.Scanner;
             
             }
         } 
-        return false; 
+        return false;//Unrechable code. Was put according to good practices 
     }
  }
