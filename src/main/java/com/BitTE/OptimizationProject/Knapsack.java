@@ -52,45 +52,31 @@ import java.util.Scanner;
     // TODO: Impliment the work of the Data Engineers when they're done with T-SQL
     private static boolean fillEssential(double MaxWeight, double MaxVolume){
         
-        
-        
-        System.out.println("Dear user, please choose the items that are essential for you: ");
+        System.out.println("Dear user, please choose the items that are essential to you: ");
         boolean processRunning = true;
 
         while (processRunning){
             //Display MENU for choosing type of Item
             System.out.println("Press 1 to add Clothing\n"
-                               +"Press 2 to add Accessory");
+                                +"Press 2 to add Accessory");
             //Make choice 
             int inputType = ParameterControl.setTypeOfItem;
 
-            //Display MENU for choosing Item
+            //If Item is a piece of Clothing set the prefered sex for the item
+            char itemGender = 'X';
+            if (inputType == 1){
+                itemGender = ParameterControl.setGender(scanner);
+            }
+
+            //Display MENU for the process of choosing an Item
             if (inputType == 1) {
-                System.out.println("Press 1 to add a T-Shirt\n"
-                                    +"Press 2 to add a Shirt\n"
-                                    +"Press 3 to add a Hoodie\n"
-                                    +"Press 4 to add a Trouser\n"
-                                    +"Press 5 to add Sweatpants\n"
-                                    +"Press 6 to add Jeans\n"
-                                    +"Press 7 to add a Skirt\n"
-                                    +"Press 8 to add Underwear\n"
-                                    +"Press 9 to add Sneakers\n"
-                                    +"Press 10 to add Socks\n"
-                                    +"Press 11 to add Boots");
+                ParameterControl.clothingMenu(itemGender);
             } else {
-                System.out.println("Press 1 to add Passport\n"
-                                  +"Press 2 to add Computer\n"
-                                  +"Press 3 to add Book");
+                ParameterControl.extrasMenu();
             }
 
             //Choose Item
-            int itemOfChoice = ParameterControl.setItemChoice(inputType);
-
-            //If Item is a piece of Clothing set the prefered sex for the item
-            char itemSex = 'X';
-            if (inputType == 1){
-                itemSex = ParameterControl.setGender(scanner);
-            }
+            int itemOfChoice = ParameterControl.setItemChoice(inputType, itemGender);
 
             //Choose the item's size
             char itemSize = ParameterControl.setSize(scanner);
@@ -99,26 +85,26 @@ import java.util.Scanner;
             ParameterControl.inputItem(essentialItems, scanner);
 
             //Check constraints
-            int constraintsMet = ParameterControl.checkConstraints(MaxWeight, MaxVolume);
+            int constraintsMet = ParameterControl.checkConstraints(MaxWeight, MaxVolume, essentialItems);
 
             //Provide feedback based on constraints
             switch (constraintsMet){
                 case 1: //Constraints respected
                         System.out.println("You still have "+ParameterControl.getRemainingWeight(MaxWeight)+" available kgs"
-                        +"and "+ParameterControl.getRemainigVolume(MaxVolume)+" available cm2.");
+                        +"and "+ParameterControl.getRemainigVolume(MaxVolume)+" available cm3.");
                         break;
                 case 2: //Volume constraint not respected
                         System.out.println("You still have "+ParameterControl.getRemainingWeight(MaxWeight)+" available kgs"
-                        +"and have surpassed the maximum volume by"+(-ParameterControl.getRemainigVolume(MaxVolume))+" by cm2.");
+                        +"and have surpassed the maximum volume by"+(-ParameterControl.getRemainigVolume(MaxVolume))+" by cm3.");
                         break;
                 case 3: //Weight constraint not respected
                         System.out.println("You have surpassed the maximum weigth by "+(-ParameterControl.getRemainingWeight(MaxWeight))
-                        +"kgs. But you still have "+ParameterControl.getRemainigVolume(MaxVolume)+" available cm2.");   
+                        +"kgs. But you still have "+ParameterControl.getRemainigVolume(MaxVolume)+" available cm3.");   
                         break;
                 case 4: //Both constraints not respected
                         System.out.println("You have surpassed the maximum weigth by "+(-ParameterControl.getRemainingWeight(MaxWeight))
                         +"kgs. You also have surpassed the maximum volume by"+(-ParameterControl.getRemainigVolume(MaxVolume))
-                        +" by cm2.");
+                        +" by cm3.");
                         break;   
             }
 
