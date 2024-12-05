@@ -1,56 +1,91 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+
 /**
- * Abstract class representing a type of clothing item, which extends PackingItem.
- * Includes additional attributes specific to clothing, such as gender.
+ * Represents a clothing item as a type of PackingItem.
  */
-public abstract class Clothing extends PackingItem {
+public class Clothing extends PackingItem {
+  private static final String DB_URL = "jdbc:mysql://localhost:3306/Bite_DB";
+  private static final String USER = "root";
+  private static final String PASS = "Bite2005!";
 
-    // Attribute specific to Clothing
-    private String gender;
+  private String gender;
 
-    /**
-     * Constructor for Clothing with all attributes.
-     *
-     * @param value   the value of the clothing item
-     * @param weight  the weight of the clothing item
-     * @param volume  the volume of the clothing item
-     * @param size    the size of the clothing item
-     * @param gender  the gender associated with the clothing item
-     */
-    public Clothing(int value, double weight, double volume, String size, String gender) {
-        super(value, weight, volume, size);
-        this.gender = gender;
+  /**
+   * Constructs a Clothing item with value, type, size, and gender. Essential Item.
+   *
+   * @param value the value of the clothing item
+   * @param type the type of the clothing item
+   * @param size the size of the clothing item
+   * @param gender the gender category of the clothing item
+   */
+  public Clothing(int value, String type, String size, String gender) {
+    super(value, type, size);
+    this.gender = gender;
+  }
+
+  /**
+   * Constructs a Clothing item with type, size, and gender. Non-Essential Item.
+   *
+   * @param type the type of the clothing item
+   * @param size the size of the clothing item
+   * @param gender the gender category of the clothing item
+   */
+  public Clothing(String type, String size, String gender) {
+    super(type, size);
+    this.gender = gender;
+  }
+
+  @Override
+  public double getWeight() {
+    return fetchAttributeFromDB("weight", this.type, this.size, this.gender);
+  }
+
+  @Override
+  public double getVolume() {
+    return fetchAttributeFromDB("volume", this.type, this.size, this.gender);
+  }
+
+  /**
+   * Fetches the specified attribute from the database for a clothing item.
+   *
+   * @param attribute the attribute to fetch (e.g., "weight", "volume")
+   * @param type the type of the clothing item
+   * @param size the size of the clothing item
+   * @param gender the gender category of the clothing item
+   * @return the attribute value as a double
+   */
+  private static double fetchAttributeFromDB(String attribute, String type, String size, String gender) {
+    String query = "SELECT " + attribute + " FROM CLOTHING WHERE TYPE = ? AND SIZE = ? AND GENDER = ?";
+    List<String> validAttributes = Arrays.asList("volume", "weight");
+
+    if (!validAttributes.contains(attribute)) {
+      throw new IllegalArgumentException("Invalid Attribute");
     }
 
-    /**
-     * Constructor for Clothing without a specific value.
-     *
-     * @param weight  the weight of the clothing item
-     * @param volume  the volume of the clothing item
-     * @param size    the size of the clothing item
-     * @param gender  the gender associated with the clothing item
-     */
-    public Clothing(double weight, double volume, String size, String gender) {
-        super(weight, volume, size);
-        this.gender = gender;
-    }
+    try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        PreparedStatement stmt = conn.prepareStatement(query)) {
+      // Set parameters
+      stmt.setString(1, type);
+      stmt.setString(2, size);
+      stmt.setString(3, gender);
 
-    /**
-     * Gets the gender associated with the clothing item.
-     *
-     * @return the gender associated with the clothing item
-     */
-    public String getGender() {
-        return this.gender;
+      // Execute query and fetch result
+      try (ResultSet rs = stmt.executeQuery()) {
+        if (rs.next()) {
+          return rs.getDouble(attribute);
+        } else {
+          throw new SQLException("No data found for the given query");
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Failed to fetch attribute from the database", e);
     }
-
-    /**
-     * Returns a string representation of the clothing item, 
-     * including details from PackingItem and the gender attribute.
-     *
-     * @return a string describing the clothing item
-     */
-    @Override
-    public String toString() {
-        return super.toString() + ", Gender: " + this.gender;
-    }
+  }
 }

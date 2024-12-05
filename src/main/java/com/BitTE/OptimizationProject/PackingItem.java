@@ -1,93 +1,83 @@
 /**
- * Abstract class representing a packing item with attributes such as value,
- * weight, volume, and size.
+ * Abstract class representing a packing item.
  */
 public abstract class PackingItem {
 
     // Attributes
-    private int value;
-    private double weight;
-    private double volume;
-    private String size;
-
+    protected int value;
+    protected String type;
+    protected String size;
+  
     /**
-     * Constructor to create a PackingItem with all attributes.
+     * Constructor for PackingItem with value, type, and size. Essential Items
      *
-     * @param value  the value of the packing item
-     * @param weight the weight of the packing item
-     * @param volume the volume of the packing item
-     * @param size   the size of the packing item
+     * @param value the value of the packing item
+     * @param type the type of the packing item
+     * @param size the size of the packing item
      */
-    public PackingItem(int value, double weight, double volume, String size) {
-        this.value = value;
-        this.weight = weight;
-        this.volume = volume;
-        this.size = size;
+    public PackingItem(int value, String type, String size) {
+      this.value = value;
+      this.type = type;
+      this.size = size;
     }
-
+  
     /**
-     * Constructor to create a PackingItem without a specified value.
+     * Constructor for PackingItem with type and size. Non-Essential Items
      *
-     * @param weight the weight of the packing item
-     * @param volume the volume of the packing item
-     * @param size   the size of the packing item
+     * @param type the type of the packing item
+     * @param size the size of the packing item
      */
-    public PackingItem(double weight, double volume, String size) {
-        this(0, weight, volume, size); // Default value is set to 0
+    public PackingItem(String type, String size) {
+      this.type = type;
+      this.size = size;
     }
-
-    // Getters
-
+  
     /**
      * Gets the value of the packing item.
      *
      * @return the value
      */
     public int getValue() {
-        return this.value;
+      return value;
     }
-
+  
     /**
-     * Gets the weight of the packing item.
+     * Gets the type of the packing item.
      *
-     * @return the weight
+     * @return the type
      */
-    public double getWeight() {
-        return this.weight;
+    public String getType() {
+      return type;
     }
-
-    /**
-     * Gets the volume of the packing item.
-     *
-     * @return the volume
-     */
-    public double getVolume() {
-        return this.volume;
-    }
-
+  
     /**
      * Gets the size of the packing item.
      *
      * @return the size
      */
     public String getSize() {
-        return this.size;
+      return size;
     }
-
-    // Overridden Methods
-
+  
     /**
-     * Returns a string representation of the PackingItem.
+     * Abstract method to get the weight of the packing item.
      *
-     * @return a string with the attributes of the packing item
+     * @return the weight
      */
+    public abstract double getWeight();
+  
+    /**
+     * Abstract method to get the volume of the packing item.
+     *
+     * @return the volume
+     */
+    public abstract double getVolume();
+  
     @Override
     public String toString() {
-        return "PackingItem {" +
-                "value=" + value +
-                ", weight=" + weight +
-                ", volume=" + volume +
-                ", size='" + size + '\'' +
-                '}';
+      return String.format(
+          "PackingItem [value=%d, type=%s, size=%s, weight=%.2f, volume=%.2f]",
+          value, type, size, getWeight(), getVolume());
     }
-}
+  }
+  
