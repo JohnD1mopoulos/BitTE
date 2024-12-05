@@ -51,6 +51,12 @@ public class Clothing extends PackingItem {
     return fetchAttributeFromDB("volume", this.type, this.size, this.gender);
   }
 
+  @Override
+public String toString() {
+    return "Clothing [gender=" + gender + ", getValue()=" + getValue() + ", getType()=" + getType() + ", getSize()="
+            + getSize() + ", getWeight()=" + getWeight() + ", getVolume()=" + getVolume() + "]";
+}
+
   /**
    * Fetches the specified attribute from the database for a clothing item.
    *
