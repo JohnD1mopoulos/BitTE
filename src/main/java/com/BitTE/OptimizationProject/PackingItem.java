@@ -1,6 +1,8 @@
 /**
  * Abstract class representing a packing item.
  */
+package main.java.com.BitTE.OptimizationProject;
+
 public abstract class PackingItem {
 
     // Attributes

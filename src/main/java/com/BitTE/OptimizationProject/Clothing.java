@@ -1,3 +1,4 @@
+package main.java.com.BitTE.OptimizationProject;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -78,8 +79,8 @@ public String toString() {
         PreparedStatement stmt = conn.prepareStatement(query)) {
       // Set parameters
       stmt.setString(1, type);
-      stmt.setString(2, size);
-      stmt.setString(3, gender);
+      stmt.setString(2, String.valueOf(size));
+      stmt.setString(3, String.valueOf(gender));
 
       // Execute query and fetch result
       try (ResultSet rs = stmt.executeQuery()) {
