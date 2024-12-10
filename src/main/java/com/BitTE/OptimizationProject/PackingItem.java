@@ -6,7 +6,7 @@ public abstract class PackingItem {
     // Attributes
     protected int value;
     protected String type;
-    protected String size;
+    protected char size;
   
     /**
      * Constructor for PackingItem with value, type, and size. Essential Items
@@ -15,7 +15,7 @@ public abstract class PackingItem {
      * @param type the type of the packing item
      * @param size the size of the packing item
      */
-    public PackingItem(int value, String type, String size) {
+    public PackingItem(int value, String type, char size) {
       this.value = value;
       this.type = type;
       this.size = size;
@@ -27,7 +27,7 @@ public abstract class PackingItem {
      * @param type the type of the packing item
      * @param size the size of the packing item
      */
-    public PackingItem(String type, String size) {
+    public PackingItem(String type, char size) {
       this.type = type;
       this.size = size;
     }
@@ -55,7 +55,7 @@ public abstract class PackingItem {
      *
      * @return the size
      */
-    public String getSize() {
+    public char getSize() {
       return size;
     }
   

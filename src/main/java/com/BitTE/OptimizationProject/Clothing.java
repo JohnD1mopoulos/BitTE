@@ -14,7 +14,7 @@ public class Clothing extends PackingItem {
   private static final String USER = "root";
   private static final String PASS = "Bite2005!";
 
-  private String gender;
+  private char gender;
 
   /**
    * Constructs a Clothing item with value, type, size, and gender. Essential Item.
@@ -24,7 +24,7 @@ public class Clothing extends PackingItem {
    * @param size the size of the clothing item
    * @param gender the gender category of the clothing item
    */
-  public Clothing(int value, String type, String size, String gender) {
+  public Clothing(int value, String type, char size, char gender) {
     super(value, type, size);
     this.gender = gender;
   }
@@ -36,7 +36,7 @@ public class Clothing extends PackingItem {
    * @param size the size of the clothing item
    * @param gender the gender category of the clothing item
    */
-  public Clothing(String type, String size, String gender) {
+  public Clothing(String type, char size, char gender) {
     super(type, size);
     this.gender = gender;
   }
@@ -66,7 +66,7 @@ public String toString() {
    * @param gender the gender category of the clothing item
    * @return the attribute value as a double
    */
-  private static double fetchAttributeFromDB(String attribute, String type, String size, String gender) {
+  private static double fetchAttributeFromDB(String attribute, String type, char size, char gender) {
     String query = "SELECT " + attribute + " FROM CLOTHING WHERE TYPE = ? AND SIZE = ? AND GENDER = ?";
     List<String> validAttributes = Arrays.asList("volume", "weight");
 
