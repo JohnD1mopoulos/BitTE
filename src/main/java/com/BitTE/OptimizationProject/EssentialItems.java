@@ -17,29 +17,46 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
  class Knapsack{
-    // Static ArrayLists shared across all methods in this class
-    protected static final ArrayList<PackingItem> essentialItems = new ArrayList<>();//Using PackingItem as data type 
-    private static final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
+    /**  Static ArrayList shared across all methods in this class representing one
+    "Knapsack" for the seential items*/
+    protected static final ArrayList<PackingItem> essentialItems = new ArrayList<>();
     //Scanner object for user to input choices
     private static Scanner scanner = new Scanner(System.in);
-    //Static variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
-    private static double MaxWeight;
-    private static double MaxVolume;
 
-    //Method which asks the customer about the dimensions of the suitcase and calculates the volume 
-    private static void SuitcaseCharacteristics() {
+    /**
+     * Prompts the user to pick between adding another essential item to the Knapsack and terminating the 
+     * adding procedure
+     * 
+     * @return a boolean value (true if another item is to be added or false if the procedure is to be terminated)
+     */
+    private boolean continueAdding() {
 
-        System.out.print("Enter the desired weight of the suitcase (in kilograms): ");
-            MaxWeight = scanner.nextDouble();
-        System.out.print("Enter the length of the suitcase (in meters): ");
-            double length = scanner.nextDouble();
-        System.out.print("Enter the width of the suitcase (in meters): ");
-            double width = scanner.nextDouble();
-        System.out.print("Enter the height of the suitcase (in meters): ");
-            double height = scanner.nextDouble();
-        //Calculating volume
-        MaxVolume = length * width * height;
     }
+ 
+    /**
+     * Provides the user with feedback based on the constraints
+     * 
+     * @param stateOfConstraints which describes the current state of the constraints
+     *                             1 - if both constraints are respected
+     *                             2 - if only the weight constraint is respected
+     *                             3 - if only the volume constraint is respected
+     *                             4 - if no constraints are respected
+     */
+    private void constraintFeedback() {
+
+    }
+
+    /**
+     * Prompts the user between terminating the procedure and deleting as many items as he wishes or are needed
+     * to continue the process of adding essential items to the knapsack.
+     * 
+     * @param 
+     */
+    private void fixConstraints() {
+
+    }
+
+
 
    
     /**
@@ -50,7 +67,8 @@ import java.util.Scanner;
     */
 
     // TODO: Impliment the work of the Data Engineers when they're done with T-SQL
-    private static boolean fillEssential(double MaxWeight, double MaxVolume){
+    // TODO: Make it possible for the user to remove items from the knapsack in the begining of the loop
+    private static boolean fillEssential(double maxWeight, double maxVolume){
         
         System.out.println("Dear user, please choose the items that are essential to you: ");
         boolean processRunning = true;
@@ -58,9 +76,10 @@ import java.util.Scanner;
         while (processRunning){
             //Display MENU for choosing type of Item
             System.out.println("Press 1 to add Clothing\n"
-                                +"Press 2 to add Accessory");
+                              +"Press 2 to add Accessory");
+                              //Press 3 to remove item
             //Make choice 
-            int inputType = ParameterControl.setTypeOfItem;
+            int inputType = ParameterControl.setTypeOfItem(scanner);
 
             //If Item is a piece of Clothing set the prefered sex for the item
             char itemGender = 'X';
@@ -76,7 +95,7 @@ import java.util.Scanner;
             }
 
             //Choose Item
-            int itemOfChoice = ParameterControl.setItemChoice(inputType, itemGender);
+            String itemOfChoice = ParameterControl.setItemChoice(inputType, itemGender, scanner);
 
             //Choose the item's size
             char itemSize = ParameterControl.setSize(scanner);
@@ -85,25 +104,25 @@ import java.util.Scanner;
             ParameterControl.inputItem(essentialItems, scanner);
 
             //Check constraints
-            int constraintsMet = ParameterControl.checkConstraints(MaxWeight, MaxVolume, essentialItems);
+            int constraintsMet = ParameterControl.checkConstraints(maxWeight, maxVolume, essentialItems);
 
             //Provide feedback based on constraints
             switch (constraintsMet){
                 case 1: //Constraints respected
-                        System.out.println("You still have "+ParameterControl.getRemainingWeight(MaxWeight)+" available kgs"
-                        +"and "+ParameterControl.getRemainigVolume(MaxVolume)+" available cm3.");
+                        System.out.println("You still have "+ParameterControl.getRemainingWeight(MaxWeight,essentialItems)+" available kgs"
+                        +"and "+ParameterControl.getRemainingVolume(maxVolume,essentialItems)+" available cm3.");
                         break;
                 case 2: //Volume constraint not respected
-                        System.out.println("You still have "+ParameterControl.getRemainingWeight(MaxWeight)+" available kgs"
-                        +"and have surpassed the maximum volume by"+(-ParameterControl.getRemainigVolume(MaxVolume))+" by cm3.");
+                        System.out.println("You still have "+ParameterControl.getRemainingWeight(maxWeight,essentialItems)+" available kgs"
+                        +"and have surpassed the maximum volume by"+(-ParameterControl.getRemainigVolume(maxVolume,essentialItems))+" by cm3.");
                         break;
                 case 3: //Weight constraint not respected
-                        System.out.println("You have surpassed the maximum weigth by "+(-ParameterControl.getRemainingWeight(MaxWeight))
-                        +"kgs. But you still have "+ParameterControl.getRemainigVolume(MaxVolume)+" available cm3.");   
+                        System.out.println("You have surpassed the maximum weigth by "+(-ParameterControl.getRemainingWeight(maxWeight,essentialItems))
+                        +"kgs. But you still have "+ParameterControl.getRemainigVolume(maxVolume,essentialItems)+" available cm3.");   
                         break;
                 case 4: //Both constraints not respected
-                        System.out.println("You have surpassed the maximum weigth by "+(-ParameterControl.getRemainingWeight(MaxWeight))
-                        +"kgs. You also have surpassed the maximum volume by"+(-ParameterControl.getRemainigVolume(MaxVolume))
+                        System.out.println("You have surpassed the maximum weigth by "+(-ParameterControl.getRemainingWeight(maxWeight,essentialItems))
+                        +"kgs. You also have surpassed the maximum volume by"+(-ParameterControl.getRemainingVolume(maxVolume,essentialItems))
                         +" by cm3.");
                         break;   
             }
@@ -123,10 +142,10 @@ import java.util.Scanner;
                             ParameterControl.deleteItem(essentialItems, scanner);
                             validChoice = true;//stop loop
                         } else {
-                            System.out.println("Invalid choice. Please enter 1 or 2");
+                            System.err.println("Invalid choice. Please enter 1 or 2");
                         }
                     } catch (InputMismatchException e){
-                         System.out.println("Invalid input. Please enter a valid integer.");
+                         System.err.println("Invalid input. Please enter a valid integer.");
                          scanner.nextLine();
                     }
                 }
@@ -146,10 +165,10 @@ import java.util.Scanner;
                         } else if (userChoice == 2) {
                              validChoice = true;//Continue adding items
                         } else {
-                            System.err.println("INvalid choice. Please press 1 oe 2.");
+                            System.err.println("Invalid choice. Please press 1 or 2.");
                         }
                      } catch (InputMismatchException e){
-                             System.out.println("Invalid input. Please enter a valid integer.");
+                             System.err.println("Invalid input. Please enter a valid integer.");
                              scanner.nextLine();
                      }
                  }
