@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class App_start extends Application {
+public class AppStart extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
