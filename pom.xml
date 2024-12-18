@@ -13,9 +13,9 @@
         <plugin>                                                    <!-- JavaFX configuration in Maven -->
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-maven-plugin</artifactId>
-            <version>0.0.8</version> 
+            <version>0.0.8</version>
             <configuration>
-                <mainClass>main.Class</mainClass> <!-- Our MAIN CLASS here -->
+                <mainClass><AppStart class="c"></AppStart>lass</mainClass> <!-- Our MAIN CLASS here -->
             </configuration>
             <executions>
                 <execution>
@@ -114,11 +114,12 @@
       <artifactId>choco-solver</artifactId>
       <version>4.10.14</version>
     </dependency>
-    <dependency>                                <!-- JDBC Driver MySql Connector Dependency -->
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.33</version>
+    <dependency>                                <!-- JDBC Driver MySql Connector Dependency Latest -->
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>9.1.0</version>
     </dependency>
+
 
   </dependencies>
   
