@@ -25,6 +25,16 @@
                 </execution>
             </executions>
         </plugin>
+        <plugin>                                                <!-- JavaDoc Tool Plugin -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.11.2</version>
+        </plugin>
+        <plugin>                                                <!-- Java CheckStyle Static Code Analysis -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.6.0</version>
+        </plugin>
         <plugin>                                                <!-- Static Analysis Tool -->
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
