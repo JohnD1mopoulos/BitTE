@@ -24,8 +24,6 @@ public class HomePageControl {
     @FXML
     private void initialize() {
 
-
-        // Προσθήκη λειτουργικότητας στο κουμπί "Start"
         startButton.setOnAction(event -> handleStartButton());
     }
 
