@@ -1,8 +1,7 @@
 package main.java.com.BitTE.OptimizationProject;
 
 /**
- * Created to contain all methods used for constraint control
- 
+ * Created to contain all methods used to hndle both essential and non essential items
  * This class will be effective in arranging the "workspace" ensuring efficient workflow.
  */
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
- class ParameterControl {
+protected class ParameterControl {
 
         /**
         * Used to show all items that have already been added to the Knapsack 
@@ -26,6 +25,8 @@ import java.util.Scanner;
                 System.out.println((i+1) + ") " + items.get(i));//Print a number for each item for an easier read
             }
         }
+
+        //MENU SECTION
 
         /**
          * 
@@ -74,6 +75,8 @@ import java.util.Scanner;
                                 +"Press 3 to add Book");
         }
 
+        //ITEM CREATION-CHOICE-INPUT SECTION
+
         /**
         * Prompts the user to choose between inputting a clothing item or an accessory.
         *
@@ -110,9 +113,63 @@ import java.util.Scanner;
         *
         * @return  The user's choice as a String
         */
-        //TODO: Add the piece of code for if the item is an accessory
-        //TODO: Create method for the input validation logic
         protected static String setItemChoice(int itemType,char itemGender,Scanner scanner) {
+
+            int choiceOfItem = validateChoiceOfItem(itemType, itemGender, scanner);//Get user choice
+                                    
+            if (itemType == 1) {//Item is a piece of Clothing
+                if (itemGender == 'M') {//Return the appropriate item if the selected gender is Male
+                    switch (choiceOfItem) {
+                        case 1 : return "T-Shirt";
+                        case 2 : return "Shirt";
+                        case 3 : return "Hoodie";
+                        case 4 : return "Jeans";
+                        case 5 : return "Sweatpants";
+                        case 6 : return "Trousers";
+                        case 7 : return "Boxers";
+                        case 8 : return "Shorts";
+                        case 9 : return "Sneakers";
+                        case 10 : return "Sandals";
+                        case 11 : return "Boots";
+                        case 12 : return "Socks";
+                    }
+                } else {//Return the appropriate item if the selected gender is 'F'
+                    switch (choiceOfItem) {
+                        case 1 : return "T-Shirt";
+                        case 2 : return "Shirt";
+                        case 3 : return "Hoodie";
+                        case 4 : return "Jeans";
+                        case 5 : return "Sweatpants";
+                        case 6 : return "Trousers";
+                        case 7 : return "Skirts";
+                        case 8 : return "Panties";
+                        case 9 : return "Shorts";
+                        case 10 : return "Sneakers";
+                        case 11 : return "Sandals";
+                        case 12 : return "Boots";
+                        case 13 : return "Socks";
+                    }
+                }
+            } else {//If item is an accessory
+                switch(choiceOfItem) {
+                    case 1 : return "Passport";
+                    case 2 : return "Laptop";
+                    case 3 : return "Book";
+                }
+            }
+        }
+                            
+                    
+                    
+        /**
+         * Prompts the user to choose the item he wishes and ensures that the user's choice is valid
+         * 
+         * @param itemType   type of item (1 for clothing, 2 for accessory)
+         * @param itemGender gender of item ('M' or 'F')
+         * @param scanner    scanner instance for user input
+         * @return the user's validated choice
+         */
+        private static int validateChoiceOfItem(int itemType,char itemGender,Scanner scanner) {
             //Set accepted range of int choices depending of if the item is a piece of clothing or an accessory
             int minRange = 1;
             int maxRange;
@@ -126,52 +183,18 @@ import java.util.Scanner;
             } else {//Item is an accessory
                 maxRange = 3;
             }
+            System.out.println("Enter your choice:");
             while (true) {
                 try {
                     int choiceOfItem = scanner.nextInt();
-                    scanner.nextLine();//Clear the newline character
+                    scanner.nextLine();
                     if (choiceOfItem < minRange || choiceOfItem > maxRange) {//If item is not in the accepted range
                         System.out.println("Invalid input. Give me an integer ranging from "+minRange+" to "+maxRange+".");
                     } else {//Item is in the accepted range
-                        if (itemType == 1) {//Item is a piece of Clothing
-                            if (itemGender == 'M') {//Return the appropriate item if the selected gender is Male
-                                switch (choiceOfItem) {
-                                    case 1 : return "T-Shirt";
-                                    case 2 : return "Shirt";
-                                    case 3 : return "Hoodie";
-                                    case 4 : return "Jeans";
-                                    case 5 : return "Sweatpants";
-                                    case 6 : return "Trousers";
-                                    case 7 : return "Boxers";
-                                    case 8 : return "Shorts";
-                                    case 9 : return "Sneakers";
-                                    case 10 : return "Sandals";
-                                    case 11 : return "Boots";
-                                    case 12 : return "Socks";
-                                }
-                            } else {//Return the appropriate item if the selected gender is 'F'
-                                switch (choiceOfItem) {
-                                    case 1 : return "T-Shirt";
-                                    case 2 : return "Shirt";
-                                    case 3 : return "Hoodie";
-                                    case 4 : return "Jeans";
-                                    case 5 : return "Sweatpants";
-                                    case 6 : return "Trousers";
-                                    case 7 : return "Skirts";
-                                    case 8 : return "Panties";
-                                    case 9 : return "Shorts";
-                                    case 10 : return "Sneakers";
-                                    case 11 : return "Sandals";
-                                    case 12 : return "Boots";
-                                    case 13 : return "Socks";
-                                }
-                            }
-                        } else {//If item is an accessory
-                               ///The code
-                        }
+                        return choiceOfItem;
                     }
                 } catch (InputMismatchException e) {
-                    System.err.println("Invalid input. Please select a valid integer");
+                    System.out.println("Invalid input. Please give me a valid integer");
                     scanner.nextLine();
                 }
             }
@@ -229,85 +252,114 @@ import java.util.Scanner;
          * 
          * @param items representing the essential clothing and what not items
          * @param type representing the type of item (example -> jacket)
-         * @param choice representing if the item is a piece of clothing (1) or an accessory (2)
+         * @param choiceOfItem representing if the item is a piece of clothing (1) or an accessory (2)
          * @param sex representing the selected gender if the item is a piece of clothing ("X" if it isn't)
          * @param size representing the selected size (Small||Medium||Large)
          */
         //TODO: Write the appropriate piece of code according to the Data Engineers instructions
-        protected static void inputItem(ArrayList<PackingItem> items, String type, int choice, char sex, char size) {
-            if (choice == 1) {
+        protected static void inputItem(ArrayList<PackingItem> items, String type, int choiceOfItem, char sex, char size) {
+            if (choiceOfItem == 1) {
                 items.add(new Clothing(type, size , sex));
             }
         }
 
-        
+        //ITEM DELETION SECTION
+
         /**
         * Deletes a number of items from ArrayList essentialItems depending on the user's input
         *
         * @param items ArrayList representing the Knapsack 
         */
-        //TODO: Create method for the input of items
-        //TODO: Create method continue deleting or stop deleting
         protected static void deleteItem(ArrayList<PackingItem> items, Scanner scanner) {
-            while (true) {
+            boolean stopProcess;
+            while (!stopProcess) {
                 // Check if there are items to delete
                 if (items.isEmpty()) {
-                    System.err.println("No items available to delete.");
+                    System.err.println("No items available to delete."
+                                      +"You haven't chosen any item yet");
                     return; // Exit the method
                 }
         
-                // Display available items
+                int itemForDeletion = chooseItemForDeletion(scanner);
+
+                if (itemForDeletion == 0) {//User want's to cancel the deletion process
+                    return;
+                } else {
+                    // Delete the chosen item
+                    System.out.printf("Item no %d, %f, has been deleted.%n",
+                                            itemForDeletion,
+                                            items.get(itemForDeletion - 1));
+                    items.remove(itemForDeletion - 1);
+                }
+
+                stopProcess = !continueDeleting(scanner);
+            }
+        } 
+        
+        /**
+         * Prompts the user to pick the item to be deleted and validates the choice
+         * @param items
+         * @param scanner
+         * @return the user's choice (0 if he changed his mind).
+         */
+        private static int chooseItemForDeletion(ArrayList<PackingItem> items, Scanner scanner) {
+            while(true) {
+                // Display items available for deletion
                 System.out.println("You can delete the following items:");
                 showItems(items);
-        
+
                 // Prompt the user to choose an item to delete
                 System.out.println("Which one do you want to delete? (Press 0 to cancel)");
-        
-                int choice1 = -1; // Variable representing the item to be deleted
+
+                int itemForDeletion = -1; // Variable representing the item to be deleted
                 try {
-                    choice1 = scanner.nextInt();
+                    itemForDeletion = scanner.nextInt();
                     scanner.nextLine(); 
         
-                    if (choice1 == 0) {
+                    if (itemForDeletion == 0) {
                         System.out.println("Stopping deletion of items.");
-                        return; // Exit the method
-                    } else if (choice1 < 1 || choice1 > items.size()) {
+                        return 0; // User cancelled
+                    } else if (itemForDeletion < 1 || itemForDeletion > items.size()) {
                         System.err.println("Invalid choice. Please select a valid item number.");
-                        continue; // Restart the loop
                     }
-        
-                    // Delete the chosen item
-                    System.out.println("Item no " + choice1 + " (" + items.get(choice1 - 1) + ") has been deleted.");
-                    items.remove(choice1 - 1);
-
+                    //Return the user's choice
+                    return itemForDeletion;
                 } catch (InputMismatchException e) {
                     System.err.println("Invalid input. Please enter a valid integer.");
                     scanner.nextLine(); 
-                    continue;//Restart the loop
-                }
-        
-                // Ask the user if they want to delete another item
-                System.out.println("Press 1 to delete another item.\nPress 2 to stop deleting items.");
-                int choice2 = -1;//Variable representing choice to continue or stop method
-        
-                while (true) {
-                    try {
-                        choice2 = scanner.nextInt();
-                        scanner.nextLine(); 
-        
-                        if (choice2 == 1) {//Continue deleting items
-                            break;
-                        } else if (choice2 == 2) {
-                            System.out.println("Stopping deletion process.");
-                            return;//Exit the method
-                        } else {
-                            System.err.println("Invalid choice. Please press 1 to delete another item or 2 to stop.");
-                        }
-                    } catch (InputMismatchException e) {
-                        System.err.println("Invalid input. Please enter 1 or 2.");
-                        scanner.nextLine();
-                    }
                 }
             }
-        }    
+        }
+
+        /**
+         * Prompts the user to pic between continuing deleting items and stopping 
+         * deletion of items
+         * 
+         * @param scanner
+         * @return the user's choice (true if he wants to continue, false if he doesn't)
+         */
+        private static boolean continueDeleting(Scanner scanner) {
+            // Ask the user if they want to delete another item
+            System.out.println("Press 1 to delete another item.\nPress 2 to stop deleting items.");
+            int userChoice = -1;//Variable representing choice to continue or stop method
+
+            while (true) {
+                try {
+                    userChoice = scanner.nextInt();
+                    scanner.nextLine(); 
+    
+                    if (userChoice == 1) {//Continue deleting items
+                        return true;
+                    } else if (userChoice == 2) {
+                        System.out.println("Stopping deletion process.");
+                        return false;//Stop deletion of items
+                    } else {
+                        System.err.println("Invalid choice. Please press 1 to delete another item or 2 to stop.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.err.println("Invalid input. Please enter 1 or 2.");
+                    scanner.nextLine();
+                }
+            }
+        }
 }
