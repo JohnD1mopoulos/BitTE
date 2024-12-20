@@ -1,3 +1,4 @@
+package com.BitTE.OptimizationProject;   //Added the necessary package
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
