@@ -45,36 +45,36 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePageController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Topwear">
           <items>
-            <MenuItem mnemonicParsing="false" text="Male" />
+            <MenuItem mnemonicParsing="false" text="Male" onAction = "#handleMaleTopwear"/>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Female" />
+            <MenuItem mnemonicParsing="false" text="Female" onAction = "#handleFemaleTopwear"/>
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Bottomwear">
           <items>
-                  <MenuItem mnemonicParsing="false" text="Male" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Female" />
+            <MenuItem mnemonicParsing="false" text="Male" onAction = "#handleMaleBottomwear" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Female" onAction = "#handleFemaleBottomwear"/>
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="Shoes">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Male" />
+                  <MenuItem mnemonicParsing="false" text="Male" onAction = "#handleMaleShoes"/>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Female" />
+                  <MenuItem mnemonicParsing="false" text="Female" onAction = "#handleFemaleShoes"/>
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Extras">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Hygiene" />
+                  <MenuItem mnemonicParsing="false" text="Hygiene" onAction = "#handleHygieneExtras"/>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Personal Items" />
+                  <MenuItem mnemonicParsing="false" text="Personal Items" onAction = "#handlePersonalItemsExtras"/>
                </items>
             </Menu>
       </menus>
