@@ -1,58 +1,23 @@
 package main.java.com.BitTE.OptimizationProject;
 
-/**
-* The EssentialItems class represents a dynamic system for managing essential items in a knapsack.
- * It ensures that the weight and volume constraints of the knapsack are respected during the process of 
- * adding items. This class allows users to add and remove essential items and checks if the knapsack 
- * meets the specified weight and volume limits.
- * 
- * Key responsibilities:
- * - Manage essential items by adding them to or removing them from the knapsack.
- * - Enforce the weight and volume constraints by checking if the current items respect the limits.
- * - Provide user interaction through various menus, allowing users to add or remove items.
- * - Give feedback to the user about the current state of constraints and allow corrections to be made if necessary.
- * 
- * Core Features:
- * - Item addition: Users can add items to the knapsack and specify their attributes (type, size, etc.).
- * - Constraint enforcement: After each item is added, the class checks if the knapsack exceeds the weight and volume limits.
- * - Dynamic user interaction: Users can terminate the process, continue adding items, or fix violations by removing items.
- * 
- * Dependencies:
- * - PackingItem: A class that represents individual items in the knapsack.
- * - ParameterControl: A helper class that handles item details, constraint checking, and item deletion.
- * 
- * This class is used in a system where users interactively manage the contents of a knapsack to ensure the
- * items fit within a specified weight and volume limit. The process allows users to modify the knapsack by
- * adding and removing essential items until the constraints are respected.
- */
-
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * The EssentialItems class manages the list of essential items for a knapsack. 
+ * It provides functionality to add, delete, and manage essential items 
+ * and ensures that the knapsack constraints (e.g., weight, volume) are respected.
+ * The class interacts with the user through menus to guide them in selecting items 
+ * and verifying the constraints of the knapsack.
+ */
 protected class EssentialItems {
-    /**  Static ArrayList shared across all methods in this class representing one
-    "Knapsack" for the seential items*/
+    /**Static ArrayList shared across all methods in this class representing
+    the list of chosen essential items*/
     protected static final ArrayList<PackingItem> essentialItems = new ArrayList<>();
     //Scanner object for user to input choices
     private static Scanner scanner = new Scanner(System.in);
-
-    /**
-     * Displays the Starting Menu for the user prompting him to make one of three choices:
-     * 1. Add an essential item to the Knapsack.
-     * 2. Delete an essential item from the Knapsack.
-     * 3. Start adding non essential items.
-     * 4. Exit the programm.
-     */
-    private static void startingMenu() {
-        System.out.println("------------------------------\n"
-                        +"Press 1 to add essential items.\n"
-                        +"Press 2 to delete an essential item(s).\n"
-                        +"Press 3 to start adding non essential items"
-                        +"Press 4 to abandon process"
-                        +"--------------------------------");
-    }
 
     /**
      * Handles the user's input on whether to add an item, delete an item or abandon the process 
@@ -94,39 +59,42 @@ protected class EssentialItems {
                             +"Press 2 to add other item");
           
         //Make choice 
-        int inputType = ParameterControl.setTypeOfItem(scanner);
+        int inputType = ItemInputHandler.setTypeOfItem(scanner);
 
         //If Item is a piece of Clothing set the prefered sex for the item
         char itemGender = 'X';
         if (inputType == 1){
-            itemGender = ParameterControl.setGender(scanner);
+            itemGender = ItemInputHandler.setGender(scanner);
         }
 
         //Display MENU for the process of choosing an Item
         if (inputType == 1) {
-            ParameterControl.clothingMenu(itemGender);
+            MenuHandler.clothingMenu(itemGender);
         } else {
-            ParameterControl.extrasMenu();
+            MenuHandler.extrasMenu();
         }
 
         //Choose Item
-        String itemOfChoice = ParameterControl.setItemChoice(inputType,
+        String itemOfChoice = ItemInputHandler.setItemChoice(inputType,
                                         itemGender,
                                         scanner);
 
         //Choose the item's size
-        char itemSize = ParameterControl.setSize(scanner);
+        char itemSize = ItemInputHandler.setSize(scanner);
 
         //Input item 
-        ParameterControl.inputItem(essentialItems, scanner);
+        ItemInputHandler.inputItem(essentialItems, scanner);
     }
 
    
     /**
-    * Fills ArrayList essentialItems with the inputs of the user and confirms if the constraints are met with each added item
+    * Fills ArrayList essentialItems with the inputs of the user and confirms 
+    * if the constraints are met with each added item
     *
-    * @param s The Weight and Volume of the knapsack
-    * @return A boolean variable that confirms the continuation of the operation if the constraints are still met.
+    * @param maxWeight representing the maximum weight of items that can be added to the Knapsack.
+    * @param maxVolume representing the maximum volume of items that can be added to the Knapsack.
+    * @return a boolean variable that confirms the continuation of the item input operation 
+    *         if the constraints are still met.
     */
     private static boolean fillEssential(double maxWeight, double maxVolume){
         
@@ -135,13 +103,13 @@ protected class EssentialItems {
                             +"----------------------------");
         while (processRunning){
             //Display STARTING MENU
-            startingMenu();
+            MenuHandler.startingMenu();
             int userMenuChoice = getUserMenuChoice();
 
             if (userMenuChoice == 1) {//User wants to add item
                 addItem();
             } else if (userMenuChoice == 2) {//User wants to delete item(s)
-                ParameterControl.deleteItem(essentialItems, scanner);
+                ItemDeletionHandler.deleteItem(essentialItems, scanner);
             } else if (userMenuChoice == 3) {//User wants to start adding essential items
                 return true;
             } else {//User wants to abandon process
