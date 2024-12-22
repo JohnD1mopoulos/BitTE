@@ -11,21 +11,6 @@ import java.util.Scanner;
  */
 public class ItemDeletionHandler {
     /**
-    * Displays all items currently in the Knapsack. 
-    *
-    * @param items a PackingItem ArrayList representing the list of chosen items
-    *             (essential or non essential).
-    */
-    protected static void showItems(ArrayList<PackingItem> items) {
-        if (items == null || items.isEmpty()) {
-            System.out.println("The Knapsack is empty. No items to display!");
-            return;
-        }
-        for (int i =0; i < items.size(); i++) {
-            System.out.println((i+1) + ") " + items.get(i));//Print a number for each item for an easier read
-        }
-    }
-    /**
     * Deletes a number of items from a PackingItem ArrayList based on the user's input
     *
     * @param items a PackingItem ArrayList representing the list of chosen items
@@ -72,7 +57,7 @@ public class ItemDeletionHandler {
         while(true) {
             // Display items available for deletion
             System.out.println("You can delete the following items:");
-            showItems(items);
+            MenuHandler.showItems(items);
 
             // Prompt the user to choose an item to delete
             System.out.println("Which one do you want to delete? (Press 0 to cancel)");

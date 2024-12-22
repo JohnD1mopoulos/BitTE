@@ -12,6 +12,8 @@ import java.util.Scanner;
  * This class provides methods for displaying:
  * - A menu to choose clothing items based on gender.
  * - A menu to choose from additional items like accessories (e.g., passport, computer, book).
+ * - A menu to choose following steps of the essential item input procedure.
+ * - A menu showcasing all the items added to a PackingItem Knapsack.
  */
 protected class MenuHandler {
 
@@ -29,6 +31,22 @@ protected class MenuHandler {
                         +"Press 3 to start adding non essential items"
                         +"Press 4 to abandon process"
                         +"--------------------------------");
+    }
+
+    /**
+    * Displays all items currently in the Knapsack. 
+    *
+    * @param items a PackingItem ArrayList representing the list of chosen items
+    *             (essential or non essential).
+    */
+    protected static void showItems(ArrayList<PackingItem> items) {
+        if (items == null || items.isEmpty()) {
+            System.out.println("The Knapsack is empty. No items to display!");
+            return;
+        }
+        for (int i =0; i < items.size(); i++) {
+            System.out.println((i+1) + ") " + items.get(i));//Print a number for each item for an easier read
+        }
     }
 
     /** 
