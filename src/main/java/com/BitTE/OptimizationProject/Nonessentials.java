@@ -16,25 +16,25 @@ public class Nonessentials {
             System.out.println("Press 1 to add Clothing\n"
                                 +"Press 2 to add Accessory");
             //Make choice 
-            int inputType = ParameterControl.setTypeOfItem;
+            int inputType = MenuHandler.setTypeOfItem;
              /**If Item is a piece of Clothing set the prefered sex for the item, 
              then display MENU for the process of choosing an Item
              */
             char itemGender = 'X';
             if (inputType == 1){
-                itemGender = ParameterControl.setGender(scanner);
-                ParameterControl.clothingMenu(itemGender);
+                itemGender = MenuHandler.setGender(scanner);
+                MenuHandler.clothingMenu(itemGender);
             } else {
-                ParameterControl.extrasMenu();
+                MenuHandler.extrasMenu();
             }
             //Choose Item
-            int itemOfChoice = ParameterControl.setItemChoice(inputType, itemGender);
+            int itemOfChoice = MenuHandler.setItemChoice(inputType, itemGender);
             //Choose the item's size
-            char itemSize = ParameterControl.setSize(scanner);
+            char itemSize = MenuHandler.setSize(scanner);
             //Choose the item's value
-            int value = ParameterControl.setValue;
+            int value = MenuHandler.setValue;
             //Input item 
-            ParameterControl.inputNonEssentialItem(nonEssentialItems, scanner);
+            MenuHandler.inputNonEssentialItem(nonEssentialItems, scanner);
             System.out.println("Press 1 to terminate process.\n"
                                   +"Press 2 to add another item");
             boolean validChoice;
