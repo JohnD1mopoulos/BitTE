@@ -1,12 +1,17 @@
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.io.InputStream;
 import java.util.Properties;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Manages the database connection pool using HikariCP.
+ * This class is responsible for initializing and providing a reliable datasource
+ * for the application, leveraging HikariCP for connection pooling.
+ */
 public class ConnectionPool {
     private static final HikariDataSource DATA_SOURCE;
     private static final Logger logger = LoggerFactory.getLogger(ConnectionPool.class);
@@ -33,7 +38,7 @@ public class ConnectionPool {
             config.addDataSourceProperty("cachePrepStmts", "true");
             config.addDataSourceProperty("prepStmtCacheSize", dbProps.getProperty("hikari.prepStmtCacheSize"));
             config.addDataSourceProperty("prepStmtCacheSqlLimit", dbProps.getProperty("hikari.prepStmtCacheSqlLimit"));
-            
+
             DATA_SOURCE = new HikariDataSource(config);
         } catch (Exception e) {
             logger.error("Failed to load and configure database settings", e);
@@ -41,6 +46,13 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Retrieves a connection from the pooled datasource.
+     * If all connections are in use, it retries the connection attempt up to MAX_RETRIES times.
+     *
+     * @return A database connection from the pool.
+     * @throws SQLException if a database access error occurs or the connection limit is reached.
+     */
     public static Connection getConnection() throws SQLException {
         SQLException lastException = null;
         for (int attempt = 1; attempt <= MAX_RETRIES; attempt++) {
@@ -51,9 +63,9 @@ public class ConnectionPool {
                 logger.error("Attempt {} failed to get database connection: {}", attempt, e.getMessage());
                 if (attempt < MAX_RETRIES) {
                     try {
-                        Thread.sleep(2000); // wait for 2 seconds before retrying
+                        Thread.sleep(2000); // Wait for 2 seconds before retrying
                     } catch (InterruptedException ie) {
-                        Thread.currentThread().interrupt(); // restore interrupted status
+                        Thread.currentThread().interrupt(); // Restore interrupted status
                         logger.error("Thread was interrupted during connection retry wait.", ie);
                         throw new SQLException("Thread interrupted during connection retries", ie);
                     }
