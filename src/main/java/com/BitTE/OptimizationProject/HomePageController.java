@@ -1,4 +1,7 @@
 import java.io.IOException;
+
+import com.BitTE.OptimizationProject.AppStart;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +15,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class HomePageController {
-
+    
+    private double length;
+    private double width;
+    private double height;
 
     @FXML
     private ImageView backgroundImageView;
@@ -119,5 +125,16 @@ public class HomePageController {
         } catch (NumberFormatException e) {
             System.out.println("Παρακαλώ εισάγετε έγκυρους αριθμούς.");
         }
+    }
+     public double getLength() {
+        return length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
     }
 }
