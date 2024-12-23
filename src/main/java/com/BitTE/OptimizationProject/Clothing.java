@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Clothing extends PackingItem {
     private static final Logger logger = LoggerFactory.getLogger(Clothing.class);
+    private Properties properties = new Properties();
     private final String gender;
 
     /**
