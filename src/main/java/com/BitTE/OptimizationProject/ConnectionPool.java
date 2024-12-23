@@ -1,40 +1,46 @@
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.io.InputStream;
+import java.util.Properties;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Provides database connection management using HikariCP connection pooling.
- * This class configures and provides a HikariDataSource for efficient database access.
- */
 public class ConnectionPool {
     private static final HikariDataSource DATA_SOURCE;
-    private static final int MAX_RETRIES = 4;
     private static final Logger logger = LoggerFactory.getLogger(ConnectionPool.class);
+    private static final int MAX_RETRIES = 4;
 
     static {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/Bite_DB"); // Database URL
-        config.setUsername("root"); // Database username
-        config.setPassword("Bite2005!"); // Database password
-        config.addDataSourceProperty("cachePrepStmts", "true"); // Enables caching of prepared statements
-        config.addDataSourceProperty("prepStmtCacheSize", "250"); // The size of the prepared statements cache
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "3000"); // The maximum length of a prepared SQL statement
-        config.setMaximumPoolSize(10); // Sets the maximum number of connections in the pool
-        config.setMinimumIdle(5); // Sets the minimum number of idle connections in the pool
-        config.setIdleTimeout(300000); // Sets the maximum time a connection can stay idle before being closed
-        config.setMaxLifetime(600000); // Sets the maximum lifetime in milliseconds of a pool connection
-        DATA_SOURCE = new HikariDataSource(config);
+        Properties dbProps = new Properties();
+        try (InputStream is = ConnectionPool.class.getClassLoader().getResourceAsStream("config.properties")) {
+            if (is == null) {
+                logger.error("config.properties file not found");
+                throw new RuntimeException("config.properties file not found");
+            }
+            dbProps.load(is);
+
+            HikariConfig config = new HikariConfig();
+            config.setJdbcUrl(dbProps.getProperty("db.jdbcUrl"));
+            config.setUsername(dbProps.getProperty("db.username"));
+            config.setPassword(dbProps.getProperty("db.password"));
+            config.setDriverClassName(dbProps.getProperty("db.driverClassName"));
+            config.setMinimumIdle(Integer.parseInt(dbProps.getProperty("hikari.minimumIdle")));
+            config.setMaximumPoolSize(Integer.parseInt(dbProps.getProperty("hikari.maximumPoolSize")));
+            config.setIdleTimeout(Long.parseLong(dbProps.getProperty("hikari.idleTimeout")));
+            config.setMaxLifetime(Long.parseLong(dbProps.getProperty("hikari.maxLifetime")));
+            config.addDataSourceProperty("cachePrepStmts", "true");
+            config.addDataSourceProperty("prepStmtCacheSize", dbProps.getProperty("hikari.prepStmtCacheSize"));
+            config.addDataSourceProperty("prepStmtCacheSqlLimit", dbProps.getProperty("hikari.prepStmtCacheSqlLimit"));
+            
+            DATA_SOURCE = new HikariDataSource(config);
+        } catch (Exception e) {
+            logger.error("Failed to load and configure database settings", e);
+            throw new RuntimeException("Failed to load and configure database settings", e);
+        }
     }
 
-    /**
-     * Gets a database connection from the pool.
-     *
-     * @return A database connection.
-     * @throws SQLException If a database access error occurs or the connection limit is reached.
-     */
     public static Connection getConnection() throws SQLException {
         SQLException lastException = null;
         for (int attempt = 1; attempt <= MAX_RETRIES; attempt++) {
@@ -42,13 +48,13 @@ public class ConnectionPool {
                 return DATA_SOURCE.getConnection();
             } catch (SQLException e) {
                 lastException = e;
-                logger.error(Attempt {} failed to get database connection: {} attempt, e);
+                logger.error("Attempt {} failed to get database connection: {}", attempt, e.getMessage());
                 if (attempt < MAX_RETRIES) {
                     try {
                         Thread.sleep(2000); // wait for 2 seconds before retrying
                     } catch (InterruptedException ie) {
                         Thread.currentThread().interrupt(); // restore interrupted status
-                        logger.error("Thread was interrupted during connection retry wait.");
+                        logger.error("Thread was interrupted during connection retry wait.", ie);
                         throw new SQLException("Thread interrupted during connection retries", ie);
                     }
                 }
