@@ -1,18 +1,18 @@
 import java.io.IOException;
 
-import com.BitTE.OptimizationProject.AppStart;
-
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.scene.control.ChoiceBox;
 
 public class HomePageController {
     
@@ -52,64 +52,49 @@ public class HomePageController {
 
     @FXML
     void handleFemaleBottomwear(ActionEvent event) {
-        showPane("Female Bottomwear");
+        
     }
 
     @FXML
     void handleFemaleShoes(ActionEvent event) {
-        showPane("Female Shoes");
+        
     }
 
     @FXML
     void handleFemaleTopwear(ActionEvent event) {
-        showPane("Female Topwear");
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("Topwear.fxml"));
+       Parent pane = loader.load();
+       mainPane.getChildren().setAll(pane); 
     }
 
     @FXML
     void handleHygieneExtras(ActionEvent event) {
-        showPane("Hygiene");
+        
     }
 
     @FXML
     void handleMaleBottomwear(ActionEvent event) {
-        showPane("Male Topwear");
+        
     }
 
     @FXML
     void handleMaleShoes(ActionEvent event) {
-        showPane("Male Shoes");
+        
     }
 
     @FXML
     void handleMaleTopwear(ActionEvent event) {
-        showPane("Male Topwear");
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Topwear.fxml"));
+        Parent pane = loader.load();
+        mainPane.getChildren().setAll(pane);
     }
 
     @FXML
     void handlePersonalItemsExtras(ActionEvent event) {
-        showPane("Personal Items");
+        
     }
 
-    private void showPane(String content) {
-        
-        mainPane.getChildren().clear();
-
-        
-        Pane newPane = new Pane();
-        newPane.setPrefSize(mainPane.getPrefWidth(), mainPane.getPrefHeight());
-
-        
-        Label label = new Label(content);
-        label.setStyle("-fx-font-size: 16px; -fx-text-fill: #333;");
-        label.setLayoutX(10);
-        label.setLayoutY(10);
-
-        
-        newPane.getChildren().add(label);
-
-        
-        mainPane.getChildren().add(newPane);
-    }
+    
 
     @FXML
     public void handleSwitchToSecondPage(ActionEvent event) throws IOException {
@@ -136,5 +121,29 @@ public class HomePageController {
 
     public double getHeight() {
         return height;
+    }
+	
+	@FXML
+    private ChoiceBox<String> SizeChoiceBoxTShirt;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxShirt;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxHoodie;
+
+    @FXML
+    private Button minusButton;
+
+    @FXML
+    private Button plusButton;
+
+    @FXML
+    public void initialize() {
+        if (SizeChoiceBoxTShirt != null) {
+            SizeChoiceBoxTShirt.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxShirt.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxHoodie.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+        }
     }
 }
