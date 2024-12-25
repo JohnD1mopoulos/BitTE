@@ -58,7 +58,9 @@ public class HomePageController {
 
     @FXML
     void handleFemaleShoes(ActionEvent event) {
-        
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoesFemale.fxml"));
+        Parent pane = loader.load();
+        mainPane.getChildren().setAll(pane);
     }
 
     @FXML
@@ -82,7 +84,9 @@ public class HomePageController {
 
     @FXML
     void handleMaleShoes(ActionEvent event) {
-        
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoesMale.fxml"));
+        Parent pane = loader.load();
+        mainPane.getChildren().setAll(pane);
     }
 
     @FXML
@@ -170,6 +174,30 @@ public class HomePageController {
 
     @FXML
     private ChoiceBox<String> SizeChoiceBoxPantiesF;
+	
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxSneaker;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxSandal;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxBoots;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxSocks;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxSneakerF;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxSandalF;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxBootsF;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxSocksF;
 
     @FXML
     public void initialize() {
@@ -193,6 +221,22 @@ public class HomePageController {
             SizeChoiceBoxTrousersF.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
             SizeChoiceBoxSkirtsF.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
             SizeChoiceBoxPantiesF.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            
+        }
+		
+		if (SizeChoiceBoxSneaker != null) {
+            SizeChoiceBoxSneaker.setItems(FXCollections.observableArrayList("38-40", "40-42", "42-44"));
+            SizeChoiceBoxSandal.setItems(FXCollections.observableArrayList("38-40", "40-42", "42-44"));
+            SizeChoiceBoxBoots.setItems(FXCollections.observableArrayList("38-40", "40-42", "42-44"));
+            SizeChoiceBoxSocks.setItems(FXCollections.observableArrayList("38-40", "40-42", "42-44"));
+            
+        }
+
+        if (SizeChoiceBoxSneakerF != null) {
+            SizeChoiceBoxSneakerF.setItems(FXCollections.observableArrayList("34-36", "36-38", "38-40"));
+            SizeChoiceBoxSandalF.setItems(FXCollections.observableArrayList("34-36", "36-38", "38-40"));
+            SizeChoiceBoxBootsF.setItems(FXCollections.observableArrayList("34-36", "36-38", "38-40"));
+            SizeChoiceBoxSocksF.setItems(FXCollections.observableArrayList("34-36", "36-38", "38-40"));
             
         }
     }
