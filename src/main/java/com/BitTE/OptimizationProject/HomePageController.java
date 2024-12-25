@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,7 +73,9 @@ public class HomePageController {
 
     @FXML
     void handleMaleBottomwear(ActionEvent event) {
-        
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("BottomwearMale.fxml"));
+       Parent pane = loader.load();
+       mainPane.getChildren().setAll(pane); 
     }
 
     @FXML
@@ -137,6 +138,21 @@ public class HomePageController {
 
     @FXML
     private Button plusButton;
+	
+	@FXML
+    private ChoiceBox<String> SizeChoiceBoxJeans;
+   
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxSweatpants;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxTrousers;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxBoxers;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxShorts;
 
     @FXML
     public void initialize() {
@@ -144,6 +160,14 @@ public class HomePageController {
             SizeChoiceBoxTShirt.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
             SizeChoiceBoxShirt.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
             SizeChoiceBoxHoodie.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+        }
+		
+		if (SizeChoiceBoxJeans != null) {
+            SizeChoiceBoxJeans.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxSweatpants.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxTrousers.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxBoxers.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxShorts.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
         }
     }
 }
