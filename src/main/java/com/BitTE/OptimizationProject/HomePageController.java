@@ -72,7 +72,9 @@ public class HomePageController {
 
     @FXML
     void handleHygieneExtras(ActionEvent event) {
-        
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("Hygiene.fxml"));
+       Parent pane = loader.load();
+       mainPane.getChildren().setAll(pane);
     }
 
     @FXML
@@ -98,7 +100,9 @@ public class HomePageController {
 
     @FXML
     void handlePersonalItemsExtras(ActionEvent event) {
-        
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("PersonalItems.fxml"));
+       Parent pane = loader.load();
+       mainPane.getChildren().setAll(pane); 
     }
 
     
@@ -198,6 +202,12 @@ public class HomePageController {
 
     @FXML
     private ChoiceBox<String> SizeChoiceBoxSocksF;
+	
+	@FXML
+    private ChoiceBox<String> SizeChoiceBoxBook;
+
+    @FXML
+    private ChoiceBox<String> SizeChoiceBoxToiletryBag;
 
     @FXML
     public void initialize() {
@@ -238,6 +248,14 @@ public class HomePageController {
             SizeChoiceBoxBootsF.setItems(FXCollections.observableArrayList("34-36", "36-38", "38-40"));
             SizeChoiceBoxSocksF.setItems(FXCollections.observableArrayList("34-36", "36-38", "38-40"));
             
+        }
+		
+		if (SizeChoiceBoxBook != null) {
+            SizeChoiceBoxBook.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+        }
+
+        if (SizeChoiceBoxToiletryBag != null) {
+            SizeChoiceBoxToiletryBag.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM"));
         }
     }
 }
