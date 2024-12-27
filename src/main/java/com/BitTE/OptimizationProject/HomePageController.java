@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 public class HomePageController {
     
@@ -50,56 +51,56 @@ public class HomePageController {
     private Color x8;
 
     @FXML
-    void handleFemaleBottomwear(ActionEvent event) {
+    void handleFemaleBottomwear(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("BottomwearFemale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
     }
 
     @FXML
-    void handleFemaleShoes(ActionEvent event) {
+    void handleFemaleShoes(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoesFemale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
     }
 
     @FXML
-    void handleFemaleTopwear(ActionEvent event) {
+    void handleFemaleTopwear(ActionEvent event) throws IOException {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("Topwear.fxml"));
        Parent pane = loader.load();
        mainPane.getChildren().setAll(pane); 
     }
 
     @FXML
-    void handleHygieneExtras(ActionEvent event) {
+    void handleHygieneExtras(ActionEvent event) throws IOException {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("Hygiene.fxml"));
        Parent pane = loader.load();
        mainPane.getChildren().setAll(pane);
     }
 
     @FXML
-    void handleMaleBottomwear(ActionEvent event) {
+    void handleMaleBottomwear(ActionEvent event) throws IOException {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("BottomwearMale.fxml"));
        Parent pane = loader.load();
        mainPane.getChildren().setAll(pane); 
     }
 
     @FXML
-    void handleMaleShoes(ActionEvent event) {
+    void handleMaleShoes(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoesMale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
     }
 
     @FXML
-    void handleMaleTopwear(ActionEvent event) {
+    void handleMaleTopwear(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Topwear.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
     }
 
     @FXML
-    void handlePersonalItemsExtras(ActionEvent event) {
+    void handlePersonalItemsExtras(ActionEvent event) throws IOException {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("PersonalItems.fxml"));
        Parent pane = loader.load();
        mainPane.getChildren().setAll(pane); 
@@ -135,79 +136,577 @@ public class HomePageController {
     }
 	
 	@FXML
-    private ChoiceBox<String> SizeChoiceBoxTShirt;
+private ChoiceBox<String> SizeChoiceBoxTShirt;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxShirt;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxHoodie;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxJeans;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSweatpants;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxTrousers;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxBoxers;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxShorts;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxJeansF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSweatpantsF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxTrousersF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSkirtsF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxPantiesF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSneaker;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSandal;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxBoots;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSocks;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSneakerF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSandalF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxBootsF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxSocksF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxBook;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxToiletryBag;
+// TShirt
+@FXML
+private Button minusButtonTShirt;
+@FXML
+private Button plusButtonTShirt;
+@FXML
+private Label countLabelTShirt;
+private int countTShirt = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxShirt;
+// Shirt
+@FXML
+private Button minusButtonShirt;
+@FXML
+private Button plusButtonShirt;
+@FXML
+private Label countLabelShirt;
+private int countShirt = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxHoodie;
+// Hoodie
+@FXML
+private Button minusButtonHoodie;
+@FXML
+private Button plusButtonHoodie;
+@FXML
+private Label countLabelHoodie;
+private int countHoodie = 0;
 
-    @FXML
-    private Button minusButton;
+// Jeans
+@FXML
+private Button minusButtonJeans;
+@FXML
+private Button plusButtonJeans;
+@FXML
+private Label countLabelJeans;
+private int countJeans = 0;
 
-    @FXML
-    private Button plusButton;
-	
-	@FXML
-    private ChoiceBox<String> SizeChoiceBoxJeans;
-   
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSweatpants;
+// Sweatpants
+@FXML
+private Button minusButtonSweatpants;
+@FXML
+private Button plusButtonSweatpants;
+@FXML
+private Label countLabelSweatpants;
+private int countSweatpants = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxTrousers;
+// Trousers
+@FXML
+private Button minusButtonTrousers;
+@FXML
+private Button plusButtonTrousers;
+@FXML
+private Label countLabelTrousers;
+private int countTrousers = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxBoxers;
+// Boxers
+@FXML
+private Button minusButtonBoxers;
+@FXML
+private Button plusButtonBoxers;
+@FXML
+private Label countLabelBoxers;
+private int countBoxers = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxShorts;
-	
-	 @FXML
-    private ChoiceBox<String> SizeChoiceBoxJeansF;
-   
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSweatpantsF;
+// Shorts
+@FXML
+private Button minusButtonShorts;
+@FXML
+private Button plusButtonShorts;
+@FXML
+private Label countLabelShorts;
+private int countShorts = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxTrousersF;
+// Jeans (Female)
+@FXML
+private Button minusButtonJeansF;
+@FXML
+private Button plusButtonJeansF;
+@FXML
+private Label countLabelJeansF;
+private int countJeansF = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSkirtsF;
+// Sweatpants (Female)
+@FXML
+private Button minusButtonSweatpantsF;
+@FXML
+private Button plusButtonSweatpantsF;
+@FXML
+private Label countLabelSweatpantsF;
+private int countSweatpantsF = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxPantiesF;
-	
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSneaker;
+// Trousers (Female)
+@FXML
+private Button minusButtonTrousersF;
+@FXML
+private Button plusButtonTrousersF;
+@FXML
+private Label countLabelTrousersF;
+private int countTrousersF = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSandal;
+// Skirts (Female)
+@FXML
+private Button minusButtonSkirtsF;
+@FXML
+private Button plusButtonSkirtsF;
+@FXML
+private Label countLabelSkirtsF;
+private int countSkirtsF = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxBoots;
+// Panties (Female)
+@FXML
+private Button minusButtonPantiesF;
+@FXML
+private Button plusButtonPantiesF;
+@FXML
+private Label countLabelPantiesF;
+private int countPantiesF = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSocks;
+// Sneaker
+@FXML
+private Button minusButtonSneaker;
+@FXML
+private Button plusButtonSneaker;
+@FXML
+private Label countLabelSneaker;
+private int countSneaker = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSneakerF;
+// Sandal
+@FXML
+private Button minusButtonSandal;
+@FXML
+private Button plusButtonSandal;
+@FXML
+private Label countLabelSandal;
+private int countSandal = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSandalF;
+// Boots
+@FXML
+private Button minusButtonBoots;
+@FXML
+private Button plusButtonBoots;
+@FXML
+private Label countLabelBoots;
+private int countBoots = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxBootsF;
+// Socks
+@FXML
+private Button minusButtonSocks;
+@FXML
+private Button plusButtonSocks;
+@FXML
+private Label countLabelSocks;
+private int countSocks = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxSocksF;
-	
-	@FXML
-    private ChoiceBox<String> SizeChoiceBoxBook;
+// Sneaker (Female)
+@FXML
+private Button minusButtonSneakerF;
+@FXML
+private Button plusButtonSneakerF;
+@FXML
+private Label countLabelSneakerF;
+private int countSneakerF = 0;
 
-    @FXML
-    private ChoiceBox<String> SizeChoiceBoxToiletryBag;
+// Sandal (Female)
+@FXML
+private Button minusButtonSandalF;
+@FXML
+private Button plusButtonSandalF;
+@FXML
+private Label countLabelSandalF;
+private int countSandalF = 0;
+
+// Boots (Female)
+@FXML
+private Button minusButtonBootsF;
+@FXML
+private Button plusButtonBootsF;
+@FXML
+private Label countLabelBootsF;
+private int countBootsF = 0;
+
+// Socks (Female)
+@FXML
+private Button minusButtonSocksF;
+@FXML
+private Button plusButtonSocksF;
+@FXML
+private Label countLabelSocksF;
+private int countSocksF = 0;
+
+// Book
+@FXML
+private Button minusButtonBook;
+@FXML
+private Button plusButtonBook;
+@FXML
+private Label countLabelBook;
+private int countBook = 0;
+
+// Passport 
+@FXML
+private Button minusButtonPassport;
+@FXML
+private Button plusButtonPassport;
+@FXML
+private Label countLabelPassport;
+private int countPassport = 0;
+
+// Laptop
+@FXML
+private Button minusButtonLaptop;
+@FXML
+private Button plusButtonLaptop;
+@FXML
+private Label countLabelLaptop;
+private int countLaptop = 0;
+
+// Toiletry Bag
+@FXML
+private Button minusButtonToiletryBag;
+@FXML
+private Button plusButtonToiletryBag;
+@FXML
+private Label countLabelToiletryBag;
+private int countToiletryBag = 0;
+
+// TShirt Counter
+@FXML
+public void counterTShirt(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonTShirt) {
+        countTShirt++;
+    } else if (source == minusButtonTShirt && countTShirt > 0) {
+        countTShirt--;
+    }
+    countLabelTShirt.setText(String.valueOf(countTShirt));
+}
+
+// Shirt Counter
+@FXML
+public void counterShirt(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonShirt) {
+        countShirt++;
+    } else if (source == minusButtonShirt && countShirt > 0) {
+        countShirt--;
+    }
+    countLabelShirt.setText(String.valueOf(countShirt));
+}
+
+// Hoodie Counter
+@FXML
+public void counterHoodie(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonHoodie) {
+        countHoodie++;
+    } else if (source == minusButtonHoodie && countHoodie > 0) {
+        countHoodie--;
+    }
+    countLabelHoodie.setText(String.valueOf(countHoodie));
+}
+
+// Jeans Counter
+@FXML
+public void counterJeans(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonJeans) {
+        countJeans++;
+    } else if (source == minusButtonJeans && countJeans > 0) {
+        countJeans--;
+    }
+    countLabelJeans.setText(String.valueOf(countJeans));
+}
+
+// Sweatpants Counter
+@FXML
+public void counterSweatpants(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSweatpants) {
+        countSweatpants++;
+    } else if (source == minusButtonSweatpants && countSweatpants > 0) {
+        countSweatpants--;
+    }
+    countLabelSweatpants.setText(String.valueOf(countSweatpants));
+}
+
+// Trousers Counter
+@FXML
+public void counterTrousers(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonTrousers) {
+        countTrousers++;
+    } else if (source == minusButtonTrousers && countTrousers > 0) {
+        countTrousers--;
+    }
+    countLabelTrousers.setText(String.valueOf(countTrousers));
+}
+
+// Boxers Counter
+@FXML
+public void counterBoxers(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonBoxers) {
+        countBoxers++;
+    } else if (source == minusButtonBoxers && countBoxers > 0) {
+        countBoxers--;
+    }
+    countLabelBoxers.setText(String.valueOf(countBoxers));
+}
+
+// Shorts Counter
+@FXML
+public void counterShorts(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonShorts) {
+        countShorts++;
+    } else if (source == minusButtonShorts && countShorts > 0) {
+        countShorts--;
+    }
+    countLabelShorts.setText(String.valueOf(countShorts));
+}
+
+// Jeans (Female) Counter
+@FXML
+public void counterJeansF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonJeansF) {
+        countJeansF++;
+    } else if (source == minusButtonJeansF && countJeansF > 0) {
+        countJeansF--;
+    }
+    countLabelJeansF.setText(String.valueOf(countJeansF));
+}
+
+// Sweatpants (Female) Counter
+@FXML
+public void counterSweatpantsF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSweatpantsF) {
+        countSweatpantsF++;
+    } else if (source == minusButtonSweatpantsF && countSweatpantsF > 0) {
+        countSweatpantsF--;
+    }
+    countLabelSweatpantsF.setText(String.valueOf(countSweatpantsF));
+}
+
+// Trousers (Female) Counter
+@FXML
+public void counterTrousersF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonTrousersF) {
+        countTrousersF++;
+    } else if (source == minusButtonTrousersF && countTrousersF > 0) {
+        countTrousersF--;
+    }
+    countLabelTrousersF.setText(String.valueOf(countTrousersF));
+}
+
+// Skirts (Female) Counter
+@FXML
+public void counterSkirtsF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSkirtsF) {
+        countSkirtsF++;
+    } else if (source == minusButtonSkirtsF && countSkirtsF > 0) {
+        countSkirtsF--;
+    }
+    countLabelSkirtsF.setText(String.valueOf(countSkirtsF));
+}
+
+// Panties (Female) Counter
+@FXML
+public void counterPantiesF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonPantiesF) {
+        countPantiesF++;
+    } else if (source == minusButtonPantiesF && countPantiesF > 0) {
+        countPantiesF--;
+    }
+    countLabelPantiesF.setText(String.valueOf(countPantiesF));
+}
+
+// Sneaker Counter
+@FXML
+public void counterSneaker(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSneaker) {
+        countSneaker++;
+    } else if (source == minusButtonSneaker && countSneaker > 0) {
+        countSneaker--;
+    }
+    countLabelSneaker.setText(String.valueOf(countSneaker));
+}
+
+// Sandal Counter
+@FXML
+public void counterSandal(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSandal) {
+        countSandal++;
+    } else if (source == minusButtonSandal && countSandal > 0) {
+        countSandal--;
+    }
+    countLabelSandal.setText(String.valueOf(countSandal));
+}
+
+// Boots Counter
+@FXML
+public void counterBoots(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonBoots) {
+        countBoots++;
+    } else if (source == minusButtonBoots && countBoots > 0) {
+        countBoots--;
+    }
+    countLabelBoots.setText(String.valueOf(countBoots));
+}
+
+// Socks Counter
+@FXML
+public void counterSocks(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSocks) {
+        countSocks++;
+    } else if (source == minusButtonSocks && countSocks > 0) {
+        countSocks--;
+    }
+    countLabelSocks.setText(String.valueOf(countSocks));
+}
+
+// Sneaker (Female) Counter
+@FXML
+public void counterSneakerF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSneakerF) {
+        countSneakerF++;
+    } else if (source == minusButtonSneakerF && countSneakerF > 0) {
+        countSneakerF--;
+    }
+    countLabelSneakerF.setText(String.valueOf(countSneakerF));
+}
+
+// Sandal (Female) Counter
+@FXML
+public void counterSandalF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSandalF) {
+        countSandalF++;
+    } else if (source == minusButtonSandalF && countSandalF > 0) {
+        countSandalF--;
+    }
+    countLabelSandalF.setText(String.valueOf(countSandalF));
+}
+
+// Boots (Female) Counter
+@FXML
+public void counterBootsF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonBootsF) {
+        countBootsF++;
+    } else if (source == minusButtonBootsF && countBootsF > 0) {
+        countBootsF--;
+    }
+    countLabelBootsF.setText(String.valueOf(countBootsF));
+}
+
+// Socks (Female) Counter
+@FXML
+public void counterSocksF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonSocksF) {
+        countSocksF++;
+    } else if (source == minusButtonSocksF && countSocksF > 0) {
+        countSocksF--;
+    }
+    countLabelSocksF.setText(String.valueOf(countSocksF));
+}
+
+// Book Counter
+@FXML
+public void counterBook(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonBook) {
+        countBook++;
+    } else if (source == minusButtonBook && countBook > 0) {
+        countBook--;
+    }
+    countLabelBook.setText(String.valueOf(countBook));
+}
+
+// Laptop Counter
+@FXML
+public void counterLaptop(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonLaptop) {
+        countLaptop++;
+    } else if (source == minusButtonLaptop && countLaptop > 0) {
+        countLaptop--;
+    }
+    countLabelLaptop.setText(String.valueOf(countLaptop));
+}
+
+// Passport Counter
+@FXML
+public void counterPassport(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonPassport) {
+        countPassport++;
+    } else if (source == minusButtonPassport && countPassport > 0) {
+        countPassport--;
+    }
+    countLabelPassport.setText(String.valueOf(countPassport));
+}
+
+
+// Toiletry Bag Counter
+@FXML
+public void counterToiletryBag(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonToiletryBag) {
+        countToiletryBag++;
+    } else if (source == minusButtonToiletryBag && countToiletryBag > 0) {
+        countToiletryBag--;
+    }
+    countLabelToiletryBag.setText(String.valueOf(countToiletryBag));
+}
+
 
     @FXML
     public void initialize() {

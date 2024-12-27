@@ -1,4 +1,3 @@
-package com.BitTE.OptimizationProject;   //Added the necessary package
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

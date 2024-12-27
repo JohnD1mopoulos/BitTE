@@ -21,13 +21,13 @@
       </Label>
       <HBox layoutX="438.0" layoutY="99.0" prefHeight="38.0" prefWidth="98.0">
          <children>
-            <Button fx:id="minusButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-">
+            <Button fx:id="minusButtonJeansF" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-" onAction="#counterJeansF">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
-            <Button fx:id="plusButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+">
+            <Label fx:id="countLabelJeansF" alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
+            <Button fx:id="plusButtonJeansF" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+" onAction="#counterJeansF">
                <font>
                   <Font size="14.0" />
                </font>
@@ -44,13 +44,13 @@
       </Label>
       <HBox layoutX="438.0" layoutY="185.0" prefHeight="38.0" prefWidth="98.0">
          <children>
-            <Button fx:id="minusButton1" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-">
+            <Button fx:id="minusButtonSweatpantsF" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-" onAction="#counterSweatpantsF">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
-            <Button fx:id="plusButton1" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+">
+            <Label fx:id="countLabelSweatpantsF" alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
+            <Button fx:id="plusButtonSweatpantsF" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+" onAction="#counterSweatpantsF">
                <font>
                   <Font size="14.0" />
                </font>
@@ -67,13 +67,13 @@
       </Label>
       <HBox layoutX="438.0" layoutY="282.0" prefHeight="38.0" prefWidth="98.0">
          <children>
-            <Button fx:id="minusButton11" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-">
+            <Button fx:id="minusButtonTrousersF" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-" onAction="#counterTrousersF">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
-            <Button fx:id="plusButton11" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+">
+            <Label fx:id="countLabelTrousersF" alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
+            <Button fx:id="plusButtonTrousersF" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+" onAction="#counterTrousersF">
                <font>
                   <Font size="14.0" />
                </font>
@@ -90,13 +90,13 @@
       </Label>
       <HBox layoutX="438.0" layoutY="387.0" prefHeight="38.0" prefWidth="98.0">
          <children>
-            <Button fx:id="minusButton111" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-">
+            <Button fx:id="minusButtonSkirtsF" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-" onAction="#counterSkirtsF">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
-            <Button fx:id="plusButton111" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+">
+            <Label fx:id="countLabelSkirtsF" alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
+            <Button fx:id="plusButtonSkirtsF" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+" onAction="#counterSkirtsF">
                <font>
                   <Font size="14.0" />
                </font>
@@ -113,13 +113,13 @@
       </Label>
       <HBox layoutX="438.0" layoutY="491.0" prefHeight="38.0" prefWidth="98.0">
          <children>
-            <Button fx:id="minusButton1111" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-">
+            <Button fx:id="minusButtonPantiesF" mnemonicParsing="false" prefHeight="37.0" prefWidth="37.0" text="-" onAction="#counterPantiesF">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
-            <Button fx:id="plusButton1111" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+">
+            <Label fx:id="countLabelPantiesF" alignment="CENTER" prefHeight="38.0" prefWidth="34.0" text="0" />
+            <Button fx:id="plusButtonPantiesF" mnemonicParsing="false" prefHeight="37.0" prefWidth="35.0" text="+" onAction="#counterPantiesF">
                <font>
                   <Font size="14.0" />
                </font>
