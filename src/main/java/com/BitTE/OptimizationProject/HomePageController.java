@@ -144,8 +144,6 @@ private ChoiceBox<String> SizeChoiceBoxHoodie;
 @FXML
 private ChoiceBox<String> SizeChoiceBoxJeans;
 @FXML
-private ChoiceBox<String> SizeChoiceBoxHoodie;
-@FXML
 private ChoiceBox<String> SizeChoiceBoxTShirtF;
 @FXML
 private ChoiceBox<String> SizeChoiceBoxShirtF;
