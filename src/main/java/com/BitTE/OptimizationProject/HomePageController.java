@@ -66,7 +66,7 @@ public class HomePageController {
 
     @FXML
     void handleFemaleTopwear(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("Topwear.fxml"));
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("TopwearFemale.fxml"));
        Parent pane = loader.load();
        mainPane.getChildren().setAll(pane); 
     }
@@ -94,7 +94,7 @@ public class HomePageController {
 
     @FXML
     void handleMaleTopwear(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Topwear.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TopwearMale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
     }
@@ -135,7 +135,7 @@ public class HomePageController {
         return height;
     }
 	
-	@FXML
+@FXML
 private ChoiceBox<String> SizeChoiceBoxTShirt;
 @FXML
 private ChoiceBox<String> SizeChoiceBoxShirt;
@@ -143,6 +143,14 @@ private ChoiceBox<String> SizeChoiceBoxShirt;
 private ChoiceBox<String> SizeChoiceBoxHoodie;
 @FXML
 private ChoiceBox<String> SizeChoiceBoxJeans;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxHoodie;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxTShirtF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxShirtF;
+@FXML
+private ChoiceBox<String> SizeChoiceBoxHoodieF;
 @FXML
 private ChoiceBox<String> SizeChoiceBoxSweatpants;
 @FXML
@@ -714,6 +722,12 @@ public void counterToiletryBag(ActionEvent event) {
             SizeChoiceBoxTShirt.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
             SizeChoiceBoxShirt.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
             SizeChoiceBoxHoodie.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+        }
+		
+		if (SizeChoiceBoxTShirtF != null) {
+            SizeChoiceBoxTShirtF.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxShirtF.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
+            SizeChoiceBoxHoodieF.setItems(FXCollections.observableArrayList("SMALL", "MEDIUM", "LARGE"));
         }
 		
 		if (SizeChoiceBoxJeans != null) {
