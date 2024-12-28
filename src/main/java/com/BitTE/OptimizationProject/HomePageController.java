@@ -214,6 +214,33 @@ private Button plusButtonHoodie;
 private Label hoodieCountLabel;
 private int countHoodie = 0;
 
+// T-Shirt
+@FXML
+private Button minusButtonTShirtF;
+@FXML
+private Button plusButtonTShirtF;
+@FXML
+private Label countLabelTShirtF;
+private int countTShirtF = 0;
+
+// Shirt
+@FXML
+private Button minusButtonShirtF;
+@FXML
+private Button plusButtonShirtF;
+@FXML
+private Label countLabelShirtF;
+private int countShirtF = 0;
+
+// Hoodie
+@FXML
+private Button minusButtonHoodieF;
+@FXML
+private Button plusButtonHoodieF;
+@FXML
+private Label countLabelHoodieF;
+private int countHoodieF = 0;
+
 // Jeans
 @FXML
 private Button minusButtonJeans;
@@ -446,6 +473,42 @@ public void counterHoodie(ActionEvent event) {
         countHoodie--;
     }
     hoodieCountLabel.setText(String.valueOf(countHoodie));
+}
+
+// T-Shirt Counter
+@FXML
+public void counterTShirtF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonTShirtF) {
+        countTShirtF++;
+    } else if (source == minusButtonTShirtF && countTShirtF > 0) {
+        countTShirtF--;
+    }
+    countLabelTShirtF.setText(String.valueOf(countTShirtF));
+}
+
+// Shirt Counter
+@FXML
+public void counterShirtF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonShirtF) {
+        countShirtF++;
+    } else if (source == minusButtonShirtF && countShirtF > 0) {
+        countShirtF--;
+    }
+    countLabelShirtF.setText(String.valueOf(countShirtF));
+}
+
+// Hoodie Counter
+@FXML
+public void counterHoodieF(ActionEvent event) {
+    Object source = event.getSource();
+    if (source == plusButtonHoodieF) {
+        countHoodieF++;
+    } else if (source == minusButtonHoodieF && countHoodieF > 0) {
+        countHoodieF--;
+    }
+    countLabelHoodieF.setText(String.valueOf(countHoodieF));
 }
 
 // Jeans Counter
