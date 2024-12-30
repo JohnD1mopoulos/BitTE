@@ -13,7 +13,7 @@ import java.util.function.Function;
  * to the user about constraint violations, and handling the process of fixing 
  * constraint violations by allowing the user to delete items or terminate the process.
  */
-protected class EssentialConstraints {
+class EssentialConstraints {
     
     /**
    * Calculates the sum of a specified attribute for a list of `PackingItem` objects.

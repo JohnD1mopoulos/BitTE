@@ -15,7 +15,13 @@ import java.util.Scanner;
  * - A menu to choose following steps of the essential item input procedure.
  * - A menu showcasing all the items added to a PackingItem Knapsack.
  */
-protected class MenuHandler {
+class MenuHandler {
+
+    //Displays the menu of the valid types of items 1. Clothing, 2. Accessory
+    protected static void chooseItemType() {
+    System.out.println("Press 1 to add Clothing\n"
+                                +"Press 2 to add Accessory");
+    }
 
     /**
      * Displays the Starting Menu for the user prompting him to make one of three choices:

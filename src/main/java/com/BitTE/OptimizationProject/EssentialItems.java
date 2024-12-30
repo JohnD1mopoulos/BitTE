@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import main.java.com.BitTE.OptimizationProject.CreateSuitcase;
+
 /**
  * The EssentialItems class manages the list of essential items for a knapsack. 
  * It provides functionality to add, delete, and manage essential items 
@@ -12,7 +14,7 @@ import java.util.Scanner;
  * The class interacts with the user through menus to guide them in selecting items 
  * and verifying the constraints of the knapsack.
  */
-protected class EssentialItems {
+class EssentialItems {
     /**Static ArrayList shared across all methods in this class representing
     the list of chosen essential items*/
     protected static final ArrayList<PackingItem> essentialItems = new ArrayList<>();
@@ -55,8 +57,7 @@ protected class EssentialItems {
      */
     private static void addItem() {
         //Display MENU for choosing type of Item
-        System.out.println("Press 1 to add Clothing\n"
-                            +"Press 2 to add other item");
+        MenuHandler.chooseItemType();
           
         //Make choice 
         int inputType = ItemInputHandler.setTypeOfItem(scanner);
@@ -75,15 +76,14 @@ protected class EssentialItems {
         }
 
         //Choose Item
-        String itemOfChoice = ItemInputHandler.setItemChoice(inputType,
-                                        itemGender,
-                                        scanner);
+        String itemOfChoice = ItemInputHandler.setItemChoice(inputType, 
+                                                            itemGender, scanner);
 
         //Choose the item's size
         char itemSize = ItemInputHandler.setSize(scanner);
 
         //Input item 
-        ItemInputHandler.inputItem(essentialItems, scanner);
+        ItemInputHandler.inputItem(essentialItems, inputType, itemOfChoice, itemGender, itemSize);
     }
 
    
@@ -128,7 +128,7 @@ protected class EssentialItems {
                                                 maxVolume);
         
             //Provide feedback based on constraints
-            constraintFeedback(essentialItems, constraintsStatus, maxWeight, maxVolume);
+            EssentialConstraints.constraintFeedback(essentialItems, constraintsStatus, maxWeight, maxVolume);
         
             //Handle different constraint scenarios
             if (constraintsStatus != 1) {//Constraints arent met
@@ -136,8 +136,8 @@ protected class EssentialItems {
                 boolean constraintProblemSolved = EssentialConstraints.
                                                 fixConstraints(essentialItems,
                                                             scanner,
-                                                            maxWeight,
-                                                            maxVolume);
+                                                            CreateSuitcase.maxWeight,
+                                                            CreateSuitcase.maxVolume);
     
                 if (constraintProblemSolved) {
                     //The user deleted some items and now constraints are respected
