@@ -1,3 +1,5 @@
+package main.java.com.BitTE.OptimizationProject;
+
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,7 +23,7 @@ public class ConnectionPool {
         Properties dbProps = new Properties();
         try (InputStream is = ConnectionPool.class.getClassLoader().getResourceAsStream("config.properties")) {
             if (is == null) {
-                logger.error("config.properties file not found");
+                logger.error("config.properties file not found. Cannot connect to database without key");
                 throw new RuntimeException("config.properties file not found");
             }
             dbProps.load(is);

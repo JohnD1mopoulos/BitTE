@@ -16,64 +16,61 @@ import org.slf4j.LoggerFactory;
  */
 public class Clothing extends PackingItem {
     private static final Logger logger = LoggerFactory.getLogger(Clothing.class);
-    private final String gender;
+    private final char gender;
 
     /**
-     * Constructs a Clothing object with all attributes specified, marking it as an essential item.
+     * Constructs a new {@code Clothing} instance with detailed attributes, marking it as a non-essential item.
      *
-     * @param value  the value associated with the clothing item
+     * @param value  the users' value associated with the clothing item
      * @param type   the type of the clothing item
      * @param size   the size of the clothing item
      * @param gender the gender specification of the clothing item
      */
-    public Clothing(int value, String type, String size, String gender) {
+    public Clothing(int value, String type, char size, char gender) {
         super(value, size, type);
         this.gender = gender;
     }
 
     /**
-     * Constructs a Clothing object with specific attributes but without a value, marking it as a non-essential item.
+     * Constructs a new {@code Clothing} instance with basic attributes but without a value, marking it as an essential item.
      *
      * @param type   the type of the clothing item
      * @param size   the size of the clothing item
      * @param gender the gender specification of the clothing item
      */
-    public Clothing(String type, String size, String gender) {
+    public Clothing(String type, char size, char gender) {
         super(type, size);
         this.gender = gender;
     }
 
-    protected static String[] typesArrayMen = {"T-shirt", "Shirt", "Hoodie", "Jeans", "Sweatpants", "Trousers", "Boxers", "Shorts", "Sneakers", "Sandals", "Boots", "Socks"};
-    protected static String[] typesArrayWomen = {"T-shirt", "Shirt", "Hoodie", "Jeans", "Sweatpants", "Trousers", "Skirts", "Panties", "Shorts", "Sneakers", "Sandals", "Boots", "Socks"};
-
     /**
      * Fetches an attribute from the database based on the clothing's type, size, and gender.
-     * 
-     * @param attribute the name of the attribute to fetch ("volume" or "weight")
+     *
+     * @param attribute the attribute to fetch, e.g., "volume" or "weight"
      * @param type      the type of the clothing
      * @param size      the size of the clothing
      * @param gender    the gender of the clothing
-     * @return the value of the requested attribute as a double
-     * @throws SQLException if there is an error during database access
+     * @return the double value of the requested attribute
+     * @throws SQLException if there is an error during the database access
      */
-    private static double fetchAttributeFromDB(String attribute, String type, String size, String gender) throws SQLException {
+    private double fetchAttributeFromDB(String attribute, String type, char size, char gender) throws SQLException {
         validateAttribute(attribute);
-        String query = "SELECT " + attribute + " FROM CLOTHING WHERE TYPE = ? AND SIZE = ? AND GENDER = ?";
-        return executeQuery(attribute, type, size, gender, query);
+        String query = "SELECT " + attribute + " FROM CLOTHING WHERE Type = ? AND Size = ? AND Gender = ?";
+        return executeQuery(query, attribute, type, size, gender);
     }
 
     /**
      * Executes a SQL query to retrieve a specified attribute from the database.
      *
+     * @param query     the SQL query to execute
      * @param attribute the attribute to retrieve
      * @param type      the type of clothing
-     * @param size      the size of clothing
-     * @param gender    the gender specification
-     * @param query     the SQL query to execute
+     * @param size      the size of the clothing
+     * @param gender    the gender specification of the clothing
      * @return the value of the attribute as a double
      * @throws SQLException if no data is found or there is a database access error
      */
-    private static double executeQuery(String attribute, String type, char size, char gender, String query) throws SQLException {
+    private double executeQuery(String query, String attribute, String type, String size, String gender) throws SQLException {
         try (Connection conn = ConnectionPool.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, type);
@@ -84,7 +81,7 @@ public class Clothing extends PackingItem {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    logger.warn("No data found for the given query with type {}, size {} and gender {}", type, size, gender);
+                    logger.warn("No data found for type: {}, size: {}, and gender: {}", type, size, gender);
                     throw new SQLException("No data found for the given query");
                 }
             }
@@ -95,55 +92,58 @@ public class Clothing extends PackingItem {
     }
 
     /**
-     * Validates that the requested attribute is valid.
+     * Validates the requested attribute to ensure it is one of the expected types.
      *
-     * @param attribute the attribute to validate ("weight" or "volume")
-     * @throws IllegalArgumentException if the attribute is not recognized
+     * @param attribute the attribute to validate
+     * @throws IllegalArgumentException if the attribute is not valid
      */
     private static void validateAttribute(String attribute) {
         List<String> validAttributes = Arrays.asList("volume", "weight");
         if (!validAttributes.contains(attribute)) {
-            logger.error("Invalid Attribute: {}", attribute);
-            throw new IllegalArgumentException("Invalid Attribute: " + attribute);
+            logger.error("Invalid Attribute: {}. Allowed attributes are volume and weight", attribute);
+            throw new IllegalArgumentException("Invalid attribute: " + attribute);
         }
     }
 
     /**
      * Retrieves the weight of the clothing item from the database.
+     * This method fetches the 'volume' attribute for the item based on its type, size, and gender.
      *
-     * @return the weight of the clothing item as a double, or -1.0 if an error occurs
+     * @return the weight of the clothing item as a double
+     * @throws SQLException if there is an error in the database access
+     * @throws DataAccessException if the query fails to fetch the data
      */
     @Override
-    public double getWeight() {
+    public double getWeight() throws SQLException, DataAccessException{
         try {
-            return fetchAttributeFromDB("weight", this.type, this.size, this.gender);
+            return fetchAttributeFromDB("weight", this.getType(), this.getSize(), this.gender);
         } catch (SQLException e) {
-            return -1.0;
+            logger.error("Failed to return weight from database", e);
+            throw new DataAccessException("Error fetching weight from database");
         }
     }
 
     /**
      * Retrieves the volume of the clothing item from the database.
+     * This method fetches the 'volume' attribute for the item based on its type, size, and gender.
      *
-     * @return the volume of the clothing item as a double, or -1.0 if an error occurs
+     * @return the volume of the clothing item as a double
+     * @throws SQLException if there is an error in the database access
+     * @throws DataAccessException if the query fails to fetch the data
      */
     @Override
-    public double getVolume() {
+    public double getVolume() throws SQLException, DataAccessException{
         try {
-            return fetchAttributeFromDB("volume", this.type, this.size, this.gender);
+            return fetchAttributeFromDB("volume", this.getType(), this.getSize(), this.gender);
         } catch (SQLException e) {
-            return -1.0;
+            logger.error("Failed to return volume from database", e);
+            throw new DataAccessException("Error fetching volume from database");
         }
     }
 
-    /**
-     * Provides a string representation of the clothing item.
-     *
-     * @return a string representation of the clothing item including all attributes
-     */
     @Override
     public String toString() {
-        return "Clothing [value=" + value + ", type=" + type + ", size=" + size + ", gender=" + gender
-                + ", Weight=" + getWeight() + ", Volume=" + getVolume() + "]";
+        return String.format("Clothing [value=%d, type=%s, size=%s, gender=%s, Weight=%.2f, Volume=%.2f]",
+                             getValue(), getType(), getSize(), gender, getWeight(), getVolume());
     }
 }
