@@ -26,9 +26,9 @@ class NonEssentialItems {
             char itemGender = 'X';
             if (inputType == 1){
                 itemGender = ItemInputHandler.setGender(scanner);
-                MenuHandler.clothingMenu(itemGender);
+                MenuHandler.showClothingMenu(itemGender);
             } else {
-                MenuHandler.extrasMenu();
+                MenuHandler.showExtrasMenu();
             }
 
             //Choose Item

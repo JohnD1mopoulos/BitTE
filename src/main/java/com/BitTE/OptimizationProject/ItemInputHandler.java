@@ -207,20 +207,22 @@ class ItemInputHandler {
     
     protected static void inputItem(ArrayList<PackingItem> items, int type, String choice, char sex, char size) {
         if (type == 1) {
-            Clothing pack = new Clothing(value, choice, size, sex);
+            Clothing pack = new Clothing(choice, size, sex);
+            items.add(pack);
         } else {
-            Extras pack = new Extras(value, choice);
+            Extras pack = new Extras(choice);
+            items.add(pack);
         }
-        items.add(pack);
     }
 
     protected static void inputItem(ArrayList<PackingItem> items, int type, String choice, char sex, char size, int value) {
         if (type == 1) {
             Clothing pack = new Clothing(value, choice, size, sex);
+            items.add(pack);
         } else {
             Extras pack = new Extras(value, choice);
+            items.add(pack);
         }
-        items.add(pack);
     }
  
 }
