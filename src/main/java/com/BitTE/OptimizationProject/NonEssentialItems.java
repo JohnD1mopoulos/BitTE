@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import main.java.com.BitTE.OptimizationProject.Clothing;
 
-class Nonessentials {
+class NonEssentialItems {
     protected static final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
 
     private static boolean fillNonessentials() {
