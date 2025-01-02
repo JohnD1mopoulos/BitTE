@@ -30,7 +30,7 @@ class MenuHandler {
      * 3. Start adding non essential items.
      * 4. Exit the programm.
      */
-    protected static void startingMenu() {
+    protected static void showStartingMenu() {
         System.out.println("------------------------------\n"
                         +"Press 1 to add essential items.\n"
                         +"Press 2 to delete an essential item(s).\n"
@@ -60,33 +60,29 @@ class MenuHandler {
         * 
         * @param gender a char representing the user's choice ('M' for male, 'F' for female).
         */
-    protected static void clothingMenu(char gender) {
-        if (gender == 'M') {//If the prefered gender is Male
-            System.out.println("Press 1 to add a T-Shirt\n"
+    protected static void showClothingMenu(char gender) {
+        System.out.println("Press 1 to add a T-Shirt\n"
                                 +"Press 2 to add a Shirt\n"
                                 +"Press 3 to add a Hoodie\n"
                                 +"Press 4 to add Jeans\n"
                                 +"Press 5 to add Sweatpants\n"
-                                +"Press 6 to add Trousers\n"
-                                +"Press 7 to add Boxers\n"
+                                +"Press 6 to add Trousers\n");
+        /*Account for the differenecs in options between male and 
+        female clothing*/
+        if (gender == 'M') {//Male only options
+            System.out.println("Press 7 to add Boxers\n"
                                 +"Press 8 to add Shorts\n"
                                 +"Press 9 to add Sneakers\n"
                                 +"Press 10 to add Sandals\n"
                                 +"Press 11 to add Boots\n"
                                 +"Press 12 to add Socks");
-        } else {//If the prefered gender is Female
-            System.out.println("Press 1 to add a T-Shirt\n"
-                                +"Press 2 to add a Shirt\n"
-                                +"Press 3 to add a Hoodie\n"
-                                +"Press 4 to add Jeans\n"
-                                +"Press 5 to add Sweatpants\n"
-                                +"Press 6 to add Trousers\n"
-                                +"Press 7 to add Skirts\n"
-                                +"Press 8 to add Panties"
+        } else {//Female only options
+            System.out.println("Press 7 to add Skirts\n"
+                                +"Press 8 to add Panties\n"
                                 +"Press 9 to add Shorts\n"
                                 +"Press 10 to add Sneakers\n"
                                 +"Press 11 to add Sandals\n"
-                                +"Press 12 to add Boots"
+                                +"Press 12 to add Boots\n"
                                 +"Press 13 to add Socks");
         }
     }
@@ -94,7 +90,7 @@ class MenuHandler {
         /**
      * Displays the extras menu 
      */
-    protected static void extrasMenu() {
+    protected static void showExtrasMenu() {
         System.out.println("Press 1 to add Passport\n"
                             +"Press 2 to add Computer\n"
                             +"Press 3 to add Book");

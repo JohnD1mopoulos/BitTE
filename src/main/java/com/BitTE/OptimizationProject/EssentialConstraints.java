@@ -79,10 +79,10 @@ class EssentialConstraints {
     * @param maxVolume representing the maximum volume that can be added to the knapsack.
     * @param maxWeight representing the maximum weight that can be added to the knapsack.
     */
-    private static void constraintFeedback(ArrayList<PackingItem> items,
+    private static void showConstraintFeedback(ArrayList<PackingItem> items,
                                         int stateOfConstraints,
                                         double maxWeight,
-                                        double maxVolume ) {
+                                        double maxVolume) {
         
         double remainingWeight = maxWeight - calculateSumOfAttributes(items, PackingItem::getWeight);
         double remainingVolume = maxVolume - calculateSumOfAttributes(items, PackingItem::getVolume);
@@ -94,12 +94,12 @@ class EssentialConstraints {
                                         +"volume by %.2f cm³.%n\n"
                                         +"You have to delete items to continue the process", 
                                          remainingWeight, -remainingVolume);
-            case 3 -> System.out.printf("You exceeded weight by %.2f kg"
+            case 3 -> System.out.printf("You exceeded the weight limit by %.2f kg"
                                         +" but have %.2f cm³ left.%n\n"
                                         +"You have to delete items to continue the process", 
                                          -remainingWeight, remainingVolume);
-            case 4 -> System.out.printf("You exceeded weight by %.2f kg"
-                                        +" and volume by %.2f cm³.%n"
+            case 4 -> System.out.printf("You exceeded the weight limit by %.2f kg"
+                                        +" and volume limit by %.2f cm³.%n"
                                         +"You have to delete items to continue the process", 
                                          -remainingWeight, -remainingVolume);
         }
@@ -124,7 +124,7 @@ class EssentialConstraints {
         System.out.println("Press 1 to terminate process.\n"
                             +"Press 2 to remove item(s)");
     
-        boolean validChoice;
+        boolean validChoice = false;
         while (!validChoice){
         try {
             System.out.println("Enter your choice:");

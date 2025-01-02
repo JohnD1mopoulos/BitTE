@@ -18,7 +18,7 @@ public class ItemDeletionHandler {
     * @param scanner a Scanner instance for capturing the user's input.
     */
     protected static void deleteItem(ArrayList<PackingItem> items, Scanner scanner) {
-        boolean stopProcess;
+        boolean stopProcess = false;
         while (!stopProcess) {
             // Check if there are items to delete
             if (items.isEmpty()) {
@@ -54,27 +54,26 @@ public class ItemDeletionHandler {
      *         0 if he changed his mind.
      */
     private static int chooseItemForDeletion(ArrayList<PackingItem> items, Scanner scanner) {
+        System.out.println("You can delete the following items:");
+        MenuHandler.showItems(items);
+        
         while(true) {
-            // Display items available for deletion
-            System.out.println("You can delete the following items:");
-            MenuHandler.showItems(items);
-
             // Prompt the user to choose an item to delete
             System.out.println("Which one do you want to delete? (Press 0 to cancel)");
 
-            int itemForDeletion = -1; // Variable representing the item to be deleted
             try {
-                itemForDeletion = scanner.nextInt();
+                int itemForDeletion = scanner.nextInt();// Variable representing the item to be deleted
                 scanner.nextLine(); 
     
                 if (itemForDeletion == 0) {
                     System.out.println("Stopping deletion of items.");
                     return 0; // User cancelled
-                } else if (itemForDeletion < 1 || itemForDeletion > items.size()) {
+                }else if (itemForDeletion >= 1 && itemForDeletion <= items.size()) {
+                    //Return the user's choice
+                    return itemForDeletion;
+                } else {
                     System.err.println("Invalid choice. Please select a valid item number.");
                 }
-                //Return the user's choice
-                return itemForDeletion;
             } catch (InputMismatchException e) {
                 System.err.println("Invalid input. Please enter a valid integer.");
                 scanner.nextLine(); 
@@ -92,14 +91,14 @@ public class ItemDeletionHandler {
     private static boolean continueDeleting(Scanner scanner) {
         // Ask the user if they want to delete another item
         System.out.println("Press 1 to delete another item.\nPress 2 to stop deleting items.");
-        int userChoice = -1;//Variable representing choice to continue or stop method
 
         while (true) {
             try {
-                userChoice = scanner.nextInt();
+                int userChoice = scanner.nextInt();//Variable representing choice to continue or stop method
                 scanner.nextLine(); 
 
                 if (userChoice == 1) {//Continue deleting items
+                    System.out.println("You chose to delete another item!");
                     return true;
                 } else if (userChoice == 2) {
                     System.out.println("Stopping deletion process.");
@@ -108,7 +107,7 @@ public class ItemDeletionHandler {
                     System.err.println("Invalid choice. Please press 1 to delete another item or 2 to stop.");
                 }
             } catch (InputMismatchException e) {
-                System.err.println("Invalid input. Please enter 1 or 2.");
+                System.err.println("Invalid input. Please press 1 to delete another item or 2 to stop.");
                 scanner.nextLine();
             }
         }
