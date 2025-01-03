@@ -17,7 +17,7 @@ import main.java.com.BitTE.OptimizationProject.CreateSuitcase;
 class EssentialItems {
 
     // Static instance variable for the Singleton pattern
-    private static EssentialItems instance;
+    private static EssentialItems listOfEssentialItems;
 
     /**Static ArrayList shared across all methods in this class representing
     the list of chosen essential items*/
@@ -35,10 +35,10 @@ class EssentialItems {
 
     /**Method to allow access to EssentialItem's singleton instance */
     public static EssentialItems getInstance() {
-        if (instance == null) {
-            instance = new EssentialItems();  // Create the instance only once
+        if (listOfEssentialItems == null) {
+            listOfEssentialItems = new EssentialItems();  // Create the instance only once
         }
-        return instance;
+        return listOfEssentialItems;
     }
 
 

@@ -27,7 +27,7 @@ public class ItemDeletionHandler {
                 return; // Exit the method
             }
     
-            int itemForDeletion = chooseItemForDeletion(scanner);
+            int itemForDeletion = chooseItemForDeletion(items, scanner);
 
             if (itemForDeletion == 0) {//User want's to cancel the deletion process
                 System.out.println("No item was deleted");

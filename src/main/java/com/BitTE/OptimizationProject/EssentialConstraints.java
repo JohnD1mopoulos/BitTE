@@ -85,7 +85,7 @@ class EssentialConstraints {
     * @param maxVolume representing the maximum volume that can be added to the knapsack.
     * @param maxWeight representing the maximum weight that can be added to the knapsack.
     */
-    private static void showConstraintFeedback(ArrayList<PackingItem> items,
+    protected static void showConstraintFeedback(ArrayList<PackingItem> items,
                                         int stateOfConstraints,
                                         double maxWeight,
                                         double maxVolume) {
@@ -94,20 +94,20 @@ class EssentialConstraints {
         double remainingVolume = maxVolume - calculateSumOfAttributes(items, PackingItem::getVolume);
 
         switch (stateOfConstraints) {
-            case BOTH_CONSTRAINTS_RESPECTED -> System.out.printf(
+            case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(
                                  "You have %.2f kg and %.2f cm³ available.%n",
                                         remainingWeight, remainingVolume);
-            case ONLY_WEIGHT_CONSTRAINT_RESPECTED -> System.out.printf(
+            case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(
                                         "You have %.2f kg left but exceeded "
                                         +"volume by %.2f cm³.%n\n"
                                         +"You have to delete items to continue the process", 
                                          remainingWeight, -remainingVolume);
-            case ONLY_VOLUME_CONSTRAINT_RESPECTED -> System.out.printf(
+            case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(
                                         "You exceeded the weight limit by %.2f kg"
                                         +" but have %.2f cm³ left.%n\n"
                                         +"You have to delete items to continue the process", 
                                          -remainingWeight, remainingVolume);
-            case NO_CONSTRAINTS_RESPECTED -> System.out.printf(
+            case NO_CONSTRAINTS_RESPECTED : System.out.printf(
                                         "You exceeded the weight limit by %.2f kg"
                                         +" and volume limit by %.2f cm³.%n"
                                         +"You have to delete items to continue the process", 
@@ -151,7 +151,7 @@ class EssentialConstraints {
                 if (constraintsRespected == BOTH_CONSTRAINTS_RESPECTED) {//Constraints are respected
                     validChoice = true;//Exit loop
                 } else {//Constraints aren't respected
-                    constraintFeedback(items, constraintsRespected, maxWeight, maxVolume);
+                    showConstraintFeedback(items, constraintsRespected, maxWeight, maxVolume);
                 }//Restart the loop after the above message
 
             } else {
