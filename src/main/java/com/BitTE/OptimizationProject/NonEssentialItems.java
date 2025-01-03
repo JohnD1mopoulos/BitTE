@@ -5,9 +5,24 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class NonEssentialItems {
-    protected static final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
+    //instance of the class
+    private static NonEssentialItems instance;
 
-    protected static ArrayList<PackingItem> fillNonessentials() {
+    protected final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
+    
+    //private constructor
+    private NonEssentialItems() {
+    }
+    
+    //Singleton method allows access to NonEssentialItems' instance
+    public static NonEssentialItems getInstance() {
+        if (instance == null) {
+            instance = new NonEssentialItems();
+        }
+        return instance;
+    }
+
+    protected ArrayList<PackingItem> fillNonessentials() {
         System.out.println("Dear user, please choose the items that you would like to carry in your suitcase: ");
         Scanner scanner = new Scanner(System.in);
         boolean addingItems = true;
@@ -70,7 +85,7 @@ class NonEssentialItems {
     }
 
  
-    protected static int setValue(Scanner scanner) {
+    protected int setValue(Scanner scanner) {
         System.out.println("Please enter the importance of this item for your trip on a scale from 1 to 10:(1 for the least important items - 10 for the most important items)");
             while (true) {//Infinite loop until valid input is provided
             try {
