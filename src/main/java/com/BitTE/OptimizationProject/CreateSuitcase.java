@@ -8,7 +8,7 @@ public class CreateSuitcase {
     protected static double maxWeight;
 
     //Method which asks the customer about the dimensions of the suitcase and calculates the volume
-    private static void suitcaseCharacteristics() {
+    protected static void suitcaseCharacteristics() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the desired weight of the suitcase (in kilograms): ");
             maxWeight = scanner.nextDouble();

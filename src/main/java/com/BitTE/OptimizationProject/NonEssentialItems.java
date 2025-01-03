@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import main.java.com.BitTE.OptimizationProject.Clothing;
-
 class NonEssentialItems {
     protected static final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
 
-    private static boolean fillNonessentials() {
+    private static ArrayList<PackingItem> fillNonessentials() {
         System.out.println("Dear user, please choose the items that you would like to carry in your suitcase: ");
         Scanner scanner = new Scanner(System.in);
         boolean addingItems = true;
@@ -55,7 +53,7 @@ class NonEssentialItems {
                     if (userChoice == 1){
                         System.out.println("All nonesential items have been added!!!");
                         validChoice = true;
-                        return true; 
+                        return nonEssentialItems; 
                     } else if (userChoice == 2) {
                         validChoice = true;//Continue adding items
                     } else {
@@ -68,7 +66,7 @@ class NonEssentialItems {
             }
         }
         scanner.close();
-        return false;//Unrechable code. Was put according to good practices
+        return nonEssentialItems;
     }
 
  

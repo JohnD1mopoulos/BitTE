@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class SpaceOptimizer {
 
     // Create the Model for the problem
-    public Model createModel(ArrayList<PackingItem> items, int maxWeight, int maxVolume) {
+    public Model createModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) {
         // Create a Choco Solver model
         Model model = new Model("Knapsack model");
 
@@ -40,7 +40,7 @@ public class SpaceOptimizer {
         model.setObjective(Model.MAXIMIZE, totalValue);
 
         // Add constraints for weight and volume
-        addConstraints(model, weightVars, volumeVars, maxWeight * 1000, maxVolume * 1000);
+        addConstraints(model, weightVars, volumeVars, (int)maxWeight * 1000, (int)maxVolume * 1000);
 
         return model;
     }
