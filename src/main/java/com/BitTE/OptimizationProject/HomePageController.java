@@ -1,3 +1,5 @@
+package com.BitTE.OptimizationProject;
+
 import java.io.IOException;
 
 import com.BitTE.OptimizationProject.AppStart;

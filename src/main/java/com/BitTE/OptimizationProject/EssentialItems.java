@@ -1,4 +1,4 @@
-package main.java.com.BitTE.OptimizationProject;
+package com.BitTE.OptimizationProject;
 
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;

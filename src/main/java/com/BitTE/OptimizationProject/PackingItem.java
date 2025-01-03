@@ -1,4 +1,4 @@
-package main.java.com.BitTE.OptimizationProject;
+package com.BitTE.OptimizationProject;
 
 /**
  * Abstract class representing a generic packing item.

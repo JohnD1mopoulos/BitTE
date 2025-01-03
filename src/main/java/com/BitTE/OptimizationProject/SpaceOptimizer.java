@@ -1,3 +1,5 @@
+package com.BitTE.OptimizationProject;
+
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.variables.IntVar;
 import java.util.ArrayList;
