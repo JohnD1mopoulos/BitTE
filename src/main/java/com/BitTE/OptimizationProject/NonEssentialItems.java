@@ -22,9 +22,9 @@ class NonEssentialItems {
         return instance;
     }
 
-    protected ArrayList<PackingItem> fillNonessentials() {
+    protected ArrayList<PackingItem> fillNonessentials(Scanner scanner) {
         System.out.println("Dear user, please choose the items that you would like to carry in your suitcase: ");
-        Scanner scanner = new Scanner(System.in);
+
         boolean addingItems = true;
         while (addingItems){
             //Display MENU for choosing type of Item

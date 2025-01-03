@@ -12,10 +12,11 @@ public class AppStart {
         double maxVolume = CreateSuitcase.maxVolume;
         double maxWeight = CreateSuitcase.maxWeight;
         EssentialItems essentialItemsManager = EssentialItems.getInstance();
+        NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
         boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
         if (addNonEssentials) {
             SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
-            spaceOptimizer.solveModel(NonEssentialItems.fillNonessentials(), maxWeight, maxVolume);
+            spaceOptimizer.solveModel(nonEssentialItemsManager.fillNonessentials(scanner), maxWeight, maxVolume);
         } else {
             System.out.println("No trip for you");
         }
