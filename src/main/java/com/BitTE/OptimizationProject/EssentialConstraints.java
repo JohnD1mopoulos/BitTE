@@ -128,23 +128,27 @@ class EssentialConstraints {
 
         switch (stateOfConstraints) {
             case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(
-                                 "You have %.2f kg and %.2f cm³ available.%n",
+                                 "You have %.2f kg and %.2f cm3 available.%n",
                                         remainingWeight, remainingVolume);
+                                        break;
             case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(
                                         "You have %.2f kg left but exceeded "
-                                        +"volume by %.2f cm³.%n\n"
+                                        +"volume by %.2f cm3.%n\n"
                                         +"You have to delete items to continue the process", 
                                          remainingWeight, -remainingVolume);
+                                         break;
             case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(
                                         "You exceeded the weight limit by %.2f kg"
-                                        +" but have %.2f cm³ left.%n\n"
+                                        +" but have %.2f cm3 left.%n\n"
                                         +"You have to delete items to continue the process", 
                                          -remainingWeight, remainingVolume);
+                                         break;
             case NO_CONSTRAINTS_RESPECTED : System.out.printf(
                                         "You exceeded the weight limit by %.2f kg"
-                                        +" and volume limit by %.2f cm³.%n"
+                                        +" and volume limit by %.2f cm3.%n"
                                         +"You have to delete items to continue the process", 
                                          -remainingWeight, -remainingVolume);
+                                         break;
         }
     }
 

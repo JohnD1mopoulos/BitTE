@@ -19,8 +19,6 @@ class EssentialItems {
     /**Static ArrayList shared across all methods in this class representing
     the list of chosen essential items*/
     protected final ArrayList<PackingItem> essentialItems = new ArrayList<>();
-    //Scanner object for user to input choices
-    private Scanner scanner = new Scanner(System.in);
     // Constants for user menu choices
     private static final int ADD_ITEM = 1;
     private static final int DELETE_ITEM = 2;
@@ -48,22 +46,23 @@ class EssentialItems {
      *         3 - if the user wants to start adding non essential items
      *         4 - if the user wants to abandon the process.
      */
-    protected int getUserMenuChoice() {
-        try {
-            if (System.console() == null) {
-                // Handle cases where there's no console (e.g., in automated environments like Maven)
-                System.out.println("No console available. Using default menu option 1.");
-                return 1; // Default choice: Add item
+    protected int getUserMenuChoice(Scanner scanner) {
+        
+        while(true) {//Never ending loop to ensure choice being made
+            try {
+                System.out.println("Enter your choice");
+                int userChoice = scanner.nextInt();
+                scanner.nextLine();
+                
+                if (userChoice > 4 || userChoice <= 0) {
+                    System.err.println("Invalid choice. Please enter 1, 2, 3 or 4");
+                } else {
+                    return userChoice;
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Invalid input. Please enter a valid integer.");
+                scanner.nextLine();
             }
-            
-            // If a console is available, proceed with interactive input
-            Scanner scanner = new Scanner(System.in);
-            return scanner.nextInt();
-            
-        } catch (Exception e) {
-            // Handle any exceptions that may occur (like NoSuchElementException)
-            System.out.println("Invalid input, using default choice (1).");
-            return 1; // Default choice: Add item
         }
     }
 
@@ -71,7 +70,7 @@ class EssentialItems {
      * Prompts the user to add a clothing item or an accessory to the list of
      * essential items that he wants to take with him.
      */
-    private void addItem() {
+    private void addItem(Scanner scanner) {
         //Display MENU for choosing type of Item
         MenuHandler.chooseItemType();
           
@@ -112,7 +111,7 @@ class EssentialItems {
     * @return a boolean variable that confirms the continuation of the item input operation 
     *         if the constraints are still met.
     */
-    protected boolean fillEssential(double maxWeight, double maxVolume){
+    protected boolean fillEssential(double maxWeight, double maxVolume, Scanner scanner){
         
         boolean processRunning = true;
         System.out.println("INSERTION OF ESSENTIAL ITEMS\n"
@@ -120,10 +119,10 @@ class EssentialItems {
         while (processRunning){
             //Display STARTING MENU
             MenuHandler.showStartingMenu();
-            int userMenuChoice = getUserMenuChoice();
+            int userMenuChoice = getUserMenuChoice(scanner);
 
             if (userMenuChoice == ADD_ITEM) {//User wants to add item
-                addItem();
+                addItem(scanner);
             } else if (userMenuChoice == DELETE_ITEM) {//User wants to delete item(s)
                 ItemDeletionHandler.deleteItem(essentialItems, scanner);
             } else if (userMenuChoice == START_NON_ESSENTIAL) {//User wants to start adding essential items

@@ -52,7 +52,7 @@ class MenuHandler {
                         +"Press 1 to add essential items.\n"
                         +"Press 2 to delete an essential item(s).\n"
                         +"Press 3 to start adding non essential items\n"
-                        +"Press 4 to abandon process"
+                        +"Press 4 to abandon process\n"
                         +"--------------------------------");
     }
 
