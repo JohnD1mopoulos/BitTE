@@ -7,7 +7,7 @@ import java.util.Scanner;
 class NonEssentialItems {
     protected static final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
 
-    private static ArrayList<PackingItem> fillNonessentials() {
+    protected static ArrayList<PackingItem> fillNonessentials() {
         System.out.println("Dear user, please choose the items that you would like to carry in your suitcase: ");
         Scanner scanner = new Scanner(System.in);
         boolean addingItems = true;
@@ -45,7 +45,7 @@ class NonEssentialItems {
 
             System.out.println("Press 1 to terminate process.\n"
                                   +"Press 2 to add another item");
-            boolean validChoice;
+            boolean validChoice = false;
             while (!validChoice) {
                 try {
                     int userChoice = scanner.nextInt();

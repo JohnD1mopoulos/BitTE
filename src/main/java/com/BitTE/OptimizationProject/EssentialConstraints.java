@@ -1,5 +1,6 @@
 package com.BitTE.OptimizationProject;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -57,8 +58,24 @@ class EssentialConstraints {
     protected static int checkConstraints(ArrayList<PackingItem> items, 
                                          double maxWeight,
                                          double maxVolume) {
-        double totalWeight = calculateSumOfAttributes(items, PackingItem::getWeight);
-        double totalVolume = calculateSumOfAttributes(items, PackingItem::getVolume);
+        double totalWeight = calculateSumOfAttributes(items, t -> {
+            try {
+                return t.getWeight();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+                        return null;
+        });
+        double totalVolume = calculateSumOfAttributes(items, t -> {
+            try {
+                return t.getVolume();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+                        return null;
+        });
 
         //Return appropriate value for each scenario 
         if (totalWeight <= maxWeight && totalVolume <= maxVolume) {
@@ -90,8 +107,24 @@ class EssentialConstraints {
                                         double maxWeight,
                                         double maxVolume) {
         
-        double remainingWeight = maxWeight - calculateSumOfAttributes(items, PackingItem::getWeight);
-        double remainingVolume = maxVolume - calculateSumOfAttributes(items, PackingItem::getVolume);
+        double remainingWeight = maxWeight - calculateSumOfAttributes(items, t -> {
+            try {
+                return t.getWeight();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+                        return null;
+        });
+        double remainingVolume = maxVolume - calculateSumOfAttributes(items, t -> {
+            try {
+                return t.getVolume();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+                        return null;
+        });
 
         switch (stateOfConstraints) {
             case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(

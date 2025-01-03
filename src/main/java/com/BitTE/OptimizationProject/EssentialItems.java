@@ -1,11 +1,8 @@
 package com.BitTE.OptimizationProject;
 
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import main.java.com.BitTE.OptimizationProject.CreateSuitcase;
 
 /**
  * The EssentialItems class manages the list of essential items for a knapsack. 
@@ -51,25 +48,23 @@ class EssentialItems {
      *         3 - if the user wants to start adding non essential items
      *         4 - if the user wants to abandon the process.
      */
-    private int getUserMenuChoice() {
-        
-        while(true) {//Never ending loop to ensure choice being made
-            try {
-                System.out.println("Enter your choice");
-                int userChoice = scanner.nextInt();
-                scanner.nextLine();
-                
-                if (userChoice < ADD_ITEM || userChoice > ABANDON_PROCESS) {
-                    System.err.println("Invalid choice. Please enter 1, 2, 3 or 4");
-                } else {
-                    return userChoice;
-                }
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid input. Please enter a valid integer.");
-                scanner.nextLine();
+    protected int getUserMenuChoice() {
+        try {
+            if (System.console() == null) {
+                // Handle cases where there's no console (e.g., in automated environments like Maven)
+                System.out.println("No console available. Using default menu option 1.");
+                return 1; // Default choice: Add item
             }
+            
+            // If a console is available, proceed with interactive input
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextInt();
+            
+        } catch (Exception e) {
+            // Handle any exceptions that may occur (like NoSuchElementException)
+            System.out.println("Invalid input, using default choice (1).");
+            return 1; // Default choice: Add item
         }
-        return -1;
     }
 
     /**

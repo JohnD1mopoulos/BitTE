@@ -1,8 +1,6 @@
 package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
  * The {@code MenuHandler} class is responsible for displaying various menus to the user 
@@ -53,7 +51,7 @@ class MenuHandler {
         System.out.println("------------------------------\n"
                         +"Press 1 to add essential items.\n"
                         +"Press 2 to delete an essential item(s).\n"
-                        +"Press 3 to start adding non essential items"
+                        +"Press 3 to start adding non essential items\n"
                         +"Press 4 to abandon process"
                         +"--------------------------------");
     }

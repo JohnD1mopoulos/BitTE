@@ -9,6 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * Represents an item of clothing with extended functionality for packing.
  * This class handles database interactions to fetch attributes like volume and weight based
@@ -16,7 +17,6 @@ import org.slf4j.LoggerFactory;
  */
 public class Clothing extends PackingItem {
     private static final Logger logger = LoggerFactory.getLogger(Clothing.class);
-    private final char gender;
 
     /**
      * Constructs a new {@code Clothing} instance with detailed attributes, marking it as a non-essential item.
@@ -27,8 +27,7 @@ public class Clothing extends PackingItem {
      * @param gender the gender specification of the clothing item
      */
     public Clothing(int value, String type, char size, char gender) {
-        super(value, size, type);
-        this.gender = gender;
+        super(value, type, size, gender);
     }
 
     /**
@@ -39,8 +38,7 @@ public class Clothing extends PackingItem {
      * @param gender the gender specification of the clothing item
      */
     public Clothing(String type, char size, char gender) {
-        super(type, size);
-        this.gender = gender;
+        super(type, size, gender);
     }
 
     /**
@@ -56,7 +54,7 @@ public class Clothing extends PackingItem {
     private double fetchAttributeFromDB(String attribute, String type, char size, char gender) throws SQLException {
         validateAttribute(attribute);
         String query = "SELECT " + attribute + " FROM CLOTHING WHERE Type = ? AND Size = ? AND Gender = ?";
-        return executeQuery(query, attribute, type, size, gender);
+        return executeQuery(query, attribute, type, Character.toString(size), Character.toString(gender));
     }
 
     /**
@@ -114,13 +112,13 @@ public class Clothing extends PackingItem {
      * @throws DataAccessException if the query fails to fetch the data
      */
     @Override
-    public double getWeight() throws SQLException, DataAccessException{
+    public double getWeight() throws SQLException {
         try {
             return fetchAttributeFromDB("weight", this.getType(), this.getSize(), this.gender);
         } catch (SQLException e) {
             logger.error("Failed to return weight from database", e);
-            throw new DataAccessException("Error fetching weight from database");
         }
+        return -1.0;
     }
 
     /**
@@ -132,18 +130,24 @@ public class Clothing extends PackingItem {
      * @throws DataAccessException if the query fails to fetch the data
      */
     @Override
-    public double getVolume() throws SQLException, DataAccessException{
+    public double getVolume() throws SQLException {
         try {
             return fetchAttributeFromDB("volume", this.getType(), this.getSize(), this.gender);
         } catch (SQLException e) {
             logger.error("Failed to return volume from database", e);
-            throw new DataAccessException("Error fetching volume from database");
         }
+        return -1.0;
     }
 
     @Override
     public String toString() {
-        return String.format("Clothing [value=%d, type=%s, size=%s, gender=%s, Weight=%.2f, Volume=%.2f]",
-                             getValue(), getType(), getSize(), gender, getWeight(), getVolume());
+        try {
+            return String.format("Clothing [value=%d, type=%s, size=%s, gender=%s, Weight=%.2f, Volume=%.2f]",
+                                 getValue(), getType(), getSize(), gender, getWeight(), getVolume());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
 }

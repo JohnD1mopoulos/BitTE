@@ -20,8 +20,8 @@ public class Extras extends PackingItem {
    * @param value the value of the extras item
    * @param type the type of the extras item
    */
-  public Extras(int value, String type) {
-    super(value, type);
+  public Extras( String type, char size, char gender) {
+    super(type, size, gender);
   }
 
   /**
@@ -29,8 +29,8 @@ public class Extras extends PackingItem {
    *
    * @param type the type of the extras item
    */
-  public Extras(String type) {
-    super(type);
+  public Extras(int value, String type, char size, char gender) {
+    super(value, type, size, gender);
   }
 
   @Override

@@ -210,7 +210,7 @@ class ItemInputHandler {
             Clothing pack = new Clothing(choice, size, sex);
             items.add(pack);
         } else {
-            Extras pack = new Extras(choice);
+            Extras pack = new Extras(choice, size, sex);
             items.add(pack);
         }
     }
@@ -220,7 +220,7 @@ class ItemInputHandler {
             Clothing pack = new Clothing(value, choice, size, sex);
             items.add(pack);
         } else {
-            Extras pack = new Extras(value, choice);
+            Extras pack = new Extras(value, choice, size, sex);
             items.add(pack);
         }
     }

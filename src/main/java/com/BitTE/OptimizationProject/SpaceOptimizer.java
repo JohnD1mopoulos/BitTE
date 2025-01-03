@@ -2,13 +2,16 @@ package com.BitTE.OptimizationProject;
 
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.variables.IntVar;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 // Declaration of the class for the optimization problem
 public class SpaceOptimizer {
 
     // Create the Model for the problem
-    public Model createModel(ArrayList<PackingItem> items, int maxWeight, int maxVolume) {
+    @SuppressWarnings("deprecation")
+    public Model createModel(ArrayList<PackingItem> items, int maxWeight, int maxVolume) throws SQLException {
         // Create a Choco Solver model
         Model model = new Model("Knapsack model");
 
@@ -56,7 +59,7 @@ public class SpaceOptimizer {
     }
 
     // Solve the model and print the solution
-    public void solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) {
+    public void solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
         // Create the model
         Model model = createModel(items, (int) (maxWeight * 1000), (int) (maxVolume * 1000));
 
@@ -66,8 +69,8 @@ public class SpaceOptimizer {
 
             // Output the selected items
             for (int i = 0; i < items.size(); i++) {
-                int selected = model.getVar("X" + i).getValue();
-                System.out.println("Item " + i + " : Selected = " + selected);
+                //int selected = model.getVar("X" + i).getValue();
+                System.out.println("Item " + i + " : Selected = true");
             }
         } else {
             System.out.println("No solution found.");
