@@ -117,7 +117,7 @@ class EssentialItems {
     * @return a boolean variable that confirms the continuation of the item input operation 
     *         if the constraints are still met.
     */
-    private boolean fillEssential(double maxWeight, double maxVolume){
+    protected boolean fillEssential(double maxWeight, double maxVolume){
         
         boolean processRunning = true;
         System.out.println("INSERTION OF ESSENTIAL ITEMS\n"
