@@ -469,6 +469,7 @@ public void counterTShirt(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonTShirt) {
         countTShirt++;
+        setMenuNumber(1);
     } else if (source == minusButtonTShirt && countTShirt > 0) {
         countTShirt--;
     }
@@ -481,6 +482,7 @@ public void counterShirt(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonShirt) {
         countShirt++;
+        setMenuNumber(2);
     } else if (source == minusButtonShirt && countShirt > 0) {
         countShirt--;
     }
@@ -493,6 +495,7 @@ public void counterHoodie(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonHoodie) {
         countHoodie++;
+        setMenuNumber(3);
     } else if (source == minusButtonHoodie && countHoodie > 0) {
         countHoodie--;
     }
@@ -505,6 +508,7 @@ public void counterTShirtF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonTShirtF) {
         countTShirtF++;
+        setMenuNumber(1);
     } else if (source == minusButtonTShirtF && countTShirtF > 0) {
         countTShirtF--;
     }
@@ -517,6 +521,7 @@ public void counterShirtF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonShirtF) {
         countShirtF++;
+        setMenuNumber(2);
     } else if (source == minusButtonShirtF && countShirtF > 0) {
         countShirtF--;
     }
@@ -529,6 +534,7 @@ public void counterHoodieF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonHoodieF) {
         countHoodieF++;
+        setMenuNumber(3);
     } else if (source == minusButtonHoodieF && countHoodieF > 0) {
         countHoodieF--;
     }
@@ -541,6 +547,7 @@ public void counterJeans(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonJeans) {
         countJeans++;
+        setMenuNumber(4);
     } else if (source == minusButtonJeans && countJeans > 0) {
         countJeans--;
     }
@@ -553,6 +560,7 @@ public void counterSweatpants(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSweatpants) {
         countSweatpants++;
+        setMenuNumber(5);
     } else if (source == minusButtonSweatpants && countSweatpants > 0) {
         countSweatpants--;
     }
@@ -565,6 +573,7 @@ public void counterTrousers(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonTrousers) {
         countTrousers++;
+        setMenuNumber(6);
     } else if (source == minusButtonTrousers && countTrousers > 0) {
         countTrousers--;
     }
@@ -577,6 +586,7 @@ public void counterBoxers(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonBoxers) {
         countBoxers++;
+        setMenuNumber(7);
     } else if (source == minusButtonBoxers && countBoxers > 0) {
         countBoxers--;
     }
@@ -589,6 +599,7 @@ public void counterShorts(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonShorts) {
         countShorts++;
+        setMenuNumber(8);
     } else if (source == minusButtonShorts && countShorts > 0) {
         countShorts--;
     }
@@ -601,6 +612,7 @@ public void counterJeansF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonJeansF) {
         countJeansF++;
+        setMenuNumber(4);
     } else if (source == minusButtonJeansF && countJeansF > 0) {
         countJeansF--;
     }
@@ -613,6 +625,7 @@ public void counterSweatpantsF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSweatpantsF) {
         countSweatpantsF++;
+        setMenuNumber(5);
     } else if (source == minusButtonSweatpantsF && countSweatpantsF > 0) {
         countSweatpantsF--;
     }
@@ -625,6 +638,7 @@ public void counterTrousersF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonTrousersF) {
         countTrousersF++;
+        setMenuNumber(6);
     } else if (source == minusButtonTrousersF && countTrousersF > 0) {
         countTrousersF--;
     }
@@ -637,6 +651,7 @@ public void counterSkirtsF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSkirtsF) {
         countSkirtsF++;
+        setMenuNumber(7);
     } else if (source == minusButtonSkirtsF && countSkirtsF > 0) {
         countSkirtsF--;
     }
@@ -649,6 +664,7 @@ public void counterPantiesF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonPantiesF) {
         countPantiesF++;
+        setMenuNumber(8);
     } else if (source == minusButtonPantiesF && countPantiesF > 0) {
         countPantiesF--;
     }
@@ -661,6 +677,7 @@ public void counterSneaker(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSneaker) {
         countSneaker++;
+        setMenuNumber(9);
     } else if (source == minusButtonSneaker && countSneaker > 0) {
         countSneaker--;
     }
@@ -673,6 +690,7 @@ public void counterSandal(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSandal) {
         countSandal++;
+        setMenuNumber(10);
     } else if (source == minusButtonSandal && countSandal > 0) {
         countSandal--;
     }
@@ -685,6 +703,7 @@ public void counterBoots(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonBoots) {
         countBoots++;
+        setMenuNumber(11);
     } else if (source == minusButtonBoots && countBoots > 0) {
         countBoots--;
     }
@@ -697,6 +716,7 @@ public void counterSocks(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSocks) {
         countSocks++;
+        setMenuNumber(12);
     } else if (source == minusButtonSocks && countSocks > 0) {
         countSocks--;
     }
@@ -709,6 +729,7 @@ public void counterSneakerF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSneakerF) {
         countSneakerF++;
+        setMenuNumber(9);
     } else if (source == minusButtonSneakerF && countSneakerF > 0) {
         countSneakerF--;
     }
@@ -721,6 +742,7 @@ public void counterSandalF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSandalF) {
         countSandalF++;
+        setMenuNumber(10);
     } else if (source == minusButtonSandalF && countSandalF > 0) {
         countSandalF--;
     }
@@ -733,6 +755,7 @@ public void counterBootsF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonBootsF) {
         countBootsF++;
+        setMenuNumber(11);
     } else if (source == minusButtonBootsF && countBootsF > 0) {
         countBootsF--;
     }
@@ -745,6 +768,7 @@ public void counterSocksF(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonSocksF) {
         countSocksF++;
+        setMenuNumber(12);
     } else if (source == minusButtonSocksF && countSocksF > 0) {
         countSocksF--;
     }
@@ -757,6 +781,7 @@ public void counterBook(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonBook) {
         countBook++;
+        setMenuNumber(3);
     } else if (source == minusButtonBook && countBook > 0) {
         countBook--;
     }
@@ -769,6 +794,7 @@ public void counterLaptop(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonLaptop) {
         countLaptop++;
+        setMenuNumber(2);
     } else if (source == minusButtonLaptop && countLaptop > 0) {
         countLaptop--;
     }
@@ -781,6 +807,7 @@ public void counterPassport(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonPassport) {
         countPassport++;
+        setMenuNumber(1);
     } else if (source == minusButtonPassport && countPassport > 0) {
         countPassport--;
     }
@@ -794,6 +821,7 @@ public void counterToiletryBag(ActionEvent event) {
     Object source = event.getSource();
     if (source == plusButtonToiletryBag) {
         countToiletryBag++;
+        setMenuNumber(4);
     } else if (source == minusButtonToiletryBag && countToiletryBag > 0) {
         countToiletryBag--;
     }
