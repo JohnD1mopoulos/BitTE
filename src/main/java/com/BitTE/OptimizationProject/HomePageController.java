@@ -19,6 +19,24 @@ public class HomePageController {
     private double length;
     private double width;
     private double height;
+	private int menu_number; // Variable for the menuhandler class
+    private char gender;
+
+    public int getMenuNumber(){
+        return menu_number;
+    }
+
+    public void setMenuNumber(int menu_number){
+        this.menu_number = menu_number;
+    }
+
+    public char getGender(){
+        return gender;
+    }
+
+    public void setGender(char gender){
+        this.gender = gender;
+    }
 
     @FXML
     private ImageView backgroundImageView;
@@ -52,6 +70,7 @@ public class HomePageController {
 
     @FXML
     void handleFemaleBottomwear(ActionEvent event) throws IOException {
+		setGender('F');
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("BottomwearFemale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
@@ -59,6 +78,7 @@ public class HomePageController {
 
     @FXML
     void handleFemaleShoes(ActionEvent event) throws IOException {
+		setGender('F');
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoesFemale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
@@ -66,27 +86,30 @@ public class HomePageController {
 
     @FXML
     void handleFemaleTopwear(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("TopwearFemale.fxml"));
-       Parent pane = loader.load();
-       mainPane.getChildren().setAll(pane); 
+		setGender('F');
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TopwearFemale.fxml"));
+		Parent pane = loader.load();
+		mainPane.getChildren().setAll(pane); 
     }
 
     @FXML
     void handleHygieneExtras(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("Hygiene.fxml"));
-       Parent pane = loader.load();
-       mainPane.getChildren().setAll(pane);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Hygiene.fxml"));
+		Parent pane = loader.load();
+		mainPane.getChildren().setAll(pane);
     }
 
     @FXML
     void handleMaleBottomwear(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("BottomwearMale.fxml"));
-       Parent pane = loader.load();
-       mainPane.getChildren().setAll(pane); 
+		setGender('M');
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("BottomwearMale.fxml"));
+		Parent pane = loader.load();
+		mainPane.getChildren().setAll(pane); 
     }
 
     @FXML
     void handleMaleShoes(ActionEvent event) throws IOException {
+		setGender('M');
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoesMale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
@@ -94,6 +117,7 @@ public class HomePageController {
 
     @FXML
     void handleMaleTopwear(ActionEvent event) throws IOException {
+		setGender('M');
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TopwearMale.fxml"));
         Parent pane = loader.load();
         mainPane.getChildren().setAll(pane);
@@ -101,9 +125,9 @@ public class HomePageController {
 
     @FXML
     void handlePersonalItemsExtras(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("PersonalItems.fxml"));
-       Parent pane = loader.load();
-       mainPane.getChildren().setAll(pane); 
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PersonalItems.fxml"));
+		Parent pane = loader.load();
+		mainPane.getChildren().setAll(pane); 
     }
 
     
