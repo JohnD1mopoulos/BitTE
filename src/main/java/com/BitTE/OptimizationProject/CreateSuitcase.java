@@ -9,7 +9,7 @@ public class CreateSuitcase {
 
     //variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
     private double maxVolume;
-    private double maxWeight;
+    double maxWeight;
     
 
     //private constructor 

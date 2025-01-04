@@ -151,8 +151,8 @@ class EssentialItems {
                 boolean constraintProblemSolved = EssentialConstraints.
                                                 fixConstraints(essentialItems,
                                                             scanner,
-                                                            CreateSuitcase.maxWeight,
-                                                            CreateSuitcase.maxVolume);
+                                                            maxWeight,
+                                                            maxVolume);
     
                 if (constraintProblemSolved) {
                     //The user deleted some items and now constraints are respected
