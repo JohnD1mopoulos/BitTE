@@ -145,7 +145,6 @@ public class Clothing extends PackingItem {
             return String.format("Clothing [value=%d, type=%s, size=%s, gender=%s, Weight=%.2f, Volume=%.2f]",
                                  getValue(), getType(), getSize(), gender, getWeight(), getVolume());
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
