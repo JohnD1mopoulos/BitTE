@@ -6,10 +6,9 @@ public class AppStart {
 
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        CreateSuitcase suitcase = CreateSuitcase.getInstance();
-        suitcase.setSuitcaseCharacteristics(scanner);
-        double maxVolume = suitcase.getMaxVolume();
-        double maxWeight = suitcase.gerMaxWeight();
+        CreateSuitcase suitcase = CreateSuitcase.getInstance(scanner);
+        final double maxVolume = suitcase.getMaxVolume();
+        final double maxWeight = suitcase.getMaxWeight();
         EssentialItems essentialItemsManager = EssentialItems.getInstance();
         boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
         NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
@@ -19,5 +18,6 @@ public class AppStart {
         } else {
             System.out.println("No trip for you");
         }
+        scanner.close();
     }
 }

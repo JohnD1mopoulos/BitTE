@@ -1,5 +1,6 @@
 package com.BitTE.OptimizationProject;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CreateSuitcase {
@@ -8,53 +9,60 @@ public class CreateSuitcase {
     private static CreateSuitcase instance;
 
     //variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
-    private double maxVolume;
-    double maxWeight;
+    private final double maxVolume;
+    private final double maxWeight;
     
 
     //private constructor 
-    private CreateSuitcase() {
+    private CreateSuitcase(Scanner scanner) {
+        //Ask the customer about the weight limit of the suitcase
+        System.out.print("Enter the desired weight of the suitcase (in grams): ");
+        maxWeight = setSuitcaseCharacteristics(scanner);
+        //Ask the dimencions of the suitcase in centemetres
+        System.out.print("Enter the length of the suitcase (in cm): ");
+            double length = setSuitcaseCharacteristics(scanner);
+        System.out.print("Enter the width of the suitcase (in cm): ");
+            double width = setSuitcaseCharacteristics(scanner);
+        System.out.print("Enter the height of the suitcase (in cm): ");
+            double height = setSuitcaseCharacteristics(scanner);
+        //Calculating volume limit of the suitcase
+        maxVolume = length * width * height;
+        scanner.next();
     }
 
     //Singleton method allows access to CreateSuitcase's instance
-    public static CreateSuitcase getInstance() {
+    public static CreateSuitcase getInstance(Scanner scanner) {
         if (instance == null) {
-            instance = new CreateSuitcase();
+            instance = new CreateSuitcase(scanner);
         }
         return instance;
     }
 
-    //Method which asks the customer about the weight limit of the suitcase
-    private void setSuitcaseWeight(Scanner scanner) {
-        System.out.print("Enter the desired weight of the suitcase (in kilograms): ");
-        maxWeight = scanner.nextDouble();
-        scanner.nextLine();
-    }
-
-    //Method which asks the customer about the dimensions of the suitcase and calculates the volume
-    private void setSuitcaseVolume(Scanner scanner) {
-        System.out.print("Enter the length of the suitcase (in meters): ");
-            double length = scanner.nextDouble();
-        System.out.print("Enter the width of the suitcase (in meters): ");
-            double width = scanner.nextDouble();
-        System.out.print("Enter the height of the suitcase (in meters): ");
-            double height = scanner.nextDouble();
-        //Calculating volume
-        maxVolume = length * width * height;
-        scanner.nextLine();
-    }
-
     //Method that sets the suitcase's characteristics
-    protected void setSuitcaseCharacteristics(Scanner scanner) {
-        setSuitcaseVolume(scanner);
-        setSuitcaseWeight(scanner);
+    private double setSuitcaseCharacteristics(Scanner scanner) {
+        scanner.next();
+        double var;
+        while (true) {
+            try {
+                System.out.print("Please enter a positive double value: ");
+                var = scanner.nextDouble();
+                if (var > 0) {
+                    return var;
+                } else {
+                    System.out.println("Invalid input. The value must be positive. Try again.");
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Invalid Input. Please give me a valid double.");
+                scanner.next();
+            }
+        }
     }
 
     protected double getMaxVolume() {
         return maxVolume;
     }
 
-    protected double gerMaxWeight() {
+    protected double getMaxWeight() {
         return maxWeight;
     }
 }

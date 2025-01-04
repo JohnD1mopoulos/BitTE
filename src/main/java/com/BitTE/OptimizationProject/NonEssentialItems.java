@@ -67,10 +67,12 @@ class NonEssentialItems {
                     scanner.nextLine();
                     if (userChoice == 1){
                         System.out.println("All nonesential items have been added!!!");
+                        scanner.nextLine();
                         validChoice = true;
                         return nonEssentialItems; 
                     } else if (userChoice == 2) {
                         validChoice = true;//Continue adding items
+                        scanner.nextLine();
                     } else {
                         System.err.println("Invalid input. Please press 1 oe 2.");
                     }
@@ -80,7 +82,6 @@ class NonEssentialItems {
                 }
             }
         }
-        scanner.close();
         return nonEssentialItems;
     }
 
