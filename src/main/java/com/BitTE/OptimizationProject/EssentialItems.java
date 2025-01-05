@@ -22,7 +22,7 @@ class EssentialItems {
     // Constants for user menu choices
     private static final int ADD_ITEM = 1;
     private static final int DELETE_ITEM = 2;
-    private static final int START_NON_ESSENTIAL = 3;
+    private static final int STOP_ADDING_NON_ESSENTIAL = 3;
     private static final int ABANDON_PROCESS = 4;
 
     // Private constructor to prevent instantiation
@@ -125,7 +125,8 @@ class EssentialItems {
                 addItem(scanner);
             } else if (userMenuChoice == DELETE_ITEM) {//User wants to delete item(s)
                 ItemDeletionHandler.deleteItem(essentialItems, scanner);
-            } else if (userMenuChoice == START_NON_ESSENTIAL) {//User wants to start adding essential items
+            } else if (userMenuChoice == STOP_ADDING_NON_ESSENTIAL) {
+                //User wants to stop adding essential items
                 return true;
             } else {//User wants to abandon process
                 return false;

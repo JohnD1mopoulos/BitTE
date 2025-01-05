@@ -27,7 +27,6 @@ public class CreateSuitcase {
             double height = setSuitcaseCharacteristics(scanner);
         //Calculating volume limit of the suitcase
         maxVolume = length * width * height;
-        scanner.next();
     }
 
     //Singleton method allows access to CreateSuitcase's instance
@@ -40,7 +39,6 @@ public class CreateSuitcase {
 
     //Method that sets the suitcase's characteristics
     private double setSuitcaseCharacteristics(Scanner scanner) {
-        scanner.next();
         double var;
         while (true) {
             try {
@@ -53,7 +51,6 @@ public class CreateSuitcase {
                 }
             } catch (InputMismatchException e) {
                 System.err.println("Invalid Input. Please give me a valid double.");
-                scanner.next();
             }
         }
     }
