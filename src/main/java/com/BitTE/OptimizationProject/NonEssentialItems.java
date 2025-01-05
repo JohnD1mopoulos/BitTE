@@ -58,8 +58,7 @@ class NonEssentialItems {
             ItemInputHandler.inputItem(nonEssentialItems, inputType,
                                          itemOfChoice, itemGender, itemSize, value);
 
-            System.out.println("Press 1 to terminate process.\n"
-                                  +"Press 2 to add another item");
+            MenuHandler.showStartingNonEssentialItemsMenu();
             boolean validChoice = false;
             while (!validChoice) {
                 try {
