@@ -1,5 +1,6 @@
 package com.BitTE.OptimizationProject;   //Added the necessary package
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.BitTE.OptimizationProject.CreateSuitcase;
@@ -22,7 +23,14 @@ public class AppStart {
         NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
         if (addNonEssentials) {
             SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
-            spaceOptimizer.solveModel(nonEssentialItemsManager.fillNonessentials(scanner), maxWeight, maxVolume);
+            ArrayList<PackingItem> selectedItems = spaceOptimizer.solveModel(
+                nonEssentialItemsManager.fillNonessentials(scanner), maxWeight, maxVolume);
+                
+                System.out.println("------------SELECTED ITEMS------------------");
+            for (int i = 0; i < selectedItems.size(); i++) {
+                System.out.println(selectedItems.get(i));
+            }
+                System.out.println("-------------------------------------");
         } else {
             System.out.println("No trip for you");
         }

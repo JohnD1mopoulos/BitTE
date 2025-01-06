@@ -27,7 +27,7 @@ public class Clothing extends PackingItem {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    throw new SQLException("No data found for the given query");
+                    throw new SQLException("No data found for the given query "+ type+" "+ size+" "+ gender);
                 }
             }
         } catch (SQLException e) {
@@ -43,5 +43,26 @@ public class Clothing extends PackingItem {
     @Override
     public double getVolume() throws SQLException {
         return fetchAttributeFromDB("volume", getType(), getSize(), getGender());
+    }
+
+    @Override
+    public String toString() {
+        if (value == 0) {//Essential Clothing
+            try {
+                return String.format("An essential %s item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
+                                    this.getClass().getSimpleName(), type, size, gender, value, getWeight(), getVolume());
+            } catch (SQLException e) {
+                return String.format("An essential %s item of type = %s, size = %c, gender = %c, value = %d, but an error occurred while retrieving weight and volume.",
+                                    this.getClass().getSimpleName(), type, size, gender, value);
+            }
+        } else {
+            try {
+                return String.format("A non-essential %s item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
+                                    this.getClass().getSimpleName(), type, size, gender, value, getWeight(), getVolume());
+            } catch (SQLException e) {
+                return String.format("A non-essential %s item of type = %s, size = %c, gender = %c, value = %d, but an error occurred while retrieving weight and volume.",
+                                    this.getClass().getSimpleName(), type, size, gender, value);
+            }
+        }
     }
 }
