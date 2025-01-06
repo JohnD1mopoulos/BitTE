@@ -9,90 +9,24 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Represents a clothing item as a type of PackingItem.
- */
 public class Extras extends PackingItem {
-    private static final Logger logger = LoggerFactory.getLogger(Extras.class);
 
-    /**
-     * Constructs an Extras item with value, type. Essential Item.
-     *
-     * @param type the type of the extras item
-     * @param size the size of the extras item
-     * @param gender the gender specification of the extras item
-     */
-    public Extras(String type, char size, char gender) {
-        super(type, size, gender);
-    }
-
-    /**
-     * Constructs an Extras item with type. Non-Essential Item.
-     *
-     * @param value the value of the extras item
-     * @param type the type of the extras item
-     * @param size the size of the extras item
-     * @param gender the gender specification of the extras item
-     */
     public Extras(int value, String type, char size, char gender) {
         super(value, type, size, gender);
     }
 
-    /**
-     * Retrieves the weight of the extras item from the database.
-     *
-     * @return the weight of the extras item as a double
-     */
-    @Override
-    public double getWeight() {
-        try {
-            return fetchAttributeFromDB("weight", this.getType());
-        } catch (SQLException e) {
-            logger.error("Failed to fetch weight from the database for Extras", e);
-            return -1.0;
-        }
+    public Extras(String type, char size, char gender) {
+        super(type, size, gender);
     }
 
-    /**
-     * Retrieves the volume of the extras item from the database.
-     *
-     * @return the volume of the extras item as a double
-     */
-    @Override
-    public double getVolume() {
-        try {
-            return fetchAttributeFromDB("volume", this.getType());
-        } catch (SQLException e) {
-            logger.error("Failed to fetch volume from the database for Extras", e);
-            return -1.0;
-        }
-    }
-
-    /**
-     * Fetches the specified attribute from the database for an extras item.
-     *
-     * @param attribute the attribute to fetch (e.g., "weight", "volume")
-     * @param type the type of the extras item
-     * @return the attribute value as a double
-     * @throws SQLException if an error occurs during the database access
-     */
     private double fetchAttributeFromDB(String attribute, String type) throws SQLException {
         validateAttribute(attribute);
-        String query = "SELECT " + attribute + " FROM EXTRAS WHERE TYPE = ?";
+        String query = "SELECT " + attribute + " FROM EXTRAS WHERE Type = ?";
         return executeQuery(query, attribute, type);
     }
 
-    /**
-     * Executes a SQL query to retrieve a specified attribute from the database.
-     *
-     * @param query the SQL query to execute
-     * @param attribute the attribute to retrieve
-     * @param type the type of extras item
-     * @return the value of the attribute as a double
-     * @throws SQLException if no data is found or there is a database access error
-     */
     private double executeQuery(String query, String attribute, String type) throws SQLException {
-        try (Connection conn = ConnectionPool.getConnection();
+        try (Connection conn = DatabaseConnection.getConnection(); // Use centralized connection class
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, type);
 
@@ -110,12 +44,6 @@ public class Extras extends PackingItem {
         }
     }
 
-    /**
-     * Validates the requested attribute to ensure it is one of the expected types.
-     *
-     * @param attribute the attribute to validate
-     * @throws IllegalArgumentException if the attribute is not valid
-     */
     private static void validateAttribute(String attribute) {
         List<String> validAttributes = Arrays.asList("volume", "weight");
         if (!validAttributes.contains(attribute)) {
@@ -125,13 +53,12 @@ public class Extras extends PackingItem {
     }
 
     @Override
-    public String toString() {
-        try {
-            return String.format("Extras [value=%d, type=%s, size=%s, gender=%s, Weight=%.2f, Volume=%.2f]",
-                                 getValue(), getType(), getSize(), gender, getWeight(), getVolume());
-        } catch (Exception e) {
-            logger.error("Error generating string representation of Extras", e);
-            return "Extras [Error]";
-        }
+    public double getWeight() throws SQLException {
+        return fetchAttributeFromDB("weight", this.getType());
+    }
+
+    @Override
+    public double getVolume() throws SQLException {
+        return fetchAttributeFromDB("volume", this.getType());
     }
 }
