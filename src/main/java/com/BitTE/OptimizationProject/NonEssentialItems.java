@@ -63,15 +63,12 @@ class NonEssentialItems {
             while (!validChoice) {
                 try {
                     int userChoice = scanner.nextInt();
-                    scanner.nextLine();
                     if (userChoice == 1){
                         System.out.println("All nonesential items have been added!!!");
-                        scanner.nextLine();
                         validChoice = true;
                         return nonEssentialItems; 
                     } else if (userChoice == 2) {
                         validChoice = true;//Continue adding items
-                        scanner.nextLine();
                     } else {
                         System.err.println("Invalid input. Please press 1 oe 2.");
                     }
@@ -90,7 +87,6 @@ class NonEssentialItems {
             while (true) {//Infinite loop until valid input is provided
             try {
                 int input = scanner.nextInt();
-                scanner.nextLine();//Clear the newline character
                 if (input < 1 || input > 10) {//If value is not in the accepted range
                     System.out.println("Invalid input. Give me an integer ranging from 1 to 10.");
                 } else {//Item is in the accepted range
