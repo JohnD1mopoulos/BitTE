@@ -4,17 +4,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.tinylog.Logger;
 
 public class DatabaseTableCreation {
     private String url = "jdbc:sqlite:C:/sqlite/db/mydatabase.db"; // Database connection URL
 
     public DatabaseTableCreation() {
+        Logger.info("Initializing database creation and data insertion process...");
         initializeDatabase();
     }
 
     private void initializeDatabase() {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
+
+            Logger.info("Connected to the database: {}", url);
 
             // Create tables
             String sqlClothing = "CREATE TABLE IF NOT EXISTS Clothing (" +
@@ -32,12 +36,15 @@ public class DatabaseTableCreation {
                                "weight FLOAT NOT NULL);";
 
             stmt.execute(sqlClothing);
+            Logger.info("Table 'Clothing' created or already exists.");
+
             stmt.execute(sqlExtras);
-            System.out.println("Tables created.");
+            Logger.info("Table 'Extras' created or already exists.");
 
             // Insert data into Extras
             stmt.execute("INSERT INTO Extras (type, volume, weight) VALUES " +
                          "('Passport', 35.1, 45), ('Laptop', 1680, 2000), ('Book', 1500, 800);");
+            Logger.info("Data inserted into 'Extras' table.");
 
             // Insert data into Clothing
             stmt.execute("INSERT INTO Clothing (type, gender, size, volume, weight) VALUES " +
@@ -113,10 +120,10 @@ public class DatabaseTableCreation {
                          "('Socks', 'F', 'S', 30.375, 30), " +
                          "('Socks', 'F', 'M', 50, 40), " +
                          "('Socks', 'F', 'L', 105.625, 50);");
-            System.out.println("Data inserted.");
+            Logger.info("Data inserted into 'Clothing' table.");
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            Logger.error("Database initialization failed: {}", e.getMessage(), e);
         }
     }
 }
