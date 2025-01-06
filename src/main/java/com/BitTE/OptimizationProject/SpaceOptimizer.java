@@ -2,13 +2,15 @@ package com.BitTE.OptimizationProject;
 
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.variables.IntVar;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 // Declaration of the class for the optimization problem
 public class SpaceOptimizer {
 
     // Create the Model for the problem
-    public Model createModel(ArrayList<PackingItem> items, int maxWeight, int maxVolume) {
+    public Model createModel(ArrayList<PackingItem> items, int maxWeight, int maxVolume) throws SQLException {
         // Create a Choco Solver model
         Model model = new Model("Knapsack model");
 
@@ -21,12 +23,19 @@ public class SpaceOptimizer {
         IntVar[] weightVars = new IntVar[n];
         IntVar[] volumeVars = new IntVar[n];
 
+        // Calculate the maximum possible total value
+        int maxTotalValue = 0;
+
         for (int i = 0; i < n; i++) {
             PackingItem item = items.get(i);
 
-            binaryVars[i] = model.intVar("X" + i, 0, 1); // Binary variable for each item
-            int value = item.getValue(); // Get the value of the item
-            scaledVars[i] = model.intScaleView(binaryVars[i], value); // Scaled variable for value
+            // Binary variable for each item
+            binaryVars[i] = model.intVar("X" + i, 0, 1);
+
+            // Scaled variable for value
+            int value = item.getValue();
+            scaledVars[i] = model.intScaleView(binaryVars[i], value);
+            maxTotalValue += value;
 
             // Scale weight and volume to integers
             int weight = (int) (item.getWeight() * 1000);
@@ -37,12 +46,18 @@ public class SpaceOptimizer {
         }
 
         // Define the objective function: maximize total value
-        IntVar totalValue = model.intVar("TotalValue", 0, Integer.MAX_VALUE);
+        IntVar totalValue = model.intVar("TotalValue", 0, maxTotalValue);
         model.sum(scaledVars, "=", totalValue).post();
         model.setObjective(Model.MAXIMIZE, totalValue);
 
         // Add constraints for weight and volume
-        addConstraints(model, weightVars, volumeVars, maxWeight ,maxVolume);
+        addConstraints(model, weightVars, volumeVars, maxWeight, maxVolume);
+
+        // Debugging logs
+        System.out.println("Model created with max possible total value: " + maxTotalValue);
+        System.out.println("Number of items: " + n);
+        System.out.println("Max weight: " + maxWeight/1000 +"gr");
+        System.out.println("Max volume: " + maxVolume/1000 +"cm3");
 
         return model;
     }
@@ -55,22 +70,28 @@ public class SpaceOptimizer {
         model.sum(weightVars, "<=", maxWeight).post();
     }
 
-    // Solve the model and print the solution
-    public void solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) {
-        // Create the model
+    public ArrayList<PackingItem> solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
+        // Create the model with scaled weight and volume constraints
         Model model = createModel(items, (int) (maxWeight * 1000), (int) (maxVolume * 1000));
-
-        // Solve the model
+    
+        // Attempt to solve the model
         if (model.getSolver().solve()) {
             System.out.println("Solution found!");
-
-            // Output the selected items
+    
+            // List to store the selected items
+            ArrayList<PackingItem> selectedItems = new ArrayList<>();
+    
+            // Iterate through the items and add selected ones to the list
             for (int i = 0; i < items.size(); i++) {
-                int selected = model.getVar("X" + i).getValue();
-                System.out.println("Item " + i + " : Selected = " + selected);
+                if (((IntVar) model.getVar(i)).getValue() == 1) {
+                    selectedItems.add(items.get(i));
+                }
             }
+    
+            return selectedItems; // Return the list of selected items
         } else {
             System.out.println("No solution found.");
+            return new ArrayList<>(); // Return an empty list if no solution is found
         }
-    }
+    }  
 }

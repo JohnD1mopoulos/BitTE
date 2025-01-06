@@ -1,8 +1,6 @@
 package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
  * The {@code MenuHandler} class is responsible for displaying various menus to the user 
@@ -12,7 +10,7 @@ import java.util.Scanner;
  * This class provides methods for displaying:
  * - A menu to choose clothing items based on gender.
  * - A menu to choose from additional items like accessories (e.g., passport, computer, book).
- * - A menu to choose following steps of the essential item input procedure.
+ * - A menu to choose following steps of the essential and nonessential item input procedure.
  * - A menu showcasing all the items added to a PackingItem Knapsack.
  */
 class MenuHandler {
@@ -44,17 +42,29 @@ class MenuHandler {
 
     /**
      * Displays the Starting Menu for the user prompting him to make one of three choices:
+     * 1. Add an nonessential item to the Knapsack.
+     * 2. Exit the programm.
+     */
+    protected static void showStartingNonEssentialItemsMenu() {
+        System.out.println("------------------------------\n"
+                        +"Press 1 to terminate process.\n"
+                        +"Press 2 to add an nonessential item.\n"
+                        +"--------------------------------");
+    }
+
+    /**
+     * Displays the Starting Menu for the user prompting him to make one of three choices:
      * 1. Add an essential item to the Knapsack.
      * 2. Delete an essential item from the Knapsack.
-     * 3. Start adding non essential items.
+     * 3. Stop adding essential items.
      * 4. Exit the programm.
      */
     protected static void showStartingMenu() {
         System.out.println("------------------------------\n"
                         +"Press 1 to add essential items.\n"
                         +"Press 2 to delete an essential item(s).\n"
-                        +"Press 3 to start adding non essential items"
-                        +"Press 4 to abandon process"
+                        +"Press 3 to stop adding essential items\n"
+                        +"Press 4 to abandon process\n"
                         +"--------------------------------");
     }
 
