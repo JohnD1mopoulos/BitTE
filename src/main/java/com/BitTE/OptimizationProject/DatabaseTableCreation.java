@@ -32,6 +32,7 @@ public class DatabaseTableCreation {
             String sqlExtras = "CREATE TABLE IF NOT EXISTS Extras (" +
                                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                "type TEXT NOT NULL, " +
+                               "size TEXT NOT NULL CHECK (size IN ('S', 'M', 'L')), " +
                                "volume FLOAT NOT NULL, " +
                                "weight FLOAT NOT NULL);";
 
@@ -42,8 +43,16 @@ public class DatabaseTableCreation {
             Logger.info("Table 'Extras' created or already exists.");
 
             // Insert data into Extras
-            stmt.execute("INSERT INTO Extras (type, volume, weight) VALUES " +
-                         "('Passport', 35.1, 45), ('Laptop', 1680, 2000), ('Book', 1500, 800);");
+            stmt.execute("INSERT INTO Extras (type, size, volume, weight) VALUES " +
+            "('Passport', 'S', 35.1, 45), " +
+            "('Passport', 'M', 35.1, 45), " +
+            "('Passport', 'L', 35.1, 45), " +
+            "('Laptop', 'S', 1344, 1600), " +
+            "('Laptop', 'M', 1680, 2000), " +
+            "('Laptop', 'L', 2016, 2400), " +
+            "('Book', 'S', 1200, 640), " +
+            "('Book', 'M', 1500, 800), " +
+            "('Book', 'L', 1800, 960);");
             Logger.info("Data inserted into 'Extras' table.");
 
             // Insert data into Clothing

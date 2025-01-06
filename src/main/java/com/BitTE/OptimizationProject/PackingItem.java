@@ -59,10 +59,11 @@ public abstract class PackingItem {
     @Override
     public String toString() {
         try {
-            return String.format("PackingItem [value=%d, type=%s, size=%c, gender=%c, Weight=%.2f, Volume=%.2f]",
-                                 value, type, size, gender, getWeight(), getVolume());
+            return String.format("A packing item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
+                              type, size, gender, value, getWeight(), getVolume());
         } catch (SQLException e) {
-            return "PackingItem [Error retrieving weight/volume]";
+            return String.format("A packing item of type = %s, size = %c, gender = %c, value = %d, but an error occurred while retrieving weight and volume.",
+                                type, size, gender, value);
         }
     }
 }

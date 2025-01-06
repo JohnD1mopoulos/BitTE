@@ -57,4 +57,16 @@ public class Extras extends PackingItem {
     public double getVolume() throws SQLException {
         return fetchAttributeFromDB("volume", this.getType());
     }
+
+    @Override
+    public String toString() {
+        try {
+            return String.format("An %s item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
+                                this.getClass().getSimpleName(), type, size, gender, value, getWeight(), getVolume());
+        } catch (SQLException e) {
+            return String.format("An %s item of type = %s, size = %c, value = %d, but an error occurred while retrieving weight and volume.",
+                                this.getClass().getSimpleName(), type, size, value);
+        }
+    }
 }
+

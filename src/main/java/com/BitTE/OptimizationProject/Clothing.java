@@ -23,6 +23,7 @@ public class Clothing extends PackingItem {
             stmt.setString(1, type);
             stmt.setString(2, String.valueOf(size));
             stmt.setString(3, String.valueOf(gender));
+
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
@@ -43,5 +44,16 @@ public class Clothing extends PackingItem {
     @Override
     public double getVolume() throws SQLException {
         return fetchAttributeFromDB("volume", getType(), getSize(), getGender());
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return String.format("A %s item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
+                                this.getClass().getSimpleName(), type, size, gender, value, getWeight(), getVolume());
+        } catch (SQLException e) {
+            return String.format("A %s item of type = %s, size = %c, gender = %c, value = %d, but an error occurred while retrieving weight and volume.",
+                                this.getClass().getSimpleName(), type, size, gender, value);
+        }
     }
 }
