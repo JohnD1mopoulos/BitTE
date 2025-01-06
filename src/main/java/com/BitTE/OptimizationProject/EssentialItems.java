@@ -1,9 +1,11 @@
-package main.java.com.BitTE.OptimizationProject;
+package com.BitTE.OptimizationProject;
 
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import main.java.com.BitTE.OptimizationProject.CreateSuitcase;
 
 /**
  * The EssentialItems class manages the list of essential items for a knapsack. 
@@ -12,12 +14,33 @@ import java.util.Scanner;
  * The class interacts with the user through menus to guide them in selecting items 
  * and verifying the constraints of the knapsack.
  */
-protected class EssentialItems {
+class EssentialItems {
+
+    // Static instance variable for the Singleton pattern
+    private static EssentialItems listOfEssentialItems;
+
     /**Static ArrayList shared across all methods in this class representing
     the list of chosen essential items*/
-    protected static final ArrayList<PackingItem> essentialItems = new ArrayList<>();
+    protected final ArrayList<PackingItem> essentialItems = new ArrayList<>();
     //Scanner object for user to input choices
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    // Constants for user menu choices
+    private static final int ADD_ITEM = 1;
+    private static final int DELETE_ITEM = 2;
+    private static final int START_NON_ESSENTIAL = 3;
+    private static final int ABANDON_PROCESS = 4;
+
+    // Private constructor to prevent instantiation
+    private EssentialItems() { }
+
+    /**Method to allow access to EssentialItem's singleton instance */
+    public static EssentialItems getInstance() {
+        if (listOfEssentialItems == null) {
+            listOfEssentialItems = new EssentialItems();  // Create the instance only once
+        }
+        return listOfEssentialItems;
+    }
+
 
     /**
      * Handles the user's input on whether to add an item, delete an item or abandon the process 
@@ -28,7 +51,7 @@ protected class EssentialItems {
      *         3 - if the user wants to start adding non essential items
      *         4 - if the user wants to abandon the process.
      */
-    private static int getUserMenuChoice() {
+    private int getUserMenuChoice() {
         
         while(true) {//Never ending loop to ensure choice being made
             try {
@@ -36,7 +59,7 @@ protected class EssentialItems {
                 int userChoice = scanner.nextInt();
                 scanner.nextLine();
                 
-                if (userChoice > 4 || userChoice <= 0) {
+                if (userChoice < ADD_ITEM || userChoice > ABANDON_PROCESS) {
                     System.err.println("Invalid choice. Please enter 1, 2, 3 or 4");
                 } else {
                     return userChoice;
@@ -53,10 +76,9 @@ protected class EssentialItems {
      * Prompts the user to add a clothing item or an accessory to the list of
      * essential items that he wants to take with him.
      */
-    private static void addItem() {
+    private void addItem() {
         //Display MENU for choosing type of Item
-        System.out.println("Press 1 to add Clothing\n"
-                            +"Press 2 to add other item");
+        MenuHandler.chooseItemType();
           
         //Make choice 
         int inputType = ItemInputHandler.setTypeOfItem(scanner);
@@ -69,21 +91,20 @@ protected class EssentialItems {
 
         //Display MENU for the process of choosing an Item
         if (inputType == 1) {
-            MenuHandler.clothingMenu(itemGender);
+            MenuHandler.showClothingMenu(itemGender);
         } else {
-            MenuHandler.extrasMenu();
+            MenuHandler.showExtrasMenu();
         }
 
         //Choose Item
-        String itemOfChoice = ItemInputHandler.setItemChoice(inputType,
-                                        itemGender,
-                                        scanner);
+        String itemOfChoice = ItemInputHandler.setItemChoice(inputType, 
+                                                            itemGender, scanner);
 
         //Choose the item's size
         char itemSize = ItemInputHandler.setSize(scanner);
 
         //Input item 
-        ItemInputHandler.inputItem(essentialItems, scanner);
+        ItemInputHandler.inputItem(essentialItems, inputType, itemOfChoice, itemGender, itemSize);
     }
 
    
@@ -96,21 +117,21 @@ protected class EssentialItems {
     * @return a boolean variable that confirms the continuation of the item input operation 
     *         if the constraints are still met.
     */
-    private static boolean fillEssential(double maxWeight, double maxVolume){
+    protected boolean fillEssential(double maxWeight, double maxVolume){
         
         boolean processRunning = true;
         System.out.println("INSERTION OF ESSENTIAL ITEMS\n"
                             +"----------------------------");
         while (processRunning){
             //Display STARTING MENU
-            MenuHandler.startingMenu();
+            MenuHandler.showStartingMenu();
             int userMenuChoice = getUserMenuChoice();
 
-            if (userMenuChoice == 1) {//User wants to add item
+            if (userMenuChoice == ADD_ITEM) {//User wants to add item
                 addItem();
-            } else if (userMenuChoice == 2) {//User wants to delete item(s)
+            } else if (userMenuChoice == DELETE_ITEM) {//User wants to delete item(s)
                 ItemDeletionHandler.deleteItem(essentialItems, scanner);
-            } else if (userMenuChoice == 3) {//User wants to start adding essential items
+            } else if (userMenuChoice == START_NON_ESSENTIAL) {//User wants to start adding essential items
                 return true;
             } else {//User wants to abandon process
                 return false;
@@ -128,7 +149,7 @@ protected class EssentialItems {
                                                 maxVolume);
         
             //Provide feedback based on constraints
-            constraintFeedback(essentialItems, constraintsStatus, maxWeight, maxVolume);
+            EssentialConstraints.showConstraintFeedback(essentialItems, constraintsStatus, maxWeight, maxVolume);
         
             //Handle different constraint scenarios
             if (constraintsStatus != 1) {//Constraints arent met
@@ -136,8 +157,8 @@ protected class EssentialItems {
                 boolean constraintProblemSolved = EssentialConstraints.
                                                 fixConstraints(essentialItems,
                                                             scanner,
-                                                            maxWeight,
-                                                            maxVolume);
+                                                            CreateSuitcase.maxWeight,
+                                                            CreateSuitcase.maxVolume);
     
                 if (constraintProblemSolved) {
                     //The user deleted some items and now constraints are respected

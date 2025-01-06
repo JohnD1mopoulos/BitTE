@@ -1,4 +1,7 @@
+package com.BitTE.OptimizationProject;
+
 import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -138,7 +141,7 @@ public class HomePageController {
             double length = Double.parseDouble(lengthTextField.getText());
             double width = Double.parseDouble(widthTextField.getText());
             double height = Double.parseDouble(heightTextField.getText());
-
+            
             System.out.println("Μήκος: " + length + ", Πλάτος: " + width + ", Ύψος: " + height);
 			Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             AppStart app = new AppStart();
@@ -147,6 +150,7 @@ public class HomePageController {
             System.out.println("Παρακαλώ εισάγετε έγκυρους αριθμούς.");
         }
     }
+
      public double getLength() {
         return length;
     }

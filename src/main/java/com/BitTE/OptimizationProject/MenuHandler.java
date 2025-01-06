@@ -1,4 +1,4 @@
-package main.java.com.BitTE.OptimizationProject;
+package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -15,7 +15,32 @@ import java.util.Scanner;
  * - A menu to choose following steps of the essential item input procedure.
  * - A menu showcasing all the items added to a PackingItem Knapsack.
  */
-protected class MenuHandler {
+class MenuHandler {
+
+    /*Lists containing the available clothing items*/
+    // Common items for both genders
+    private static String[] commonClothing = {
+        "T-Shirt", "Shirt", "Hoodie", "Jeans", "Sweatpants", "Trousers"
+    };
+
+    // Specific items for males
+    private static String[] maleClothing = {
+        "Boxers", "Shorts", "Sneakers", "Sandals", "Boots", "Socks"
+    };
+
+    // Specific items for females
+    private static String[] femaleClothing = {
+        "Skirts", "Panties", "Shorts", "Sneakers", "Sandals", "Boots", "Socks"
+    };
+
+    // Array containing the extra items
+    private static String[] extraItems = {"Passport", "Computer", "Book"};
+
+    //Displays the menu of the valid types of items 1. Clothing, 2. Accessory
+    protected static void chooseItemType() {
+    System.out.println("Press 1 to add Clothing\n"
+                                +"Press 2 to add Accessory");
+    }
 
     /**
      * Displays the Starting Menu for the user prompting him to make one of three choices:
@@ -24,7 +49,7 @@ protected class MenuHandler {
      * 3. Start adding non essential items.
      * 4. Exit the programm.
      */
-    protected static void startingMenu() {
+    protected static void showStartingMenu() {
         System.out.println("------------------------------\n"
                         +"Press 1 to add essential items.\n"
                         +"Press 2 to delete an essential item(s).\n"
@@ -54,43 +79,32 @@ protected class MenuHandler {
         * 
         * @param gender a char representing the user's choice ('M' for male, 'F' for female).
         */
-    protected static void clothingMenu(char gender) {
-        if (gender == 'M') {//If the prefered gender is Male
-            System.out.println("Press 1 to add a T-Shirt\n"
-                                +"Press 2 to add a Shirt\n"
-                                +"Press 3 to add a Hoodie\n"
-                                +"Press 4 to add Jeans\n"
-                                +"Press 5 to add Sweatpants\n"
-                                +"Press 6 to add Trousers\n"
-                                +"Press 7 to add Boxers\n"
-                                +"Press 8 to add Shorts\n"
-                                +"Press 9 to add Sneakers\n"
-                                +"Press 10 to add Sandals\n"
-                                +"Press 11 to add Boots\n"
-                                +"Press 12 to add Socks");
-        } else {//If the prefered gender is Female
-            System.out.println("Press 1 to add a T-Shirt\n"
-                                +"Press 2 to add a Shirt\n"
-                                +"Press 3 to add a Hoodie\n"
-                                +"Press 4 to add Jeans\n"
-                                +"Press 5 to add Sweatpants\n"
-                                +"Press 6 to add Trousers\n"
-                                +"Press 7 to add Skirts\n"
-                                +"Press 8 to add Panties"
-                                +"Press 9 to add Shorts\n"
-                                +"Press 10 to add Sneakers\n"
-                                +"Press 11 to add Sandals\n"
-                                +"Press 12 to add Boots"
-                                +"Press 13 to add Socks");
+    protected static void showClothingMenu(char gender) {
+        //Display choices common to men and women
+        for (int i = 0; i < commonClothing.length; i++) {
+            System.out.println("Press " + (i + 1) + " to add " + commonClothing[i]);
+        }
+        /*Account for the differenecs in options between male and 
+        female clothing*/
+        if (gender == 'M') {//Male only options
+            for (int i = 0; i < maleClothing.length; i++) {
+                System.out.println("Press " + (commonClothing.length + i + 1)
+                                    + " to add " + maleClothing[i]);
+            }
+        } else {//Female only options
+            for (int i = 0; i < femaleClothing.length; i++) {
+                System.out.println("Press " + (commonClothing.length + i + 1) 
+                                    + " to add " + femaleClothing[i]);
+            }
         }
     }
 
-        /**
+    /**
      * Displays the extras menu 
      */
-    protected static void extrasMenu() {
-        System.out.println("Press 1 to add Passport\n"
-                            +"Press 2 to add Computer\n"
-                            +"Press 3 to add Book");
+    protected static void showExtrasMenu() {
+        for (int i = 0; i < extraItems.length; i++) {
+            System.out.println("Press " + (i + 1) + " to add " + extraItems[i]);
         }
+    }
 }

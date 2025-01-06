@@ -1,3 +1,5 @@
+package com.BitTE.OptimizationProject;
+
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.variables.IntVar;
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class SpaceOptimizer {
         model.setObjective(Model.MAXIMIZE, totalValue);
 
         // Add constraints for weight and volume
-        addConstraints(model, weightVars, volumeVars, maxWeight * 1000, maxVolume * 1000);
+        addConstraints(model, weightVars, volumeVars, maxWeight ,maxVolume);
 
         return model;
     }

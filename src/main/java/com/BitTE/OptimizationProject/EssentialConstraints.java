@@ -1,4 +1,4 @@
-package main.java.com.BitTE.OptimizationProject;
+package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -13,7 +13,13 @@ import java.util.function.Function;
  * to the user about constraint violations, and handling the process of fixing 
  * constraint violations by allowing the user to delete items or terminate the process.
  */
-protected class EssentialConstraints {
+class EssentialConstraints {
+
+    // Constants for constraint states
+    public static final int BOTH_CONSTRAINTS_RESPECTED = 1;
+    public static final int ONLY_WEIGHT_CONSTRAINT_RESPECTED = 2;
+    public static final int ONLY_VOLUME_CONSTRAINT_RESPECTED = 3;
+    public static final int NO_CONSTRAINTS_RESPECTED = 4;
     
     /**
    * Calculates the sum of a specified attribute for a list of `PackingItem` objects.
@@ -56,13 +62,13 @@ protected class EssentialConstraints {
 
         //Return appropriate value for each scenario 
         if (totalWeight <= maxWeight && totalVolume <= maxVolume) {
-            return 1;//Both constraints respected
+            return BOTH_CONSTRAINTS_RESPECTED;
         }else if (totalWeight <= maxWeight) {
-            return 2;//Only weight constraint respected
+            return ONLY_WEIGHT_CONSTRAINT_RESPECTED;
         }else if (totalVolume <= maxVolume) {
-            return 3;//Only volume constraint respected
+            return ONLY_VOLUME_CONSTRAINT_RESPECTED;
         }else {
-            return 4;//No constraint respected
+            return NO_CONSTRAINTS_RESPECTED;
         }
 
     }
@@ -79,27 +85,31 @@ protected class EssentialConstraints {
     * @param maxVolume representing the maximum volume that can be added to the knapsack.
     * @param maxWeight representing the maximum weight that can be added to the knapsack.
     */
-    private static void constraintFeedback(ArrayList<PackingItem> items,
+    protected static void showConstraintFeedback(ArrayList<PackingItem> items,
                                         int stateOfConstraints,
                                         double maxWeight,
-                                        double maxVolume ) {
+                                        double maxVolume) {
         
         double remainingWeight = maxWeight - calculateSumOfAttributes(items, PackingItem::getWeight);
         double remainingVolume = maxVolume - calculateSumOfAttributes(items, PackingItem::getVolume);
 
         switch (stateOfConstraints) {
-            case 1 -> System.out.printf("You have %.2f kg and %.2f cm³ available.%n",
+            case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(
+                                 "You have %.2f kg and %.2f cm³ available.%n",
                                         remainingWeight, remainingVolume);
-            case 2 -> System.out.printf("You have %.2f kg left but exceeded "
+            case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(
+                                        "You have %.2f kg left but exceeded "
                                         +"volume by %.2f cm³.%n\n"
                                         +"You have to delete items to continue the process", 
                                          remainingWeight, -remainingVolume);
-            case 3 -> System.out.printf("You exceeded weight by %.2f kg"
+            case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(
+                                        "You exceeded the weight limit by %.2f kg"
                                         +" but have %.2f cm³ left.%n\n"
                                         +"You have to delete items to continue the process", 
                                          -remainingWeight, remainingVolume);
-            case 4 -> System.out.printf("You exceeded weight by %.2f kg"
-                                        +" and volume by %.2f cm³.%n"
+            case NO_CONSTRAINTS_RESPECTED : System.out.printf(
+                                        "You exceeded the weight limit by %.2f kg"
+                                        +" and volume limit by %.2f cm³.%n"
                                         +"You have to delete items to continue the process", 
                                          -remainingWeight, -remainingVolume);
         }
@@ -124,7 +134,7 @@ protected class EssentialConstraints {
         System.out.println("Press 1 to terminate process.\n"
                             +"Press 2 to remove item(s)");
     
-        boolean validChoice;
+        boolean validChoice = false;
         while (!validChoice){
         try {
             System.out.println("Enter your choice:");
@@ -138,14 +148,15 @@ protected class EssentialConstraints {
 
                 //Recheck constraints
                 int constraintsRespected = checkConstraints(items, maxWeight, maxVolume);
-                if (constraintsRespected == 1) {//Constraints are respected
+                if (constraintsRespected == BOTH_CONSTRAINTS_RESPECTED) {//Constraints are respected
                     validChoice = true;//Exit loop
                 } else {//Constraints aren't respected
-                    constraintFeedback(items, constraintsRespected, maxWeight, maxVolume);
+                    showConstraintFeedback(items, constraintsRespected, maxWeight, maxVolume);
                 }//Restart the loop after the above message
 
             } else {
-                System.err.println("Invalid choice. Please enter 1 or 2");
+                System.err.println("Invalid choice. Please enter 1 to terminate process"
+                                    +"or 2 to remove item(s)");
             }
 
         } catch (InputMismatchException e){

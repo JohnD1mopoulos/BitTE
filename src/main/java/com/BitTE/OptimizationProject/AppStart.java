@@ -4,30 +4,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.java.com.BitTE.OptimizationProject.CreateSuitcase;
 
-public class AppStart extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 638, 400);
-        primaryStage.setTitle("PackApp");
-        primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-	
-	 public void switchToSecondPage(Stage primaryStage) throws IOException {
-        
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SecondPage.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            primaryStage.setTitle("PackApp");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        }
+public class AppStart {
 
     public static void main(String[] args) {
-        launch(args);
+        
+        CreateSuitcase.suitcaseCharacteristics();
+        double maxVolume = CreateSuitcase.maxVolume;
+        double maxWeight = CreateSuitcase.maxWeight;
+        EssentialItems essentialItemsManager = EssentialItems.getInstance();
+        boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume);
+        if (addNonEssentials) {
+            SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
+            spaceOptimizer.solveModel(NonEssentialItems.nonEssentialItems, maxWeight, maxVolume);
+        }
     }
 }

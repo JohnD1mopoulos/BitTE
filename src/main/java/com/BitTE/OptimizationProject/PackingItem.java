@@ -1,3 +1,5 @@
+package com.BitTE.OptimizationProject;
+
 /**
  * Abstract class representing a generic packing item.
  * This class serves as a base for items that can be packed, providing common properties
@@ -6,7 +8,7 @@
 public abstract class PackingItem {
   protected int value;
   protected String type;
-  protected String size;
+  protected char size;
 
   /**
    * Constructs a new PackingItem with specified value, type, and size. Used for Non-Essential items
@@ -15,7 +17,7 @@ public abstract class PackingItem {
    * @param type the type of the packing item (e.g., "T-Shirt", "Hoodie")
    * @param size the size of the packing item ( "S", "M", "L")
    */
-  public PackingItem(int value, String type, String size) {
+  public PackingItem(int value, String type, char size) {
       this.value = value;
       this.type = type;
       this.size = size;
@@ -28,7 +30,7 @@ public abstract class PackingItem {
    * @param type the type of the packing item
    * @param size the size of the packing item
    */
-  public PackingItem(String type, String size) {
+  public PackingItem(String type, char size) {
       this(0, type, size); // Default value is set to 0 for Essential items
   }
 

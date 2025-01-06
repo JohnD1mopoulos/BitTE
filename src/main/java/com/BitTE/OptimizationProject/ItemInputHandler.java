@@ -1,4 +1,4 @@
-package main.java.com.BitTE.OptimizationProject;
+package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -16,7 +16,7 @@ import java.util.Scanner;
  * - Validating user input to ensure valid choices for item type, item choice, gender, and size.
  * - Collecting all necessary information to create and add an item to the packing list.
  */
-public class ItemInputHandler {
+class ItemInputHandler {
     /**
     * Prompts the user to choose between inputting a clothing item or an accessory.
     *
@@ -153,24 +153,24 @@ public class ItemInputHandler {
         * @return a char representing the user's choice of gender
         *         ('M' for male, 'F' for female).
         */
-        protected static char setGender(Scanner scanner) {
-            System.out.println("Please enter your gender: (M for Male, F for Female)");
-            char sex;
-            while (true) { // Infinite loop until valid input is provided
-                String input = scanner.nextLine().trim(); // Read the entire line and trim whitespace
-                if (input.isEmpty()) { // Check for empty input
-                    System.err.println("No input detected. Please enter 'M' for Male or 'F' for Female.");
-                    continue; // Prompt user again
-                }
-                if (input.length() == 1) { // Ensure input is a single character
-                    sex = input.toUpperCase().charAt(0);
+    protected static char setGender(Scanner scanner) {
+        System.out.println("Please enter your gender: (M for Male, F for Female)");
+        char sex;
+        while (true) { // Infinite loop until valid input is provided
+            String input = scanner.nextLine().trim(); // Read the entire line and trim whitespace
+            if (input.isEmpty()) { // Check for empty input
+                System.err.println("No input detected. Please enter 'M' for Male or 'F' for Female.");
+                continue; // Prompt user again
+            }
+            if (input.length() == 1) { // Ensure input is a single character
+                sex = input.toUpperCase().charAt(0);
                     if (sex == 'M' || sex == 'F') {
                         return sex;
                     }
-                }
-                System.err.println("Invalid input. Please enter 'M' for Male or 'F' for Female.");
             }
-        }
+            System.err.println("Invalid input. Please enter 'M' for Male or 'F' for Female.");
+            }
+    }
 
     /**
     * Prompts the user to choose the item's size.
@@ -204,11 +204,25 @@ public class ItemInputHandler {
      * @param sex representing the selected gender if the item is a piece of clothing ("X" if it isn't)
      * @param size representing the selected size (Small||Medium||Large)
      */
-    //TODO: Write the appropriate piece of code according to the Data Engineers instructions
-    protected static void inputItem(ArrayList<PackingItem> items, String type, int choiceOfItem, char sex, char size) {
-        if (choiceOfItem == 1) {
-            items.add(new Clothing(type, size , sex));
+    
+    protected static void inputItem(ArrayList<PackingItem> items, int type, String choice, char sex, char size) {
+        if (type == 1) {
+            Clothing pack = new Clothing(choice, size, sex);
+            items.add(pack);
+        } else {
+            Extras pack = new Extras(choice);
+            items.add(pack);
         }
     }
 
+    protected static void inputItem(ArrayList<PackingItem> items, int type, String choice, char sex, char size, int value) {
+        if (type == 1) {
+            Clothing pack = new Clothing(value, choice, size, sex);
+            items.add(pack);
+        } else {
+            Extras pack = new Extras(value, choice);
+            items.add(pack);
+        }
+    }
+ 
 }
