@@ -1,3 +1,5 @@
+package com.BitTE.OptimizationProject;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -34,7 +36,8 @@ public class DatabaseTableCreation {
             System.out.println("Tables created.");
 
             // Insert data into Extras
-            stmt.execute("INSERT INTO Extras (type, volume, weight) VALUES ('Passport', 35.1, 45), ('Laptop', 1680, 2000), ('Book', 1500, 800);");
+            stmt.execute("INSERT INTO Extras (type, volume, weight) VALUES " +
+                         "('Passport', 35.1, 45), ('Laptop', 1680, 2000), ('Book', 1500, 800);");
 
             // Insert data into Clothing
             stmt.execute("INSERT INTO Clothing (type, gender, size, volume, weight) VALUES " +
@@ -54,8 +57,8 @@ public class DatabaseTableCreation {
                          "('Sweatpants', 'M', 'M', 7020, 600), " +
                          "('Sweatpants', 'M', 'L', 9405, 700), " +
                          "('Trousers', 'M', 'S', 2062.5, 600), " +
-                         "('Trousers', 'M', 'M', 3528, 700), " +
-                         "('Trousers', 'M', 'L', 5130, 800), " +
+                         "('Trousers', 'M', 'M', 3528.0, 700), " +
+                         "('Trousers', 'M', 'L', 5130.0, 800), " +
                          "('Underwear', 'M', 'S', 468, 60), " +
                          "('Underwear', 'M', 'M', 750, 70), " +
                          "('Underwear', 'M', 'L', 1035, 80), " +
@@ -73,7 +76,43 @@ public class DatabaseTableCreation {
                          "('Boots', 'M', 'L', 10944, 1800), " +
                          "('Socks', 'M', 'S', 50, 50), " +
                          "('Socks', 'M', 'M', 90, 60), " +
-                         "('Socks', 'M', 'L', 105.625, 70);");
+                         "('Socks', 'M', 'L', 105.625, 70), " +
+                         "('T-Shirt', 'F', 'S', 750, 100), " +
+                         "('T-Shirt', 'F', 'M', 1288, 120), " +
+                         "('T-Shirt', 'F', 'L', 1500, 140), " +
+                         "('Shirt', 'F', 'S', 1000, 110), " +
+                         "('Shirt', 'F', 'M', 1610, 130), " +
+                         "('Shirt', 'F', 'L', 2250, 150), " +
+                         "('Hoodie', 'F', 'S', 3795, 450), " +
+                         "('Hoodie', 'F', 'M', 5850, 550), " +
+                         "('Hoodie', 'F', 'L', 7980, 650), " +
+                         "('Jeans', 'F', 'S', 2100, 500), " +
+                         "('Jeans', 'F', 'M', 3360, 600), " +
+                         "('Jeans', 'F', 'L', 4455, 700), " +
+                         "('Sweatpants', 'F', 'S', 3750, 400), " +
+                         "('Sweatpants', 'F', 'M', 6006, 500), " +
+                         "('Sweatpants', 'F', 'L', 8100, 600), " +
+                         "('Trousers', 'F', 'S', 2062.5, 450), " +
+                         "('Trousers', 'F', 'M', 3528, 550), " +
+                         "('Trousers', 'F', 'L', 5130, 650), " +
+                         "('Skirt', 'F', 'S', 1400, 200), " +
+                         "('Skirt', 'F', 'M', 2520, 300), " +
+                         "('Skirt', 'F', 'L', 3465, 400), " +
+                         "('Underwear', 'F', 'S', 7.5, 30), " +
+                         "('Underwear', 'F', 'M', 10.8, 40), " +
+                         "('Underwear', 'F', 'L', 10.8, 50), " +
+                         "('Sneaker', 'F', 'S', 2640, 600), " +
+                         "('Sneaker', 'F', 'M', 3519, 700), " +
+                         "('Sneaker', 'F', 'L', 4306.25, 800), " +
+                         "('Sandal', 'F', 'S', 1150, 300), " +
+                         "('Sandal', 'F', 'M', 1716, 400), " +
+                         "('Sandal', 'F', 'L', 2295, 500), " +
+                         "('Boots', 'F', 'S', 4368, 1200), " +
+                         "('Boots', 'F', 'M', 5460, 1400), " +
+                         "('Boots', 'F', 'L', 6720, 1600), " +
+                         "('Socks', 'F', 'S', 30.375, 30), " +
+                         "('Socks', 'F', 'M', 50, 40), " +
+                         "('Socks', 'F', 'L', 105.625, 50);");
             System.out.println("Data inserted.");
 
         } catch (SQLException e) {

@@ -1,13 +1,12 @@
 package com.BitTE.OptimizationProject;
 
+import com.BitTE.OptimizationProject.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Extras extends PackingItem {
 
@@ -26,7 +25,7 @@ public class Extras extends PackingItem {
     }
 
     private double executeQuery(String query, String attribute, String type) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection(); // Use centralized connection class
+        try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, type);
 
@@ -34,12 +33,10 @@ public class Extras extends PackingItem {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    logger.warn("No data found for type: {}", type);
                     throw new SQLException("No data found for the given query");
                 }
             }
         } catch (SQLException e) {
-            logger.error("Failed to fetch attribute from the database", e);
             throw e;
         }
     }
@@ -47,7 +44,6 @@ public class Extras extends PackingItem {
     private static void validateAttribute(String attribute) {
         List<String> validAttributes = Arrays.asList("volume", "weight");
         if (!validAttributes.contains(attribute)) {
-            logger.error("Invalid Attribute: {}. Allowed attributes are volume and weight", attribute);
             throw new IllegalArgumentException("Invalid attribute: " + attribute);
         }
     }

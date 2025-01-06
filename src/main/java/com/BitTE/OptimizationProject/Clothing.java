@@ -1,3 +1,6 @@
+package com.BitTE.OptimizationProject;
+
+import com.BitTE.OptimizationProject.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,12 +27,10 @@ public class Clothing extends PackingItem {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    logger.warn("No data found for type: {}, size: {}, and gender: {}", type, size, gender);
                     throw new SQLException("No data found for the given query");
                 }
             }
         } catch (SQLException e) {
-            logger.error("Failed to fetch attribute from the database", e);
             throw e;
         }
     }
