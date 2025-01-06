@@ -17,8 +17,11 @@ public class AppStart {
         final double maxWeight = suitcase.getMaxWeight();
         EssentialItems essentialItemsManager = EssentialItems.getInstance();
         boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
-        NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
-        if (addNonEssentials) {
+        
+        MenuHandler.showStartingNonEssentialItemsMenu();
+        int userChoice = scanner.nextInt();
+        if (addNonEssentials & userChoice == 2) {
+            NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
             SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
             ArrayList<PackingItem> selectedItems = spaceOptimizer.solveModel(
                 nonEssentialItemsManager.fillNonessentials(scanner), maxWeight, maxVolume);
@@ -28,8 +31,10 @@ public class AppStart {
                 System.out.println(selectedItems.get(i));
             }
                 System.out.println("-------------------------------------");
-        } else {
+        }else if (!addNonEssentials){
             System.out.println("No trip for you");
+        } else {
+            System.out.println("Trip only with essentials");
         }
         scanner.close();
     }

@@ -53,6 +53,19 @@ class MenuHandler {
     }
 
     /**
+     * Displays the menu for the user prompting him to make one of three choices:
+     * 1. Add an nonessential item to the Knapsack.
+     * 2. Exit the programm.
+     */
+    protected static void showNonEssentialItemsMenu() {
+        System.out.println("------------------------------\n"
+                        +"Press 1 to terminate process.\n"
+                        +"Press 2 to add an nonessential item.\n"
+                        +"Press 3 to delete an nonessential item(s).\n"
+                        +"--------------------------------");
+    }
+
+    /**
      * Displays the Starting Menu for the user prompting him to make one of three choices:
      * 1. Add an essential item to the Knapsack.
      * 2. Delete an essential item from the Knapsack.

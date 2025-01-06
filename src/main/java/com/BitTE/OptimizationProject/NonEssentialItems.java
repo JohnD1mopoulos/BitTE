@@ -23,7 +23,10 @@ class NonEssentialItems {
     }
 
     protected ArrayList<PackingItem> fillNonessentials(Scanner scanner) {
-        System.out.println("Dear user, please choose the items that you would like to carry in your suitcase: ");
+        System.out.println("----------------------------\n"
+                        +"INSERTION OF ESSENTIAL ITEMS\n"
+                        +"----------------------------\n"
+                        +"Dear user, please choose the items that you would like to carry in your suitcase:");
 
         boolean addingItems = true;
         while (addingItems){
@@ -58,7 +61,7 @@ class NonEssentialItems {
             ItemInputHandler.inputItem(nonEssentialItems, inputType,
                                          itemOfChoice, itemGender, itemSize, value);
 
-            MenuHandler.showStartingNonEssentialItemsMenu();
+            MenuHandler.showNonEssentialItemsMenu();
             boolean validChoice = false;
             while (!validChoice) {
                 try {
@@ -69,8 +72,10 @@ class NonEssentialItems {
                         return nonEssentialItems; 
                     } else if (userChoice == 2) {
                         validChoice = true;//Continue adding items
+                    } else if (userChoice == 3) {
+                        ItemDeletionHandler.deleteItem(nonEssentialItems, scanner);//Delete item(s)
                     } else {
-                        System.err.println("Invalid input. Please press 1 oe 2.");
+                        System.err.println("Invalid input. Please press 1, 2 or 3.");
                     }
                     } catch (InputMismatchException e){
                     System.out.println("Invalid input. Please enter a valid integer.");
