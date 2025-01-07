@@ -42,8 +42,16 @@ public class DatabaseTableCreation {
             Logger.info("Table 'Extras' created or already exists.");
 
             // Insert data into Extras
-            stmt.execute("INSERT INTO Extras (type, volume, weight) VALUES " +
-                         "('Passport', 35.1, 45), ('Laptop', 1680, 2000), ('Book', 1500, 800);");
+            stmt.execute("INSERT INTO EXTRAS (type, size, volume, weight) VALUES " +
+                        "('Passport', 'S', 35.1, 45), " +
+                        "('Passport', 'M', 35.1, 45), " +
+                        "('Passport', 'L', 35.1, 45), " +
+                        "('Computer', 'S', 1344, 1600), " +
+                        "('Computer', 'M', 1680, 2000), " +
+                        "('Computer', 'L', 2016, 2400), " +
+                        "('Book', 'S', 1200, 640), " +
+                        "('Book', 'M', 1500, 800), " +
+                        "('Book', 'L', 1800, 960);");
             Logger.info("Data inserted into 'Extras' table.");
 
             // Insert data into Clothing
@@ -66,9 +74,9 @@ public class DatabaseTableCreation {
                          "('Trousers', 'M', 'S', 2062.5, 600), " +
                          "('Trousers', 'M', 'M', 3528.0, 700), " +
                          "('Trousers', 'M', 'L', 5130.0, 800), " +
-                         "('Underwear', 'M', 'S', 468, 60), " +
-                         "('Underwear', 'M', 'M', 750, 70), " +
-                         "('Underwear', 'M', 'L', 1035, 80), " +
+                         "('Boxers', 'M', 'S', 468, 60), " +
+                         "('Boxers', 'M', 'M', 750, 70), " +
+                         "('Boxers', 'M', 'L', 1035, 80), " +
                          "('Shorts', 'M', 'S', 828, 200), " +
                          "('Shorts', 'M', 'M', 1250, 250), " +
                          "('Shorts', 'M', 'L', 1092, 300), " +
@@ -105,15 +113,15 @@ public class DatabaseTableCreation {
                          "('Skirt', 'F', 'S', 1400, 200), " +
                          "('Skirt', 'F', 'M', 2520, 300), " +
                          "('Skirt', 'F', 'L', 3465, 400), " +
-                         "('Underwear', 'F', 'S', 7.5, 30), " +
-                         "('Underwear', 'F', 'M', 10.8, 40), " +
-                         "('Underwear', 'F', 'L', 10.8, 50), " +
+                         "('Panties', 'F', 'S', 7.5, 30), " +
+                         "('Panties', 'F', 'M', 10.8, 40), " +
+                         "('Panties', 'F', 'L', 10.8, 50), " +
                          "('Sneaker', 'F', 'S', 2640, 600), " +
                          "('Sneaker', 'F', 'M', 3519, 700), " +
                          "('Sneaker', 'F', 'L', 4306.25, 800), " +
-                         "('Sandal', 'F', 'S', 1150, 300), " +
-                         "('Sandal', 'F', 'M', 1716, 400), " +
-                         "('Sandal', 'F', 'L', 2295, 500), " +
+                         "('Sandals', 'F', 'S', 1150, 300), " +
+                         "('Sandals', 'F', 'M', 1716, 400), " +
+                         "('Sandals', 'F', 'L', 2295, 500), " +
                          "('Boots', 'F', 'S', 4368, 1200), " +
                          "('Boots', 'F', 'M', 5460, 1400), " +
                          "('Boots', 'F', 'L', 6720, 1600), " +

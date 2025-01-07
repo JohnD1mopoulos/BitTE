@@ -27,11 +27,11 @@ public class Clothing extends PackingItem {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    throw new SQLException("No data found for the given query "+ type+" "+ size+" "+ gender);
+                    throw new SQLException("No data found for the given query: Type = " + type + ", Size = " + size + ", Gender = " + gender);
                 }
             }
         } catch (SQLException e) {
-            throw e;
+            throw new SQLException("An error occurred while fetching " + attribute + " from the database: " + e.getMessage());
         }
     }
 

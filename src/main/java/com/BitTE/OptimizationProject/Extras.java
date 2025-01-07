@@ -20,7 +20,7 @@ public class Extras extends PackingItem {
 
     private double fetchAttributeFromDB(String attribute, String type) throws SQLException {
         validateAttribute(attribute);
-        String query = "SELECT " + attribute + " FROM EXTRAS WHERE Type = ?";
+        String query = "SELECT " + attribute + " FROM EXTRAS WHERE Type = ? AND Size =?";
         return executeQuery(query, attribute, type);
     }
 
@@ -28,6 +28,7 @@ public class Extras extends PackingItem {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, type);
+            stmt.setString(2, String.valueOf(this.getSize()));
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -56,5 +57,26 @@ public class Extras extends PackingItem {
     @Override
     public double getVolume() throws SQLException {
         return fetchAttributeFromDB("volume", this.getType());
+    }
+
+    @Override
+    public String toString() {
+        if (value == 0) {//Essential Extras
+            try {
+                return String.format("An essential %s item of type = %s, size = %c, value = %d, weight = %.2f, volume = %.2f",
+                                    this.getClass().getSimpleName(), type, size, value, getWeight(), getVolume());
+            } catch (SQLException e) {
+                return String.format("An essential %s item of type = %s, size = %c, value = %d, but an error occurred while retrieving weight and volume.",
+                                    this.getClass().getSimpleName(), type, size, value);
+            }
+        } else {
+            try {
+                return String.format("A non-essential %s item of type = %s, size = %c, value = %d, weight = %.2f, volume = %.2f",
+                                    this.getClass().getSimpleName(), type, size, value, getWeight(), getVolume());
+            } catch (SQLException e) {
+                return String.format("A non-essential %s item of type = %s, size = %c, value = %d, but an error occurred while retrieving weight and volume.",
+                                    this.getClass().getSimpleName(), type, size, value);
+            }
+        }
     }
 }
