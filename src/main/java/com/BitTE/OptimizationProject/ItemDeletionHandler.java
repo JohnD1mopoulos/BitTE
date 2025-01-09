@@ -58,7 +58,8 @@ public class ItemDeletionHandler {
         
         while(true) {
             // Prompt the user to choose an item to delete
-            System.out.println("Which one do you want to delete? (Press 0 to cancel)");
+            System.out.println("Which one do you want to delete? "
+                              +"(Press 0 to cancel deletion of items)");
 
             try {
                 int itemForDeletion = scanner.nextInt();// Variable representing the item to be deleted

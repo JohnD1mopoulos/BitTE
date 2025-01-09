@@ -128,25 +128,25 @@ class EssentialConstraints {
 
         switch (stateOfConstraints) {
             case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(
-                                 "You have %.2f gr and %.2f cm3 available.%n",
+                                 "You have %.2f gr and %.2f cm3 available.%n\n",
                                         remainingWeight, remainingVolume);
                                         break;
             case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(
                                         "You have %.2f gr left but exceeded "
                                         +"volume by %.2f cm3.%n\n"
-                                        +"You have to delete items to continue the process", 
+                                        +"You have to delete items to continue the process\n", 
                                          remainingWeight, -remainingVolume);
                                          break;
             case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(
                                         "You exceeded the weight limit by %.2f gr"
                                         +" but have %.2f cm3 left.%n\n"
-                                        +"You have to delete items to continue the process", 
+                                        +"You have to delete items to continue the process\n", 
                                          -remainingWeight, remainingVolume);
                                          break;
             case NO_CONSTRAINTS_RESPECTED : System.out.printf(
                                         "You exceeded the weight limit by %.2f gr"
                                         +" and volume limit by %.2f cm3.%n"
-                                        +"You have to delete items to continue the process", 
+                                        +"You have to delete items to continue the process\n", 
                                          -remainingWeight, -remainingVolume);
                                          break;
         }
@@ -175,6 +175,8 @@ class EssentialConstraints {
         while (!validChoice){
         try {
             System.out.println("Enter your choice:");
+            System.out.println("Press 1 to terminate process.\n"
+                                +"Press 2 to remove item(s)");
             int userChoice = scanner.nextInt();
             scanner.nextLine();
         
@@ -190,7 +192,6 @@ class EssentialConstraints {
                 } else {//Constraints aren't respected
                     showConstraintFeedback(items, constraintsRespected, maxWeight, maxVolume);
                 }//Restart the loop after the above message
-
             } else {
                 System.err.println("Invalid choice. Please enter 1 to terminate process"
                                     +"or 2 to remove item(s)");
