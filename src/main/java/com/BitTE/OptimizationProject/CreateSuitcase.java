@@ -2,63 +2,97 @@ package com.BitTE.OptimizationProject;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class CreateSuitcase {
 
-    //instance of CreateSuitcase
     private static CreateSuitcase instance;
-
-    //variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
-    private final double maxVolume;
-    private final double maxWeight;
+    private double maxVolume;
+    private double maxWeight;
+    private JFrame frame;
+    private JTextField weightField, lengthField, widthField, heightField;
+    private JButton submitButton;
     
+    public CreateSuitcase() {
+        createAndShowGUI();
+        maxVolume = 0;
+        maxWeight = 0;
+    }
+    
+    private void createAndShowGUI() {
+        frame = new JFrame("Create Suitcase");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(5, 2));
 
-    //private constructor 
-    private CreateSuitcase(Scanner scanner) {
-        //Ask the customer about the weight limit of the suitcase
-        System.out.println("Enter the desired weight of the suitcase (in grams): ");
-        maxWeight = setSuitcaseCharacteristics(scanner);
-        //Ask the dimencions of the suitcase in centemetres
-        System.out.println("Enter the length of the suitcase (in cm): ");
-            double length = setSuitcaseCharacteristics(scanner);
-        System.out.println("Enter the width of the suitcase (in cm): ");
-            double width = setSuitcaseCharacteristics(scanner);
-        System.out.println("Enter the height of the suitcase (in cm): ");
-            double height = setSuitcaseCharacteristics(scanner);
-        //Calculating volume limit of the suitcase
-        maxVolume = length * width * height;
+        weightField = new JTextField(10);
+        lengthField = new JTextField(10);
+        widthField = new JTextField(10);
+        heightField = new JTextField(10);
+
+        // Adding a focus listener to validate the weight input
+        weightField.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent e) {
+                try {
+                    double maxWeight = Double.parseDouble(weightField.getText());
+                    if (maxWeight <= 0) {
+                        JOptionPane.showMessageDialog(frame, "Please enter a positive value for weight.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                        weightField.requestFocus();
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a valid number for weight.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    weightField.requestFocus();
+                }
+            }
+        });
+
+        frame.add(new JLabel("Weight (grams):"));
+        frame.add(weightField);
+        frame.add(new JLabel("Length (cm):"));
+        frame.add(lengthField);
+        frame.add(new JLabel("Width (cm):"));
+        frame.add(widthField);
+        frame.add(new JLabel("Height (cm):"));
+        frame.add(heightField);
+
+        submitButton = new JButton("Calculate Volume and Weight");
+        submitButton.addActionListener(e -> calculateVolumeAndWeight());
+        frame.add(submitButton);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    private void calculateVolumeAndWeight() {
+        try {
+            double maxWeight = Double.parseDouble(weightField.getText());
+            double length = Double.parseDouble(lengthField.getText());
+            double width = Double.parseDouble(widthField.getText());
+            double height = Double.parseDouble(heightField.getText());
+            if (maxWeight > 0 && length > 0 && width > 0 && height > 0) {
+                double maxVolume = length * width * height;
+                JOptionPane.showMessageDialog(frame, "Max Weight: " + maxWeight + " grams\nMax Volume: " + maxVolume + " cubic cm");
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter positive values for weight, length, width, and height.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(frame, "Please enter valid numbers", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    //Singleton method allows access to CreateSuitcase's instance
-    public static CreateSuitcase getInstance(Scanner scanner) {
+    public static CreateSuitcase getInstance() {
         if (instance == null) {
-            instance = new CreateSuitcase(scanner);
+            instance = new CreateSuitcase();
         }
         return instance;
     }
 
-    //Method that sets the suitcase's characteristics
-    private double setSuitcaseCharacteristics(Scanner scanner) {
-        while (true) {
-            try {
-                double var = scanner.nextDouble();
-                if (var > 0) {
-                    return var;
-                } else {
-                    System.out.println("Invalid input. The value must be positive. Try again.");
-                }
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid Input. Please give me a valid double.");
-                scanner.nextLine();
-            }
-        }
-    }
-
-    protected double getMaxVolume() {
+    public double getMaxVolume() {
         return maxVolume;
     }
 
-    protected double getMaxWeight() {
+    public double getMaxWeight() {
         return maxWeight;
     }
 }

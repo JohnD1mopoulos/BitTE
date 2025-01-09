@@ -12,7 +12,7 @@ public class AppStart {
         new DatabaseTableCreation();
         DatabaseConnection.getConnection();
         Scanner scanner = new Scanner(System.in);
-        CreateSuitcase suitcase = CreateSuitcase.getInstance(scanner);
+        CreateSuitcase suitcase = CreateSuitcase.getInstance();
         final double maxVolume = suitcase.getMaxVolume();
         final double maxWeight = suitcase.getMaxWeight();
         EssentialItems essentialItemsManager = EssentialItems.getInstance();
