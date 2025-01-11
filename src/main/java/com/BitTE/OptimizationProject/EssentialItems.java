@@ -14,7 +14,7 @@ import java.util.Scanner;
 class EssentialItems {
 
     // Static instance variable for the Singleton pattern
-    private static EssentialItems listOfEssentialItems;
+    static EssentialItems listOfEssentialItems;
 
     /**Static ArrayList shared across all methods in this class representing
     the list of chosen essential items*/

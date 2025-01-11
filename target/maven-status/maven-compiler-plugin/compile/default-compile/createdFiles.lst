@@ -3,6 +3,7 @@ com\BitTE\OptimizationProject\NonEssentialItems.class
 com\BitTE\OptimizationProject\AppStart.class
 com\BitTE\OptimizationProject\DatabaseConnection.class
 com\BitTE\OptimizationProject\MenuHandler.class
+com\BitTE\OptimizationProject\ResultPresenter.class
 com\BitTE\OptimizationProject\PackingItem.class
 com\BitTE\OptimizationProject\EssentialConstraints.class
 com\BitTE\OptimizationProject\CreateSuitcase.class
