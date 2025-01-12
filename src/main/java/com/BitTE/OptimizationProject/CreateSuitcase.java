@@ -37,6 +37,11 @@ public class CreateSuitcase {
         return instance;
     }
 
+    //Singleton method for reset of instance
+    public static void resetInstance() {
+        instance = null;
+    }
+
     //Method that sets the suitcase's characteristics
     private double setSuitcaseCharacteristics(Scanner scanner) {
         while (true) {
