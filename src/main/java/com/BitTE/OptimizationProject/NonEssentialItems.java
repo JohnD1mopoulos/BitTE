@@ -24,7 +24,7 @@ class NonEssentialItems {
 
     protected ArrayList<PackingItem> fillNonessentials(Scanner scanner) {
         System.out.println("----------------------------\n"
-                        +"INSERTION OF ESSENTIAL ITEMS\n"
+                        +"INSERTION OF NONESSENTIAL ITEMS\n"
                         +"----------------------------\n"
                         +"Dear user, please choose the items that you would like to carry in your suitcase:");
 
