@@ -1,0 +1,11 @@
+//This is the total lines of code added and removed by each author
+//  for the duration of the project.
+
+ALIKI POTAMIANAKI: Added: 316 Deleted: 105
+Cathy Mavrou: Added: 29718 Deleted: 29317
+Georgia Seinti: Added: 2226 Deleted: 1789
+IgnatiosSar: Added: 162 Deleted: 15
+JohnDim: Added: 29709 Deleted: 221
+Manolis Vondikakis: Added: 925 Deleted: 261
+Romain: Added: 2302 Deleted: 2618
+markoulinos: Added: 1680 Deleted: 1646 
