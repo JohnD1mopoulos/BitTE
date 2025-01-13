@@ -22,14 +22,6 @@ This command will clean the target directory and then compile and package the ap
 
 ---
 
-## Execution
-
-### Header
-
-Directions for program execution
-
----
-
 ## Usage Guide
 
 Below you can find a description of the standard program use.
@@ -77,7 +69,154 @@ the get-pip.py file that eases the package download process in terminal use.
 
 ## UML Diagram
 
-UML DIAGRAM HERE
+```mermaid
+classDiagram
+direction TB
+
+%% Group AppStart and Core Components
+subgraph Application Core
+    class AppStart {
+        +void main(String[] args)
+    }
+    AppStart --> DatabaseTableCreation : instantiates
+    AppStart --> DatabaseConnection : uses
+    AppStart --> ResultPresenter : instantiates
+    AppStart --> CreateSuitcase : instantiates
+    AppStart --> EssentialItems : instantiates
+    AppStart --> NonEssentialItems : instantiates
+    AppStart --> SpaceOptimizer : uses
+end
+
+%% Group Database Classes
+subgraph Database
+    class DatabaseConnection {
+        -static final String DB_PATH
+        -static final String DB_FILE
+        +static Connection getConnection()
+    }
+    class DatabaseTableCreation {
+        -String url
+        -void initializeDatabase()
+    }
+    DatabaseTableCreation --> DatabaseConnection : uses
+end
+
+%% Group Item Classes
+subgraph Items
+    class PackingItem {
+        #int value
+        #String type
+        #char size
+        #final char gender
+        +String getType()
+        +int getValue()
+        +char getSize()
+        +char getGender()
+        +abstract double getWeight()
+        +abstract double getVolume()
+        +String toString()
+    }
+    PackingItem <|-- Clothing
+    PackingItem <|-- Extras
+
+    class Clothing {
+        -double fetchAttributeFromDB()
+        -double executeQuery()
+        +double getWeight()
+        +double getVolume()
+        +String toString()
+    }
+
+    class Extras {
+        -double fetchAttributeFromDB()
+        -double executeQuery()
+        +double getWeight()
+        +double getVolume()
+        +String toString()
+    }
+end
+
+%% Group Handlers
+subgraph Handlers
+    class MenuHandler {
+        -static String[] commonClothing
+        -static String[] maleClothing
+        -static String[] femaleClothing
+        -static String[] extraItems
+        +static void chooseItemType()
+        +static void showStartingMenu()
+        +static void showNonEssentialItemsMenu()
+        +static void showClothingMenu(char)
+        +static void showExtrasMenu()
+        +static void showItems(ArrayList~PackingItem~)
+    }
+
+    class ItemInputHandler {
+        +static int setTypeOfItem(Scanner)
+        +static char setGender(Scanner)
+        +static char setSize(Scanner)
+        +static void inputItem(ArrayList~PackingItem~, int, String, char, char)
+    }
+
+    class ItemDeletionHandler {
+        +static void deleteItem(ArrayList~PackingItem~, Scanner)
+    }
+end
+
+%% Group Constraints and Optimization
+subgraph Constraints and Optimization
+    class EssentialConstraints {
+        +static final int BOTH_CONSTRAINTS_RESPECTED
+        +static final int ONLY_WEIGHT_CONSTRAINT_RESPECTED
+        +static final int ONLY_VOLUME_CONSTRAINT_RESPECTED
+        +static final int NO_CONSTRAINTS_RESPECTED
+        +static int checkConstraints(ArrayList~PackingItem~, double, double)
+        +static void showConstraintFeedback(ArrayList~PackingItem~, int, double, double)
+        +static boolean fixConstraints(ArrayList~PackingItem~, Scanner, double, double)
+    }
+
+    class SpaceOptimizer {
+        -IntVar[] binaryVars
+        +Model createModel(ArrayList~PackingItem~, int, int)
+        +void addConstraints(Model, IntVar[], IntVar[], int, int)
+        +ArrayList~PackingItem~ solveModel(ArrayList~PackingItem~, double, double)
+    }
+    SpaceOptimizer --> PackingItem : uses
+end
+
+%% Group Essential and Non-Essential Items
+subgraph Essential and NonEssential Items
+    class EssentialItems {
+        -static EssentialItems listOfEssentialItems
+        -final ArrayList~PackingItem~ essentialItems
+        +static EssentialItems getInstance()
+        +boolean fillEssential(double, double, Scanner)
+        +int getUserMenuChoice(Scanner)
+    }
+    EssentialItems --> MenuHandler : uses
+    EssentialItems --> ItemInputHandler : uses
+    EssentialItems --> EssentialConstraints : uses
+    EssentialItems "1" --> "*" PackingItem : manages
+
+    class NonEssentialItems {
+        -static NonEssentialItems instance
+        -final ArrayList~PackingItem~ nonEssentialItems
+        +static NonEssentialItems getInstance()
+        +ArrayList~PackingItem~ fillNonessentials(Scanner)
+    }
+    NonEssentialItems --> MenuHandler : uses
+    NonEssentialItems --> ItemInputHandler : uses
+    NonEssentialItems --> ItemDeletionHandler : uses
+    NonEssentialItems "1" --> "*" PackingItem : manages
+end
+
+%% Group Result Presentation
+subgraph Results
+    class ResultPresenter {
+        +void showResults(ArrayList~PackingItem~, ArrayList~PackingItem~, Scanner)
+    }
+end
+```
 
 ---
 
