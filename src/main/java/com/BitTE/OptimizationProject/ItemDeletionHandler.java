@@ -83,7 +83,7 @@ public class ItemDeletionHandler {
     
                 if (itemForDeletion == 0) {
                     System.out.println("Stopping deletion of items.");
-                    return 0; // User cancelled
+                    return itemForDeletion; // User cancelled
                 }else if (itemForDeletion >= 1 && itemForDeletion <= items.size()) {
                     //Return the user's choice
                     return itemForDeletion;

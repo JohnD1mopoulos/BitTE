@@ -49,11 +49,14 @@ class EssentialConstraints {
    *                        the attribute value to be summed.
    * @return the sum of the attribute values extracted from each `PackingItem`.
    */
-    private static double calculateSumOfAttributes(ArrayList<PackingItem> items, Function<PackingItem, Double> attributeGetter) {
+    protected static double calculateSumOfAttributes(ArrayList<PackingItem> items, Function<PackingItem, Double> attributeGetter) {
         double sum = 0;
 
         for (PackingItem item : items) {
-            sum += attributeGetter.apply(item);
+            Double value = attributeGetter.apply(item);
+            if (value != 0) {
+                sum += attributeGetter.apply(item);
+            }
         }
         return sum;
     }
@@ -78,7 +81,6 @@ class EssentialConstraints {
             try {
                 return t.getWeight();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
                         return null;
@@ -87,7 +89,6 @@ class EssentialConstraints {
             try {
                 return t.getVolume();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
                         return null;
@@ -127,7 +128,6 @@ class EssentialConstraints {
             try {
                 return t.getWeight();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
                         return null;
@@ -136,7 +136,6 @@ class EssentialConstraints {
             try {
                 return t.getVolume();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
                         return null;
