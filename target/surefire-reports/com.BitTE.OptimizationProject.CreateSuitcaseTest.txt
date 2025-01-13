@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: com.BitTE.OptimizationProject.CreateSuitcaseTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.106 s <<< FAILURE! -- in com.BitTE.OptimizationProject.CreateSuitcaseTest
+com.BitTE.OptimizationProject.CreateSuitcaseTest.testInvalidInputHandling -- Time elapsed: 0.013 s <<< ERROR!
+java.util.NoSuchElementException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:962)
+	at java.base/java.util.Scanner.next(Scanner.java:1619)
+	at java.base/java.util.Scanner.nextDouble(Scanner.java:2590)
+	at com.BitTE.OptimizationProject.CreateSuitcase.setSuitcaseCharacteristics(CreateSuitcase.java:49)
+	at com.BitTE.OptimizationProject.CreateSuitcase.<init>(CreateSuitcase.java:23)
+	at com.BitTE.OptimizationProject.CreateSuitcase.getInstance(CreateSuitcase.java:35)
+	at com.BitTE.OptimizationProject.CreateSuitcaseTest.testInvalidInputHandling(CreateSuitcaseTest.java:48)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
