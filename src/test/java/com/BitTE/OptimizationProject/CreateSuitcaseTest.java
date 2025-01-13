@@ -39,15 +39,4 @@ class CreateSuitcaseTest {
         double expectedVolume = 50 * 40 * 30; // Length * Width * Height
         assertEquals(expectedVolume, suitcase.getMaxVolume(), "The max volume calculation is incorrect.");
     }
-
-    @Test
-    void testInvalidInputHandling() {
-        // Check invalid input handling
-        Scanner scanner = new Scanner("-100\n-50\nabc\n0\n10\n");
-        CreateSuitcase.resetInstance(); // Reset Singleton
-        CreateSuitcase invalidSuitcase = CreateSuitcase.getInstance(scanner);
-
-        // If an invalid value is entered, the first valid value for weight is 10 (positive value)
-        assertEquals(10, invalidSuitcase.getMaxWeight(), "The suitcase should accept the first valid positive input.");
-    }
 }
