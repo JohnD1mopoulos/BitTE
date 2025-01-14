@@ -182,16 +182,13 @@ class EssentialConstraints {
                                         Scanner scanner,
                                         double maxWeight,
                                         double maxVolume) {
-
-        System.out.println("Press 1 to terminate process.\n"
-                            +"Press 2 to remove item(s)");
     
         boolean validChoice = false;
         while (!validChoice){
         try {
-            System.out.println("Enter your choice:");
             System.out.println("Press 1 to terminate process.\n"
-                                +"Press 2 to remove item(s)");
+                                +"Press 2 to remove item(s)\n"
+                                +"Enter your choice:");
             int userChoice = scanner.nextInt();
             scanner.nextLine();
         
@@ -208,8 +205,7 @@ class EssentialConstraints {
                     showConstraintFeedback(items, constraintsRespected, maxWeight, maxVolume);
                 }//Restart the loop after the above message
             } else {
-                System.err.println("Invalid choice. Please enter 1 to terminate process"
-                                    +"or 2 to remove item(s)");
+                System.err.println("Invalid choice.");
             }
 
         } catch (InputMismatchException e){

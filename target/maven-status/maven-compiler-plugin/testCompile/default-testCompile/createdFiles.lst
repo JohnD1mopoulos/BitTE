@@ -1,1 +1,4 @@
 com\BitTE\OptimizationProject\CreateSuitcaseTest.class
+com\BitTE\OptimizationProject\ItemDeletionTest.class
+com\BitTE\OptimizationProject\ItemInputTester.class
+com\BitTE\OptimizationProject\EssentialConstraintsTester.class
