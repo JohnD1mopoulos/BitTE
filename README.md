@@ -18,7 +18,9 @@ In order to compile the program the following command is used:
 mvn clean install
 ```
 
-This command will clean the target directory and then compile and package the application.
+This command will clean the target directory and then compile and package the application,
+
+as well as launch the app.
 
 ---
 
@@ -237,7 +239,7 @@ end
 
 → We have developed a structured database using sql in order to store different items in the clothing
 
- as well as the extras categories. Sql comands are then used to insert said items into their respected tables.
+ as well as the extras categories. Sql commands are then used to insert said items into their respected tables.
 
 → We have created specific files under src-> main-> recources in order to store some properties for the jdbc drivers used and connection settings.
 
