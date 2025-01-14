@@ -16,14 +16,14 @@ public class CreateSuitcase {
     //private constructor 
     private CreateSuitcase(Scanner scanner) {
         //Ask the customer about the weight limit of the suitcase
-        System.out.print("Enter the desired weight of the suitcase (in grams): ");
+        System.out.println("Enter the desired weight of the suitcase (in grams): ");
         maxWeight = setSuitcaseCharacteristics(scanner);
         //Ask the dimencions of the suitcase in centemetres
-        System.out.print("Enter the length of the suitcase (in cm): ");
+        System.out.println("Enter the length of the suitcase (in cm): ");
             double length = setSuitcaseCharacteristics(scanner);
-        System.out.print("Enter the width of the suitcase (in cm): ");
+        System.out.println("Enter the width of the suitcase (in cm): ");
             double width = setSuitcaseCharacteristics(scanner);
-        System.out.print("Enter the height of the suitcase (in cm): ");
+        System.out.println("Enter the height of the suitcase (in cm): ");
             double height = setSuitcaseCharacteristics(scanner);
         //Calculating volume limit of the suitcase
         maxVolume = length * width * height;
@@ -39,11 +39,9 @@ public class CreateSuitcase {
 
     //Method that sets the suitcase's characteristics
     private double setSuitcaseCharacteristics(Scanner scanner) {
-        double var;
         while (true) {
             try {
-                System.out.print("Please enter a positive double value: ");
-                var = scanner.nextDouble();
+                double var = scanner.nextDouble();
                 if (var > 0) {
                     return var;
                 } else {
@@ -51,6 +49,7 @@ public class CreateSuitcase {
                 }
             } catch (InputMismatchException e) {
                 System.err.println("Invalid Input. Please give me a valid double.");
+                scanner.nextLine();
             }
         }
     }

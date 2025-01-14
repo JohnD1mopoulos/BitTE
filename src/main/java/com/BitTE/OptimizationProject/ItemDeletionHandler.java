@@ -34,9 +34,8 @@ public class ItemDeletionHandler {
                 return;
             } else {
                 // Delete the chosen item
-                System.out.printf("Item no %d, %f, has been deleted.%n",
-                                        itemForDeletion,
-                                        items.get(itemForDeletion - 1));
+                System.out.printf("Item no %d" + items.get(itemForDeletion - 1) + ", has been deleted.%n",
+                                        itemForDeletion);
                 items.remove(itemForDeletion - 1);
             }
 
