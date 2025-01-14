@@ -76,10 +76,10 @@ class NonEssentialItems {
             //Input item 
             ItemInputHandler.inputItem(nonEssentialItems, inputType,
                                          itemOfChoice, itemGender, itemSize, value);
-
-            MenuHandler.showNonEssentialItemsMenu();
+ 
             boolean validChoice = false;
             while (!validChoice) {
+                MenuHandler.showNonEssentialItemsMenu();
                 try {
                     int userChoice = scanner.nextInt();
                     if (userChoice == 1){
