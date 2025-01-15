@@ -33,7 +33,11 @@ public class Clothing extends PackingItem {
     }
 
     private double fetchAttributeFromDB(String attribute, String type, char size, char gender) throws SQLException {
+        validateAttribute(attribute);
         String query = "SELECT " + attribute + " FROM CLOTHING WHERE Type = ? AND Size = ? AND Gender = ?";
+    }
+
+    private double executeQuery(String query, String attribute, String type) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, type);

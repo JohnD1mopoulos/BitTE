@@ -17,6 +17,8 @@
 package com.BitTE.OptimizationProject;   
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Abstract class representing a generic packing item.
@@ -60,6 +62,13 @@ public abstract class PackingItem {
 
     public char getGender() {
         return this.gender;
+    }
+
+    protected static void validateAttribute(String attribute) {
+    List<String> validAttributes = Arrays.asList("volume", "weight");
+        if (!validAttributes.contains(attribute)) {
+            throw new IllegalArgumentException("Invalid attribute: " + attribute);
+        }
     }
 
     /**

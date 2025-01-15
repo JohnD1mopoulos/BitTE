@@ -58,12 +58,6 @@ public class Extras extends PackingItem {
         }
     }
 
-    private static void validateAttribute(String attribute) {
-        List<String> validAttributes = Arrays.asList("volume", "weight");
-        if (!validAttributes.contains(attribute)) {
-            throw new IllegalArgumentException("Invalid attribute: " + attribute);
-        }
-    }
 
     @Override
     public double getWeight() throws SQLException {
