@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateSuitcase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">CreateSuitcase.java</span></div><h1>CreateSuitcase.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.BitTE.OptimizationProject;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class CreateSuitcase {
+
+    //instance of CreateSuitcase
+    private static CreateSuitcase instance;
+
+    //variables represent the allowable weigth in kilos and the volume in cubic meters of the suitcase
+    private final double maxVolume;
+    private final double maxWeight;
+    
+
+    //private constructor 
+<span class="fc" id="L33">    private CreateSuitcase(Scanner scanner) {</span>
+        //Ask the customer about the weight limit of the suitcase
+<span class="fc" id="L35">        System.out.println(&quot;Enter the desired weight of the suitcase (in grams): &quot;);</span>
+<span class="fc" id="L36">        maxWeight = setSuitcaseCharacteristics(scanner);</span>
+        //Ask the dimencions of the suitcase in centemetres
+<span class="fc" id="L38">        System.out.println(&quot;Enter the length of the suitcase (in cm): &quot;);</span>
+<span class="fc" id="L39">            double length = setSuitcaseCharacteristics(scanner);</span>
+<span class="fc" id="L40">        System.out.println(&quot;Enter the width of the suitcase (in cm): &quot;);</span>
+<span class="fc" id="L41">            double width = setSuitcaseCharacteristics(scanner);</span>
+<span class="fc" id="L42">        System.out.println(&quot;Enter the height of the suitcase (in cm): &quot;);</span>
+<span class="fc" id="L43">            double height = setSuitcaseCharacteristics(scanner);</span>
+        //Calculating volume limit of the suitcase
+<span class="fc" id="L45">        maxVolume = length * width * height;</span>
+<span class="fc" id="L46">    }</span>
+
+    //Singleton method allows access to CreateSuitcase's instance
+    public static CreateSuitcase getInstance(Scanner scanner) {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (instance == null) {</span>
+<span class="fc" id="L51">            instance = new CreateSuitcase(scanner);</span>
+        }
+<span class="fc" id="L53">        return instance;</span>
+    }
+
+    //Singleton method for reset of instance
+    public static void resetInstance() {
+<span class="fc" id="L58">        instance = null;</span>
+<span class="fc" id="L59">    }</span>
+
+    //Method that sets the suitcase's characteristics
+    private double setSuitcaseCharacteristics(Scanner scanner) {
+        while (true) {
+            try {
+<span class="fc" id="L65">                double var = scanner.nextDouble();</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">                if (var &gt; 0) {</span>
+<span class="fc" id="L67">                    return var;</span>
+                } else {
+<span class="nc" id="L69">                    System.out.println(&quot;Invalid input. The value must be positive. Try again.&quot;);</span>
+                }
+<span class="nc" id="L71">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L72">                System.err.println(&quot;Invalid Input. Please give me a valid double.&quot;);</span>
+<span class="nc" id="L73">                scanner.nextLine();</span>
+<span class="nc" id="L74">            }</span>
+        }
+    }
+
+    protected double getMaxVolume() {
+<span class="fc" id="L79">        return maxVolume;</span>
+    }
+
+    protected double getMaxWeight() {
+<span class="fc" id="L83">        return maxWeight;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -36,7 +36,7 @@ public class Extras extends PackingItem {
 
     private double fetchAttributeFromDB(String attribute, String type) throws SQLException {
         validateAttribute(attribute);
-        String query = "SELECT " + attribute + " FROM EXTRAS WHERE Type = ? AND Size =?";
+        String query = "SELECT " + attribute + " FROM EXTRAS WHERE Type = ? AND Size = ?";
         return executeQuery(query, attribute, type);
     }
 

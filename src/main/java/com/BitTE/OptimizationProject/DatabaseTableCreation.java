@@ -46,10 +46,11 @@ public class DatabaseTableCreation {
                                  "weight FLOAT NOT NULL);";
 
             String sqlExtras = "CREATE TABLE IF NOT EXISTS Extras (" +
-                               "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                               "type TEXT NOT NULL, " +
-                               "volume FLOAT NOT NULL, " +
-                               "weight FLOAT NOT NULL);";
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "type TEXT NOT NULL, " +
+            "size TEXT NOT NULL CHECK (size IN ('S', 'M', 'L')), " +
+            "volume FLOAT NOT NULL, " +
+            "weight FLOAT NOT NULL);";
 
             stmt.execute(sqlClothing);
             Logger.info("Table 'Clothing' created or already exists.");
