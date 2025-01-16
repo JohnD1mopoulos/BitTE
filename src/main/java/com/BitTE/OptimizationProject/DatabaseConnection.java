@@ -34,7 +34,8 @@ public class DatabaseConnection {
             if (dbDir.mkdirs()) {
                 Logger.info("Database directory created: {}", DB_PATH);
             } else {
-                Logger.error("Failed to create database directory: {}", DB_PATH);
+                Logger.error("Failed to create database directory: {}",
+                    DB_PATH);
             }
         } else {
             Logger.info("Database directory already exists: {}", DB_PATH);
@@ -42,13 +43,17 @@ public class DatabaseConnection {
     }
 
     public static Connection getConnection() throws SQLException {
-        Logger.info("Attempting to establish a database connection to: {}", DB_FILE);
+        Logger.info("Attempting to establish a database connection to: {}",
+            DB_FILE);
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + DB_FILE);
-            Logger.info("Database connection established successfully to: {}", DB_FILE);
+            Connection connection =
+                DriverManager.getConnection("jdbc:sqlite:" + DB_FILE);
+            Logger.info("Database connection established successfully to: {}",
+                DB_FILE);
             return connection;
         } catch (SQLException e) {
-            Logger.error("Failed to establish database connection: {}", e.getMessage(), e);
+            Logger.error("Failed to establish database connection: {}",
+                e.getMessage(), e);
             throw e;
         }
     }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.BitTE.OptimizationProject;   //Added the necessary package
+package com.BitTE.OptimizationProject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -26,7 +26,7 @@ import com.BitTE.OptimizationProject.DatabaseTableCreation;
 public class AppStart {
     public static void main(String[] args) throws SQLException {
         Logger.info("Starting the application...");
-        
+
         new DatabaseTableCreation();
         DatabaseConnection.getConnection();
 
@@ -37,8 +37,9 @@ public class AppStart {
         final double maxWeight = suitcase.getMaxWeight();
 
         EssentialItems essentialItemsManager = EssentialItems.getInstance();
-        boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
-        
+        boolean addNonEssentials =
+            essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
+
         MenuHandler.showStartingNonEssentialItemsMenu();
         int userChoice = scanner.nextInt();
 
@@ -49,7 +50,7 @@ public class AppStart {
             selectedItems = spaceOptimizer.solveModel(
                 nonEssentialItemsManager.fillNonessentials(scanner), maxWeight, maxVolume);
         }
-        ResultPresenter.showResults(essentialItemsManager.essentialItems, 
+        ResultPresenter.showResults(essentialItemsManager.essentialItems,
                 selectedItems,
                 scanner);
         scanner.close();
