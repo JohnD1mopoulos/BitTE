@@ -40,19 +40,18 @@ public class AppStart {
         boolean addNonEssentials =
             essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
 
-        MenuHandler.showStartingNonEssentialItemsMenu();
-        int userChoice = scanner.nextInt();
-
         ArrayList<PackingItem> selectedItems = null;
-        if (addNonEssentials & userChoice == 2) {
+        if (addNonEssentials) {
             NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
+            if (nonEssentialItemsManager.fillNonEssentialItems(scanner) == true) {
             SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
             selectedItems = spaceOptimizer.solveModel(
-                nonEssentialItemsManager.fillNonessentials(scanner), maxWeight, maxVolume);
-        }
+                nonEssentialItemsManager.nonEssentialItems, maxWeight, maxVolume);
+            }
         ResultPresenter.showResults(essentialItemsManager.essentialItems,
                 selectedItems,
                 scanner);
         scanner.close();
+        }
     }
 }
