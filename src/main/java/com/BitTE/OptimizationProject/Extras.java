@@ -34,23 +34,23 @@ public class Extras extends PackingItem {
         super(type, size, gender);
     }
 
-    private double fetchAttributeFromDB(String attribute, String type) throws SQLException {
+    private double fetchAttributeFromDB(String attribute) throws SQLException {
         validateAttribute(attribute);
         String query = "SELECT " + attribute + " FROM EXTRAS WHERE Type = ? AND Size = ?";
-        return executeQuery(query, attribute, type);
+        return executeQuery(query, attribute);
     }
 
-    private double executeQuery(String query, String attribute, String type) throws SQLException {
+    private double executeQuery(String query, String attribute) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, type);
+            stmt.setString(1, this.getType());
             stmt.setString(2, String.valueOf(this.getSize()));
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    throw new SQLException("No data found for the given query");
+                    throw new SQLException("No data found for the given query: Type = " + this.getType() + ", Size = " + this.getSize());
                 }
             }
         } catch (SQLException e) {
@@ -61,12 +61,12 @@ public class Extras extends PackingItem {
 
     @Override
     public double getWeight() throws SQLException {
-        return fetchAttributeFromDB("weight", this.getType());
+        return fetchAttributeFromDB("weight");
     }
 
     @Override
     public double getVolume() throws SQLException {
-        return fetchAttributeFromDB("volume", this.getType());
+        return fetchAttributeFromDB("volume");
     }
 
     @Override
@@ -74,18 +74,18 @@ public class Extras extends PackingItem {
         if (value == 0) {//Essential Extras
             try {
                 return String.format("An essential %s item of type = %s, size = %c, value = %d, weight = %.2f, volume = %.2f",
-                                    this.getClass().getSimpleName(), type, size, value, getWeight(), getVolume());
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue(), getWeight(), getVolume());
             } catch (SQLException e) {
                 return String.format("An essential %s item of type = %s, size = %c, value = %d, but an error occurred while retrieving weight and volume.",
-                                    this.getClass().getSimpleName(), type, size, value);
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue());
             }
         } else {
             try {
                 return String.format("A non-essential %s item of type = %s, size = %c, value = %d, weight = %.2f, volume = %.2f",
-                                    this.getClass().getSimpleName(), type, size, value, getWeight(), getVolume());
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue(), getWeight(), getVolume());
             } catch (SQLException e) {
                 return String.format("A non-essential %s item of type = %s, size = %c, value = %d, but an error occurred while retrieving weight and volume.",
-                                    this.getClass().getSimpleName(), type, size, value);
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue());
             }
         }
     }
