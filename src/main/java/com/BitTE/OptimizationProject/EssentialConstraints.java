@@ -23,33 +23,40 @@ import java.util.Scanner;
 import java.util.function.Function;
 
 /**
- * The {@code EssentialConstraints} class contains methods for managing and checking 
- * the constraints of the optimization problem. It provides functionality 
- * for calculating the sum of item attributes (weight and volume), checking if 
- * the knapsack's constraints (weight and volume) are respected, providing feedback 
- * to the user about constraint violations, and handling the process of fixing 
- * constraint violations by allowing the user to delete items or terminate the process.
+ * The {@code EssentialConstraints} class contains methods for managing and
+ * checking the constraints of the optimization problem. It provides
+ * functionality for calculating the sum of item attributes (weight and volume),
+ * checking if the knapsack's constraints (weight and volume) are respected,
+ * providing feedback to the user about constraint violations, and handling
+ * the process of fixing constraint violations by allowing the user to delete
+ *  items or terminate the process.
  */
-class EssentialConstraints {
+ class EssentialConstraints {
 
-    // Constants for constraint states
+    /**Constants for constraint states*/
     public static final int BOTH_CONSTRAINTS_RESPECTED = 1;
     public static final int ONLY_WEIGHT_CONSTRAINT_RESPECTED = 2;
     public static final int ONLY_VOLUME_CONSTRAINT_RESPECTED = 3;
     public static final int NO_CONSTRAINTS_RESPECTED = 4;
     
     /**
-   * Calculates the sum of a specified attribute for a list of `PackingItem` objects.
-   * This method takes a list of items and a function that extracts a numeric attribute
-   * from each `PackingItem` and sums them up.
+   * Calculates the sum of a specified attribute for a list of `PackingItem`
+   *  objects.This method takes a list of items and a function that extracts
+   *  a numeric attribute from each `PackingItem` and sums them up.
    * 
-   * @param items a list of `PackingItem` objects to calculate the sum of attributes from.
-   * @param attributeGetter a function that extracts the numeric attribute from a `PackingItem`.
-   *                        The function takes a `PackingItem` and returns a `Double` representing
-   *                        the attribute value to be summed.
+   * @param items a list of `PackingItem` objects to calculate the sum of 
+   *              attributes from.
+   * @param attributeGetter a function that extracts the numeric attribute from 
+   *                        a `PackingItem`.
+   *                        The function takes a `PackingItem` and returns a 
+   *                        `Double` representing the attribute value to be 
+   *                         summed.
    * @return the sum of the attribute values extracted from each `PackingItem`.
    */
-    protected static double calculateSumOfAttributes(ArrayList<PackingItem> items, Function<PackingItem, Double> attributeGetter) {
+    protected static double calculateSumOfAttributes(final ArrayList
+                                                    <PackingItem> items,
+                                                    final Function<PackingItem,
+                                                    Double> attributeGetter) {
         double sum = 0;
 
         for (PackingItem item : items) {
@@ -62,21 +69,24 @@ class EssentialConstraints {
     }
 
     /**
-    * Used to return correspoding values depending on the state of the knapsack's weight and volume
-    * and their respective constraints.
+    * Used to return correspoding values depending on the state of the 
+    * knapsack's weight and volume and their respective constraints.
     *
-    * @param items a PackingItem ArrayList to call calculateSumOfAttributes method on.
-    * @param maxVolume representing the maximum volume that can be added to the knapsack.
-    * @param maxWeight representing the maximum weight that can be added to the knapsack.
+    * @param items a PackingItem ArrayList to call calculateSumOfAttributes
+    *              method on.
+    * @param maxVolume representing the maximum volume that can be added to
+    *                  the knapsack.
+    * @param maxWeight representing the maximum weight that can be added to
+    *                  the knapsack.
     * @return int value representing the current state of the constraints:
     *         1 - both weight and volume constraints are respected,
     *         2 - only weight constraint is respected,
     *         3 - only volume constraint is respected,
     *         4 - neither constraint is respected.
     */
-    protected static int checkConstraints(ArrayList<PackingItem> items, 
-                                         double maxWeight,
-                                         double maxVolume) {
+    protected static int checkConstraints(final ArrayList<PackingItem> items, 
+                                         final double maxWeight,
+                                         final double maxVolume) {
         double totalWeight = calculateSumOfAttributes(items, t -> {
             try {
                 return t.getWeight();
@@ -110,14 +120,18 @@ class EssentialConstraints {
     /**
     * Provides the user with feedback based on the constraints
     * 
-    * @param items a PackingItem ArrayList representing the list of chosen essential items.
-    * @param stateOfConstraints which describes the current state of the constraints
+    * @param items a PackingItem ArrayList representing the list of chosen 
+    *              essential items.
+    * @param stateOfConstraints which describes the current state of the
+    *                           constraints
     *                             1 - if both constraints are respected,
     *                             2 - if only the weight constraint is respected,
     *                             3 - if only the volume constraint is respected,
     *                             4 - if no constraints are respected.
-    * @param maxVolume representing the maximum volume that can be added to the knapsack.
-    * @param maxWeight representing the maximum weight that can be added to the knapsack.
+    * @param maxVolume representing the maximum volume that can be added to 
+    *                  the knapsack.
+    * @param maxWeight representing the maximum weight that can be added to the
+    *                  knapsack.
     */
     protected static void showConstraintFeedback(ArrayList<PackingItem> items,
                                         int stateOfConstraints,
@@ -143,27 +157,27 @@ class EssentialConstraints {
 
         switch (stateOfConstraints) {
             case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(
-                                 "You have %.2f gr and %.2f cm3 available.%n\n",
-                                        remainingWeight, remainingVolume);
-                                        break;
+                                    "You have %.2f gr and %.2f cm3 available.%n\n",
+                                    remainingWeight, remainingVolume);
+                                    break;
             case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(
-                                        "You have %.2f gr left but exceeded "
-                                        +"volume by %.2f cm3.%n\n"
-                                        +"You have to delete items to continue the process\n", 
-                                         remainingWeight, -remainingVolume);
-                                         break;
+                                    "You have %.2f gr left but exceeded "
+                                    +"volume by %.2f cm3.%n\n"
+                                    +"You have to delete items to continue the process\n", 
+                                    remainingWeight, -remainingVolume);
+                                    break;
             case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(
-                                        "You exceeded the weight limit by %.2f gr"
-                                        +" but have %.2f cm3 left.%n\n"
-                                        +"You have to delete items to continue the process\n", 
-                                         -remainingWeight, remainingVolume);
-                                         break;
+                                    "You exceeded the weight limit by %.2f gr"
+                                    +" but have %.2f cm3 left.%n\n"
+                                    +"You have to delete items to continue the process\n", 
+                                    -remainingWeight, remainingVolume);
+                                    break;
             case NO_CONSTRAINTS_RESPECTED : System.out.printf(
-                                        "You exceeded the weight limit by %.2f gr"
-                                        +" and volume limit by %.2f cm3.%n"
-                                        +"You have to delete items to continue the process\n", 
-                                         -remainingWeight, -remainingVolume);
-                                         break;
+                                    "You exceeded the weight limit by %.2f gr"
+                                    +" and volume limit by %.2f cm3.%n"
+                                    +"You have to delete items to continue the process\n", 
+                                    -remainingWeight, -remainingVolume);
+                                    break;
         }
     }
 
