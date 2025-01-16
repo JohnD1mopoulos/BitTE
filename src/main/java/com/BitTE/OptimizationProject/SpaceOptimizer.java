@@ -49,8 +49,8 @@ public class SpaceOptimizer {
             scaledVars[i] = model.intScaleView(binaryVars[i], value);
             maxTotalValue += value;
 
-            int weight = (int) (item.getWeight() * 1000);
-            int volume = (int) (item.getVolume() * 1000);
+            int weight = (int) (item.getWeight() * 100);
+            int volume = (int) (item.getVolume() * 100);
             weightVars[i] = model.intScaleView(binaryVars[i], weight);
             volumeVars[i] = model.intScaleView(binaryVars[i], volume);
         }
@@ -63,8 +63,8 @@ public class SpaceOptimizer {
 
         System.out.println("Model created with max possible total value: " + maxTotalValue);
         System.out.println("Number of items: " + n);
-        System.out.println("Max weight: " + maxWeight / 1000 + "gr");
-        System.out.println("Max volume: " + maxVolume / 1000 + "cm3");
+        System.out.println("Max weight: " + maxWeight / 100 + "gr");
+        System.out.println("Max volume: " + maxVolume / 100 + "cm3");
 
         return model;
     }
@@ -76,11 +76,8 @@ public class SpaceOptimizer {
     }
 
     public ArrayList<PackingItem> solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
-<<<<<<< HEAD
         if(items.size()!=0){
-=======
->>>>>>> e984be37555fd43fe34c92341cb12897ca764a91
-        Model model = createModel(items, (int) (maxWeight * 1000), (int) (maxVolume * 1000));
+        Model model = createModel(items, (int) (maxWeight * 100), (int) (maxVolume * 100));
 
         if (model.getSolver().solve()) {
             System.out.println("Solution found!");
@@ -100,13 +97,8 @@ public class SpaceOptimizer {
             System.out.println("No solution found.");
             return new ArrayList<>();
         }
-<<<<<<< HEAD
         } else {
             return new ArrayList<>();
         }
     }
 }
-=======
-    }
-}
->>>>>>> e984be37555fd43fe34c92341cb12897ca764a91
