@@ -32,25 +32,24 @@ public class Clothing extends PackingItem {
         super(type, size, gender);
     }
 
-    private double fetchAttributeFromDB(String attribute, String type, char size, char gender) throws SQLException {
+    private double fetchAttributeFromDB(String attribute) throws SQLException {
         validateAttribute(attribute);
         String query = "SELECT " + attribute +
             " FROM CLOTHING WHERE Type = ? AND Size = ? AND Gender = ?";
-        return executeQuery(query, attribute, type, size, gender);
+        return executeQuery(query, attribute);
     }
 
-    private double executeQuery(String query, String attribute,
-        String type, char size, char gender) throws SQLException {
+    private double executeQuery(String query, String attribute) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, type);
-            stmt.setString(2, String.valueOf(size));
-            stmt.setString(3, String.valueOf(gender));
+            stmt.setString(1, this.getType());
+            stmt.setString(2, String.valueOf(this.getSize()));
+            stmt.setString(3, String.valueOf(this.getGender()));
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    throw new SQLException("No data found for the given query: Type = " + type + ", Size = " + size + ", Gender = " + gender);
+                    throw new SQLException("No data found for the given query: Type = " + this.getType() + ", Size = " + this.getSize() + ", Gender = " + this.getGender());
                 }
             }
         } catch (SQLException e) {
@@ -60,12 +59,12 @@ public class Clothing extends PackingItem {
 
     @Override
     public double getWeight() throws SQLException {
-        return fetchAttributeFromDB("weight", getType(), getSize(), getGender());
+        return fetchAttributeFromDB("weight");
     }
 
     @Override
     public double getVolume() throws SQLException {
-        return fetchAttributeFromDB("volume", getType(), getSize(), getGender());
+        return fetchAttributeFromDB("volume");
     }
 
     @Override
@@ -73,18 +72,18 @@ public class Clothing extends PackingItem {
         if (value == 0) {//Essential Clothing
             try {
                 return String.format("An essential %s item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
-                                    this.getClass().getSimpleName(), type, size, gender, value, getWeight(), getVolume());
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getGender(), this.getValue(), getWeight(), getVolume());
             } catch (SQLException e) {
                 return String.format("An essential %s item of type = %s, size = %c, gender = %c, value = %d, but an error occurred while retrieving weight and volume.",
-                                    this.getClass().getSimpleName(), type, size, gender, value);
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getGender(), this.getValue());
             }
         } else {
             try {
                 return String.format("A non-essential %s item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
-                                    this.getClass().getSimpleName(), type, size, gender, value, getWeight(), getVolume());
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getGender(), this.getValue(), getWeight(), getVolume());
             } catch (SQLException e) {
                 return String.format("A non-essential %s item of type = %s, size = %c, gender = %c, value = %d, but an error occurred while retrieving weight and volume.",
-                                    this.getClass().getSimpleName(), type, size, gender, value);
+                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getGender(), this.getValue());
             }
         }
     }

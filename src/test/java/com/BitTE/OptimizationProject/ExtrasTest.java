@@ -74,7 +74,7 @@ public class ExtrasTest {
         Extras extras = new Extras("Passport", 'Q', 'X');
 
         Exception exception = assertThrows(SQLException.class, extras::getWeight);
-        assertEquals("No data found for the given query", exception.getMessage(), "Should throw SQLException on data type mismatch.");
+        assertEquals("No data found for the given query: Type = Passport, Size = Q", exception.getMessage(), "Should throw SQLException on data type mismatch.");
     }
 
     @Test
@@ -90,7 +90,7 @@ public class ExtrasTest {
         try {
             extras.getVolume();
         } catch (SQLException e) {
-            assertEquals("No data found for the given query", e.getMessage(), "The exception message should be 'No data found for the given query'.");
+            assertEquals("No data found for the given query: Type = InvalidType, Size = S", e.getMessage(), "The exception message should be 'No data found for the given query'.");
         }
     }
 }
