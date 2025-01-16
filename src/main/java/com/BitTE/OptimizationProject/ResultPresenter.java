@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 public class ResultPresenter {
     
-    public void showResults(ArrayList<PackingItem> essentialList, ArrayList<PackingItem> selectedItems, Scanner scanner) {
+    public static void showResults(ArrayList<PackingItem> essentialList, ArrayList<PackingItem> selectedItems, Scanner scanner) {
         System.out.println("------ SUITCASE FINAL CONTENTS ------");
         
         // Display essential items

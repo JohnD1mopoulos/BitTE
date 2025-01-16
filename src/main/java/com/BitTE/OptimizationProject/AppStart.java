@@ -29,8 +29,6 @@ public class AppStart {
         
         new DatabaseTableCreation();
         DatabaseConnection.getConnection();
-        //Create object to show Results
-        ResultPresenter resultPresenter = new ResultPresenter();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -51,7 +49,7 @@ public class AppStart {
             selectedItems = spaceOptimizer.solveModel(
                 nonEssentialItemsManager.fillNonessentials(scanner), maxWeight, maxVolume);
         }
-        resultPresenter.showResults(essentialItemsManager.essentialItems, 
+        ResultPresenter.showResults(essentialItemsManager.essentialItems, 
                 selectedItems,
                 scanner);
         scanner.close();
