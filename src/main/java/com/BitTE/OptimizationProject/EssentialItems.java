@@ -193,7 +193,8 @@ class EssentialItems {
             } else if (userMenuChoice == STOP_ADDING_NON_ESSENTIAL) {
                 //User wants to stop adding essential items
                 return true;
-            } else {//User wants to abandon process
+            } else if (userMenuChoice == ABANDON_PROCESS) {//User wants to abandon process
+                essentialItems.clear();//Delete any inputed essential items
                 return false;
             }
 
