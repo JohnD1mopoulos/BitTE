@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.BitTE.OptimizationProject.ItemDeletionTest" time="0.061" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.BitTE.OptimizationProject.SpaceOptimizerTest" time="0.541" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,84 +58,102 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testNoItemsToDelete" classname="com.BitTE.OptimizationProject.ItemDeletionTest" time="0.008">
-    <system-err><![CDATA[No items available to delete.You haven't chosen any item yet
-]]></system-err>
+  <testcase name="testSolveModelWithEmptyItems" classname="com.BitTE.OptimizationProject.SpaceOptimizerTest" time="0.0"/>
+  <testcase name="testSolveModelWithSolution" classname="com.BitTE.OptimizationProject.SpaceOptimizerTest" time="0.511">
+    <system-out><![CDATA[2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+Model created with max possible total value: 34
+Number of items: 4
+Max weight: 5000gr
+Max volume: 3000cm3
+Solution found!
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+Selected item: A non-essential Clothing item of type = T-Shirt, size = M, gender = M, value = 10, weight = 150,00, volume = 1680,00
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
+]]></system-out>
   </testcase>
-  <testcase name="testDeleteMultipleItems" classname="com.BitTE.OptimizationProject.ItemDeletionTest" time="0.043">
-    <system-out><![CDATA[You can delete the following items:
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+  <testcase name="testSolveModelWithNoSolution" classname="com.BitTE.OptimizationProject.SpaceOptimizerTest" time="0.018">
+    <system-out><![CDATA[2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-1) An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150,00, volume = 1680,00
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2) An essential Clothing item of type = Shirt, size = M, gender = F, value = 0, weight = 130,00, volume = 1610,00
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-3) An essential Clothing item of type = Socks, size = M, gender = M, value = 0, weight = 60,00, volume = 90,00
-Which one do you want to delete? (Press 0 to cancel deletion of items)
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:37 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-Item no 1An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150,00, volume = 1680,00, has been deleted.
-Press 1 to delete another item.
-Press 2 to stop deleting items.
-You chose to delete another item!
-You can delete the following items:
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-1) An essential Clothing item of type = Shirt, size = M, gender = F, value = 0, weight = 130,00, volume = 1610,00
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2) An essential Clothing item of type = Socks, size = M, gender = M, value = 0, weight = 60,00, volume = 90,00
-Which one do you want to delete? (Press 0 to cancel deletion of items)
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-Item no 2An essential Clothing item of type = Socks, size = M, gender = M, value = 0, weight = 60,00, volume = 90,00, has been deleted.
-Press 1 to delete another item.
-Press 2 to stop deleting items.
-Stopping deletion process.
+Model created with max possible total value: 34
+Number of items: 4
+Max weight: 1000gr
+Max volume: 500cm3
+Solution found!
 ]]></system-out>
   </testcase>
 </testsuite>

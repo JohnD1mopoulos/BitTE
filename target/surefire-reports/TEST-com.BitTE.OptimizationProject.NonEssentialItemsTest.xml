@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.BitTE.OptimizationProject.ItemDeletionTest" time="0.061" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.BitTE.OptimizationProject.NonEssentialItemsTest" time="0.018" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,84 +58,85 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testNoItemsToDelete" classname="com.BitTE.OptimizationProject.ItemDeletionTest" time="0.008">
-    <system-err><![CDATA[No items available to delete.You haven't chosen any item yet
+  <testcase name="testSetValueWithValidInput" classname="com.BitTE.OptimizationProject.NonEssentialItemsTest" time="0.008">
+    <system-out><![CDATA[Please enter the importance of this item for your trip on a scale from 1 to 10:(1 for the least important items - 10 for the most important items)
+]]></system-out>
+  </testcase>
+  <testcase name="testSingletonInstance" classname="com.BitTE.OptimizationProject.NonEssentialItemsTest" time="0.002"/>
+  <testcase name="testSetValueWithInvalidInput" classname="com.BitTE.OptimizationProject.NonEssentialItemsTest" time="0.0">
+    <system-out><![CDATA[Please enter the importance of this item for your trip on a scale from 1 to 10:(1 for the least important items - 10 for the most important items)
+Invalid input. Give me an integer ranging from 1 to 10.
+Invalid input. Give me an integer ranging from 1 to 10.
+]]></system-out>
+    <system-err><![CDATA[Invalid input. Please select a valid integer
 ]]></system-err>
   </testcase>
-  <testcase name="testDeleteMultipleItems" classname="com.BitTE.OptimizationProject.ItemDeletionTest" time="0.043">
-    <system-out><![CDATA[You can delete the following items:
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-1) An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150,00, volume = 1680,00
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2) An essential Clothing item of type = Shirt, size = M, gender = F, value = 0, weight = 130,00, volume = 1610,00
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-3) An essential Clothing item of type = Socks, size = M, gender = M, value = 0, weight = 60,00, volume = 90,00
-Which one do you want to delete? (Press 0 to cancel deletion of items)
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-Item no 1An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150,00, volume = 1680,00, has been deleted.
-Press 1 to delete another item.
-Press 2 to stop deleting items.
-You chose to delete another item!
-You can delete the following items:
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-1) An essential Clothing item of type = Shirt, size = M, gender = F, value = 0, weight = 130,00, volume = 1610,00
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2) An essential Clothing item of type = Socks, size = M, gender = M, value = 0, weight = 60,00, volume = 90,00
-Which one do you want to delete? (Press 0 to cancel deletion of items)
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
-INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-Item no 2An essential Clothing item of type = Socks, size = M, gender = M, value = 0, weight = 60,00, volume = 90,00, has been deleted.
-Press 1 to delete another item.
-Press 2 to stop deleting items.
-Stopping deletion process.
+  <testcase name="testFillNonEssentialsAddsItems" classname="com.BitTE.OptimizationProject.NonEssentialItemsTest" time="0.0">
+    <system-out><![CDATA[----------------------------
+INSERTION OF NONESSENTIAL ITEMS
+----------------------------
+Dear user, please choose the items that you would like to carry in your suitcase:
+Press 1 to add Clothing
+Press 2 to add Accessory
+Please enter your gender: (M for Male, F for Female)
+Press 1 to add T-Shirt
+Press 2 to add Shirt
+Press 3 to add Hoodie
+Press 4 to add Jeans
+Press 5 to add Sweatpants
+Press 6 to add Trousers
+Press 7 to add Boxers
+Press 8 to add Shorts
+Press 9 to add Sneakers
+Press 10 to add Sandals
+Press 11 to add Boots
+Press 12 to add Socks
+Enter your choice:
+Please enter your desired size: (S for Small, M for Medium, L for Large)
+Please enter the importance of this item for your trip on a scale from 1 to 10:(1 for the least important items - 10 for the most important items)
+------------------------------
+Press 1 to terminate process.
+Press 2 to add an nonessential item.
+Press 3 to delete an nonessential item(s).
+--------------------------------
+All nonesential items have been added!!!
 ]]></system-out>
+    <system-err><![CDATA[No input detected. Please enter 'M' for Male or 'F' for Female.
+]]></system-err>
+  </testcase>
+  <testcase name="testFillNonEssentialsHandlesInvalidMenuChoice" classname="com.BitTE.OptimizationProject.NonEssentialItemsTest" time="0.008">
+    <system-out><![CDATA[----------------------------
+INSERTION OF NONESSENTIAL ITEMS
+----------------------------
+Dear user, please choose the items that you would like to carry in your suitcase:
+Press 1 to add Clothing
+Press 2 to add Accessory
+Invalid input. Please give me 1 to input clothing or 2 to input an accessory.
+Invalid input. Please give me 1 to input clothing or 2 to input an accessory.
+Please enter your gender: (M for Male, F for Female)
+Press 1 to add T-Shirt
+Press 2 to add Shirt
+Press 3 to add Hoodie
+Press 4 to add Jeans
+Press 5 to add Sweatpants
+Press 6 to add Trousers
+Press 7 to add Boxers
+Press 8 to add Shorts
+Press 9 to add Sneakers
+Press 10 to add Sandals
+Press 11 to add Boots
+Press 12 to add Socks
+Enter your choice:
+Please enter your desired size: (S for Small, M for Medium, L for Large)
+Please enter the importance of this item for your trip on a scale from 1 to 10:(1 for the least important items - 10 for the most important items)
+------------------------------
+Press 1 to terminate process.
+Press 2 to add an nonessential item.
+Press 3 to delete an nonessential item(s).
+--------------------------------
+All nonesential items have been added!!!
+]]></system-out>
+    <system-err><![CDATA[No input detected. Please enter 'M' for Male or 'F' for Female.
+]]></system-err>
   </testcase>
 </testsuite>

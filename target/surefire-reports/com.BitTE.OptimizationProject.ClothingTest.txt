@@ -1,4 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: com.BitTE.OptimizationProject.ClothingTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.528 s -- in com.BitTE.OptimizationProject.ClothingTest
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.583 s <<< FAILURE! -- in com.BitTE.OptimizationProject.ClothingTest
+com.BitTE.OptimizationProject.ClothingTest.testToStringReturnsCorrectFormatWhenDataIsAvailableForEssential -- Time elapsed: 0.020 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: The string representation should be correct. ==> expected: <An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150.00, volume = 1680.00> but was: <An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150,00, volume = 1680,00>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1152)
+	at com.BitTE.OptimizationProject.ClothingTest.testToStringReturnsCorrectFormatWhenDataIsAvailableForEssential(ClothingTest.java:63)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

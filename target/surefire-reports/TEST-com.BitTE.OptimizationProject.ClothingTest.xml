@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.BitTE.OptimizationProject.ClothingTest" time="0.528" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.BitTE.OptimizationProject.ClothingTest" time="0.583" tests="7" errors="0" skipped="0" failures="1">
   <properties>
-    <property name="java.specification.version" value="22"/>
+    <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
-    <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="D:\sxolh\PROG I\ClonedRepository\BitTE\target\test-classes;D:\sxolh\PROG I\ClonedRepository\BitTE\target\classes;C:\Users\chris\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17-win.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17-win.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17-win.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17-win.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\chris\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\chris\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\chris\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\chris\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;C:\Users\chris\.m2\repository\org\choco-solver\choco-solver\4.10.14\choco-solver-4.10.14.jar;C:\Users\chris\.m2\repository\dk\brics\automaton\automaton\1.11-8\automaton-1.11-8.jar;C:\Users\chris\.m2\repository\org\jgrapht\jgrapht-core\1.4.0\jgrapht-core-1.4.0.jar;C:\Users\chris\.m2\repository\org\jheaps\jheaps\0.11\jheaps-0.11.jar;C:\Users\chris\.m2\repository\org\knowm\xchart\xchart\3.8.3\xchart-3.8.3.jar;C:\Users\chris\.m2\repository\de\erichseifert\vectorgraphics2d\VectorGraphics2D\0.13\VectorGraphics2D-0.13.jar;C:\Users\chris\.m2\repository\de\rototor\pdfbox\graphics2d\0.41\graphics2d-0.41.jar;C:\Users\chris\.m2\repository\org\apache\pdfbox\pdfbox\2.0.26\pdfbox-2.0.26.jar;C:\Users\chris\.m2\repository\org\apache\pdfbox\fontbox\2.0.26\fontbox-2.0.26.jar;C:\Users\chris\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\chris\.m2\repository\com\madgag\animated-gif-lib\1.4\animated-gif-lib-1.4.jar;C:\Users\chris\.m2\repository\org\ehcache\sizeof\0.4.3\sizeof-0.4.3.jar;C:\Users\chris\.m2\repository\net\sf\trove4j\trove4j\3.0.3\trove4j-3.0.3.jar;C:\Users\chris\.m2\repository\org\xerial\sqlite-jdbc\3.36.0.3\sqlite-jdbc-3.36.0.3.jar;C:\Users\chris\.m2\repository\org\tinylog\tinylog-api\2.6.2\tinylog-api-2.6.2.jar;C:\Users\chris\.m2\repository\org\tinylog\tinylog-impl\2.6.2\tinylog-impl-2.6.2.jar;C:\Users\chris\.m2\repository\com\zaxxer\HikariCP\6.2.1\HikariCP-6.2.1.jar;C:\Users\chris\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\chris\.m2\repository\org\springframework\spring-context\5.3.30\spring-context-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-aop\5.3.30\spring-aop-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-beans\5.3.30\spring-beans-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-core\5.3.30\spring-core-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-jcl\5.3.30\spring-jcl-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-expression\5.3.30\spring-expression-5.3.30.jar;"/>
+    <property name="sun.jnu.encoding" value="Cp1253"/>
+    <property name="java.class.path" value="C:\cygwin64\home\ign5\BitTE\target\test-classes;C:\cygwin64\home\ign5\BitTE\target\classes;C:\Users\ign5\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17-win.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17-win.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17-win.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17-win.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\ign5\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\ign5\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\ign5\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\ign5\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;C:\Users\ign5\.m2\repository\org\choco-solver\choco-solver\4.10.14\choco-solver-4.10.14.jar;C:\Users\ign5\.m2\repository\dk\brics\automaton\automaton\1.11-8\automaton-1.11-8.jar;C:\Users\ign5\.m2\repository\org\jgrapht\jgrapht-core\1.4.0\jgrapht-core-1.4.0.jar;C:\Users\ign5\.m2\repository\org\jheaps\jheaps\0.11\jheaps-0.11.jar;C:\Users\ign5\.m2\repository\org\knowm\xchart\xchart\3.8.3\xchart-3.8.3.jar;C:\Users\ign5\.m2\repository\de\erichseifert\vectorgraphics2d\VectorGraphics2D\0.13\VectorGraphics2D-0.13.jar;C:\Users\ign5\.m2\repository\de\rototor\pdfbox\graphics2d\0.41\graphics2d-0.41.jar;C:\Users\ign5\.m2\repository\org\apache\pdfbox\pdfbox\2.0.26\pdfbox-2.0.26.jar;C:\Users\ign5\.m2\repository\org\apache\pdfbox\fontbox\2.0.26\fontbox-2.0.26.jar;C:\Users\ign5\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\ign5\.m2\repository\com\madgag\animated-gif-lib\1.4\animated-gif-lib-1.4.jar;C:\Users\ign5\.m2\repository\org\ehcache\sizeof\0.4.3\sizeof-0.4.3.jar;C:\Users\ign5\.m2\repository\net\sf\trove4j\trove4j\3.0.3\trove4j-3.0.3.jar;C:\Users\ign5\.m2\repository\org\xerial\sqlite-jdbc\3.36.0.3\sqlite-jdbc-3.36.0.3.jar;C:\Users\ign5\.m2\repository\org\tinylog\tinylog-api\2.6.2\tinylog-api-2.6.2.jar;C:\Users\ign5\.m2\repository\org\tinylog\tinylog-impl\2.6.2\tinylog-impl-2.6.2.jar;C:\Users\ign5\.m2\repository\com\zaxxer\HikariCP\6.2.1\HikariCP-6.2.1.jar;C:\Users\ign5\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-context\5.3.30\spring-context-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-aop\5.3.30\spring-aop-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-beans\5.3.30\spring-beans-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-core\5.3.30\spring-core-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-jcl\5.3.30\spring-jcl-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-expression\5.3.30\spring-expression-5.3.30.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Europe/Athens"/>
-    <property name="os.name" value="Windows 11"/>
-    <property name="java.vm.specification.version" value="22"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="23"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
-    <property name="sun.java.command" value="C:\cygwin64\tmp\surefire7274167303464003064\surefirebooter-20250116145603305_3.jar C:\cygwin64\tmp\surefire7274167303464003064 2025-01-16T14-56-03_100-jvmRun1 surefire-20250116145603305_1tmp surefire_0-20250116145603305_2tmp"/>
+    <property name="user.country" value="GR"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
+    <property name="sun.java.command" value="C:\cygwin64\tmp\surefire12257526535618919511\surefirebooter-20250116200034371_3.jar C:\cygwin64\tmp\surefire12257526535618919511 2025-01-16T20-00-34_255-jvmRun1 surefire-20250116200034371_1tmp surefire_0-20250116200034371_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="D:\sxolh\PROG I\ClonedRepository\BitTE\target\test-classes;D:\sxolh\PROG I\ClonedRepository\BitTE\target\classes;C:\Users\chris\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17-win.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17-win.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17-win.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17.jar;C:\Users\chris\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17-win.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\chris\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\chris\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\chris\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\chris\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\chris\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;C:\Users\chris\.m2\repository\org\choco-solver\choco-solver\4.10.14\choco-solver-4.10.14.jar;C:\Users\chris\.m2\repository\dk\brics\automaton\automaton\1.11-8\automaton-1.11-8.jar;C:\Users\chris\.m2\repository\org\jgrapht\jgrapht-core\1.4.0\jgrapht-core-1.4.0.jar;C:\Users\chris\.m2\repository\org\jheaps\jheaps\0.11\jheaps-0.11.jar;C:\Users\chris\.m2\repository\org\knowm\xchart\xchart\3.8.3\xchart-3.8.3.jar;C:\Users\chris\.m2\repository\de\erichseifert\vectorgraphics2d\VectorGraphics2D\0.13\VectorGraphics2D-0.13.jar;C:\Users\chris\.m2\repository\de\rototor\pdfbox\graphics2d\0.41\graphics2d-0.41.jar;C:\Users\chris\.m2\repository\org\apache\pdfbox\pdfbox\2.0.26\pdfbox-2.0.26.jar;C:\Users\chris\.m2\repository\org\apache\pdfbox\fontbox\2.0.26\fontbox-2.0.26.jar;C:\Users\chris\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\chris\.m2\repository\com\madgag\animated-gif-lib\1.4\animated-gif-lib-1.4.jar;C:\Users\chris\.m2\repository\org\ehcache\sizeof\0.4.3\sizeof-0.4.3.jar;C:\Users\chris\.m2\repository\net\sf\trove4j\trove4j\3.0.3\trove4j-3.0.3.jar;C:\Users\chris\.m2\repository\org\xerial\sqlite-jdbc\3.36.0.3\sqlite-jdbc-3.36.0.3.jar;C:\Users\chris\.m2\repository\org\tinylog\tinylog-api\2.6.2\tinylog-api-2.6.2.jar;C:\Users\chris\.m2\repository\org\tinylog\tinylog-impl\2.6.2\tinylog-impl-2.6.2.jar;C:\Users\chris\.m2\repository\com\zaxxer\HikariCP\6.2.1\HikariCP-6.2.1.jar;C:\Users\chris\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\chris\.m2\repository\org\springframework\spring-context\5.3.30\spring-context-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-aop\5.3.30\spring-aop-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-beans\5.3.30\spring-beans-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-core\5.3.30\spring-core-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-jcl\5.3.30\spring-jcl-5.3.30.jar;C:\Users\chris\.m2\repository\org\springframework\spring-expression\5.3.30\spring-expression-5.3.30.jar;"/>
+    <property name="surefire.test.class.path" value="C:\cygwin64\home\ign5\BitTE\target\test-classes;C:\cygwin64\home\ign5\BitTE\target\classes;C:\Users\ign5\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-controls\17\javafx-controls-17-win.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-fxml\17\javafx-fxml-17-win.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-graphics\17\javafx-graphics-17-win.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17.jar;C:\Users\ign5\.m2\repository\org\openjfx\javafx-base\17\javafx-base-17-win.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\ign5\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\ign5\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\ign5\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\ign5\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\ign5\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;C:\Users\ign5\.m2\repository\org\choco-solver\choco-solver\4.10.14\choco-solver-4.10.14.jar;C:\Users\ign5\.m2\repository\dk\brics\automaton\automaton\1.11-8\automaton-1.11-8.jar;C:\Users\ign5\.m2\repository\org\jgrapht\jgrapht-core\1.4.0\jgrapht-core-1.4.0.jar;C:\Users\ign5\.m2\repository\org\jheaps\jheaps\0.11\jheaps-0.11.jar;C:\Users\ign5\.m2\repository\org\knowm\xchart\xchart\3.8.3\xchart-3.8.3.jar;C:\Users\ign5\.m2\repository\de\erichseifert\vectorgraphics2d\VectorGraphics2D\0.13\VectorGraphics2D-0.13.jar;C:\Users\ign5\.m2\repository\de\rototor\pdfbox\graphics2d\0.41\graphics2d-0.41.jar;C:\Users\ign5\.m2\repository\org\apache\pdfbox\pdfbox\2.0.26\pdfbox-2.0.26.jar;C:\Users\ign5\.m2\repository\org\apache\pdfbox\fontbox\2.0.26\fontbox-2.0.26.jar;C:\Users\ign5\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\ign5\.m2\repository\com\madgag\animated-gif-lib\1.4\animated-gif-lib-1.4.jar;C:\Users\ign5\.m2\repository\org\ehcache\sizeof\0.4.3\sizeof-0.4.3.jar;C:\Users\ign5\.m2\repository\net\sf\trove4j\trove4j\3.0.3\trove4j-3.0.3.jar;C:\Users\ign5\.m2\repository\org\xerial\sqlite-jdbc\3.36.0.3\sqlite-jdbc-3.36.0.3.jar;C:\Users\ign5\.m2\repository\org\tinylog\tinylog-api\2.6.2\tinylog-api-2.6.2.jar;C:\Users\ign5\.m2\repository\org\tinylog\tinylog-impl\2.6.2\tinylog-impl-2.6.2.jar;C:\Users\ign5\.m2\repository\com\zaxxer\HikariCP\6.2.1\HikariCP-6.2.1.jar;C:\Users\ign5\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-context\5.3.30\spring-context-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-aop\5.3.30\spring-aop-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-beans\5.3.30\spring-beans-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-core\5.3.30\spring-core-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-jcl\5.3.30\spring-jcl-5.3.30.jar;C:\Users\ign5\.m2\repository\org\springframework\spring-expression\5.3.30\spring-expression-5.3.30.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\chris"/>
-    <property name="user.language" value="en"/>
+    <property name="user.home" value="C:\Users\ign5"/>
+    <property name="user.language" value="el"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2024-04-16"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-22"/>
+    <property name="java.version.date" value="2024-09-17"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-23"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="D:\sxolh\PROG I\ClonedRepository\BitTE"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="basedir" value="C:\cygwin64\home\ign5\BitTE"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\cygwin64\tmp\surefire7274167303464003064\surefirebooter-20250116145603305_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\cygwin64\tmp\surefire12257526535618919511\surefirebooter-20250116200034371_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="22.0.1+8-16"/>
-    <property name="user.name" value="chris"/>
-    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="java.runtime.version" value="23+37-2369"/>
+    <property name="user.name" value="ign5"/>
+    <property name="stdout.encoding" value="Cp1253"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="C:\Users\chris\.m2\repository"/>
+    <property name="localRepository" value="C:\Users\ign5\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\cygwin64\tmp\"/>
-    <property name="java.version" value="22.0.1"/>
-    <property name="user.dir" value="D:\sxolh\PROG I\ClonedRepository\BitTE"/>
+    <property name="java.version" value="23"/>
+    <property name="user.dir" value="C:\cygwin64\home\ign5\BitTE"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-22\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\cygwin64\usr\local\bin;C:\cygwin64\bin;C:\Program Files\Java\jdk-22\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\PuTTY;C:\Program Files (x86)\PuTTY;D:\sxolh\PROGII\apache-maven-3.9.9\bin;D:\sxolh\PROGII\apache-maven-3.9.9\bin;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn;D:\sxolh\PROG I\Git\cmd;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\chris\AppData\Local\Microsoft\WindowsApps;C:\Users\chris\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\chris\AppData\Local\GitHubDesktop\bin;;."/>
+    <property name="native.encoding" value="Cp1253"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-23\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\cygwin64\usr\local\bin;C:\cygwin64\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Users\ign5\AppData\Local\Microsoft\WindowsApps;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Java\jdk-23\bin;C:\cygwin64\bin;F:\apache-maven-3.9.9\bin;C:\Users\ign5\AppData\Local\Microsoft\WindowsApps;C:\gocode\bin;C:\Users\ign5\AppData\Local\Microsoft\WindowsApps;C:\Users\ign5\AppData\Local\Programs\Microsoft VS Code\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="stderr.encoding" value="Cp1253"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="22.0.1+8-16"/>
+    <property name="java.vm.version" value="23+37-2369"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="66.0"/>
+    <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testDataIntegrityErrorDuringGetWeight" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.466">
-    <system-out><![CDATA[2025-01-16 14:56:04 [main] com.BitTE.OptimizationProject.DatabaseConnection.<clinit>()
+  <testcase name="testDataIntegrityErrorDuringGetWeight" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.491">
+    <system-out><![CDATA[2025-01-16 20:00:35 [main] com.BitTE.OptimizationProject.DatabaseConnection.<clinit>()
 INFO: Initializing database directory check...
-2025-01-16 14:56:04 [main] com.BitTE.OptimizationProject.DatabaseConnection.<clinit>()
+2025-01-16 20:00:35 [main] com.BitTE.OptimizationProject.DatabaseConnection.<clinit>()
 INFO: Database directory already exists: C:/sqlite/db/
-2025-01-16 14:56:04 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:35 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 14:56:04 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
 ]]></system-out>
     <system-err><![CDATA[java.lang.instrument.IllegalClassFormatException: Error while instrumenting java/sql/SQLException with JaCoCo 0.8.10.202304240956/8ea9668.
@@ -74,7 +74,7 @@ INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.d
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -83,11 +83,11 @@ INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.d
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
-	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3601)
-	at java.base/java.lang.Class.privateGetPublicMethods(Class.java:3626)
-	at java.base/java.lang.Class.getMethods(Class.java:2195)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3650)
+	at java.base/java.lang.Class.privateGetPublicMethods(Class.java:3675)
+	at java.base/java.lang.Class.getMethods(Class.java:2244)
 	at org.junit.platform.commons.util.ReflectionUtils.getDefaultMethods(ReflectionUtils.java:1593)
 	at org.junit.platform.commons.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:1566)
 	at org.junit.platform.commons.util.ReflectionUtils.findMethod(ReflectionUtils.java:1407)
@@ -96,15 +96,15 @@ INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.d
 	at org.junit.jupiter.engine.discovery.predicates.IsTestClassWithTests.test(IsTestClassWithTests.java:46)
 	at org.junit.jupiter.engine.discovery.ClassSelectorResolver.resolve(ClassSelectorResolver.java:67)
 	at org.junit.platform.engine.support.discovery.EngineDiscoveryRequestResolution.lambda$resolve$2(EngineDiscoveryRequestResolution.java:135)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:212)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:215)
 	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1686)
-	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:144)
-	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:574)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:560)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:546)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:147)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:588)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:560)
 	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
 	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
-	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:662)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:687)
 	at org.junit.platform.engine.support.discovery.EngineDiscoveryRequestResolution.resolve(EngineDiscoveryRequestResolution.java:189)
 	at org.junit.platform.engine.support.discovery.EngineDiscoveryRequestResolution.resolve(EngineDiscoveryRequestResolution.java:126)
 	at org.junit.platform.engine.support.discovery.EngineDiscoveryRequestResolution.resolveCompletely(EngineDiscoveryRequestResolution.java:92)
@@ -133,7 +133,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/SQLException 
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 58 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -147,7 +147,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -156,7 +156,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at com.BitTE.OptimizationProject.DatabaseConnection.getConnection(DatabaseConnection.java:47)
 	at com.BitTE.OptimizationProject.Clothing.executeQuery(Clothing.java:42)
 	at com.BitTE.OptimizationProject.Clothing.fetchAttributeFromDB(Clothing.java:38)
@@ -236,7 +236,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/DriverManager
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 88 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -250,13 +250,13 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at com.BitTE.OptimizationProject.DatabaseConnection.getConnection(DatabaseConnection.java:47)
 	at com.BitTE.OptimizationProject.Clothing.executeQuery(Clothing.java:42)
 	at com.BitTE.OptimizationProject.Clothing.fetchAttributeFromDB(Clothing.java:38)
@@ -336,7 +336,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/SQLPermission
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 85 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -350,13 +350,13 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.sql/java.sql.DriverManager.ensureDriversInitialized(DriverManager.java:586)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:670)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
@@ -439,7 +439,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/DriverManager
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 88 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -453,13 +453,13 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.sql/java.sql.DriverManager.ensureDriversInitialized(DriverManager.java:599)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:670)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
@@ -542,7 +542,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/DriverManager
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 88 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -556,13 +556,13 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.sql/java.sql.DriverManager$2.run(DriverManager.java:602)
 	at java.sql/java.sql.DriverManager$2.run(DriverManager.java:599)
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:319)
@@ -648,7 +648,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/Driver with J
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 91 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -662,7 +662,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -671,11 +671,11 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.Class.getDeclaredConstructors0(Native Method)
-	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3572)
-	at java.base/java.lang.Class.getConstructor0(Class.java:3777)
-	at java.base/java.lang.Class.getConstructor(Class.java:2452)
+	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3621)
+	at java.base/java.lang.Class.getConstructor0(Class.java:3826)
+	at java.base/java.lang.Class.getConstructor(Class.java:2501)
 	at java.base/java.util.ServiceLoader$1.run(ServiceLoader.java:662)
 	at java.base/java.util.ServiceLoader$1.run(ServiceLoader.java:659)
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
@@ -769,7 +769,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/Connection wi
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 106 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -783,15 +783,15 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -800,11 +800,11 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.Class.getDeclaredConstructors0(Native Method)
-	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3572)
-	at java.base/java.lang.Class.getConstructor0(Class.java:3777)
-	at java.base/java.lang.Class.getConstructor(Class.java:2452)
+	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3621)
+	at java.base/java.lang.Class.getConstructor0(Class.java:3826)
+	at java.base/java.lang.Class.getConstructor(Class.java:2501)
 	at java.base/java.util.ServiceLoader$1.run(ServiceLoader.java:662)
 	at java.base/java.util.ServiceLoader$1.run(ServiceLoader.java:659)
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
@@ -898,7 +898,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/Wrapper with 
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 114 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -912,24 +912,24 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.sql/java.sql.DriverManager.registerDriver(DriverManager.java:343)
 	at java.sql/java.sql.DriverManager.registerDriver(DriverManager.java:319)
 	at org.sqlite.JDBC.<clinit>(JDBC.java:31)
 	at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized0(Native Method)
-	at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized(Unsafe.java:1160)
+	at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized(Unsafe.java:1161)
 	at java.base/jdk.internal.reflect.MethodHandleAccessorFactory.ensureClassInitialized(MethodHandleAccessorFactory.java:340)
 	at java.base/jdk.internal.reflect.MethodHandleAccessorFactory.newConstructorAccessor(MethodHandleAccessorFactory.java:103)
 	at java.base/jdk.internal.reflect.ReflectionFactory.newConstructorAccessor(ReflectionFactory.java:173)
-	at java.base/java.lang.reflect.Constructor.acquireConstructorAccessor(Constructor.java:549)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at java.base/java.lang.reflect.Constructor.acquireConstructorAccessor(Constructor.java:548)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:498)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
 	at java.base/java.util.ServiceLoader$ProviderImpl.newInstance(ServiceLoader.java:785)
 	at java.base/java.util.ServiceLoader$ProviderImpl.get(ServiceLoader.java:725)
 	at java.base/java.util.ServiceLoader$3.next(ServiceLoader.java:1397)
@@ -1018,7 +1018,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/DriverInfo wi
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 105 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1032,13 +1032,13 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.JDBC.createConnection(JDBC.java:115)
 	at org.sqlite.JDBC.connect(JDBC.java:90)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
@@ -1122,7 +1122,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/SQLFeatureNot
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 89 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1136,21 +1136,21 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.JDBC.createConnection(JDBC.java:115)
 	at org.sqlite.JDBC.connect(JDBC.java:90)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
@@ -1234,7 +1234,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/SQLNonTransie
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 97 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1248,7 +1248,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -1257,16 +1257,16 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1023)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1026)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.JDBC.createConnection(JDBC.java:115)
 	at org.sqlite.JDBC.connect(JDBC.java:90)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
@@ -1350,7 +1350,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/DatabaseMetaD
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 101 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1364,7 +1364,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -1373,7 +1373,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.JDBC.createConnection(JDBC.java:115)
 	at org.sqlite.JDBC.connect(JDBC.java:90)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
@@ -1457,7 +1457,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/Savepoint wit
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 92 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1471,7 +1471,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -1480,7 +1480,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.JDBC.createConnection(JDBC.java:115)
 	at org.sqlite.JDBC.connect(JDBC.java:90)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
@@ -1564,7 +1564,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/Statement wit
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 92 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1578,7 +1578,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -1587,7 +1587,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.JDBC.createConnection(JDBC.java:115)
 	at org.sqlite.JDBC.connect(JDBC.java:90)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
@@ -1671,7 +1671,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/PreparedState
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 92 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1685,7 +1685,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -1694,7 +1694,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.SQLiteConnection.open(SQLiteConnection.java:240)
 	at org.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:61)
 	at org.sqlite.jdbc3.JDBC3Connection.<init>(JDBC3Connection.java:28)
@@ -1782,7 +1782,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/BatchUpdateEx
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 96 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1796,7 +1796,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -1805,16 +1805,16 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1023)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1026)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.jdbc4.JDBC4Connection.createStatement(JDBC4Connection.java:28)
 	at org.sqlite.jdbc3.JDBC3Connection.createStatement(JDBC3Connection.java:152)
 	at org.sqlite.SQLiteConfig.apply(SQLiteConfig.java:163)
@@ -1904,7 +1904,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/ResultSet wit
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 107 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -1918,7 +1918,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -1927,16 +1927,16 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1023)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1026)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.jdbc4.JDBC4Connection.createStatement(JDBC4Connection.java:28)
 	at org.sqlite.jdbc3.JDBC3Connection.createStatement(JDBC3Connection.java:152)
 	at org.sqlite.SQLiteConfig.apply(SQLiteConfig.java:163)
@@ -2026,7 +2026,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/ResultSetMeta
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 107 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -2040,7 +2040,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -2049,7 +2049,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.core.CoreStatement.<init>(CoreStatement.java:39)
 	at org.sqlite.jdbc3.JDBC3Statement.<init>(JDBC3Statement.java:20)
 	at org.sqlite.jdbc4.JDBC4Statement.<init>(JDBC4Statement.java:11)
@@ -2142,7 +2142,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/Clob with JaC
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 101 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -2156,7 +2156,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -2165,16 +2165,16 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1023)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1026)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:35)
 	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:241)
 	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
@@ -2256,7 +2256,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/ParameterMeta
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 99 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -2270,7 +2270,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
@@ -2279,7 +2279,7 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:35)
 	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:241)
 	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
@@ -2361,7 +2361,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/Date with JaC
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 90 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -2375,13 +2375,13 @@ java.lang.instrument.IllegalClassFormatException: Error while instrumenting java
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
 	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1113)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1116)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:665)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
 	at java.sql/java.sql.SQLException.<init>(SQLException.java:124)
 	at com.BitTE.OptimizationProject.Clothing.executeQuery(Clothing.java:51)
 	at com.BitTE.OptimizationProject.Clothing.fetchAttributeFromDB(Clothing.java:38)
@@ -2461,7 +2461,7 @@ Caused by: java.io.IOException: Error while instrumenting java/sql/SQLWarning wi
 	at org.jacoco.agent.rt.internal_4a7f17c.core.instr.Instrumenter.instrument(Instrumenter.java:111)
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:92)
 	... 85 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 66
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 67
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:199)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:180)
 	at org.jacoco.agent.rt.internal_4a7f17c.asm.ClassReader.<init>(ClassReader.java:166)
@@ -2471,37 +2471,48 @@ Caused by: java.lang.IllegalArgumentException: Unsupported class file major vers
 	... 86 more
 ]]></system-err>
   </testcase>
-  <testcase name="testFetchVolumeFromDBWithInvalidType" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.003">
-    <system-out><![CDATA[2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+  <testcase name="testFetchVolumeFromDBWithInvalidType" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.002">
+    <system-out><![CDATA[2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
 ]]></system-out>
   </testcase>
-  <testcase name="testConstructorForNonEssentialItems" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.001"/>
-  <testcase name="testFetchWeightFromDBForTShirtSizeM" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.003">
-    <system-out><![CDATA[2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+  <testcase name="testConstructorForNonEssentialItems" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.0"/>
+  <testcase name="testFetchWeightFromDBForTShirtSizeM" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.008">
+    <system-out><![CDATA[2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
 ]]></system-out>
   </testcase>
-  <testcase name="testFetchVolumeFromDBForTShirtSizeM" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.004">
-    <system-out><![CDATA[2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+  <testcase name="testFetchVolumeFromDBForTShirtSizeM" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.0">
+    <system-out><![CDATA[2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
 ]]></system-out>
   </testcase>
-  <testcase name="testConstructorForEssentialItems" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.001"/>
-  <testcase name="testToStringReturnsCorrectFormatWhenDataIsAvailableForEssential" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.01">
-    <system-out><![CDATA[2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+  <testcase name="testConstructorForEssentialItems" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.01"/>
+  <testcase name="testToStringReturnsCorrectFormatWhenDataIsAvailableForEssential" classname="com.BitTE.OptimizationProject.ClothingTest" time="0.02">
+    <failure message="The string representation should be correct. ==&gt; expected: &lt;An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150.00, volume = 1680.00&gt; but was: &lt;An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150,00, volume = 1680,00&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: The string representation should be correct. ==> expected: <An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150.00, volume = 1680.00> but was: <An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150,00, volume = 1680,00>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1152)
+	at com.BitTE.OptimizationProject.ClothingTest.testToStringReturnsCorrectFormatWhenDataIsAvailableForEssential(ClothingTest.java:63)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+]]></failure>
+    <system-out><![CDATA[2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
-2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Attempting to establish a database connection to: C:/sqlite/db/mydatabase.db
-2025-01-16 14:56:05 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
+2025-01-16 20:00:36 [main] com.BitTE.OptimizationProject.DatabaseConnection.getConnection()
 INFO: Database connection established successfully to: C:/sqlite/db/mydatabase.db
 ]]></system-out>
   </testcase>
