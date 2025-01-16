@@ -20,17 +20,34 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Represents the management of non-essential items within the application.
+ * Implements a singleton pattern to ensure a single instance is used throughout the program.
+ */
 class NonEssentialItems {
-    //instance of the class
+
+    /**
+     * The single instance of the class.
+     */
     private static NonEssentialItems instance;
 
-    protected final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();//allowing polymorphism
+    /**
+     * A list to store non-essential items, allowing polymorphism with PackingItem.
+     */
+    protected final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();
     
-    //private constructor
+    /**
+     * Private constructor to enforce the singleton pattern.
+     */
     private NonEssentialItems() {
     }
     
-    //Singleton method allows access to NonEssentialItems' instance
+    /**
+     * Provides access to the single instance of NonEssentialItems.
+     * If the instance does not already exist, it is created.
+     *
+     * @return the single instance of NonEssentialItems.
+     */
     public static NonEssentialItems getInstance() {
         if (instance == null) {
             instance = new NonEssentialItems();
@@ -38,6 +55,13 @@ class NonEssentialItems {
         return instance;
     }
     
+    /**
+     * Handles the process of adding, managing, and deleting non-essential items.
+     *
+     * @param scanner the Scanner object for reading user input.
+     * @param essentialItemsManager the manager for essential items, used only in case of process termination.
+     * @return true if non-essential items were successfully added, false otherwise.
+     */
     public boolean fillNonEssentialItems(Scanner scanner, EssentialItems essentialItemsManager) {
         System.out.println("----------------------------\n"
         +"INSERTION OF NONESSENTIAL ITEMS\n"
@@ -71,20 +95,25 @@ class NonEssentialItems {
                 scanner.nextLine();
             }
         }
-        return false;//Unrechable code. Was put according to good practices
+        return false;//Unrechable code, added for good practices
     }
     
-
+    /**
+     * Facilitates the addition of non-essential items by prompting the user for input.
+     *
+     * @param scanner the Scanner object for reading user input.
+     */
     protected void addNonEssentials(Scanner scanner) {
         //Display MENU for choosing type of Item
         MenuHandler.chooseItemType();
         
-        //Make choice 
+        // Determine the type of item. 
         int inputType = ItemInputHandler.setTypeOfItem(scanner);
 
-            /**If Item is a piece of Clothing set the prefered sex for the item, 
-         then display MENU for the process of choosing an Item
-            */
+        /**
+         * If the item is clothing, prompt the user for the preferred gender
+         * and display the appropriate menu.
+         */
         char itemGender = 'X';
         if (inputType == 1){
             itemGender = ItemInputHandler.setGender(scanner);
@@ -93,24 +122,31 @@ class NonEssentialItems {
             MenuHandler.showExtrasMenu();
         }
 
-        //Choose Item
+        // Get the specific item choice from the user.
         String itemOfChoice = ItemInputHandler.setItemChoice(inputType, 
                                                                 itemGender, scanner);
                                                             
-        //Choose the item's size
+        // Get the item's size from user.
         char itemSize = ItemInputHandler.setSize(scanner);
 
-        //Choose the item's value
+        //Get the item's value from user.
         int value = setValue(scanner);
 
-        //Input item 
+        // Add the item to the non-essential items list. 
         ItemInputHandler.inputItem(nonEssentialItems, inputType,
                                         itemOfChoice, itemGender, itemSize, value);
     }
 
-
+    /**
+     * Prompts the user to enter the importance value for an item, ensuring it is between 1 and 10.
+     *
+     * @param scanner the Scanner object for reading user input.
+     * @return the validated importance value.
+     */
     protected int setValue(Scanner scanner) {
-        System.out.println("Please enter the importance of this item for your trip on a scale from 1 to 10:(1 for the least important items - 10 for the most important items)");
+        System.out.println("Please enter the importance of this item for your"
+                +" trip on a scale from 1 to 10:(1 for the least important"
+                +" items - 10 for the most important items)");
             while (true) {//Infinite loop until valid input is provided
             try {
                 int input = scanner.nextInt();
