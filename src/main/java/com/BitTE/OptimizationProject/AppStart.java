@@ -43,7 +43,7 @@ public class AppStart {
         ArrayList<PackingItem> selectedItems = null;
         if (addNonEssentials) {
             NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
-            if (nonEssentialItemsManager.fillNonEssentialItems(scanner) == true) {
+            if (nonEssentialItemsManager.fillNonEssentialItems(scanner, essentialItemsManager) == true) {
             SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
             selectedItems = spaceOptimizer.solveModel(
                 nonEssentialItemsManager.nonEssentialItems, maxWeight, maxVolume);

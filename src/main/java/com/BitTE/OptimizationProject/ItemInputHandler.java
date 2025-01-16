@@ -99,7 +99,7 @@ class ItemInputHandler {
                         case 4 : return "Jeans";
                         case 5 : return "Sweatpants";
                         case 6 : return "Trousers";
-                        case 7 : return "Skirts";
+                        case 7 : return "Skirt";
                         case 8 : return "Panties";
                         case 9 : return "Shorts";
                         case 10 : return "Sneakers";

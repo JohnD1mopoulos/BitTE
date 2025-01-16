@@ -33,7 +33,7 @@ class NonEssentialItemsTest {
         String input = "2\n1\nM\n1\nS\n5\n1\n"; // Item type, gender, item name, size, value, finish
         Scanner scanner = new Scanner(input);
 
-        nonEssentialItems.fillNonEssentialItems(scanner);
+        nonEssentialItems.fillNonEssentialItems(scanner, null);
         ArrayList<PackingItem> result = nonEssentialItems.nonEssentialItems;
 
         assertNotNull(result, "The result list should not be null");
@@ -72,7 +72,7 @@ class NonEssentialItemsTest {
         String input = "5\n2\n5\n1\nM\n1\nS\n5\n1\n"; // Invalid choice, delete, finish
         Scanner scanner = new Scanner(input);
 
-        nonEssentialItems.fillNonEssentialItems(scanner);
+        nonEssentialItems.fillNonEssentialItems(scanner, null);
         ArrayList<PackingItem> result = nonEssentialItems.nonEssentialItems;
 
         assertNotNull(result, "The result list should not be null");

@@ -44,7 +44,7 @@ class MenuHandler {
 
     // Specific items for females
     private static String[] femaleClothing = {
-        "Skirts", "Panties", "Shorts", "Sneakers", "Sandals", "Boots", "Socks"
+        "Skirt", "Panties", "Shorts", "Sneakers", "Sandals", "Boots", "Socks"
     };
 
     // Array containing the extra items

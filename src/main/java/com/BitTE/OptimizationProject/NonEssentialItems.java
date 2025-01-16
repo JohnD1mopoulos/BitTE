@@ -38,7 +38,7 @@ class NonEssentialItems {
         return instance;
     }
     
-    public boolean fillNonEssentialItems(Scanner scanner) {
+    public boolean fillNonEssentialItems(Scanner scanner, EssentialItems essentialItemsManager) {
         System.out.println("----------------------------\n"
         +"INSERTION OF NONESSENTIAL ITEMS\n"
         +"----------------------------");
@@ -60,6 +60,7 @@ class NonEssentialItems {
                 } else if (userChoice == 3) {
                     ItemDeletionHandler.deleteItem(nonEssentialItems, scanner);//Delete item(s)
                 } else if (userChoice == 4) {
+                    essentialItemsManager.essentialItems.clear();
                     nonEssentialItems.clear();
                     return false;
                 } else {
