@@ -86,9 +86,9 @@ public class DatabaseTableCreation {
                               "('Passport', 'S', 35.1, 45), " +
                               "('Passport', 'M', 35.1, 45), " +
                               "('Passport', 'L', 35.1, 45), " +
-                              "('Computer', 'S', 1344, 1600), " +
-                              "('Computer', 'M', 1680, 2000), " +
-                              "('Computer', 'L', 2016, 2400), " +
+                              "('Laptop', 'S', 1344, 1600), " +
+                              "('Laptop', 'M', 1680, 2000), " +
+                              "('Laptop', 'L', 2016, 2400), " +
                               "('Book', 'S', 1200, 640), " +
                               "('Book', 'M', 1500, 800), " +
                               "('Book', 'L', 1800, 960);";
