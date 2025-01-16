@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">MenuHandler.java</span></div><h1>MenuHandler.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.BitTE.OptimizationProject;
+
+import java.util.ArrayList;
+
+/**
+ * The {@code MenuHandler} class is responsible for displaying various menus to the user 
+ * based on their previous selections, such as gender and item types. It allows the user 
+ * to select specific clothing or accessory items based on their preferences.
+ * 
+ * This class provides methods for displaying:
+ * - A menu to choose clothing items based on gender.
+ * - A menu to choose from additional items like accessories (e.g., passport, computer, book).
+ * - A menu to choose following steps of the essential and nonessential item input procedure.
+ * - A menu showcasing all the items added to a PackingItem Knapsack.
+ */
+<span class="nc" id="L32">class MenuHandler {</span>
+
+    /*Lists containing the available clothing items*/
+    // Common items for both genders
+<span class="fc" id="L36">    private static String[] commonClothing = {</span>
+        &quot;T-Shirt&quot;, &quot;Shirt&quot;, &quot;Hoodie&quot;, &quot;Jeans&quot;, &quot;Sweatpants&quot;, &quot;Trousers&quot;
+    };
+
+    // Specific items for males
+<span class="fc" id="L41">    private static String[] maleClothing = {</span>
+        &quot;Boxers&quot;, &quot;Shorts&quot;, &quot;Sneakers&quot;, &quot;Sandals&quot;, &quot;Boots&quot;, &quot;Socks&quot;
+    };
+
+    // Specific items for females
+<span class="fc" id="L46">    private static String[] femaleClothing = {</span>
+        &quot;Skirts&quot;, &quot;Panties&quot;, &quot;Shorts&quot;, &quot;Sneakers&quot;, &quot;Sandals&quot;, &quot;Boots&quot;, &quot;Socks&quot;
+    };
+
+    // Array containing the extra items
+<span class="fc" id="L51">    private static String[] extraItems = {&quot;Passport&quot;, &quot;Computer&quot;, &quot;Book&quot;};</span>
+
+    //Displays the menu of the valid types of items 1. Clothing, 2. Accessory
+    protected static void chooseItemType() {
+<span class="nc" id="L55">    System.out.println(&quot;Press 1 to add Clothing\n&quot;</span>
+                                +&quot;Press 2 to add Accessory&quot;);
+<span class="nc" id="L57">    }</span>
+
+    /**
+     * Displays the Starting Menu for the user prompting him to make one of three choices:
+     * 1. Add an nonessential item to the Knapsack.
+     * 2. Exit the programm.
+     */
+    protected static void showStartingNonEssentialItemsMenu() {
+<span class="nc" id="L65">        System.out.println(&quot;------------------------------\n&quot;</span>
+                        +&quot;Press 1 to terminate process.\n&quot;
+                        +&quot;Press 2 to add an nonessential item.\n&quot;
+                        +&quot;--------------------------------&quot;);
+<span class="nc" id="L69">    }</span>
+
+    /**
+     * Displays the menu for the user prompting him to make one of three choices:
+     * 1. Add an nonessential item to the Knapsack.
+     * 2. Exit the programm.
+     */
+    protected static void showNonEssentialItemsMenu() {
+<span class="nc" id="L77">        System.out.println(&quot;------------------------------\n&quot;</span>
+                        +&quot;Press 1 to terminate process.\n&quot;
+                        +&quot;Press 2 to add an nonessential item.\n&quot;
+                        +&quot;Press 3 to delete an nonessential item(s).\n&quot;
+                        +&quot;--------------------------------&quot;);
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * Displays the Starting Menu for the user prompting him to make one of three choices:
+     * 1. Add an essential item to the Knapsack.
+     * 2. Delete an essential item from the Knapsack.
+     * 3. Stop adding essential items.
+     * 4. Exit the programm.
+     */
+    protected static void showStartingMenu() {
+<span class="nc" id="L92">        System.out.println(&quot;------------------------------\n&quot;</span>
+                        +&quot;Press 1 to add essential items.\n&quot;
+                        +&quot;Press 2 to delete an essential item(s).\n&quot;
+                        +&quot;Press 3 to stop adding essential items\n&quot;
+                        +&quot;Press 4 to abandon process\n&quot;
+                        +&quot;--------------------------------&quot;);
+<span class="nc" id="L98">    }</span>
+
+    /**
+    * Displays all items currently in the Knapsack. 
+    *
+    * @param items a PackingItem ArrayList representing the list of chosen items
+    *             (essential or non essential).
+    */
+    protected static void showItems(ArrayList&lt;PackingItem&gt; items) {
+<span class="pc bpc" id="L107" title="2 of 4 branches missed.">        if (items == null || items.isEmpty()) {</span>
+<span class="nc" id="L108">            System.out.println(&quot;The Knapsack is empty. No items to display!&quot;);</span>
+<span class="nc" id="L109">            return;</span>
+        }
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        for (int i =0; i &lt; items.size(); i++) {</span>
+<span class="fc" id="L112">            System.out.println((i+1) + &quot;) &quot; + items.get(i));//Print a number for each item for an easier read</span>
+        }
+<span class="fc" id="L114">    }</span>
+
+    /** 
+     *Displays the appropriate clothing menu based on the user's chosen gender for the item.
+        * 
+        * @param gender a char representing the user's choice ('M' for male, 'F' for female).
+        */
+    protected static void showClothingMenu(char gender) {
+        //Display choices common to men and women
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        for (int i = 0; i &lt; commonClothing.length; i++) {</span>
+<span class="nc" id="L124">            System.out.println(&quot;Press &quot; + (i + 1) + &quot; to add &quot; + commonClothing[i]);</span>
+        }
+        /*Account for the differenecs in options between male and 
+        female clothing*/
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        if (gender == 'M') {//Male only options</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            for (int i = 0; i &lt; maleClothing.length; i++) {</span>
+<span class="nc" id="L130">                System.out.println(&quot;Press &quot; + (commonClothing.length + i + 1)</span>
+                                    + &quot; to add &quot; + maleClothing[i]);
+            }
+        } else {//Female only options
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            for (int i = 0; i &lt; femaleClothing.length; i++) {</span>
+<span class="nc" id="L135">                System.out.println(&quot;Press &quot; + (commonClothing.length + i + 1) </span>
+                                    + &quot; to add &quot; + femaleClothing[i]);
+            }
+        }
+<span class="nc" id="L139">    }</span>
+
+    /**
+     * Displays the extras menu 
+     */
+    protected static void showExtrasMenu() {
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        for (int i = 0; i &lt; extraItems.length; i++) {</span>
+<span class="nc" id="L146">            System.out.println(&quot;Press &quot; + (i + 1) + &quot; to add &quot; + extraItems[i]);</span>
+        }
+<span class="nc" id="L148">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
