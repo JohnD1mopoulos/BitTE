@@ -48,10 +48,10 @@ public class AppStart {
             selectedItems = spaceOptimizer.solveModel(
                 nonEssentialItemsManager.nonEssentialItems, maxWeight, maxVolume);
             }
+        }
         ResultPresenter.showResults(essentialItemsManager.essentialItems,
                 selectedItems,
                 scanner);
         scanner.close();
-        }
     }
 }
