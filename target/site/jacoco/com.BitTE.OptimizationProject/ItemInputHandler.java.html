@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ItemInputHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">ItemInputHandler.java</span></div><h1>ItemInputHandler.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.BitTE.OptimizationProject;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+/**
+ * The {@code ItemInputHandler} class provides functionality for handling user input 
+ * related to the addition of clothing items or accessories to a packing list. It prompts 
+ * the user to choose between different types of items, genders (for clothing), and sizes 
+ * and then allows the user to input those items into a list.
+ * 
+ * This class includes methods for:
+ * - Asking the user to select the type of item (clothing or accessory).
+ * - Prompts to select specific items, such as clothing based on gender or accessories.
+ * - Validating user input to ensure valid choices for item type, item choice, gender, and size.
+ * - Collecting all necessary information to create and add an item to the packing list.
+ */
+<span class="nc" id="L35">class ItemInputHandler {</span>
+    /**
+    * Prompts the user to choose between inputting a clothing item or an accessory.
+    *
+    * This method ensures robust handling of user input, allowing only valid integers (1 or 2) as choices.
+    * If the input is invalid, the user is repeatedly prompted until a valid input is provided.
+    *
+    * @param scanner a Scanner instance for capturing the user's input.
+    * @return an integer representing the user's choice: 1 for Clothing, or 2 for Accessory.
+    */
+    protected static int setTypeOfItem(Scanner scanner) {
+        int choice;
+        while (true) {
+            try {
+<span class="fc" id="L49">                choice = scanner.nextInt();</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">                if (choice == 1 || choice == 2) {</span>
+<span class="fc" id="L51">                    return choice;</span>
+                } else {
+<span class="fc" id="L53">                    System.out.println(&quot;Invalid input. Please give me 1 to input clothing or 2 to input an accessory.&quot;);</span>
+                }
+<span class="nc" id="L55">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L56">                System.err.println(&quot;Invalid Input. Please give me a valid integer.&quot;);</span>
+<span class="nc" id="L57">                scanner.next();</span>
+<span class="pc" id="L58">            }</span>
+        }
+    }
+
+    /**
+    * Prompts the user to pick what item he wants to input depending on if it's a clothing
+    * item or an accessory.
+    * 
+    * @param itemType representing the user's previous choice for the type of item he will be inputting
+    *             (1 for clothing, or 2 for an accessory).
+    * @param itemGender a char representing the user's choice of gender
+    *             ('M' for male, 'F' for female).
+    * @param scanner a Scanner instance for capturing the user's input.
+    * @return the user's choice as a String
+    */
+    protected static String setItemChoice(int itemType,char itemGender,Scanner scanner) {
+
+<span class="fc" id="L75">        int choiceOfItem = validateChoiceOfItem(itemType, itemGender, scanner);//Get user choice</span>
+                                    
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (itemType == 1) {//Item is a piece of Clothing</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            if (itemGender == 'M') {//Return the appropriate item if the selected gender is Male</span>
+<span class="pc bpc" id="L79" title="12 of 13 branches missed.">                switch (choiceOfItem) {</span>
+<span class="fc" id="L80">                        case 1 : return &quot;T-Shirt&quot;;</span>
+<span class="nc" id="L81">                        case 2 : return &quot;Shirt&quot;;</span>
+<span class="nc" id="L82">                        case 3 : return &quot;Hoodie&quot;;</span>
+<span class="nc" id="L83">                        case 4 : return &quot;Jeans&quot;;</span>
+<span class="nc" id="L84">                        case 5 : return &quot;Sweatpants&quot;;</span>
+<span class="nc" id="L85">                        case 6 : return &quot;Trousers&quot;;</span>
+<span class="nc" id="L86">                        case 7 : return &quot;Boxers&quot;;</span>
+<span class="nc" id="L87">                        case 8 : return &quot;Shorts&quot;;</span>
+<span class="nc" id="L88">                        case 9 : return &quot;Sneakers&quot;;</span>
+<span class="nc" id="L89">                        case 10 : return &quot;Sandals&quot;;</span>
+<span class="nc" id="L90">                        case 11 : return &quot;Boots&quot;;</span>
+<span class="nc" id="L91">                        case 12 : return &quot;Socks&quot;;</span>
+<span class="nc" id="L92">                        default: throw new IllegalArgumentException(&quot;Invalid clothing choice&quot;);</span>
+                }
+            } else {//Return the appropriate item if the selected gender is 'F'
+<span class="nc bnc" id="L95" title="All 14 branches missed.">                switch (choiceOfItem) {</span>
+<span class="nc" id="L96">                        case 1 : return &quot;T-Shirt&quot;;</span>
+<span class="nc" id="L97">                        case 2 : return &quot;Shirt&quot;;</span>
+<span class="nc" id="L98">                        case 3 : return &quot;Hoodie&quot;;</span>
+<span class="nc" id="L99">                        case 4 : return &quot;Jeans&quot;;</span>
+<span class="nc" id="L100">                        case 5 : return &quot;Sweatpants&quot;;</span>
+<span class="nc" id="L101">                        case 6 : return &quot;Trousers&quot;;</span>
+<span class="nc" id="L102">                        case 7 : return &quot;Skirt&quot;;</span>
+<span class="nc" id="L103">                        case 8 : return &quot;Panties&quot;;</span>
+<span class="nc" id="L104">                        case 9 : return &quot;Shorts&quot;;</span>
+<span class="nc" id="L105">                        case 10 : return &quot;Sneakers&quot;;</span>
+<span class="nc" id="L106">                        case 11 : return &quot;Sandals&quot;;</span>
+<span class="nc" id="L107">                        case 12 : return &quot;Boots&quot;;</span>
+<span class="nc" id="L108">                        case 13 : return &quot;Socks&quot;;</span>
+<span class="nc" id="L109">                        default: throw new IllegalArgumentException(&quot;Invalid clothing choice&quot;);</span>
+                }
+            }
+        } else {//If item is an accessory
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            switch(choiceOfItem) {</span>
+<span class="nc" id="L114">                case 1 : return &quot;Passport&quot;;</span>
+<span class="nc" id="L115">                case 2 : return &quot;Laptop&quot;;</span>
+<span class="nc" id="L116">                case 3 : return &quot;Book&quot;;</span>
+<span class="nc" id="L117">                default: throw new IllegalArgumentException(&quot;Invalid accessory choice&quot;);</span>
+            }
+        }
+    }
+                            
+                    
+                    
+    /**
+     * Prompts the user to choose an item and validates their input.
+     * 
+     * @param itemType an integer representing the type of item
+     *                 (1 for clothing, 2 for accessory).
+     * @param itemGender a char representing the gender for the item
+     *                  ('M' for male, 'F' for female).
+     * @param scanner a Scanner instance for capturing the user's input.
+     * @return the user's validated choice as an integer
+     */
+    private static int validateChoiceOfItem(int itemType,char itemGender,Scanner scanner) {
+        //Set accepted range of int choices depending of if the item is a piece of clothing or an accessory
+<span class="fc" id="L136">        int minRange = 1;</span>
+        int maxRange;
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">        if (itemType == 1) {//Item is a piece of clothing</span>
+            //Account for the difference in choices depending on the previously selected gender of choice
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">            if (itemGender == 'M') {</span>
+<span class="fc" id="L141">                maxRange = 12;</span>
+            } else {
+<span class="nc" id="L143">                maxRange = 13;</span>
+            }
+        } else {//Item is an accessory
+<span class="nc" id="L146">            maxRange = 3;</span>
+        }
+<span class="fc" id="L148">        System.out.println(&quot;Enter your choice:&quot;);</span>
+        while (true) {
+            try {
+<span class="fc" id="L151">                int choiceOfItem = scanner.nextInt();</span>
+<span class="fc" id="L152">                scanner.nextLine();</span>
+<span class="pc bpc" id="L153" title="2 of 4 branches missed.">                if (choiceOfItem &lt; minRange || choiceOfItem &gt; maxRange) {//If item is not in the accepted range  </span>
+<span class="nc" id="L154">                    System.out.println(&quot;Invalid input. Give me an integer ranging from &quot;+minRange+&quot; to &quot;+maxRange+&quot;.&quot;);</span>
+                } else {//Item is in the accepted range
+<span class="fc" id="L156">                    return choiceOfItem;</span>
+                }
+<span class="nc" id="L158">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L159">                System.out.println(&quot;Invalid input. Please give me a valid integer&quot;);</span>
+<span class="nc" id="L160">                scanner.nextLine();</span>
+<span class="nc" id="L161">            }</span>
+        }
+    }
+
+        /**
+        * Prompts the user to choose the gender of the clothing item.
+        *
+        * @param scanner a Scanner instance for capturing the user's input.
+        * @return a char representing the user's choice of gender
+        *         ('M' for male, 'F' for female).
+        */
+    protected static char setGender(Scanner scanner) {
+<span class="fc" id="L173">        System.out.println(&quot;Please enter your gender: (M for Male, F for Female)&quot;);</span>
+        char gender;
+        while (true) { // Infinite loop until valid input is provided
+<span class="fc" id="L176">            String input = scanner.nextLine().trim(); // Read the entire line and trim whitespace</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">            if (input.isEmpty()) { // Check for empty input</span>
+<span class="fc" id="L178">                System.err.println(&quot;No input detected. Please enter 'M' for Male or 'F' for Female.&quot;);</span>
+<span class="fc" id="L179">                continue; // Prompt user again</span>
+            }
+<span class="pc bpc" id="L181" title="1 of 2 branches missed.">            if (input.length() == 1) { // Ensure input is a single character</span>
+<span class="fc" id="L182">                gender = input.toUpperCase().charAt(0);</span>
+<span class="pc bpc" id="L183" title="3 of 4 branches missed.">                    if (gender == 'M' || gender == 'F') {</span>
+<span class="fc" id="L184">                        return gender;</span>
+                    }
+            }
+<span class="nc" id="L187">            System.err.println(&quot;Invalid input. Please enter 'M' for Male or 'F' for Female.&quot;);</span>
+<span class="nc" id="L188">            }</span>
+    }
+
+    /**
+    * Prompts the user to choose the item's size.
+    *
+    * @param scanner a Scanner instance for capturing the user's input.
+    * @return a char representing the user's choice of size
+    *         (S for Small, M for Medium, L for Large).
+    */
+    protected static char setSize(Scanner scanner) {
+<span class="fc" id="L199">        System.out.println(&quot;Please enter your desired size: &quot;</span>
+                        +&quot;(S for Small, M for Medium, L for Large)&quot;);
+
+        while (true) {//Infinite loop until valid input is provided
+<span class="fc" id="L203">            String input = scanner.nextLine().trim();//Read the entire line and trim whitespace</span>
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">            if (input.isEmpty()) {//Check for empty input</span>
+<span class="nc" id="L205">                System.err.println(&quot;No input detected.&quot; </span>
+                                +&quot;Please enter 'S' for Small or 'M' for Medium&quot;
+                                +&quot; or 'L' for Large.&quot;);
+<span class="nc" id="L208">                continue;//Prompt user again</span>
+            }    
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">            if (input.length() == 1) {</span>
+<span class="fc" id="L211">                char gender = input.toUpperCase().charAt(0);</span>
+<span class="pc bpc" id="L212" title="5 of 6 branches missed.">                if (gender == 'S' || gender == 'M' || gender == 'L') {</span>
+<span class="fc" id="L213">                    return gender;</span>
+                } else {
+<span class="nc" id="L215">                    System.err.println(&quot;Invalid input. Please enter&quot;</span>
+                    +&quot; 'S' for Small or 'M' for Medium or 'L' for Large.&quot;); 
+                }                              
+<span class="nc" id="L218">            } else {</span>
+<span class="nc" id="L219">                System.err.println(&quot;Invalid input. Please enter one letter:&quot;</span>
+                                +&quot; 'S' for Small or 'M' for Medium or 'L' for Large.&quot;);
+            }
+<span class="nc" id="L222">        }     </span>
+    }
+        
+    /**
+     * Inputs the user's choice of Item in ArrayList PackingItem according to the user's previous choices of 
+     * Item type, choice, sex and size
+     * 
+     * @param items representing the essential clothing and what not items
+     * @param type representing the type of item (example -&gt; jacket)
+     * @param choiceOfItem representing if the item is a piece of clothing (1) or an accessory (2)
+     * @param sex representing the selected gender if the item is a piece of clothing (&quot;X&quot; if it isn't)
+     * @param size representing the selected size (Small||Medium||Large)
+     */
+    
+    protected static void inputItem(ArrayList&lt;PackingItem&gt; items, int type,
+                                                                String choice,
+                                                                char sex,
+                                                                char size) {
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        if (type == 1) {</span>
+<span class="nc" id="L241">            Clothing pack = new Clothing(choice, size, sex);</span>
+<span class="nc" id="L242">            items.add(pack);</span>
+<span class="nc" id="L243">        } else {</span>
+<span class="nc" id="L244">            Extras pack = new Extras(choice, size, sex);</span>
+<span class="nc" id="L245">            items.add(pack);</span>
+        }
+<span class="nc" id="L247">    }</span>
+
+    protected static void inputItem(ArrayList&lt;PackingItem&gt; items, int type,
+                                                                String choice,
+                                                                char sex,
+                                                                char size,
+                                                                int value) {
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">        if (type == 1) {</span>
+<span class="fc" id="L255">            Clothing pack = new Clothing(value, choice, size, sex);</span>
+<span class="fc" id="L256">            items.add(pack);</span>
+<span class="fc" id="L257">        } else {</span>
+<span class="nc" id="L258">            Extras pack = new Extras(value, choice, size, sex);</span>
+<span class="nc" id="L259">            items.add(pack);</span>
+        }
+<span class="fc" id="L261">    }</span>
+ 
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

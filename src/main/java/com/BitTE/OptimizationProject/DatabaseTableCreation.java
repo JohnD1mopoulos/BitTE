@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.BitTE.OptimizationProject;
 
 import java.sql.Connection;
@@ -23,14 +22,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.tinylog.Logger;
 
+/**
+ * Manages the creation and initialization of database tables and the initial data loading for the application.
+ */
 public class DatabaseTableCreation {
     private String url = "jdbc:sqlite:C:/sqlite/db/mydatabase.db"; // Database connection URL
 
+    /**
+     * Constructs a new DatabaseTableCreation instance which triggers the database setup process.
+     */
     public DatabaseTableCreation() {
         Logger.info("Initializing database creation and data insertion process...");
         initializeDatabase();
     }
 
+    /**
+     * Initializes the database by setting up tables and inserting initial data if necessary.
+     */
     private void initializeDatabase() {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
@@ -53,6 +61,12 @@ public class DatabaseTableCreation {
         }
     }
 
+    /**
+     * Creates the necessary database tables if they do not already exist.
+     *
+     * @param stmt the Statement used to execute the SQL commands
+     * @throws SQLException if there is an error executing the SQL commands
+     */
     private void createTables(Statement stmt) throws SQLException {
         String sqlClothing = "CREATE TABLE IF NOT EXISTS Clothing (" +
                              "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -74,14 +88,27 @@ public class DatabaseTableCreation {
         Logger.info("Table 'Extras' created or already exists.");
     }
 
+    /**
+     * Checks if a specific table is empty.
+     *
+     * @param conn the Connection to the database
+     * @param tableName the name of the table to check
+     * @return true if the table is empty, false otherwise
+     * @throws SQLException if there is an error accessing the database
+     */
     private boolean isTableEmpty(Connection conn, String tableName) throws SQLException {
         try (ResultSet rs = conn.createStatement().executeQuery("SELECT EXISTS (SELECT 1 FROM " + tableName + ")")) {
             return !rs.next() || rs.getInt(1) == 0;
         }
     }
 
+    /**
+     * Inserts initial data into the 'Extras' table.
+     *
+     * @param stmt the Statement used to execute the insert command
+     * @throws SQLException if there is an error executing the insert command
+     */
     private void insertDataIntoExtras(Statement stmt) throws SQLException {
-        // Insert data into Extras
         String insertExtras = "INSERT INTO EXTRAS (type, size, volume, weight) VALUES " +
                               "('Passport', 'S', 35.1, 45), " +
                               "('Passport', 'M', 35.1, 45), " +
@@ -96,8 +123,13 @@ public class DatabaseTableCreation {
         Logger.info("Data inserted into 'Extras' table.");
     }
 
+    /**
+     * Inserts initial data into the 'Clothing' table.
+     *
+     * @param stmt the Statement used to execute the insert command
+     * @throws SQLException if there is an error executing the insert command
+     */
     private void insertDataIntoClothing(Statement stmt) throws SQLException {
-        // Insert data into Clothing
         String insertClothing = "INSERT INTO Clothing (type, gender, size, volume, weight) VALUES " +
                          "('T-Shirt', 'M', 'S', 1400, 130), " +
                          "('T-Shirt', 'M', 'M', 1680, 150), " +
