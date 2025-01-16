@@ -9,89 +9,80 @@ import java.util.ArrayList;
 // Declaration of the class for the optimization problem
 public class SpaceOptimizer {
 
+    // Class-level variable to store binary decision variables
+    private IntVar[] binaryVars;
+
     // Create the Model for the problem
+    @SuppressWarnings("deprecation")
     public Model createModel(ArrayList<PackingItem> items, int maxWeight, int maxVolume) throws SQLException {
-        // Create a Choco Solver model
         Model model = new Model("Knapsack model");
 
-        // Number of items
         int n = items.size();
+        binaryVars = new IntVar[n];  // Initialize the binaryVars array
 
-        // Create variables
-        IntVar[] binaryVars = new IntVar[n];
         IntVar[] scaledVars = new IntVar[n];
         IntVar[] weightVars = new IntVar[n];
         IntVar[] volumeVars = new IntVar[n];
-
-        // Calculate the maximum possible total value
         int maxTotalValue = 0;
 
         for (int i = 0; i < n; i++) {
             PackingItem item = items.get(i);
+            binaryVars[i] = model.intVar("X" + i, 0, 1);  // Store binary vars
 
-            // Binary variable for each item
-            binaryVars[i] = model.intVar("X" + i, 0, 1);
-
-            // Scaled variable for value
             int value = item.getValue();
             scaledVars[i] = model.intScaleView(binaryVars[i], value);
             maxTotalValue += value;
 
-            // Scale weight and volume to integers
             int weight = (int) (item.getWeight() * 1000);
             int volume = (int) (item.getVolume() * 1000);
-
             weightVars[i] = model.intScaleView(binaryVars[i], weight);
             volumeVars[i] = model.intScaleView(binaryVars[i], volume);
         }
 
-        // Define the objective function: maximize total value
         IntVar totalValue = model.intVar("TotalValue", 0, maxTotalValue);
         model.sum(scaledVars, "=", totalValue).post();
         model.setObjective(Model.MAXIMIZE, totalValue);
 
-        // Add constraints for weight and volume
         addConstraints(model, weightVars, volumeVars, maxWeight, maxVolume);
 
-        // Debugging logs
         System.out.println("Model created with max possible total value: " + maxTotalValue);
         System.out.println("Number of items: " + n);
-        System.out.println("Max weight: " + maxWeight/1000 +"gr");
-        System.out.println("Max volume: " + maxVolume/1000 +"cm3");
+        System.out.println("Max weight: " + maxWeight / 1000 + "gr");
+        System.out.println("Max volume: " + maxVolume / 1000 + "cm3");
 
         return model;
     }
 
     // Add the volume and weight constraints
     public void addConstraints(Model model, IntVar[] weightVars, IntVar[] volumeVars, int maxWeight, int maxVolume) {
-        // Add the volume constraint
         model.sum(volumeVars, "<=", maxVolume).post();
-        // Add the weight constraint
         model.sum(weightVars, "<=", maxWeight).post();
     }
 
     public ArrayList<PackingItem> solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
-        // Create the model with scaled weight and volume constraints
+        if(items.size()!=0){
         Model model = createModel(items, (int) (maxWeight * 1000), (int) (maxVolume * 1000));
-    
-        // Attempt to solve the model
+
         if (model.getSolver().solve()) {
             System.out.println("Solution found!");
-    
-            // List to store the selected items
+
             ArrayList<PackingItem> selectedItems = new ArrayList<>();
-    
-            // Iterate through the items and add selected ones to the list
+
+            // Use binaryVars to check which items are selected
             for (int i = 0; i < items.size(); i++) {
-                if (((IntVar) model.getVar(i)).getValue() == 1) {
+                if (binaryVars[i].getValue() == 1) {
                     selectedItems.add(items.get(i));
+                    System.out.println("Selected item: " + items.get(i));
                 }
             }
-    
-            return selectedItems; // Return the list of selected items
+
+            return selectedItems;
         } else {
             System.out.println("No solution found.");
-            return new ArrayList<>(); // Return an empty list if no solution is found
+            return new ArrayList<>();
         }
-    }  
+        } else {
+            return new ArrayList<>();
+        }
+    }
 }
