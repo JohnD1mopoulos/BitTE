@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
@@ -58,7 +74,8 @@ public class ItemDeletionHandler {
         
         while(true) {
             // Prompt the user to choose an item to delete
-            System.out.println("Which one do you want to delete? (Press 0 to cancel)");
+            System.out.println("Which one do you want to delete? "
+                              +"(Press 0 to cancel deletion of items)");
 
             try {
                 int itemForDeletion = scanner.nextInt();// Variable representing the item to be deleted
@@ -66,7 +83,7 @@ public class ItemDeletionHandler {
     
                 if (itemForDeletion == 0) {
                     System.out.println("Stopping deletion of items.");
-                    return 0; // User cancelled
+                    return itemForDeletion; // User cancelled
                 }else if (itemForDeletion >= 1 && itemForDeletion <= items.size()) {
                     //Return the user's choice
                     return itemForDeletion;

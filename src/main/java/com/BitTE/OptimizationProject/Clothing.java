@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.BitTE.OptimizationProject;
 
 import com.BitTE.OptimizationProject.DatabaseConnection;
@@ -17,7 +33,12 @@ public class Clothing extends PackingItem {
     }
 
     private double fetchAttributeFromDB(String attribute, String type, char size, char gender) throws SQLException {
+        validateAttribute(attribute);
         String query = "SELECT " + attribute + " FROM CLOTHING WHERE Type = ? AND Size = ? AND Gender = ?";
+        return executeQuery(query, attribute, type, size, gender);
+    }
+
+    private double executeQuery(String query, String attribute, String type, char size, char gender) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, type);
@@ -27,11 +48,11 @@ public class Clothing extends PackingItem {
                 if (rs.next()) {
                     return rs.getDouble(attribute);
                 } else {
-                    throw new SQLException("No data found for the given query "+ type+" "+ size+" "+ gender);
+                    throw new SQLException("No data found for the given query: Type = " + type + ", Size = " + size + ", Gender = " + gender);
                 }
             }
         } catch (SQLException e) {
-            throw e;
+            throw new SQLException("An error occurred while fetching " + attribute + " from the database: " + e.getMessage());
         }
     }
 

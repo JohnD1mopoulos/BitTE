@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
@@ -14,7 +30,7 @@ import java.util.Scanner;
 class EssentialItems {
 
     // Static instance variable for the Singleton pattern
-    private static EssentialItems listOfEssentialItems;
+    static EssentialItems listOfEssentialItems;
 
     /**Static ArrayList shared across all methods in this class representing
     the list of chosen essential items*/
@@ -101,6 +117,54 @@ class EssentialItems {
         ItemInputHandler.inputItem(essentialItems, inputType, itemOfChoice, itemGender, itemSize);
     }
 
+    /**
+     * Checks if the weight and volume constraints are respected and shows
+     * a respective message.
+     * If the constraints aren't respected then the user gets prompt
+     * between deleting some items and abandoning the whole process. 
+     * 
+     * @param maxWeight representing the maximum weight of items that can be 
+     *                  added to the Knapsack.
+     * @param maxVolume representing the maximum weight of items that can be 
+     *                  added to the Knapsack.
+     * @param scanner for user input.
+     * @return true if the program is to continue running (constraints are respected).
+     *         false if the program is to stop running (constraint's aren't respected
+     *          and the user wont fix them).
+     */
+    private boolean manageConstraints(double maxWeight, double maxVolume, Scanner scanner) {
+        //Check constraints
+        int constraintsStatus = EssentialConstraints.
+        checkConstraints(essentialItems,
+                             maxWeight,
+                             maxVolume);
+
+        //Provide feedback based on constraints
+        EssentialConstraints.showConstraintFeedback(essentialItems, constraintsStatus, maxWeight, maxVolume);
+
+        //Handle different constraint scenarios
+        if (constraintsStatus != 1) {//Constraints arent met
+
+        boolean constraintProblemSolved = EssentialConstraints.
+                                        fixConstraints(essentialItems,
+                                        scanner,
+                                        maxWeight,
+                                        maxVolume);
+ 
+            if (constraintProblemSolved) {
+            //The user deleted some items and now constraints are respected
+                System.out.println("Well done! The constraints are now respected.");
+                return true;
+            } else {
+                System.out.println("Terminating process. Goodbye!!!");
+                return false;//Knapsack wont be filled
+            }
+
+        }  else {//Constraints are respected from the begining
+            return true;
+        }     
+    }
+
    
     /**
     * Fills ArrayList essentialItems with the inputs of the user and confirms 
@@ -108,6 +172,7 @@ class EssentialItems {
     *
     * @param maxWeight representing the maximum weight of items that can be added to the Knapsack.
     * @param maxVolume representing the maximum volume of items that can be added to the Knapsack.
+    * @param scanner for user input.
     * @return a boolean variable that confirms the continuation of the item input operation 
     *         if the constraints are still met.
     */
@@ -128,42 +193,20 @@ class EssentialItems {
             } else if (userMenuChoice == STOP_ADDING_NON_ESSENTIAL) {
                 //User wants to stop adding essential items
                 return true;
-            } else {//User wants to abandon process
+            } else if (userMenuChoice == ABANDON_PROCESS) {//User wants to abandon process
+                essentialItems.clear();//Delete any inputed essential items
                 return false;
             }
 
             /**
-             * Continue by checking state of constraints and checking if the user
+             * Continue by checking state of constraints and if the user
              * wants to continue the process or not 
              */
-            
-             //Check constraints
-            int constraintsStatus = EssentialConstraints.
-                                checkConstraints(essentialItems,
-                                                maxWeight,
-                                                maxVolume);
-        
-            //Provide feedback based on constraints
-            EssentialConstraints.showConstraintFeedback(essentialItems, constraintsStatus, maxWeight, maxVolume);
-        
-            //Handle different constraint scenarios
-            if (constraintsStatus != 1) {//Constraints arent met
-        
-                boolean constraintProblemSolved = EssentialConstraints.
-                                                fixConstraints(essentialItems,
-                                                            scanner,
-                                                            maxWeight,
-                                                            maxVolume);
-    
-                if (constraintProblemSolved) {
-                    //The user deleted some items and now constraints are respected
-                    System.out.println("Well done! The constraints are now respected.");
-                } else {
-                    System.out.println("Terminating process. Goodbye!!!");
-                    return false;//Knapsack wont be filled
-                }
-    
-             }  
+            boolean continueAddingItems = manageConstraints(maxWeight, maxVolume, scanner);
+            if (!continueAddingItems) {
+                return false;
+            }
+             
         }
         return false;//Unrechable code. Was put according to good practices 
     }

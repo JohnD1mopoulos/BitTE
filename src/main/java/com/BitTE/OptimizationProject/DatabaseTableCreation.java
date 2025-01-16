@@ -1,7 +1,24 @@
+/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.BitTE.OptimizationProject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import org.tinylog.Logger;
@@ -21,33 +38,67 @@ public class DatabaseTableCreation {
             Logger.info("Connected to the database: {}", url);
 
             // Create tables
-            String sqlClothing = "CREATE TABLE IF NOT EXISTS Clothing (" +
-                                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                 "type TEXT NOT NULL, " +
-                                 "gender TEXT NOT NULL CHECK (gender IN ('M', 'F')), " +
-                                 "size TEXT NOT NULL CHECK (size IN ('S', 'M', 'L')), " +
-                                 "volume FLOAT NOT NULL, " +
-                                 "weight FLOAT NOT NULL);";
+            createTables(stmt);
 
-            String sqlExtras = "CREATE TABLE IF NOT EXISTS Extras (" +
-                               "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                               "type TEXT NOT NULL, " +
-                               "volume FLOAT NOT NULL, " +
-                               "weight FLOAT NOT NULL);";
+            // Check and insert data if tables are empty
+            if(isTableEmpty(conn, "EXTRAS")) {
+                insertDataIntoExtras(stmt);
+            }
+            if(isTableEmpty(conn, "CLOTHING")) {
+                insertDataIntoClothing(stmt);
+            }
 
-            stmt.execute(sqlClothing);
-            Logger.info("Table 'Clothing' created or already exists.");
+        } catch (SQLException e) {
+            Logger.error("Database initialization failed: {}", e.getMessage(), e);
+        }
+    }
 
-            stmt.execute(sqlExtras);
-            Logger.info("Table 'Extras' created or already exists.");
+    private void createTables(Statement stmt) throws SQLException {
+        String sqlClothing = "CREATE TABLE IF NOT EXISTS Clothing (" +
+                             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                             "type TEXT NOT NULL, " +
+                             "gender TEXT NOT NULL CHECK (gender IN ('M', 'F')), " +
+                             "size TEXT NOT NULL CHECK (size IN ('S', 'M', 'L')), " +
+                             "volume FLOAT NOT NULL, " +
+                             "weight FLOAT NOT NULL);";
+        stmt.execute(sqlClothing);
+        Logger.info("Table 'Clothing' created or already exists.");
 
-            // Insert data into Extras
-            stmt.execute("INSERT INTO Extras (type, volume, weight) VALUES " +
-                         "('Passport', 35.1, 45), ('Laptop', 1680, 2000), ('Book', 1500, 800);");
-            Logger.info("Data inserted into 'Extras' table.");
+        String sqlExtras = "CREATE TABLE IF NOT EXISTS Extras (" +
+                           "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                           "type TEXT NOT NULL, " +
+                           "size TEXT NOT NULL CHECK (size IN ('S', 'M', 'L')), " +
+                           "volume FLOAT NOT NULL, " +
+                           "weight FLOAT NOT NULL);";
+        stmt.execute(sqlExtras);
+        Logger.info("Table 'Extras' created or already exists.");
+    }
 
-            // Insert data into Clothing
-            stmt.execute("INSERT INTO Clothing (type, gender, size, volume, weight) VALUES " +
+    private boolean isTableEmpty(Connection conn, String tableName) throws SQLException {
+        try (ResultSet rs = conn.createStatement().executeQuery("SELECT EXISTS (SELECT 1 FROM " + tableName + ")")) {
+            return !rs.next() || rs.getInt(1) == 0;
+        }
+    }
+
+    private void insertDataIntoExtras(Statement stmt) throws SQLException {
+        // Insert data into Extras
+        String insertExtras = "INSERT INTO EXTRAS (type, size, volume, weight) VALUES " +
+                              "('Passport', 'S', 35.1, 45), " +
+                              "('Passport', 'M', 35.1, 45), " +
+                              "('Passport', 'L', 35.1, 45), " +
+                              "('Computer', 'S', 1344, 1600), " +
+                              "('Computer', 'M', 1680, 2000), " +
+                              "('Computer', 'L', 2016, 2400), " +
+                              "('Book', 'S', 1200, 640), " +
+                              "('Book', 'M', 1500, 800), " +
+                              "('Book', 'L', 1800, 960);";
+        stmt.execute(insertExtras);
+        Logger.info("Data inserted into 'Extras' table.");
+    }
+
+    private void insertDataIntoClothing(Statement stmt) throws SQLException {
+        // Insert data into Clothing
+        String insertClothing = "INSERT INTO Clothing (type, gender, size, volume, weight) VALUES " +
                          "('T-Shirt', 'M', 'S', 1400, 130), " +
                          "('T-Shirt', 'M', 'M', 1680, 150), " +
                          "('T-Shirt', 'M', 'L', 2475, 180), " +
@@ -66,18 +117,18 @@ public class DatabaseTableCreation {
                          "('Trousers', 'M', 'S', 2062.5, 600), " +
                          "('Trousers', 'M', 'M', 3528.0, 700), " +
                          "('Trousers', 'M', 'L', 5130.0, 800), " +
-                         "('Underwear', 'M', 'S', 468, 60), " +
-                         "('Underwear', 'M', 'M', 750, 70), " +
-                         "('Underwear', 'M', 'L', 1035, 80), " +
+                         "('Boxers', 'M', 'S', 468, 60), " +
+                         "('Boxers', 'M', 'M', 750, 70), " +
+                         "('Boxers', 'M', 'L', 1035, 80), " +
                          "('Shorts', 'M', 'S', 828, 200), " +
                          "('Shorts', 'M', 'M', 1250, 250), " +
                          "('Shorts', 'M', 'L', 1092, 300), " +
-                         "('Sneaker', 'M', 'S', 6409, 800), " +
-                         "('Sneaker', 'M', 'M', 7812, 900), " +
-                         "('Sneaker', 'M', 'L', 9120, 1000), " +
-                         "('Sandal', 'M', 'S', 4176, 500), " +
-                         "('Sandal', 'M', 'M', 5270, 600), " +
-                         "('Sandal', 'M', 'L', 6912, 700), " +
+                         "('Sneakers', 'M', 'S', 6409, 800), " +
+                         "('Sneakers', 'M', 'M', 7812, 900), " +
+                         "('Sneakers', 'M', 'L', 9120, 1000), " +
+                         "('Sandals', 'M', 'S', 4176, 500), " +
+                         "('Sandals', 'M', 'M', 5270, 600), " +
+                         "('Sandals', 'M', 'L', 6912, 700), " +
                          "('Boots', 'M', 'S', 7395, 1300), " +
                          "('Boots', 'M', 'M', 9486, 1500), " +
                          "('Boots', 'M', 'L', 10944, 1800), " +
@@ -105,25 +156,22 @@ public class DatabaseTableCreation {
                          "('Skirt', 'F', 'S', 1400, 200), " +
                          "('Skirt', 'F', 'M', 2520, 300), " +
                          "('Skirt', 'F', 'L', 3465, 400), " +
-                         "('Underwear', 'F', 'S', 7.5, 30), " +
-                         "('Underwear', 'F', 'M', 10.8, 40), " +
-                         "('Underwear', 'F', 'L', 10.8, 50), " +
-                         "('Sneaker', 'F', 'S', 2640, 600), " +
-                         "('Sneaker', 'F', 'M', 3519, 700), " +
-                         "('Sneaker', 'F', 'L', 4306.25, 800), " +
-                         "('Sandal', 'F', 'S', 1150, 300), " +
-                         "('Sandal', 'F', 'M', 1716, 400), " +
-                         "('Sandal', 'F', 'L', 2295, 500), " +
+                         "('Panties', 'F', 'S', 7.5, 30), " +
+                         "('Panties', 'F', 'M', 10.8, 40), " +
+                         "('Panties', 'F', 'L', 10.8, 50), " +
+                         "('Sneakers', 'F', 'S', 2640, 600), " +
+                         "('Sneakers', 'F', 'M', 3519, 700), " +
+                         "('Sneakers', 'F', 'L', 4306.25, 800), " +
+                         "('Sandals', 'F', 'S', 1150, 300), " +
+                         "('Sandals', 'F', 'M', 1716, 400), " +
+                         "('Sandals', 'F', 'L', 2295, 500), " +
                          "('Boots', 'F', 'S', 4368, 1200), " +
                          "('Boots', 'F', 'M', 5460, 1400), " +
                          "('Boots', 'F', 'L', 6720, 1600), " +
                          "('Socks', 'F', 'S', 30.375, 30), " +
                          "('Socks', 'F', 'M', 50, 40), " +
-                         "('Socks', 'F', 'L', 105.625, 50);");
-            Logger.info("Data inserted into 'Clothing' table.");
-
-        } catch (SQLException e) {
-            Logger.error("Database initialization failed: {}", e.getMessage(), e);
-        }
+                         "('Socks', 'F', 'L', 105.625, 50);";
+        stmt.execute(insertClothing);
+        Logger.info("Data inserted into 'Clothing' table.");
     }
 }

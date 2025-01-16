@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
@@ -155,7 +171,7 @@ class ItemInputHandler {
         */
     protected static char setGender(Scanner scanner) {
         System.out.println("Please enter your gender: (M for Male, F for Female)");
-        char sex;
+        char gender;
         while (true) { // Infinite loop until valid input is provided
             String input = scanner.nextLine().trim(); // Read the entire line and trim whitespace
             if (input.isEmpty()) { // Check for empty input
@@ -163,9 +179,9 @@ class ItemInputHandler {
                 continue; // Prompt user again
             }
             if (input.length() == 1) { // Ensure input is a single character
-                sex = input.toUpperCase().charAt(0);
-                    if (sex == 'M' || sex == 'F') {
-                        return sex;
+                gender = input.toUpperCase().charAt(0);
+                    if (gender == 'M' || gender == 'F') {
+                        return gender;
                     }
             }
             System.err.println("Invalid input. Please enter 'M' for Male or 'F' for Female.");
@@ -180,18 +196,30 @@ class ItemInputHandler {
     *         (S for Small, M for Medium, L for Large).
     */
     protected static char setSize(Scanner scanner) {
-        System.out.println("Please enter your desired size: (S for Small, M for Medium, L for Large)");
+        System.out.println("Please enter your desired size: "
+                        +"(S for Small, M for Medium, L for Large)");
+
         while (true) {//Infinite loop until valid input is provided
             String input = scanner.nextLine().trim();//Read the entire line and trim whitespace
             if (input.isEmpty()) {//Check for empty input
-                System.err.println("No input detected. Please enter 'S' for Small or 'M' for Medium or 'L' for Large.");
+                System.err.println("No input detected." 
+                                +"Please enter 'S' for Small or 'M' for Medium"
+                                +" or 'L' for Large.");
                 continue;//Prompt user again
-            } else if (input.length() == 1 && (input.charAt(0) == 'S' || input.charAt(0) == 'M' || input.charAt(0) == 'L')) {
-                return input.charAt(0);//Return valid size
+            }    
+            if (input.length() == 1) {
+                char gender = input.toUpperCase().charAt(0);
+                if (gender == 'S' || gender == 'M' || gender == 'L') {
+                    return gender;
+                } else {
+                    System.err.println("Invalid input. Please enter"
+                    +" 'S' for Small or 'M' for Medium or 'L' for Large."); 
+                }                              
             } else {
-                System.err.println("Invalid input. Please enter 'S' for Small or 'M' for Medium or 'L' for Large.");
-            }   
-        }   
+                System.err.println("Invalid input. Please enter one letter:"
+                                +" 'S' for Small or 'M' for Medium or 'L' for Large.");
+            }
+        }     
     }
         
     /**
@@ -205,7 +233,10 @@ class ItemInputHandler {
      * @param size representing the selected size (Small||Medium||Large)
      */
     
-    protected static void inputItem(ArrayList<PackingItem> items, int type, String choice, char sex, char size) {
+    protected static void inputItem(ArrayList<PackingItem> items, int type,
+                                                                String choice,
+                                                                char sex,
+                                                                char size) {
         if (type == 1) {
             Clothing pack = new Clothing(choice, size, sex);
             items.add(pack);
@@ -215,7 +246,11 @@ class ItemInputHandler {
         }
     }
 
-    protected static void inputItem(ArrayList<PackingItem> items, int type, String choice, char sex, char size, int value) {
+    protected static void inputItem(ArrayList<PackingItem> items, int type,
+                                                                String choice,
+                                                                char sex,
+                                                                char size,
+                                                                int value) {
         if (type == 1) {
             Clothing pack = new Clothing(value, choice, size, sex);
             items.add(pack);

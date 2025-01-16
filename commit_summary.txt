@@ -1,16 +1,127 @@
+//This is a detailed summary of total commits by all authors, including the commit messages.
+
 ===== Commit Summary =====
 
-     9	JohnDim
-     8	markoulinos
-     4	Romain
-     3	IgnatiosSar
-     2	Georgia Seinti
-     1	Aliki Potamianaki
-     1	Cathy Mavrou
-     1	Manolis Vondikakis
+    36	Georgia Seinti
+    26	markoulinos
+    24	JohnDim
+    25	Romain
+     9	ALIKI POTAMIANAKI
+     8	IgnatiosSar
+     7	Manolis Vondikakis
+     2	Cathy Mavrou
 
 ===== Detailed Commit Messages =====
 
+e04148b by JohnDim on 2025-01-13: Add License and update README.md file
+20400fe by ALIKI POTAMIANAKI on 2025-01-13: Update CreateSuitcaseTest.java
+99e273f by ALIKI POTAMIANAKI on 2025-01-13: Create CreateSuitcaseTest.java
+36788d9 by ALIKI POTAMIANAKI on 2025-01-12: Update NonEssentialItems.java
+b895408 by Romain on 2025-01-11: Create ResultPresenter class to manage the results of the process and change main method to account for the creation of the class
+8f65842 by Romain on 2025-01-09: Change setGender method to accept lower case letters 's','m' and 'l' as valid input and fix java style issues in ItemInputHandler class
+5be79ad by Romain on 2025-01-09: Break down fillEssential method into smaller methods to adhere to Single Responsibility Principles and change user prompts for better user experience
+481b028 by markoulinos on 2025-01-07: Fix toString in Extras and alter names of clothing in DatabaseTableCreation for cohesion
+d80866c by Georgia Seinti on 2025-01-06: Modify main class to add menus
+04b9865 by Georgia Seinti on 2025-01-06: Change the SpaceOptimizer file to ensure functionality
+1e78182 by Georgia Seinti on 2025-01-06: Change the main branch to ensure functionality
+818c0f2 by Romain on 2025-01-06: Delete fxml files due to changes in UI direction
+46378cb by romgzn on 2025-01-06: Merge pull request #3 from JohnD1mopoulos/feature/create-GUI
+a8ff9e7 by romgzn on 2025-01-06: Merge branch 'main' into feature/create-GUI
+0072366 by JohnDim on 2025-01-03: Merge branch 'main' of https://github.com/JohnD1mopoulos/BitTE
+5c7fcbc by JohnDim on 2025-01-03: Make correct package changes
+f525aaa by JohnDim on 2025-01-03: Merge branch 'main' of https://github.com/JohnD1mopoulos/BitTE
+38410ab by IgnatiosSar on 2025-01-03: fixed SpaceOptimizer
+60b9736 by JohnDim on 2025-01-03: Add the correct package declaration for src classes
+71366e2 by Romain on 2025-01-03: Move Extras,java to correct directory
+707e243 by ALIKI POTAMIANAKI on 2025-01-03: create main method for CLI
+d477f0d by Manolis Vondikakis on 2025-01-03: Added Menuhandlervariable
+23f1868 by Georgia Seinti on 2025-01-03: Add get and set methods for the menuhandler file
+cd36820 by Romain on 2025-01-03: Make extra changes concerning Singleton design pattern and fix compilation time errors
+380e028 by ALIKI POTAMIANAKI on 2025-01-02: Update the names of MenuHandler's methods in NonEssentialItems class and fix issue in inputItem method of ItemInputHandler class
+d100cb4 by ALIKI POTAMIANAKI on 2025-01-02: Update and rename Nonessentials.java to NonEssentialItems.java
+fb11352 by Romain on 2025-01-02: Fix magic numbers issue in EssentialConstraints class with the use of named constants
+b4175c1 by Romain on 2025-01-02: Refactor EssentialItems to follow Singleton design pattern
+e4ecab0 by markoulinos on 2024-12-31: Add package to Clothing, PackingItem, ConnectionPool, change gender and sex to char for cohesion
+2934876 by ALIKI POTAMIANAKI on 2024-12-30: Add inpuutItem and changes in classes EssentialItems, Nonessentials, MenuHanler, ItemInputHandler
+e31a559 by Manolis Vondikakis on 2024-12-28: fixed topwearfemale to work with app
+b4a06e1 by Georgia Seinti on 2024-12-27: Modify the fxml file
+493d836 by Georgia Seinti on 2024-12-27: Add some changes to the HomePageController regarding the ids of some labels
+d43ff50 by Georgia Seinti on 2024-12-27: Add some changes
+2e29be4 by Georgia Seinti on 2024-12-27: Add new fxml file
+79b9be0 by Georgia Seinti on 2024-12-27: Modify HomePageController to match the new fxml file
+45510cf by Manolis Vondikakis on 2024-12-27: Added all Counters Except Topwear
+a10ce19 by markoulinos on 2024-12-25: Reorganize properties file
+2d0b342 by Georgia Seinti on 2024-12-25: Modify the HomePageController file to match the new fxml files
+39d8d5f by Georgia Seinti on 2024-12-25: Add the fxml file for the Hygiene category
+19bc125 by Georgia Seinti on 2024-12-25: Add the fxml file for the personal items category
+407ed26 by Georgia Seinti on 2024-12-25: Modify the HomePageController file to match the new fxml files
+e839740 by Georgia Seinti on 2024-12-25: Add the fxml file for the Shoes Male category
+6b5ce4b by Georgia Seinti on 2024-12-25: Add the fxml file for the Shoes Female category
+2970b12 by Georgia Seinti on 2024-12-25: Change the HomePageController file to match the BottomwearFemale fxml file
+913872d by Georgia Seinti on 2024-12-25: Add Bottomwear Female fxml file
+542b3e7 by Georgia Seinti on 2024-12-25: Change the HomePageController file to match the new fxml file
+e23f05a by Georgia Seinti on 2024-12-25: Add BottomwearMale fxml file
+1f8c15d by Georgia Seinti on 2024-12-24: Change the HomePageController file to add the Topwear fxml file to the code
+642ecdf by Georgia Seinti on 2024-12-24: Add fxml file for the male and female topwear category
+bad89f3 by Georgia Seinti on 2024-12-23: Change the code
+8fe19d8 by Manolis Vondikakis on 2024-12-23: Added width height length get methods
+76f47e9 by Manolis Vondikakis on 2024-12-23: Merge branch 'main' of https://github.com/JohnD1mopoulos/BitTE
+81d9048 by Manolis Vondikakis on 2024-12-23: Added get methods for SuitCase Height,Width,Lenght
+b5428d2 by Romain on 2024-12-23: Solve syntax issues concering the naming of new classes
+bfde3a0 by markoulinos on 2024-12-23: Add java doc comments
+c1b3230 by markoulinos on 2024-12-23: Add configurations for a safe setup in ConnectionPool
+cf48882 by markoulinos on 2024-12-23: Added it to the wrong class' :
+5bf1941 by markoulinos on 2024-12-23: Add properties to Clothing to ensure safety with connection to database
+8d223e5 by JohnDim on 2024-12-23: Add sql credentials in recources and add HikariCp and SLF4j dependencies
+a28ed8f by markoulinos on 2024-12-22: Add new SmallShirtMenTest to fit new features and delete old version, no longer applicable
+0449ca5 by markoulinos on 2024-12-22: Add package to Clothing.java and add typesArray for men and women for better communication between clothing and parameterControl
+d364de0 by markoulinos on 2024-12-22: Delete ClothingTest.java due to wrong placement
+5c31e96 by markoulinos on 2024-12-22: Delete Clothing.class and PackingItem.class due to wrong placement
+cc1b22d by Romain on 2024-12-22: Move showItems method from ItemDeletionHandler class to MenuHandler class for better structure
+c058f50 by Romain on 2024-12-22: Add Javadoc documentation and refactor PameterControl code into separate handler classes
+df120ac by Georgia Seinti on 2024-12-21: Modify HomePageController file to ensure connectability between the UI pages
+9b8a358 by Georgia Seinti on 2024-12-21: Modify SecondPage file to ensure connectability between the UI pages
+29c6735 by Georgia Seinti on 2024-12-21: Modify AppStart file to ensure connectability between the UI pages
+1afa0c0 by JohnDim on 2024-12-20: Add correct main class name and update package in main class
+f4ceecb by Cathy Mavrou on 2024-12-20: Extras added
+6bb7c97 by ALIKI POTAMIANAKI on 2024-12-19: Add Nonessentials and CreateSuitcase classes
+b8b9595 by JohnDim on 2024-12-18: Add main class to javafx and update sql connector
+ec167cd by JohnDim on 2024-12-18: Add Checkstyle and Javadoc plugins
+9719420 by Georgia Seinti on 2024-12-18: Delete comments written in Greek and change the name of the controller on the code to match previous change
+1b62c16 by Georgia Seinti on 2024-12-18: Delete comments written in Greek
+7c83078 by Georgia Seinti on 2024-12-18: Rename file according to feedback
+185560b by Georgia Seinti on 2024-12-18: Delete old App_Start file
+2fbaeb3 by Georgia Seinti on 2024-12-18: Change the class name to match the file name
+126602e by Georgia Seinti on 2024-12-18: Remove App class file
+182af00 by Georgia Seinti on 2024-12-18: Merge branch 'main' of github.com:JohnD1mopoulos/BitTE
+312641c by Georgia Seinti on 2024-12-18: Remove App java file
+56d92fa by Romain on 2024-12-18: Refactor: Break down deleteItem and setItemChoice methods; add clearer comments
+7d0dbed by Romain on 2024-12-17: Refactor code for better maintainability: - Added EssentialConstraints class to handle weight and volume constraints, adhering to Object-Oriented practices. - Implemented generic methods to reduce code duplication. - Split large methods into smaller, more manageable functions for improved readability and easier testing.
+0c70e5f by Romain on 2024-12-17: Rename Knapsack to EssentialItems and restructure fillEssential method
+54fda73 by JohnD1mopoulos on 2024-12-16: Create README.md file
+e8b9216 by JohnDim on 2024-12-16: Add the Jacoco plugin and update javafx Dependency
+1c22708 by IgnatiosSar on 2024-12-15: Reupload SpaceOptimizer class with some changes
+bdb1068 by markoulinos on 2024-12-15: Merge branch 'origin/main' into main
+84a4c9f by markoulinos on 2024-12-15: Add ConnectionPool for better resource management add logging framework to Clothing, ConnectionPool for better traceability add JavaDoc comments to Clothing,PackingItem for better readability Break-down fetchAttributeFromDB method. Separate query execution logic from connection
+073a650 by Georgia Seinti on 2024-12-15: Add part of the code for the second page of the UI, renamed the AppStart file according to the feedback and removed the App file and App class
+8d01c83 by markoulinos on 2024-12-10: package to class Clothing, PackingItem
+803c3c0 by markoulinos on 2024-12-10: Change size, gender to char for cohesion
+b3181a6 by markoulinos on 2024-12-10: Add .class file for Clothing, PackingItem
+449e061 by JohnDim on 2024-12-09: Add JDBC MySql connector Dependency
+0f236ab by markoulinos on 2024-12-05: Refactor and Clean Up Clothing related classes
+fd5e079 by markoulinos on 2024-12-05:  -Refactor and Clean Up Clothing-related Classes and PackingItem
+bdf3a0a by JohnDim on 2024-12-04: Add File for automatic Reviewer assigns and merge branch
+8994a23 by JohnDim on 2024-12-04: Add JavaFX and Junit dependency and assign Request reviewer
+a820f37 by IgnatiosSar on 2024-12-04: Merge pull request #2 from JohnD1mopoulos/fullRevision
+8d8c125 by Romain on 2024-12-04: Fix and refactor methods for gender-based menu and constraints
+e313007 by IgnatiosSar on 2024-12-03: Create solveModel,createModel and addConstraint methods
+b9d1431 by IgnatiosSar on 2024-12-03: Merge pull request #1 from JohnD1mopoulos/KnapsackInputs
+871542f by Romain on 2024-12-02: Change the item input process, create methods setTypeOfItem and setItemChoice, and delete inputItem code
+d930c1b by Romain on 2024-11-30: Fix syntaxt and logical errors in ParameterControl class and make corresponding changes to Knapsacack class
+c6ec574 by Romain on 2024-11-29: Merge branch 'main' of github.com:JohnD1mopoulos/BitTE C
+986e8f1 by Romain on 2024-11-29: Add and change methods to ParameterCOntrol and refactor Knapsack class
+60c6c2f by JohnDim on 2024-11-26: Renamed the commit summary file
+304b7cd by JohnDim on 2024-11-26: Added final changes for presentation
 4a6a7d5 by JohnDim on 2024-11-26: Added optimation changes
 7127285 by JohnDim on 2024-11-26: Added code changes to metrics
 2d67668 by IgnatiosSar on 2024-11-26: Added comments and imports

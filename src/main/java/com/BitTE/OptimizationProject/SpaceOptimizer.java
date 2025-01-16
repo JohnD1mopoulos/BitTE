@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.BitTE.OptimizationProject;
 
 import org.chocosolver.solver.Model;
@@ -60,7 +76,10 @@ public class SpaceOptimizer {
     }
 
     public ArrayList<PackingItem> solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
+<<<<<<< HEAD
         if(items.size()!=0){
+=======
+>>>>>>> e984be37555fd43fe34c92341cb12897ca764a91
         Model model = createModel(items, (int) (maxWeight * 1000), (int) (maxVolume * 1000));
 
         if (model.getSolver().solve()) {
@@ -81,8 +100,13 @@ public class SpaceOptimizer {
             System.out.println("No solution found.");
             return new ArrayList<>();
         }
+<<<<<<< HEAD
         } else {
             return new ArrayList<>();
         }
     }
 }
+=======
+    }
+}
+>>>>>>> e984be37555fd43fe34c92341cb12897ca764a91

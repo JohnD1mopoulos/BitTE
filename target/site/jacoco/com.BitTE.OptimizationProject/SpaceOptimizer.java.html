@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpaceOptimizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">SpaceOptimizer.java</span></div><h1>SpaceOptimizer.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.BitTE.OptimizationProject;
+
+import org.chocosolver.solver.Model;
+import org.chocosolver.solver.variables.IntVar;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+// Declaration of the class for the optimization problem
+<span class="nc" id="L26">public class SpaceOptimizer {</span>
+
+    // Class-level variable to store binary decision variables
+    private IntVar[] binaryVars;
+
+    // Create the Model for the problem
+    public Model createModel(ArrayList&lt;PackingItem&gt; items, int maxWeight, int maxVolume) throws SQLException {
+<span class="nc" id="L33">        Model model = new Model(&quot;Knapsack model&quot;);</span>
+
+<span class="nc" id="L35">        int n = items.size();</span>
+<span class="nc" id="L36">        binaryVars = new IntVar[n];  // Initialize the binaryVars array</span>
+
+<span class="nc" id="L38">        IntVar[] scaledVars = new IntVar[n];</span>
+<span class="nc" id="L39">        IntVar[] weightVars = new IntVar[n];</span>
+<span class="nc" id="L40">        IntVar[] volumeVars = new IntVar[n];</span>
+<span class="nc" id="L41">        int maxTotalValue = 0;</span>
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="nc" id="L44">            PackingItem item = items.get(i);</span>
+<span class="nc" id="L45">            binaryVars[i] = model.intVar(&quot;X&quot; + i, 0, 1);  // Store binary vars</span>
+
+<span class="nc" id="L47">            int value = item.getValue();</span>
+<span class="nc" id="L48">            scaledVars[i] = model.intScaleView(binaryVars[i], value);</span>
+<span class="nc" id="L49">            maxTotalValue += value;</span>
+
+<span class="nc" id="L51">            int weight = (int) (item.getWeight() * 1000);</span>
+<span class="nc" id="L52">            int volume = (int) (item.getVolume() * 1000);</span>
+<span class="nc" id="L53">            weightVars[i] = model.intScaleView(binaryVars[i], weight);</span>
+<span class="nc" id="L54">            volumeVars[i] = model.intScaleView(binaryVars[i], volume);</span>
+        }
+
+<span class="nc" id="L57">        IntVar totalValue = model.intVar(&quot;TotalValue&quot;, 0, maxTotalValue);</span>
+<span class="nc" id="L58">        model.sum(scaledVars, &quot;=&quot;, totalValue).post();</span>
+<span class="nc" id="L59">        model.setObjective(Model.MAXIMIZE, totalValue);</span>
+
+<span class="nc" id="L61">        addConstraints(model, weightVars, volumeVars, maxWeight, maxVolume);</span>
+
+<span class="nc" id="L63">        System.out.println(&quot;Model created with max possible total value: &quot; + maxTotalValue);</span>
+<span class="nc" id="L64">        System.out.println(&quot;Number of items: &quot; + n);</span>
+<span class="nc" id="L65">        System.out.println(&quot;Max weight: &quot; + maxWeight / 1000 + &quot;gr&quot;);</span>
+<span class="nc" id="L66">        System.out.println(&quot;Max volume: &quot; + maxVolume / 1000 + &quot;cm3&quot;);</span>
+
+<span class="nc" id="L68">        return model;</span>
+    }
+
+    // Add the volume and weight constraints
+    public void addConstraints(Model model, IntVar[] weightVars, IntVar[] volumeVars, int maxWeight, int maxVolume) {
+<span class="nc" id="L73">        model.sum(volumeVars, &quot;&lt;=&quot;, maxVolume).post();</span>
+<span class="nc" id="L74">        model.sum(weightVars, &quot;&lt;=&quot;, maxWeight).post();</span>
+<span class="nc" id="L75">    }</span>
+
+    public ArrayList&lt;PackingItem&gt; solveModel(ArrayList&lt;PackingItem&gt; items, double maxWeight, double maxVolume) throws SQLException {
+<span class="nc" id="L78">        Model model = createModel(items, (int) (maxWeight * 1000), (int) (maxVolume * 1000));</span>
+
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (model.getSolver().solve()) {</span>
+<span class="nc" id="L81">            System.out.println(&quot;Solution found!&quot;);</span>
+
+<span class="nc" id="L83">            ArrayList&lt;PackingItem&gt; selectedItems = new ArrayList&lt;&gt;();</span>
+
+            // Use binaryVars to check which items are selected
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            for (int i = 0; i &lt; items.size(); i++) {</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                if (binaryVars[i].getValue() == 1) {</span>
+<span class="nc" id="L88">                    selectedItems.add(items.get(i));</span>
+<span class="nc" id="L89">                    System.out.println(&quot;Selected item: &quot; + items.get(i));</span>
+                }
+            }
+
+<span class="nc" id="L93">            return selectedItems;</span>
+        } else {
+<span class="nc" id="L95">            System.out.println(&quot;No solution found.&quot;);</span>
+<span class="nc" id="L96">            return new ArrayList&lt;&gt;();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

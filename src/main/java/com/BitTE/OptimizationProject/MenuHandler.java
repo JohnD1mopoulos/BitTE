@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.BitTE.OptimizationProject;
 
 import java.util.ArrayList;
@@ -49,6 +65,19 @@ class MenuHandler {
         System.out.println("------------------------------\n"
                         +"Press 1 to terminate process.\n"
                         +"Press 2 to add an nonessential item.\n"
+                        +"--------------------------------");
+    }
+
+    /**
+     * Displays the menu for the user prompting him to make one of three choices:
+     * 1. Add an nonessential item to the Knapsack.
+     * 2. Exit the programm.
+     */
+    protected static void showNonEssentialItemsMenu() {
+        System.out.println("------------------------------\n"
+                        +"Press 1 to terminate process.\n"
+                        +"Press 2 to add an nonessential item.\n"
+                        +"Press 3 to delete an nonessential item(s).\n"
                         +"--------------------------------");
     }
 
