@@ -41,10 +41,10 @@ public class DatabaseTableCreation {
             createTables(stmt);
 
             // Check and insert data if tables are empty
-            if(isTableEmpty(conn, "EXTRAS")) {
+            if (isTableEmpty(conn, "EXTRAS")) {
                 insertDataIntoExtras(stmt);
             }
-            if(isTableEmpty(conn, "CLOTHING")) {
+            if (isTableEmpty(conn, "CLOTHING")) {
                 insertDataIntoClothing(stmt);
             }
 
