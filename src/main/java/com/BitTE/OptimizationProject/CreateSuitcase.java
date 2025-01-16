@@ -49,7 +49,7 @@
      private CreateSuitcase(Scanner scanner) {
          // Ask the customer about the weight limit of the suitcase
          System.out.println("Enter the desired weight"
-                        +"of the suitcase (in grams): ");
+                        +" of the suitcase (in grams): ");
          maxWeight = setSuitcaseCharacteristics(scanner);
 
          // Ask the dimensions of the suitcase in centimeters
@@ -99,11 +99,11 @@
                      return var;
                  } else {
                      System.out.println("Invalid input. The value must"
-                                    +"be positive. Try again.");
+                                    +" be positive. Try again.");
                  }
              } catch (InputMismatchException e) {
                  System.err.println("Invalid Input. Please"
-                                +"provide a valid double.");
+                                +" provide a valid double.");
                  scanner.nextLine();
              }
          }
