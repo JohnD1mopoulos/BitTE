@@ -37,4 +37,24 @@ public class DatabaseTableCreationTest {
         rs = dbMetaData.getTables(null, null, "EXTRAS", null);
         assertTrue(rs.next(), "Extras table should be created");
     }
+
+    @Test
+    public void testDataInsertionForExtras() throws SQLException {
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS count FROM EXTRAS");
+        if (rs.next()) {
+            int count = rs.getInt("count");
+            assertEquals(9, count, "Should have 9 rows in the EXTRAS table");
+        }
+    }
+
+    @Test
+    public void testDataInsertionForClothing() throws SQLException {
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS count FROM CLOTHING");
+        if (rs.next()) {
+            int count = rs.getInt("count");
+            assertEquals(72, count, "Should have 72 rows in the CLOTHING table");
+        }
+    }
 }
