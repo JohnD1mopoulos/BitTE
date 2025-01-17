@@ -44,6 +44,36 @@ final class ItemInputHandler {
             "This is a utility class and it shouldn't be instantiated");
     }
 
+    // Private clothing constants (unisex)
+    private static final int T_SHIRT = 1;
+    private static final int SHIRT = 2;
+    private static final int HOODIE = 3;
+    private static final int JEANS = 4;
+    private static final int SWEATPANTS = 5;
+    private static final int TROUSERS = 6;
+
+    // Private men's clothing constants
+    private static final int BOXERS = 7;
+    private static final int SHORTS = 8;
+    private static final int SNEAKERS = 9;
+    private static final int SANDALS = 10;
+    private static final int BOOTS = 11;
+    private static final int SOCKS = 12;
+
+    // Private women's clothing constants
+    private static final int SKIRT = 7;
+    private static final int PANTIES = 8;
+    private static final int SHORTS_W = 9;
+    private static final int SNEAKERS_W = 10;
+    private static final int SANDALS_W = 11;
+    private static final int BOOTS_W = 12;
+    private static final int SOCKS_W = 13;
+
+    // Private accessory constants
+    private static final int PASSPORT = 1;
+    private static final int LAPTOP = 2;
+    private static final int BOOK = 3;
+
     /**
     * Prompts the user to choose between inputting a clothing item or
     * an accessory.
@@ -99,45 +129,45 @@ final class ItemInputHandler {
             //Return the appropriate item if the selected gender is Male
             if (itemGender == 'M') {
                 switch (choiceOfItem) {
-                        case 1 : return "T-Shirt";
-                        case 2 : return "Shirt";
-                        case 3 : return "Hoodie";
-                        case 4 : return "Jeans";
-                        case 5 : return "Sweatpants";
-                        case 6 : return "Trousers";
-                        case 7 : return "Boxers";
-                        case 8 : return "Shorts";
-                        case 9 : return "Sneakers";
-                        case 10 : return "Sandals";
-                        case 11 : return "Boots";
-                        case 12 : return "Socks";
+                        case T_SHIRT : return "T-Shirt";
+                        case SHIRT : return "Shirt";
+                        case HOODIE : return "Hoodie";
+                        case JEANS : return "Jeans";
+                        case SWEATPANTS : return "Sweatpants";
+                        case TROUSERS : return "Trousers";
+                        case BOXERS : return "Boxers";
+                        case SHORTS : return "Shorts";
+                        case SNEAKERS : return "Sneakers";
+                        case SANDALS : return "Sandals";
+                        case BOOTS : return "Boots";
+                        case SOCKS : return "Socks";
                         default: throw new IllegalArgumentException(
                                         "Invalid clothing choice");
                 }
             } else { //Return the appropriate item if the selected gender is 'F'
                 switch (choiceOfItem) {
-                        case 1 : return "T-Shirt";
-                        case 2 : return "Shirt";
-                        case 3 : return "Hoodie";
-                        case 4 : return "Jeans";
-                        case 5 : return "Sweatpants";
-                        case 6 : return "Trousers";
-                        case 7 : return "Skirt";
-                        case 8 : return "Panties";
-                        case 9 : return "Shorts";
-                        case 10 : return "Sneakers";
-                        case 11 : return "Sandals";
-                        case 12 : return "Boots";
-                        case 13 : return "Socks";
+                        case T_SHIRT : return "T-Shirt";
+                        case SHIRT : return "Shirt";
+                        case HOODIE : return "Hoodie";
+                        case JEANS : return "Jeans";
+                        case SWEATPANTS : return "Sweatpants";
+                        case TROUSERS : return "Trousers";
+                        case SKIRT : return "Skirt";
+                        case PANTIES : return "Panties";
+                        case SHORTS_W : return "Shorts";
+                        case SNEAKERS_W : return "Sneakers";
+                        case SANDALS_W : return "Sandals";
+                        case BOOTS_W : return "Boots";
+                        case SOCKS_W : return "Socks";
                         default: throw new IllegalArgumentException(
                                         "Invalid clothing choice");
                 }
             }
         } else { //If item is an accessory
             switch (choiceOfItem) {
-                case 1 : return "Passport";
-                case 2 : return "Laptop";
-                case 3 : return "Book";
+                case PASSPORT : return "Passport";
+                case LAPTOP : return "Laptop";
+                case BOOK : return "Book";
                 default: throw new IllegalArgumentException(
                                     "Invalid accessory choice");
             }
