@@ -221,43 +221,101 @@ class ItemInputHandler {
             }
         }     
     }
+
+    protected static int getNumberOfItems(Scanner scanner) {
+        System.out.println("How many items like this would you like to pack?"
+                            +"(max 8)");
+        while (true) {//Infinite loop until valid input is provided
+            try {
+                int numberOfitems = scanner.nextInt();
+                if (numberOfitems > 0 && numberOfitems < 9) {
+                    return numberOfitems;
+                } else {
+                    System.out.println("Invalid input. Give me an integer"
+                                        +" ranging from 1 to 8.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Give me an integer"
+                                        +"ranging from 1 to 8.");
+                scanner.nextLine();//Clear the next line
+            }
+        }
+    }
+    
+    /**
+     * Creates an object of type PackingItem for it to be included later on
+     * in the list of items to be packed.
+     * 
+     * @param type representing if the item is a piece of clothing (1)
+     *                                                     or an accessory (2)
+     * @param choiceOfItem representing the type of item (example -> jacket)
+     * @param sex The gender-specific designation for the item ('M', 'F',
+     *             or 'X' if not applicable).
+     * @param size representing the selected size (Small||Medium||Large)
+     * @param value representing the value given by the user as 
+     *              a preference measure
+     * @return
+     */
+    private static PackingItem createItem(int type, String choiceOfItem,
+                                            char sex, char size, int value) {
+        if (type == 1) {
+            return value == -1 ? new Clothing(choiceOfItem, size, sex) : 
+                                new Clothing(value, choiceOfItem, size, sex);
+        } else if (type == 2) {
+            return value == -1 ? new Extras(choiceOfItem, size, sex) : 
+                                new Extras(value, choiceOfItem, size, sex);
+        } else {
+            throw new IllegalArgumentException("Invalid type: " + choiceOfItem);
+        }
+    }
+
         
     /**
      * Inputs the user's choice of Item in ArrayList PackingItem according to the user's previous choices of 
      * Item type, choice, sex and size
      * 
      * @param items representing the essential clothing and what not items
-     * @param type representing the type of item (example -> jacket)
-     * @param choiceOfItem representing if the item is a piece of clothing (1) or an accessory (2)
-     * @param sex representing the selected gender if the item is a piece of clothing ("X" if it isn't)
+     * @param choiceOfItem representing the type of item (example -> jacket)
+     * @param type representing if the item is a piece of clothing (1) or an accessory (2)
+     * @param sex The gender-specific designation for the item ('M', 'F',
+     *             or 'X' if not applicable).
      * @param size representing the selected size (Small||Medium||Large)
+     * @param timesPacked representing how many times the item will be packed
      */
-    
     protected static void inputItem(ArrayList<PackingItem> items, int type,
-                                                                String choice,
-                                                                char sex,
-                                                                char size) {
-        if (type == 1) {
-            Clothing pack = new Clothing(choice, size, sex);
-            items.add(pack);
-        } else {
-            Extras pack = new Extras(choice, size, sex);
+                                                            String choiceOfItem,
+                                                            char sex,
+                                                            char size,
+                                                            int timesPacked) {
+        //Insert a default value for value
+        PackingItem pack = createItem(type, choiceOfItem, sex, size, 0);
+        for (int i = 0; i < timesPacked; i++) {
             items.add(pack);
         }
     }
 
+    /**
+     * Overloaded version of inputItem that includes a value parameter.
+     *
+     * @param items The list of PackingItem objects to which items will be added.
+     * @param type  The type of item (e.g., clothing or accessory).
+     * @param choiceOfItem  The specific item choice (e.g., "jacket").
+     * @param sex The gender-specific designation for the item ('M', 'F',
+     *             or 'X' if not applicable).
+     * @param size The size of the item ('S', 'M', 'L').
+     * @param value An additional parameter for item-specific value (e.g., price, priority, etc.).
+     * @param timesPacked The number of times to pack the item.
+     */
     protected static void inputItem(ArrayList<PackingItem> items, int type,
-                                                                String choice,
-                                                                char sex,
-                                                                char size,
-                                                                int value) {
-        if (type == 1) {
-            Clothing pack = new Clothing(value, choice, size, sex);
-            items.add(pack);
-        } else {
-            Extras pack = new Extras(value, choice, size, sex);
+                                                            String choiceOfItem,
+                                                            char sex,
+                                                            char size,
+                                                            int value,
+                                                            int timesPacked) {
+
+        PackingItem pack = createItem(type, choiceOfItem, sex, size, value);
+        for (int i = 0; i < timesPacked; i++) {
             items.add(pack);
         }
-    }
- 
+    } 
 }

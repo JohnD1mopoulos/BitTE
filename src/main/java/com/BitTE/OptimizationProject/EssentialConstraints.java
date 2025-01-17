@@ -207,6 +207,7 @@ import java.util.function.Function;
             scanner.nextLine();
         
             if (userChoice == 1) {
+                items.clear();//Delete everything that was chosen
                 return false;//Terminate process
             } else if (userChoice == 2) {
                 ItemDeletionHandler.deleteItem(items, scanner);

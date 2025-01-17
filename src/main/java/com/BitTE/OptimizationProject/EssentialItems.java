@@ -113,8 +113,12 @@ class EssentialItems {
         //Choose the item's size
         char itemSize = ItemInputHandler.setSize(scanner);
 
+        //Choose how many times the item will be packed
+        int numOfInsertions = ItemInputHandler.getNumberOfItems(scanner);
+
         //Input item 
-        ItemInputHandler.inputItem(essentialItems, inputType, itemOfChoice, itemGender, itemSize);
+        ItemInputHandler.inputItem(essentialItems, inputType, itemOfChoice,
+                                    itemGender, itemSize, numOfInsertions);
     }
 
     /**

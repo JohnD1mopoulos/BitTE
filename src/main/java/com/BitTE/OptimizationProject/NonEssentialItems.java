@@ -132,9 +132,11 @@ class NonEssentialItems {
         //Get the item's value from user.
         int value = setValue(scanner);
 
-        // Add the item to the non-essential items list. 
+
+        /* Add the item to the non-essential items list. Have only one insertion
+        to account for differences in values given by the user for the same item*/
         ItemInputHandler.inputItem(nonEssentialItems, inputType,
-                                        itemOfChoice, itemGender, itemSize, value);
+                                        itemOfChoice, itemGender, itemSize, value, 1);
     }
 
     /**
