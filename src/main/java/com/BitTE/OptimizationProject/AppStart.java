@@ -50,8 +50,7 @@ public class AppStart {
             }
         }
         ResultPresenter.showResults(essentialItemsManager.essentialItems,
-                selectedItems,
-                scanner);
+                selectedItems);
         scanner.close();
     }
 }

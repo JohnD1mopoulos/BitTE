@@ -27,7 +27,7 @@ import java.util.Scanner;
  * are respected. The class interacts with the user through menus to guide them
  *  in selecting items and verifying the constraints of the knapsack.
  */
-class EssentialItems {
+final class EssentialItems {
 
     /**Static instance variable for the Singleton pattern.*/
     static EssentialItems listOfEssentialItems;
@@ -69,7 +69,7 @@ class EssentialItems {
      *         3 - if the user wants to start adding non essential items
      *         4 - if the user wants to abandon the process.
      */
-    protected int getUserMenuChoice(Scanner scanner) {
+    protected int getUserMenuChoice(final Scanner scanner) {
 
         while (true) { //Never ending loop to ensure choice being made
             try {
@@ -106,7 +106,7 @@ class EssentialItems {
 
         //If Item is a piece of Clothing set the prefered sex for the item
         char itemGender = 'X';
-        if (inputType == 1){
+        if (inputType == 1) {
             itemGender = ItemInputHandler.setGender(scanner);
         }
 
@@ -152,7 +152,7 @@ class EssentialItems {
      */
     private boolean manageConstraints(final double maxWeight,
                                     final double maxVolume,
-                                    Scanner scanner) {
+                                    final Scanner scanner) {
         //Check constraints
         int constraintsStatus = EssentialConstraints.
         checkConstraints(essentialItems,
@@ -166,7 +166,7 @@ class EssentialItems {
                                                     maxVolume);
 
         //Handle different constraint scenarios
-        if (constraintsStatus != 1) {//Constraints arent met
+        if (constraintsStatus != 1) { //Constraints arent met
 
         boolean constraintProblemSolved = EssentialConstraints.
                                         fixConstraints(essentialItems,
@@ -181,7 +181,7 @@ class EssentialItems {
                 return true;
             } else {
                 System.out.println("Terminating process. Goodbye!!!");
-                return false;//Knapsack wont be filled
+                return false; //Knapsack wont be filled
             }
 
         }  else { //Constraints are respected from the begining
@@ -204,7 +204,7 @@ class EssentialItems {
     */
     protected boolean fillEssential(final double maxWeight,
                                     final double maxVolume,
-                                    Scanner scanner) {
+                                    final Scanner scanner) {
 
         boolean processRunning = true;
         System.out.println("INSERTION OF ESSENTIAL ITEMS\n"

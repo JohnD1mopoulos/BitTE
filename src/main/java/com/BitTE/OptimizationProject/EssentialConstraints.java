@@ -140,13 +140,14 @@ import java.util.function.Function;
     * @param maxWeight representing the maximum weight that can be added to the
     *                  knapsack.
     */
-    protected static void showConstraintFeedback(ArrayList<PackingItem> items,
-                                        int stateOfConstraints,
+    protected static void showConstraintFeedback(
+                                        final ArrayList<PackingItem> items,
+                                        final int stateOfConstraints,
                                         final double maxWeight,
                                         final double maxVolume) {
 
-        double remainingWeight = maxWeight - calculateSumOfAttributes
-        (items, t -> {
+        double remainingWeight = maxWeight - calculateSumOfAttributes(
+            items, t -> {
             try {
                 return t.getWeight();
             } catch (SQLException e) {
@@ -154,8 +155,8 @@ import java.util.function.Function;
             }
                         return null;
         });
-        double remainingVolume = maxVolume - calculateSumOfAttributes
-        (items, t -> {
+        double remainingVolume = maxVolume - calculateSumOfAttributes(
+            items, t -> {
             try {
                 return t.getVolume();
             } catch (SQLException e) {
@@ -210,8 +211,9 @@ import java.util.function.Function;
     * @return false if the process is terminated, true if items were
     *         deleted successfully.
     */
-    protected static boolean fixConstraints(ArrayList<PackingItem> items,
-                                        Scanner scanner,
+    protected static boolean fixConstraints(
+                                        final ArrayList<PackingItem> items,
+                                        final Scanner scanner,
                                         final double maxWeight,
                                         final double maxVolume) {
 
