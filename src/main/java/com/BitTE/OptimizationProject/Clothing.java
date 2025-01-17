@@ -20,14 +20,10 @@ package com.BitTE.OptimizationProject;
  import java.sql.PreparedStatement;
  import java.sql.ResultSet;
  import java.sql.SQLException;
- 
- import com.BitTE.OptimizationProject.DatabaseConnection;
- 
  /**
   * Represents specific clothing items as a type of packing item with additional functionality for fetching attributes from a database.
   */
  public class Clothing extends PackingItem {
- 
      /**
       * Constructs a new Clothing item with specified value, type, size, and gender.
       * Used for Essential items.
@@ -140,4 +136,3 @@ package com.BitTE.OptimizationProject;
          }
      }
  }
- 

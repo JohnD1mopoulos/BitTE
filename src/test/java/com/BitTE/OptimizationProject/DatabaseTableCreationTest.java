@@ -21,8 +21,6 @@ public class DatabaseTableCreationTest {
 
     @AfterEach
     void tearDown() throws Exception {
-        // Optionally drop tables or close connection
-
         if (connection != null) {
             connection.close();
         }

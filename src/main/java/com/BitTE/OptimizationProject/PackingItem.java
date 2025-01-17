@@ -19,7 +19,6 @@
  import java.sql.SQLException;
  import java.util.Arrays;
  import java.util.List;
- 
  /**
   * Abstract class representing a generic packing item. This class provides a foundation for items that can be packed,
   * defining common properties such as type, size, and value, and requires the implementation of methods to retrieve weight and volume.

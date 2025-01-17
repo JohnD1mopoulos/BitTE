@@ -69,6 +69,27 @@ public class ExtrasTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void testFetchVolumeFromDBForBookSizeM() {
+        Extras extras = new Extras("Book", 'M','X');
+        try {
+            assertEquals(1500, extras.getVolume(), "The volume should be 1500.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testFetchWeightFromDBForBookSizeM () {
+        Extras extras = new Extras("Book", 'M','X');
+        try {
+            assertEquals(800, extras.getWeight(), "The weight should be 800.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     public void testDataIntegrityErrorDuringGetWeight() {
         Extras extras = new Extras("Passport", 'Q', 'X');
