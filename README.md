@@ -4,7 +4,7 @@
 
 We have managed to develop an application called *PackApp* that assists travellers with the task of loading a suitcase.
 
-Below you can find a detailed description of this repositorys contents and its intended use.
+Below you can find a detailed description of this repository's contents and its intended use.
 
 ---
 
@@ -18,9 +18,19 @@ In order to compile the program the following command is used:
 mvn clean install
 ```
 
-This command will clean the target directory and then compile and package the application,
+This command will clean the target directory and then compile and package the application.
 
-as well as launch the app.
+---
+
+## Execution
+
+It is quite simpe to execute the program, access the target directory and then run the following command through the terminal:
+
+```bash
+java -jar BitTE-1.0-SNAPSHOT.jar
+```
+
+The program will be launched immediately.
 
 ---
 
@@ -31,16 +41,16 @@ Below you can find a description of the standard program use.
 - When the app is launched, the user is prompted to input the dimension (length, width, height) of their suitcase.
 - Afterwards, the app requests an input from the user that concerns some essential items
   
-  that the user requires to be packed (such as a shirt or hoodie).
+  that the user requires to be packed (such as a shirt or hoodie or any accessories).
   
 - The app makes sure to ask for the user's sex so that it can select the appropriate items accordingly.
 - This process is then continued for as long as the user needs until they have added all essential items.
-- The same process follows for essential accessories one might need.
+- The same process goes on for any non-essential items the user may need.
 - When the user is satisfied with their choices and exits the selection process,
 
   the app uses optimization methods to present the combination of items that can fit the remainder of space
 
-  while already having packed all essential items beforehand.
+  while already having packed all aforementioned items beforehand.
 
 ---
 
