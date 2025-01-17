@@ -21,26 +21,34 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * The {@code ItemInputHandler} class provides functionality for handling user input 
- * related to the addition of clothing items or accessories to a packing list. It prompts 
- * the user to choose between different types of items, genders (for clothing), and sizes 
- * and then allows the user to input those items into a list.
+ * The {@code ItemInputHandler} class provides functionality for handling
+ *  user input related to the addition of clothing items or accessories to
+ *  a packing list. It prompts the user to choose between different types of
+ *  items, genders (for clothing), and sizes and then allows the user to input
+ *  those items into a list.
  * 
  * This class includes methods for:
  * - Asking the user to select the type of item (clothing or accessory).
- * - Prompts to select specific items, such as clothing based on gender or accessories.
- * - Validating user input to ensure valid choices for item type, item choice, gender, and size.
- * - Collecting all necessary information to create and add an item to the packing list.
+ * - Prompts to select specific items, such as clothing based on gender or 
+ *   accessories.
+ * - Validating user input to ensure valid choices for item type, item choice,
+ *   gender, and size.
+ * - Collecting all necessary information to create and add an item to the
+ *   packing list.
  */
 class ItemInputHandler {
     /**
-    * Prompts the user to choose between inputting a clothing item or an accessory.
+    * Prompts the user to choose between inputting a clothing item or 
+    * an accessory.
     *
-    * This method ensures robust handling of user input, allowing only valid integers (1 or 2) as choices.
-    * If the input is invalid, the user is repeatedly prompted until a valid input is provided.
+    * This method ensures robust handling of user input, allowing only
+    * valid integers (1 or 2) as choices.
+    * If the input is invalid, the user is repeatedly prompted until a
+    * valid input is provided.
     *
     * @param scanner a Scanner instance for capturing the user's input.
-    * @return an integer representing the user's choice: 1 for Clothing, or 2 for Accessory.
+    * @return an integer representing the user's choice: 1 for Clothing, or
+    *         2 for Accessory.
     */
     protected static int setTypeOfItem(Scanner scanner) {
         int choice;
@@ -50,32 +58,39 @@ class ItemInputHandler {
                 if (choice == 1 || choice == 2) {
                     return choice;
                 } else {
-                    System.out.println("Invalid input. Please give me 1 to input clothing or 2 to input an accessory.");
+                    System.out.println("Invalid input."
+                    +" Please give me 1 to input clothing or"
+                    +" 2 to input an accessory.");
                 }
             } catch (InputMismatchException e) {
-                System.err.println("Invalid Input. Please give me a valid integer.");
+                System.err.println("Invalid Input."
+                                    +" Please give me a valid integer.");
                 scanner.next();
             }
         }
     }
 
     /**
-    * Prompts the user to pick what item he wants to input depending on if it's a clothing
-    * item or an accessory.
+    * Prompts the user to pick what item he wants to input depending on
+    * if it's a clothing item or an accessory.
     * 
-    * @param itemType representing the user's previous choice for the type of item he will be inputting
-    *             (1 for clothing, or 2 for an accessory).
+    * @param itemType representing the user's previous choice for the type
+    *                 of item he will be inputting
+    *                 (1 for clothing, or 2 for an accessory).
     * @param itemGender a char representing the user's choice of gender
     *             ('M' for male, 'F' for female).
     * @param scanner a Scanner instance for capturing the user's input.
     * @return the user's choice as a String
     */
-    protected static String setItemChoice(int itemType,char itemGender,Scanner scanner) {
+    protected static String setItemChoice(int itemType,
+                                        char itemGender,
+                                        Scanner scanner) {
 
-        int choiceOfItem = validateChoiceOfItem(itemType, itemGender, scanner);//Get user choice
+        int choiceOfItem = validateChoiceOfItem(itemType, itemGender, scanner);
                                     
         if (itemType == 1) {//Item is a piece of Clothing
-            if (itemGender == 'M') {//Return the appropriate item if the selected gender is Male
+            //Return the appropriate item if the selected gender is Male
+            if (itemGender == 'M') {
                 switch (choiceOfItem) {
                         case 1 : return "T-Shirt";
                         case 2 : return "Shirt";
@@ -89,7 +104,8 @@ class ItemInputHandler {
                         case 10 : return "Sandals";
                         case 11 : return "Boots";
                         case 12 : return "Socks";
-                        default: throw new IllegalArgumentException("Invalid clothing choice");
+                        default: throw new IllegalArgumentException(
+                                        "Invalid clothing choice");
                 }
             } else {//Return the appropriate item if the selected gender is 'F'
                 switch (choiceOfItem) {
@@ -106,7 +122,8 @@ class ItemInputHandler {
                         case 11 : return "Sandals";
                         case 12 : return "Boots";
                         case 13 : return "Socks";
-                        default: throw new IllegalArgumentException("Invalid clothing choice");
+                        default: throw new IllegalArgumentException(
+                                        "Invalid clothing choice");
                 }
             }
         } else {//If item is an accessory
@@ -114,7 +131,8 @@ class ItemInputHandler {
                 case 1 : return "Passport";
                 case 2 : return "Laptop";
                 case 3 : return "Book";
-                default: throw new IllegalArgumentException("Invalid accessory choice");
+                default: throw new IllegalArgumentException(
+                                    "Invalid accessory choice");
             }
         }
     }
@@ -131,12 +149,16 @@ class ItemInputHandler {
      * @param scanner a Scanner instance for capturing the user's input.
      * @return the user's validated choice as an integer
      */
-    private static int validateChoiceOfItem(int itemType,char itemGender,Scanner scanner) {
-        //Set accepted range of int choices depending of if the item is a piece of clothing or an accessory
+    private static int validateChoiceOfItem(int itemType,
+                                            char itemGender,
+                                            Scanner scanner) {
+        /*Set accepted range of int choices depending of if the item is a piece
+         of clothing or an accessory*/
         int minRange = 1;
         int maxRange;
         if (itemType == 1) {//Item is a piece of clothing
-            //Account for the difference in choices depending on the previously selected gender of choice
+            /*Account for the difference in choices depending on the previously
+             selected gender of choice*/
             if (itemGender == 'M') {
                 maxRange = 12;
             } else {
@@ -150,13 +172,16 @@ class ItemInputHandler {
             try {
                 int choiceOfItem = scanner.nextInt();
                 scanner.nextLine();
-                if (choiceOfItem < minRange || choiceOfItem > maxRange) {//If item is not in the accepted range  
-                    System.out.println("Invalid input. Give me an integer ranging from "+minRange+" to "+maxRange+".");
+                //If item is not in the accepted range
+                if (choiceOfItem < minRange || choiceOfItem > maxRange) {  
+                    System.out.println("Invalid input. Give me an integer "
+                                +"ranging from "+minRange+" to "+maxRange+".");
                 } else {//Item is in the accepted range
                     return choiceOfItem;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please give me a valid integer");
+                System.out.println("Invalid input."
+                                    +" Please give me a valid integer");
                 scanner.nextLine();
             }
         }
@@ -170,12 +195,15 @@ class ItemInputHandler {
         *         ('M' for male, 'F' for female).
         */
     protected static char setGender(Scanner scanner) {
-        System.out.println("Please enter your gender: (M for Male, F for Female)");
+        System.out.println("Please enter your gender: "
+                            +"(M for Male, F for Female)");
         char gender;
         while (true) { // Infinite loop until valid input is provided
-            String input = scanner.nextLine().trim(); // Read the entire line and trim whitespace
+            // Read the entire line and trim whitespace
+            String input = scanner.nextLine().trim(); 
             if (input.isEmpty()) { // Check for empty input
-                System.err.println("No input detected. Please enter 'M' for Male or 'F' for Female.");
+                System.err.println("No input detected. "
+                            +"Please enter 'M' for Male or 'F' for Female.");
                 continue; // Prompt user again
             }
             if (input.length() == 1) { // Ensure input is a single character
@@ -184,7 +212,8 @@ class ItemInputHandler {
                         return gender;
                     }
             }
-            System.err.println("Invalid input. Please enter 'M' for Male or 'F' for Female.");
+            System.err.println("Invalid input. Please enter"
+                                +" 'M' for Male or 'F' for Female.");
             }
     }
 
@@ -200,7 +229,8 @@ class ItemInputHandler {
                         +"(S for Small, M for Medium, L for Large)");
 
         while (true) {//Infinite loop until valid input is provided
-            String input = scanner.nextLine().trim();//Read the entire line and trim whitespace
+            //Read the entire line and trim whitespace
+            String input = scanner.nextLine().trim();
             if (input.isEmpty()) {//Check for empty input
                 System.err.println("No input detected." 
                                 +"Please enter 'S' for Small or 'M' for Medium"
@@ -217,7 +247,7 @@ class ItemInputHandler {
                 }                              
             } else {
                 System.err.println("Invalid input. Please enter one letter:"
-                                +" 'S' for Small or 'M' for Medium or 'L' for Large.");
+                        +" 'S' for Small or 'M' for Medium or 'L' for Large.");
             }
         }     
     }
@@ -265,28 +295,32 @@ class ItemInputHandler {
             return value == -1 ? new Extras(choiceOfItem, size, sex) : 
                                 new Extras(value, choiceOfItem, size, sex);
         } else {
-            throw new IllegalArgumentException("Invalid type: " + choiceOfItem);
+            throw new IllegalArgumentException("Invalid type: " 
+                                                + choiceOfItem);
         }
     }
 
         
     /**
-     * Inputs the user's choice of Item in ArrayList PackingItem according to the user's previous choices of 
-     * Item type, choice, sex and size
+     * Inputs the user's choice of Item in ArrayList PackingItem according to
+     * the user's previous choices of Item type, choice, sex and size
      * 
      * @param items representing the essential clothing and what not items
      * @param choiceOfItem representing the type of item (example -> jacket)
-     * @param type representing if the item is a piece of clothing (1) or an accessory (2)
+     * @param type representing if the item is a piece of 
+     *             clothing (1) or an accessory (2)
      * @param sex The gender-specific designation for the item ('M', 'F',
      *             or 'X' if not applicable).
      * @param size representing the selected size (Small||Medium||Large)
      * @param timesPacked representing how many times the item will be packed
      */
-    protected static void inputItem(ArrayList<PackingItem> items, int type,
-                                                            String choiceOfItem,
-                                                            char sex,
-                                                            char size,
-                                                            int timesPacked) {
+    protected static void inputItem(ArrayList<PackingItem> items,
+                                    int type,
+                                    String choiceOfItem,
+                                    char sex,
+                                    char size,
+                                    int timesPacked) {
+
         //Insert a default value for value
         PackingItem pack = createItem(type, choiceOfItem, sex, size, 0);
         for (int i = 0; i < timesPacked; i++) {
@@ -297,21 +331,24 @@ class ItemInputHandler {
     /**
      * Overloaded version of inputItem that includes a value parameter.
      *
-     * @param items The list of PackingItem objects to which items will be added.
+     * @param items The list of PackingItem objects to which items 
+     *               will be added.
      * @param type  The type of item (e.g., clothing or accessory).
      * @param choiceOfItem  The specific item choice (e.g., "jacket").
      * @param sex The gender-specific designation for the item ('M', 'F',
      *             or 'X' if not applicable).
      * @param size The size of the item ('S', 'M', 'L').
-     * @param value An additional parameter for item-specific value (e.g., price, priority, etc.).
+     * @param value An additional parameter for item-specific value 
+     *              (e.g., price, priority, etc.).
      * @param timesPacked The number of times to pack the item.
      */
-    protected static void inputItem(ArrayList<PackingItem> items, int type,
-                                                            String choiceOfItem,
-                                                            char sex,
-                                                            char size,
-                                                            int value,
-                                                            int timesPacked) {
+    protected static void inputItem(ArrayList<PackingItem> items, 
+                                    int type,
+                                    String choiceOfItem,
+                                    char sex,
+                                    char size,
+                                    int value,
+                                    int timesPacked) {
 
         PackingItem pack = createItem(type, choiceOfItem, sex, size, value);
         for (int i = 0; i < timesPacked; i++) {
