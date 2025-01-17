@@ -31,25 +31,33 @@ import java.util.function.Function;
  * the process of fixing constraint violations by allowing the user to delete
  *  items or terminate the process.
  */
- class EssentialConstraints {
+ final class EssentialConstraints {
 
-    /**Constants for constraint states*/
+        // Private constructor to prevent instantiation
+        private EssentialConstraints() {
+            throw new UnsupportedOperationException(
+                "This is a utility class and it shouldn't be instantiated");
+        }
+
+    /**Constraints are respected.*/
     public static final int BOTH_CONSTRAINTS_RESPECTED = 1;
+    /**Weight constraint respected, Volume constraint not respected.*/
     public static final int ONLY_WEIGHT_CONSTRAINT_RESPECTED = 2;
+    /**Volume constraint respected, Weight constraint not respected.*/
     public static final int ONLY_VOLUME_CONSTRAINT_RESPECTED = 3;
+    /**Constraints aren't respected.*/
     public static final int NO_CONSTRAINTS_RESPECTED = 4;
-    
     /**
    * Calculates the sum of a specified attribute for a list of `PackingItem`
    *  objects.This method takes a list of items and a function that extracts
    *  a numeric attribute from each `PackingItem` and sums them up.
-   * 
-   * @param items a list of `PackingItem` objects to calculate the sum of 
+   *
+   * @param items a list of `PackingItem` objects to calculate the sum of
    *              attributes from.
-   * @param attributeGetter a function that extracts the numeric attribute from 
+   * @param attributeGetter a function that extracts the numeric attribute from
    *                        a `PackingItem`.
-   *                        The function takes a `PackingItem` and returns a 
-   *                        `Double` representing the attribute value to be 
+   *                        The function takes a `PackingItem` and returns a
+   *                        `Double` representing the attribute value to be
    *                         summed.
    * @return the sum of the attribute values extracted from each `PackingItem`.
    */
@@ -69,7 +77,7 @@ import java.util.function.Function;
     }
 
     /**
-    * Used to return correspoding values depending on the state of the 
+    * Used to return correspoding values depending on the state of the
     * knapsack's weight and volume and their respective constraints.
     *
     * @param items a PackingItem ArrayList to call calculateSumOfAttributes
@@ -84,9 +92,9 @@ import java.util.function.Function;
     *         3 - only volume constraint is respected,
     *         4 - neither constraint is respected.
     */
-    protected static int checkConstraints(final ArrayList<PackingItem> items, 
-                                         final double maxWeight,
-                                         final double maxVolume) {
+    protected static int checkConstraints(final ArrayList<PackingItem> items,
+                                        final double maxWeight,
+                                        final double maxVolume) {
         double totalWeight = calculateSumOfAttributes(items, t -> {
             try {
                 return t.getWeight();
@@ -104,22 +112,22 @@ import java.util.function.Function;
                         return null;
         });
 
-        //Return appropriate value for each scenario 
+        //Return appropriate value for each scenario
         if (totalWeight <= maxWeight && totalVolume <= maxVolume) {
             return BOTH_CONSTRAINTS_RESPECTED;
-        }else if (totalWeight <= maxWeight) {
+        } else if (totalWeight <= maxWeight) {
             return ONLY_WEIGHT_CONSTRAINT_RESPECTED;
-        }else if (totalVolume <= maxVolume) {
+        } else if (totalVolume <= maxVolume) {
             return ONLY_VOLUME_CONSTRAINT_RESPECTED;
-        }else {
+        } else {
             return NO_CONSTRAINTS_RESPECTED;
         }
     }
 
     /**
-    * Provides the user with feedback based on the constraints
-    * 
-    * @param items a PackingItem ArrayList representing the list of chosen 
+    * Provides the user with feedback based on the constraints.
+    *
+    * @param items a PackingItem ArrayList representing the list of chosen
     *              essential items.
     * @param stateOfConstraints which describes the current state of the
     *                           constraints
@@ -127,7 +135,7 @@ import java.util.function.Function;
     *                             2-if only the weight constraint is respected,
     *                             3-if only the volume constraint is respected,
     *                             4-if no constraints are respected.
-    * @param maxVolume representing the maximum volume that can be added to 
+    * @param maxVolume representing the maximum volume that can be added to
     *                  the knapsack.
     * @param maxWeight representing the maximum weight that can be added to the
     *                  knapsack.
@@ -136,7 +144,7 @@ import java.util.function.Function;
                                         int stateOfConstraints,
                                         final double maxWeight,
                                         final double maxVolume) {
-        
+
         double remainingWeight = maxWeight - calculateSumOfAttributes
         (items, t -> {
             try {
@@ -159,28 +167,28 @@ import java.util.function.Function;
         switch (stateOfConstraints) {
             case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(
                                     "You have %.2f gr and %.2f cm3"
-                                    +" available.%n\n",
+                                    + " available.%n\n",
                                     remainingWeight, remainingVolume);
                                     break;
             case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(
                                     "You have %.2f gr left but exceeded "
-                                    +"volume by %.2f cm3.%n\n"
-                                    +"You have to delete items to continue"
-                                    +" the process\n", 
+                                    + "volume by %.2f cm3.%n\n"
+                                    + "You have to delete items to continue"
+                                    + " the process\n",
                                     remainingWeight, -remainingVolume);
                                     break;
             case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(
                                     "You exceeded the weight limit by %.2f gr"
-                                    +" but have %.2f cm3 left.%n\n"
-                                    +"You have to delete items to continue"
-                                    +" the process\n", 
+                                    + " but have %.2f cm3 left.%n\n"
+                                    + "You have to delete items to continue"
+                                    + " the process\n",
                                     -remainingWeight, remainingVolume);
                                     break;
             case NO_CONSTRAINTS_RESPECTED : System.out.printf(
                                     "You exceeded the weight limit by %.2f gr"
-                                    +" and volume limit by %.2f cm3.%n"
-                                    +"You have to delete items to continue" 
-                                    +" the process\n", 
+                                    + " and volume limit by %.2f cm3.%n"
+                                    + "You have to delete items to continue"
+                                    + " the process\n",
                                     -remainingWeight, -remainingVolume);
                                     break;
         }
@@ -188,32 +196,37 @@ import java.util.function.Function;
 
     /**
     * Gets called if the constraints are not being respected
-    * Prompts the user between terminating the procedure and deleting as many items as he wishes or are needed
+    * Prompts the user between terminating the procedure and deleting as many
+    * items as he wishes or are needed
     * to continue the process of adding essential items to the knapsack.
     *
-    * @param items a PackingItem ArrayList representing the list of chosen essential items.
+    * @param items a PackingItem ArrayList representing the list of chosen
+    *              essential items.
     * @param scanner a Scanner instance for capturing the user's input.
-    * @param maxVolume representing the maximum volume that can be added to the knapsack.
-    * @param maxWeight representing the maximum weight that can be added to the knapsack.
-    * @return false if the process is terminated, true if items were deleted successfully.
+    * @param maxVolume representing the maximum volume that can be added
+    *                  to the knapsack.
+    * @param maxWeight representing the maximum weight that can be added to
+    *                  the knapsack.
+    * @return false if the process is terminated, true if items were
+    *         deleted successfully.
     */
     protected static boolean fixConstraints(ArrayList<PackingItem> items,
                                         Scanner scanner,
                                         final double maxWeight,
                                         final double maxVolume) {
-    
+
         boolean validChoice = false;
         while (!validChoice) {
         try {
             System.out.println("Press 1 to terminate process.\n"
-                                +"Press 2 to remove item(s)\n"
-                                +"Enter your choice:");
+                                + "Press 2 to remove item(s)\n"
+                                + "Enter your choice:");
             int userChoice = scanner.nextInt();
             scanner.nextLine();
-        
+
             if (userChoice == 1) {
-                items.clear();//Delete everything that was chosen
-                return false;//Terminate process
+                items.clear(); //Delete everything that was chosen
+                return false; //Terminate process
             } else if (userChoice == 2) {
                 ItemDeletionHandler.deleteItem(items, scanner);
 
@@ -221,12 +234,12 @@ import java.util.function.Function;
                 int constraintsRespected = checkConstraints(items, maxWeight,
                                                             maxVolume);
                 if (constraintsRespected == BOTH_CONSTRAINTS_RESPECTED) {
-                    validChoice = true;//Exit loop
-                } else {//Constraints aren't respected
+                    validChoice = true; //Exit loop
+                } else { //Constraints aren't respected
                     showConstraintFeedback(items, constraintsRespected,
                                                     maxWeight,
                                                     maxVolume);
-                }//Restart the loop after the above message
+                } //Restart the loop after the above message
             } else {
                 System.err.println("Invalid choice.");
             }
@@ -236,6 +249,6 @@ import java.util.function.Function;
             scanner.nextLine();
         }
         }
-    return true;//items where deleted successfully
-    }       
+    return true; //items where deleted successfully
+    }
 }
