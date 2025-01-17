@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EssentialConstraints.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">EssentialConstraints.java</span></div><h1>EssentialConstraints.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.BitTE.OptimizationProject;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.function.Function;
+
+/**
+ * The {@code EssentialConstraints} class contains methods for managing and
+ * checking the constraints of the optimization problem. It provides
+ * functionality for calculating the sum of item attributes (weight and volume),
+ * checking if the knapsack's constraints (weight and volume) are respected,
+ * providing feedback to the user about constraint violations, and handling
+ * the process of fixing constraint violations by allowing the user to delete
+ *  items or terminate the process.
+ */
+<span class="nc" id="L34"> class EssentialConstraints {</span>
+
+    /**Constants for constraint states*/
+    public static final int BOTH_CONSTRAINTS_RESPECTED = 1;
+    public static final int ONLY_WEIGHT_CONSTRAINT_RESPECTED = 2;
+    public static final int ONLY_VOLUME_CONSTRAINT_RESPECTED = 3;
+    public static final int NO_CONSTRAINTS_RESPECTED = 4;
+    
+    /**
+   * Calculates the sum of a specified attribute for a list of `PackingItem`
+   *  objects.This method takes a list of items and a function that extracts
+   *  a numeric attribute from each `PackingItem` and sums them up.
+   * 
+   * @param items a list of `PackingItem` objects to calculate the sum of 
+   *              attributes from.
+   * @param attributeGetter a function that extracts the numeric attribute from 
+   *                        a `PackingItem`.
+   *                        The function takes a `PackingItem` and returns a 
+   *                        `Double` representing the attribute value to be 
+   *                         summed.
+   * @return the sum of the attribute values extracted from each `PackingItem`.
+   */
+    protected static double calculateSumOfAttributes(final ArrayList
+                                                    &lt;PackingItem&gt; items,
+                                                    final Function&lt;PackingItem,
+                                                    Double&gt; attributeGetter) {
+<span class="nc" id="L60">        double sum = 0;</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        for (PackingItem item : items) {</span>
+<span class="nc" id="L63">            Double value = attributeGetter.apply(item);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (value != 0) {</span>
+<span class="nc" id="L65">                sum += attributeGetter.apply(item);</span>
+            }
+<span class="nc" id="L67">        }</span>
+<span class="nc" id="L68">        return sum;</span>
+    }
+
+    /**
+    * Used to return correspoding values depending on the state of the 
+    * knapsack's weight and volume and their respective constraints.
+    *
+    * @param items a PackingItem ArrayList to call calculateSumOfAttributes
+    *              method on.
+    * @param maxVolume representing the maximum volume that can be added to
+    *                  the knapsack.
+    * @param maxWeight representing the maximum weight that can be added to
+    *                  the knapsack.
+    * @return int value representing the current state of the constraints:
+    *         1 - both weight and volume constraints are respected,
+    *         2 - only weight constraint is respected,
+    *         3 - only volume constraint is respected,
+    *         4 - neither constraint is respected.
+    */
+    protected static int checkConstraints(final ArrayList&lt;PackingItem&gt; items, 
+                                         final double maxWeight,
+                                         final double maxVolume) {
+<span class="nc" id="L90">        double totalWeight = calculateSumOfAttributes(items, t -&gt; {</span>
+            try {
+<span class="nc" id="L92">                return t.getWeight();</span>
+<span class="nc" id="L93">            } catch (SQLException e) {</span>
+<span class="nc" id="L94">                e.printStackTrace();</span>
+            }
+<span class="nc" id="L96">                        return null;</span>
+        });
+<span class="nc" id="L98">        double totalVolume = calculateSumOfAttributes(items, t -&gt; {</span>
+            try {
+<span class="nc" id="L100">                return t.getVolume();</span>
+<span class="nc" id="L101">            } catch (SQLException e) {</span>
+<span class="nc" id="L102">                e.printStackTrace();</span>
+            }
+<span class="nc" id="L104">                        return null;</span>
+        });
+
+        //Return appropriate value for each scenario 
+<span class="nc bnc" id="L108" title="All 4 branches missed.">        if (totalWeight &lt;= maxWeight &amp;&amp; totalVolume &lt;= maxVolume) {</span>
+<span class="nc" id="L109">            return BOTH_CONSTRAINTS_RESPECTED;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        }else if (totalWeight &lt;= maxWeight) {</span>
+<span class="nc" id="L111">            return ONLY_WEIGHT_CONSTRAINT_RESPECTED;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        }else if (totalVolume &lt;= maxVolume) {</span>
+<span class="nc" id="L113">            return ONLY_VOLUME_CONSTRAINT_RESPECTED;</span>
+        }else {
+<span class="nc" id="L115">            return NO_CONSTRAINTS_RESPECTED;</span>
+        }
+    }
+
+    /**
+    * Provides the user with feedback based on the constraints
+    * 
+    * @param items a PackingItem ArrayList representing the list of chosen 
+    *              essential items.
+    * @param stateOfConstraints which describes the current state of the
+    *                           constraints
+    *                             1-if both constraints are respected,
+    *                             2-if only the weight constraint is respected,
+    *                             3-if only the volume constraint is respected,
+    *                             4-if no constraints are respected.
+    * @param maxVolume representing the maximum volume that can be added to 
+    *                  the knapsack.
+    * @param maxWeight representing the maximum weight that can be added to the
+    *                  knapsack.
+    */
+    protected static void showConstraintFeedback(ArrayList&lt;PackingItem&gt; items,
+                                        int stateOfConstraints,
+                                        final double maxWeight,
+                                        final double maxVolume) {
+        
+<span class="nc" id="L140">        double remainingWeight = maxWeight - calculateSumOfAttributes</span>
+<span class="nc" id="L141">        (items, t -&gt; {</span>
+            try {
+<span class="nc" id="L143">                return t.getWeight();</span>
+<span class="nc" id="L144">            } catch (SQLException e) {</span>
+<span class="nc" id="L145">                e.printStackTrace();</span>
+            }
+<span class="nc" id="L147">                        return null;</span>
+        });
+<span class="nc" id="L149">        double remainingVolume = maxVolume - calculateSumOfAttributes</span>
+<span class="nc" id="L150">        (items, t -&gt; {</span>
+            try {
+<span class="nc" id="L152">                return t.getVolume();</span>
+<span class="nc" id="L153">            } catch (SQLException e) {</span>
+<span class="nc" id="L154">                e.printStackTrace();</span>
+            }
+<span class="nc" id="L156">                        return null;</span>
+        });
+
+<span class="nc bnc" id="L159" title="All 5 branches missed.">        switch (stateOfConstraints) {</span>
+<span class="nc" id="L160">            case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(</span>
+                                    &quot;You have %.2f gr and %.2f cm3&quot;
+                                    +&quot; available.%n\n&quot;,
+<span class="nc" id="L163">                                    remainingWeight, remainingVolume);</span>
+<span class="nc" id="L164">                                    break;</span>
+<span class="nc" id="L165">            case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(</span>
+                                    &quot;You have %.2f gr left but exceeded &quot;
+                                    +&quot;volume by %.2f cm3.%n\n&quot;
+                                    +&quot;You have to delete items to continue&quot;
+                                    +&quot; the process\n&quot;, 
+<span class="nc" id="L170">                                    remainingWeight, -remainingVolume);</span>
+<span class="nc" id="L171">                                    break;</span>
+<span class="nc" id="L172">            case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(</span>
+                                    &quot;You exceeded the weight limit by %.2f gr&quot;
+                                    +&quot; but have %.2f cm3 left.%n\n&quot;
+                                    +&quot;You have to delete items to continue&quot;
+                                    +&quot; the process\n&quot;, 
+<span class="nc" id="L177">                                    -remainingWeight, remainingVolume);</span>
+<span class="nc" id="L178">                                    break;</span>
+<span class="nc" id="L179">            case NO_CONSTRAINTS_RESPECTED : System.out.printf(</span>
+                                    &quot;You exceeded the weight limit by %.2f gr&quot;
+                                    +&quot; and volume limit by %.2f cm3.%n&quot;
+                                    +&quot;You have to delete items to continue&quot; 
+                                    +&quot; the process\n&quot;, 
+<span class="nc" id="L184">                                    -remainingWeight, -remainingVolume);</span>
+                                    break;
+        }
+<span class="nc" id="L187">    }</span>
+
+    /**
+    * Gets called if the constraints are not being respected
+    * Prompts the user between terminating the procedure and deleting as many items as he wishes or are needed
+    * to continue the process of adding essential items to the knapsack.
+    *
+    * @param items a PackingItem ArrayList representing the list of chosen essential items.
+    * @param scanner a Scanner instance for capturing the user's input.
+    * @param maxVolume representing the maximum volume that can be added to the knapsack.
+    * @param maxWeight representing the maximum weight that can be added to the knapsack.
+    * @return false if the process is terminated, true if items were deleted successfully.
+    */
+    protected static boolean fixConstraints(ArrayList&lt;PackingItem&gt; items,
+                                        Scanner scanner,
+                                        final double maxWeight,
+                                        final double maxVolume) {
+    
+<span class="nc" id="L205">        boolean validChoice = false;</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">        while (!validChoice) {</span>
+        try {
+<span class="nc" id="L208">            System.out.println(&quot;Press 1 to terminate process.\n&quot;</span>
+                                +&quot;Press 2 to remove item(s)\n&quot;
+                                +&quot;Enter your choice:&quot;);
+<span class="nc" id="L211">            int userChoice = scanner.nextInt();</span>
+<span class="nc" id="L212">            scanner.nextLine();</span>
+        
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (userChoice == 1) {</span>
+<span class="nc" id="L215">                items.clear();//Delete everything that was chosen</span>
+<span class="nc" id="L216">                return false;//Terminate process</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            } else if (userChoice == 2) {</span>
+<span class="nc" id="L218">                ItemDeletionHandler.deleteItem(items, scanner);</span>
+
+                //Recheck constraints
+<span class="nc" id="L221">                int constraintsRespected = checkConstraints(items, maxWeight,</span>
+                                                            maxVolume);
+<span class="nc bnc" id="L223" title="All 2 branches missed.">                if (constraintsRespected == BOTH_CONSTRAINTS_RESPECTED) {</span>
+<span class="nc" id="L224">                    validChoice = true;//Exit loop</span>
+                } else {//Constraints aren't respected
+<span class="nc" id="L226">                    showConstraintFeedback(items, constraintsRespected,</span>
+                                                    maxWeight,
+                                                    maxVolume);
+                }//Restart the loop after the above message
+<span class="nc" id="L230">            } else {</span>
+<span class="nc" id="L231">                System.err.println(&quot;Invalid choice.&quot;);</span>
+            }
+
+<span class="nc" id="L234">        } catch (InputMismatchException e) {</span>
+<span class="nc" id="L235">            System.err.println(&quot;Invalid input. Please enter a valid integer.&quot;);</span>
+<span class="nc" id="L236">            scanner.nextLine();</span>
+<span class="nc" id="L237">        }</span>
+        }
+<span class="nc" id="L239">    return true;//items where deleted successfully</span>
+    }       
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NonEssentialItems.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">NonEssentialItems.java</span></div><h1>NonEssentialItems.java</h1><pre class="source lang-java linenums">/*
+* Copyright 2025 BitTE Team
+*
+* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+package com.BitTE.OptimizationProject;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+/**
+ * Represents the management of non-essential items within the application.
+ * Implements a singleton pattern to ensure a single instance is used throughout the program.
+ */
+class NonEssentialItems {
+
+    /**
+     * The single instance of the class.
+     */
+    private static NonEssentialItems instance;
+
+    /**
+     * A list to store non-essential items, allowing polymorphism with PackingItem.
+     */
+<span class="fc" id="L37">    protected final ArrayList&lt;PackingItem&gt; nonEssentialItems = new ArrayList&lt;&gt;();</span>
+    
+    /**
+     * Private constructor to enforce the singleton pattern.
+     */
+<span class="fc" id="L42">    private NonEssentialItems() {</span>
+<span class="fc" id="L43">    }</span>
+    
+    /**
+     * Provides access to the single instance of NonEssentialItems.
+     * If the instance does not already exist, it is created.
+     *
+     * @return the single instance of NonEssentialItems.
+     */
+    public static NonEssentialItems getInstance() {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (instance == null) {</span>
+<span class="fc" id="L53">            instance = new NonEssentialItems();</span>
+        }
+<span class="fc" id="L55">        return instance;</span>
+    }
+    
+    /**
+     * Handles the process of adding, managing, and deleting non-essential items.
+     *
+     * @param scanner the Scanner object for reading user input.
+     * @param essentialItemsManager the manager for essential items, used only in case of process termination.
+     * @return true if non-essential items were successfully added, false otherwise.
+     */
+    public boolean fillNonEssentialItems(Scanner scanner, EssentialItems essentialItemsManager) {
+<span class="fc" id="L66">        System.out.println(&quot;----------------------------\n&quot;</span>
+        +&quot;INSERTION OF NONESSENTIAL ITEMS\n&quot;
+        +&quot;----------------------------&quot;);
+<span class="fc" id="L69">        boolean processRunning = true;</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        while (processRunning) {</span>
+<span class="fc" id="L71">            MenuHandler.showNonEssentialItemsMenu();</span>
+            try {
+<span class="fc" id="L73">                int userChoice = scanner.nextInt();</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">                if (userChoice == 1){</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">                    if (nonEssentialItems.isEmpty()) {</span>
+<span class="nc" id="L76">                        System.out.println(&quot;No nonessential items added.&quot;);</span>
+<span class="nc" id="L77">                        return false;</span>
+                    } else {
+<span class="fc" id="L79">                        System.out.println(&quot;All nonesential items have been added!!!&quot;);</span>
+<span class="fc" id="L80">                        return true;</span>
+                    } 
+<span class="fc bfc" id="L82" title="All 2 branches covered.">                } else if (userChoice == 2) {</span>
+<span class="fc" id="L83">                    addNonEssentials(scanner);</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">                } else if (userChoice == 3) {</span>
+<span class="nc" id="L85">                    ItemDeletionHandler.deleteItem(nonEssentialItems, scanner);//Delete item(s)</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">                } else if (userChoice == 4) {</span>
+<span class="nc" id="L87">                    essentialItemsManager.essentialItems.clear();</span>
+<span class="nc" id="L88">                    nonEssentialItems.clear();</span>
+<span class="nc" id="L89">                    return false;</span>
+                } else {
+<span class="fc" id="L91">                    System.err.println(&quot;Invalid input. Please press 1, 2, 3 or 4.&quot;);</span>
+                }
+<span class="nc" id="L93">                } catch (InputMismatchException e){</span>
+<span class="nc" id="L94">                System.out.println(&quot;Invalid input. Please enter a valid integer.&quot;);</span>
+<span class="nc" id="L95">                scanner.nextLine();</span>
+<span class="pc" id="L96">            }</span>
+        }
+<span class="nc" id="L98">        return false;//Unrechable code, added for good practices</span>
+    }
+    
+    /**
+     * Facilitates the addition of non-essential items by prompting the user for input.
+     *
+     * @param scanner the Scanner object for reading user input.
+     */
+    protected void addNonEssentials(Scanner scanner) {
+        //Display MENU for choosing type of Item
+<span class="fc" id="L108">        MenuHandler.chooseItemType();</span>
+        
+        // Determine the type of item. 
+<span class="fc" id="L111">        int inputType = ItemInputHandler.setTypeOfItem(scanner);</span>
+
+        /**
+         * If the item is clothing, prompt the user for the preferred gender
+         * and display the appropriate menu.
+         */
+<span class="fc" id="L117">        char itemGender = 'X';</span>
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">        if (inputType == 1){</span>
+<span class="fc" id="L119">            itemGender = ItemInputHandler.setGender(scanner);</span>
+<span class="fc" id="L120">            MenuHandler.showClothingMenu(itemGender);</span>
+        } else {
+<span class="nc" id="L122">            MenuHandler.showExtrasMenu();</span>
+        }
+
+        // Get the specific item choice from the user.
+<span class="fc" id="L126">        String itemOfChoice = ItemInputHandler.setItemChoice(inputType, </span>
+                                                                itemGender, scanner);
+                                                            
+        // Get the item's size from user.
+<span class="fc" id="L130">        char itemSize = ItemInputHandler.setSize(scanner);</span>
+
+        //Get the item's value from user.
+<span class="fc" id="L133">        int value = setValue(scanner);</span>
+
+
+        /* Add the item to the non-essential items list. Have only one insertion
+        to account for differences in values given by the user for the same item*/
+<span class="fc" id="L138">        ItemInputHandler.inputItem(nonEssentialItems, inputType,</span>
+                                        itemOfChoice, itemGender, itemSize, value, 1);
+<span class="fc" id="L140">    }</span>
+
+    /**
+     * Prompts the user to enter the importance value for an item, ensuring it is between 1 and 10.
+     *
+     * @param scanner the Scanner object for reading user input.
+     * @return the validated importance value.
+     */
+    protected int setValue(Scanner scanner) {
+<span class="fc" id="L149">        System.out.println(&quot;Please enter the importance of this item for your&quot;</span>
+                +&quot; trip on a scale from 1 to 10:(1 for the least important&quot;
+                +&quot; items - 10 for the most important items)&quot;);
+            while (true) {//Infinite loop until valid input is provided
+            try {
+<span class="fc" id="L154">                int input = scanner.nextInt();</span>
+<span class="fc bfc" id="L155" title="All 4 branches covered.">                if (input &lt; 1 || input &gt; 10) {//If value is not in the accepted range</span>
+<span class="fc" id="L156">                    System.out.println(&quot;Invalid input. Give me an integer ranging from 1 to 10.&quot;);</span>
+                } else {//Item is in the accepted range
+<span class="fc" id="L158">                    return input;</span>
+                }
+<span class="fc" id="L160">            } catch (InputMismatchException e) {</span>
+<span class="fc" id="L161">                System.err.println(&quot;Invalid input. Please select a valid integer&quot;);</span>
+<span class="fc" id="L162">                scanner.nextLine();</span>
+<span class="fc" id="L163">            }</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

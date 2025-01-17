@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatabaseTableCreation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">DatabaseTableCreation.java</span></div><h1>DatabaseTableCreation.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.BitTE.OptimizationProject;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import org.tinylog.Logger;
+
+/**
+ * Manages the creation and initialization of database tables and the initial data loading for the application.
+ */
+public class DatabaseTableCreation {
+<span class="fc" id="L29">    private String url = &quot;jdbc:sqlite:C:/sqlite/db/mydatabase.db&quot;; // Database connection URL</span>
+
+    /**
+     * Constructs a new DatabaseTableCreation instance which triggers the database setup process.
+     */
+<span class="fc" id="L34">    public DatabaseTableCreation() {</span>
+<span class="fc" id="L35">        Logger.info(&quot;Initializing database creation and data insertion process...&quot;);</span>
+<span class="fc" id="L36">        initializeDatabase();</span>
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * Initializes the database by setting up tables and inserting initial data if necessary.
+     */
+    private void initializeDatabase() {
+<span class="fc" id="L43">        try (Connection conn = DriverManager.getConnection(url);</span>
+<span class="fc" id="L44">             Statement stmt = conn.createStatement()) {</span>
+
+<span class="fc" id="L46">            Logger.info(&quot;Connected to the database: {}&quot;, url);</span>
+
+            // Create tables
+<span class="fc" id="L49">            createTables(stmt);</span>
+
+            // Check and insert data if tables are empty
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            if (isTableEmpty(conn, &quot;EXTRAS&quot;)) {</span>
+<span class="nc" id="L53">                insertDataIntoExtras(stmt);</span>
+            }
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">            if (isTableEmpty(conn, &quot;CLOTHING&quot;)) {</span>
+<span class="nc" id="L56">                insertDataIntoClothing(stmt);</span>
+            }
+
+<span class="nc" id="L59">        } catch (SQLException e) {</span>
+<span class="nc" id="L60">            Logger.error(&quot;Database initialization failed: {}&quot;, e.getMessage(), e);</span>
+<span class="fc" id="L61">        }</span>
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * Creates the necessary database tables if they do not already exist.
+     *
+     * @param stmt the Statement used to execute the SQL commands
+     * @throws SQLException if there is an error executing the SQL commands
+     */
+    private void createTables(Statement stmt) throws SQLException {
+<span class="fc" id="L71">        String sqlClothing = &quot;CREATE TABLE IF NOT EXISTS Clothing (&quot; +</span>
+                             &quot;id INTEGER PRIMARY KEY AUTOINCREMENT, &quot; +
+                             &quot;type TEXT NOT NULL, &quot; +
+                             &quot;gender TEXT NOT NULL CHECK (gender IN ('M', 'F')), &quot; +
+                             &quot;size TEXT NOT NULL CHECK (size IN ('S', 'M', 'L')), &quot; +
+                             &quot;volume FLOAT NOT NULL, &quot; +
+                             &quot;weight FLOAT NOT NULL);&quot;;
+<span class="fc" id="L78">        stmt.execute(sqlClothing);</span>
+<span class="fc" id="L79">        Logger.info(&quot;Table 'Clothing' created or already exists.&quot;);</span>
+
+<span class="fc" id="L81">        String sqlExtras = &quot;CREATE TABLE IF NOT EXISTS Extras (&quot; +</span>
+                           &quot;id INTEGER PRIMARY KEY AUTOINCREMENT, &quot; +
+                           &quot;type TEXT NOT NULL, &quot; +
+                           &quot;size TEXT NOT NULL CHECK (size IN ('S', 'M', 'L')), &quot; +
+                           &quot;volume FLOAT NOT NULL, &quot; +
+                           &quot;weight FLOAT NOT NULL);&quot;;
+<span class="fc" id="L87">        stmt.execute(sqlExtras);</span>
+<span class="fc" id="L88">        Logger.info(&quot;Table 'Extras' created or already exists.&quot;);</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Checks if a specific table is empty.
+     *
+     * @param conn the Connection to the database
+     * @param tableName the name of the table to check
+     * @return true if the table is empty, false otherwise
+     * @throws SQLException if there is an error accessing the database
+     */
+    private boolean isTableEmpty(Connection conn, String tableName) throws SQLException {
+<span class="fc" id="L100">        try (ResultSet rs = conn.createStatement().executeQuery(&quot;SELECT EXISTS (SELECT 1 FROM &quot; + tableName + &quot;)&quot;)) {</span>
+<span class="pc bpc" id="L101" title="2 of 4 branches missed.">            return !rs.next() || rs.getInt(1) == 0;</span>
+        }
+    }
+
+    /**
+     * Inserts initial data into the 'Extras' table.
+     *
+     * @param stmt the Statement used to execute the insert command
+     * @throws SQLException if there is an error executing the insert command
+     */
+    private void insertDataIntoExtras(Statement stmt) throws SQLException {
+<span class="nc" id="L112">        String insertExtras = &quot;INSERT INTO EXTRAS (type, size, volume, weight) VALUES &quot; +</span>
+                              &quot;('Passport', 'S', 35.1, 45), &quot; +
+                              &quot;('Passport', 'M', 35.1, 45), &quot; +
+                              &quot;('Passport', 'L', 35.1, 45), &quot; +
+                              &quot;('Laptop', 'S', 1344, 1600), &quot; +
+                              &quot;('Laptop', 'M', 1680, 2000), &quot; +
+                              &quot;('Laptop', 'L', 2016, 2400), &quot; +
+                              &quot;('Book', 'S', 1200, 640), &quot; +
+                              &quot;('Book', 'M', 1500, 800), &quot; +
+                              &quot;('Book', 'L', 1800, 960);&quot;;
+<span class="nc" id="L122">        stmt.execute(insertExtras);</span>
+<span class="nc" id="L123">        Logger.info(&quot;Data inserted into 'Extras' table.&quot;);</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * Inserts initial data into the 'Clothing' table.
+     *
+     * @param stmt the Statement used to execute the insert command
+     * @throws SQLException if there is an error executing the insert command
+     */
+    private void insertDataIntoClothing(Statement stmt) throws SQLException {
+<span class="nc" id="L133">        String insertClothing = &quot;INSERT INTO Clothing (type, gender, size, volume, weight) VALUES &quot; +</span>
+                         &quot;('T-Shirt', 'M', 'S', 1400, 130), &quot; +
+                         &quot;('T-Shirt', 'M', 'M', 1680, 150), &quot; +
+                         &quot;('T-Shirt', 'M', 'L', 2475, 180), &quot; +
+                         &quot;('Shirt', 'M', 'S', 1750, 140), &quot; +
+                         &quot;('Shirt', 'M', 'M', 2520, 160), &quot; +
+                         &quot;('Shirt', 'M', 'L', 3465, 190), &quot; +
+                         &quot;('Hoodie', 'M', 'S', 4500, 500), &quot; +
+                         &quot;('Hoodie', 'M', 'M', 6916, 600), &quot; +
+                         &quot;('Hoodie', 'M', 'L', 9225, 700), &quot; +
+                         &quot;('Jeans', 'M', 'S', 2475, 700), &quot; +
+                         &quot;('Jeans', 'M', 'M', 4032, 800), &quot; +
+                         &quot;('Jeans', 'M', 'L', 5130, 900), &quot; +
+                         &quot;('Sweatpants', 'M', 'S', 4620, 500), &quot; +
+                         &quot;('Sweatpants', 'M', 'M', 7020, 600), &quot; +
+                         &quot;('Sweatpants', 'M', 'L', 9405, 700), &quot; +
+                         &quot;('Trousers', 'M', 'S', 2062.5, 600), &quot; +
+                         &quot;('Trousers', 'M', 'M', 3528.0, 700), &quot; +
+                         &quot;('Trousers', 'M', 'L', 5130.0, 800), &quot; +
+                         &quot;('Boxers', 'M', 'S', 468, 60), &quot; +
+                         &quot;('Boxers', 'M', 'M', 750, 70), &quot; +
+                         &quot;('Boxers', 'M', 'L', 1035, 80), &quot; +
+                         &quot;('Shorts', 'M', 'S', 828, 200), &quot; +
+                         &quot;('Shorts', 'M', 'M', 1250, 250), &quot; +
+                         &quot;('Shorts', 'M', 'L', 1092, 300), &quot; +
+                         &quot;('Sneakers', 'M', 'S', 6409, 800), &quot; +
+                         &quot;('Sneakers', 'M', 'M', 7812, 900), &quot; +
+                         &quot;('Sneakers', 'M', 'L', 9120, 1000), &quot; +
+                         &quot;('Sandals', 'M', 'S', 4176, 500), &quot; +
+                         &quot;('Sandals', 'M', 'M', 5270, 600), &quot; +
+                         &quot;('Sandals', 'M', 'L', 6912, 700), &quot; +
+                         &quot;('Boots', 'M', 'S', 7395, 1300), &quot; +
+                         &quot;('Boots', 'M', 'M', 9486, 1500), &quot; +
+                         &quot;('Boots', 'M', 'L', 10944, 1800), &quot; +
+                         &quot;('Socks', 'M', 'S', 50, 50), &quot; +
+                         &quot;('Socks', 'M', 'M', 90, 60), &quot; +
+                         &quot;('Socks', 'M', 'L', 105.625, 70), &quot; +
+                         &quot;('T-Shirt', 'F', 'S', 750, 100), &quot; +
+                         &quot;('T-Shirt', 'F', 'M', 1288, 120), &quot; +
+                         &quot;('T-Shirt', 'F', 'L', 1500, 140), &quot; +
+                         &quot;('Shirt', 'F', 'S', 1000, 110), &quot; +
+                         &quot;('Shirt', 'F', 'M', 1610, 130), &quot; +
+                         &quot;('Shirt', 'F', 'L', 2250, 150), &quot; +
+                         &quot;('Hoodie', 'F', 'S', 3795, 450), &quot; +
+                         &quot;('Hoodie', 'F', 'M', 5850, 550), &quot; +
+                         &quot;('Hoodie', 'F', 'L', 7980, 650), &quot; +
+                         &quot;('Jeans', 'F', 'S', 2100, 500), &quot; +
+                         &quot;('Jeans', 'F', 'M', 3360, 600), &quot; +
+                         &quot;('Jeans', 'F', 'L', 4455, 700), &quot; +
+                         &quot;('Sweatpants', 'F', 'S', 3750, 400), &quot; +
+                         &quot;('Sweatpants', 'F', 'M', 6006, 500), &quot; +
+                         &quot;('Sweatpants', 'F', 'L', 8100, 600), &quot; +
+                         &quot;('Trousers', 'F', 'S', 2062.5, 450), &quot; +
+                         &quot;('Trousers', 'F', 'M', 3528, 550), &quot; +
+                         &quot;('Trousers', 'F', 'L', 5130, 650), &quot; +
+                         &quot;('Skirt', 'F', 'S', 1400, 200), &quot; +
+                         &quot;('Skirt', 'F', 'M', 2520, 300), &quot; +
+                         &quot;('Skirt', 'F', 'L', 3465, 400), &quot; +
+                         &quot;('Panties', 'F', 'S', 7.5, 30), &quot; +
+                         &quot;('Panties', 'F', 'M', 10.8, 40), &quot; +
+                         &quot;('Panties', 'F', 'L', 10.8, 50), &quot; +
+                         &quot;('Sneakers', 'F', 'S', 2640, 600), &quot; +
+                         &quot;('Sneakers', 'F', 'M', 3519, 700), &quot; +
+                         &quot;('Sneakers', 'F', 'L', 4306.25, 800), &quot; +
+                         &quot;('Sandals', 'F', 'S', 1150, 300), &quot; +
+                         &quot;('Sandals', 'F', 'M', 1716, 400), &quot; +
+                         &quot;('Sandals', 'F', 'L', 2295, 500), &quot; +
+                         &quot;('Boots', 'F', 'S', 4368, 1200), &quot; +
+                         &quot;('Boots', 'F', 'M', 5460, 1400), &quot; +
+                         &quot;('Boots', 'F', 'L', 6720, 1600), &quot; +
+                         &quot;('Socks', 'F', 'S', 30.375, 30), &quot; +
+                         &quot;('Socks', 'F', 'M', 50, 40), &quot; +
+                         &quot;('Socks', 'F', 'L', 105.625, 50);&quot;;
+<span class="nc" id="L206">        stmt.execute(insertClothing);</span>
+<span class="nc" id="L207">        Logger.info(&quot;Data inserted into 'Clothing' table.&quot;);</span>
+<span class="nc" id="L208">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
