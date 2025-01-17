@@ -114,7 +114,6 @@ import java.util.function.Function;
         }else {
             return NO_CONSTRAINTS_RESPECTED;
         }
-
     }
 
     /**
@@ -124,10 +123,10 @@ import java.util.function.Function;
     *              essential items.
     * @param stateOfConstraints which describes the current state of the
     *                           constraints
-    *                             1 - if both constraints are respected,
-    *                             2 - if only the weight constraint is respected,
-    *                             3 - if only the volume constraint is respected,
-    *                             4 - if no constraints are respected.
+    *                             1-if both constraints are respected,
+    *                             2-if only the weight constraint is respected,
+    *                             3-if only the volume constraint is respected,
+    *                             4-if no constraints are respected.
     * @param maxVolume representing the maximum volume that can be added to 
     *                  the knapsack.
     * @param maxWeight representing the maximum weight that can be added to the
@@ -135,10 +134,11 @@ import java.util.function.Function;
     */
     protected static void showConstraintFeedback(ArrayList<PackingItem> items,
                                         int stateOfConstraints,
-                                        double maxWeight,
-                                        double maxVolume) {
+                                        final double maxWeight,
+                                        final double maxVolume) {
         
-        double remainingWeight = maxWeight - calculateSumOfAttributes(items, t -> {
+        double remainingWeight = maxWeight - calculateSumOfAttributes
+        (items, t -> {
             try {
                 return t.getWeight();
             } catch (SQLException e) {
@@ -146,7 +146,8 @@ import java.util.function.Function;
             }
                         return null;
         });
-        double remainingVolume = maxVolume - calculateSumOfAttributes(items, t -> {
+        double remainingVolume = maxVolume - calculateSumOfAttributes
+        (items, t -> {
             try {
                 return t.getVolume();
             } catch (SQLException e) {
@@ -157,25 +158,29 @@ import java.util.function.Function;
 
         switch (stateOfConstraints) {
             case BOTH_CONSTRAINTS_RESPECTED : System.out.printf(
-                                    "You have %.2f gr and %.2f cm3 available.%n\n",
+                                    "You have %.2f gr and %.2f cm3"
+                                    +" available.%n\n",
                                     remainingWeight, remainingVolume);
                                     break;
             case ONLY_WEIGHT_CONSTRAINT_RESPECTED : System.out.printf(
                                     "You have %.2f gr left but exceeded "
                                     +"volume by %.2f cm3.%n\n"
-                                    +"You have to delete items to continue the process\n", 
+                                    +"You have to delete items to continue"
+                                    +" the process\n", 
                                     remainingWeight, -remainingVolume);
                                     break;
             case ONLY_VOLUME_CONSTRAINT_RESPECTED : System.out.printf(
                                     "You exceeded the weight limit by %.2f gr"
                                     +" but have %.2f cm3 left.%n\n"
-                                    +"You have to delete items to continue the process\n", 
+                                    +"You have to delete items to continue"
+                                    +" the process\n", 
                                     -remainingWeight, remainingVolume);
                                     break;
             case NO_CONSTRAINTS_RESPECTED : System.out.printf(
                                     "You exceeded the weight limit by %.2f gr"
                                     +" and volume limit by %.2f cm3.%n"
-                                    +"You have to delete items to continue the process\n", 
+                                    +"You have to delete items to continue" 
+                                    +" the process\n", 
                                     -remainingWeight, -remainingVolume);
                                     break;
         }
@@ -194,11 +199,11 @@ import java.util.function.Function;
     */
     protected static boolean fixConstraints(ArrayList<PackingItem> items,
                                         Scanner scanner,
-                                        double maxWeight,
-                                        double maxVolume) {
+                                        final double maxWeight,
+                                        final double maxVolume) {
     
         boolean validChoice = false;
-        while (!validChoice){
+        while (!validChoice) {
         try {
             System.out.println("Press 1 to terminate process.\n"
                                 +"Press 2 to remove item(s)\n"
@@ -213,21 +218,24 @@ import java.util.function.Function;
                 ItemDeletionHandler.deleteItem(items, scanner);
 
                 //Recheck constraints
-                int constraintsRespected = checkConstraints(items, maxWeight, maxVolume);
-                if (constraintsRespected == BOTH_CONSTRAINTS_RESPECTED) {//Constraints are respected
+                int constraintsRespected = checkConstraints(items, maxWeight,
+                                                            maxVolume);
+                if (constraintsRespected == BOTH_CONSTRAINTS_RESPECTED) {
                     validChoice = true;//Exit loop
                 } else {//Constraints aren't respected
-                    showConstraintFeedback(items, constraintsRespected, maxWeight, maxVolume);
+                    showConstraintFeedback(items, constraintsRespected,
+                                                    maxWeight,
+                                                    maxVolume);
                 }//Restart the loop after the above message
             } else {
                 System.err.println("Invalid choice.");
             }
 
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.err.println("Invalid input. Please enter a valid integer.");
             scanner.nextLine();
         }
         }
-        return true;//items where deleted successfully
+    return true;//items where deleted successfully
     }       
 }

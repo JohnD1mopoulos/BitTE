@@ -23,13 +23,13 @@ import java.util.Scanner;
 /**
  * The EssentialItems class manages the list of essential items for a knapsack. 
  * It provides functionality to add, delete, and manage essential items 
- * and ensures that the knapsack constraints (e.g., weight, volume) are respected.
- * The class interacts with the user through menus to guide them in selecting items 
- * and verifying the constraints of the knapsack.
+ * and ensures that the knapsack constraints (e.g., weight, volume) 
+ * are respected. The class interacts with the user through menus to guide them
+ *  in selecting items and verifying the constraints of the knapsack.
  */
 class EssentialItems {
 
-    // Static instance variable for the Singleton pattern
+    /**Static instance variable for the Singleton pattern*/
     static EssentialItems listOfEssentialItems;
 
     /**Static ArrayList shared across all methods in this class representing
@@ -47,15 +47,16 @@ class EssentialItems {
     /**Method to allow access to EssentialItem's singleton instance */
     public static EssentialItems getInstance() {
         if (listOfEssentialItems == null) {
-            listOfEssentialItems = new EssentialItems();  // Create the instance only once
+            //Creation of the instance only once
+            listOfEssentialItems = new EssentialItems();  
         }
         return listOfEssentialItems;
     }
 
 
     /**
-     * Handles the user's input on whether to add an item, delete an item or abandon the process 
-     * and checks the it's validity.
+     * Handles the user's input on whether to add an item, delete an item
+     *  or abandon the process and checks the it's validity.
      * 
      * @return 1 - If the user wants to add an item.
      *         2 - if the user wants to delete an item(s).
@@ -71,12 +72,14 @@ class EssentialItems {
                 scanner.nextLine();
                 
                 if (userChoice > 4 || userChoice <= 0) {
-                    System.err.println("Invalid choice. Please enter 1, 2, 3 or 4");
+                    System.err.println("Invalid choice."
+                                        + " Please enter 1, 2, 3 or 4");
                 } else {
                     return userChoice;
                 }
             } catch (InputMismatchException e) {
-                System.err.println("Invalid input. Please enter a valid integer.");
+                System.err.println("Invalid input."
+                                    +" Please enter a valid integer.");
                 scanner.nextLine();
             }
         }
@@ -108,7 +111,8 @@ class EssentialItems {
 
         //Choose Item
         String itemOfChoice = ItemInputHandler.setItemChoice(inputType, 
-                                                            itemGender, scanner);
+                                                            itemGender,
+                                                            scanner);
 
         //Choose the item's size
         char itemSize = ItemInputHandler.setSize(scanner);
@@ -132,11 +136,15 @@ class EssentialItems {
      * @param maxVolume representing the maximum weight of items that can be 
      *                  added to the Knapsack.
      * @param scanner for user input.
-     * @return true if the program is to continue running (constraints are respected).
-     *         false if the program is to stop running (constraint's aren't respected
-     *          and the user wont fix them).
+     * @return true if the program is to continue running 
+     *         (constraints are respected).
+     *         false if the program is to stop running 
+     *         (constraint's aren't respected
+     *         and the user wont fix them).
      */
-    private boolean manageConstraints(double maxWeight, double maxVolume, Scanner scanner) {
+    private boolean manageConstraints(final double maxWeight,
+                                    final double maxVolume,
+                                    Scanner scanner) {
         //Check constraints
         int constraintsStatus = EssentialConstraints.
         checkConstraints(essentialItems,
@@ -144,7 +152,10 @@ class EssentialItems {
                              maxVolume);
 
         //Provide feedback based on constraints
-        EssentialConstraints.showConstraintFeedback(essentialItems, constraintsStatus, maxWeight, maxVolume);
+        EssentialConstraints.showConstraintFeedback(essentialItems,
+                                                    constraintsStatus,
+                                                    maxWeight,
+                                                    maxVolume);
 
         //Handle different constraint scenarios
         if (constraintsStatus != 1) {//Constraints arent met
@@ -157,7 +168,8 @@ class EssentialItems {
  
             if (constraintProblemSolved) {
             //The user deleted some items and now constraints are respected
-                System.out.println("Well done! The constraints are now respected.");
+                System.out.println("Well done! The constraints are"
+                                    +" now respected.");
                 return true;
             } else {
                 System.out.println("Terminating process. Goodbye!!!");
@@ -174,13 +186,17 @@ class EssentialItems {
     * Fills ArrayList essentialItems with the inputs of the user and confirms 
     * if the constraints are met with each added item
     *
-    * @param maxWeight representing the maximum weight of items that can be added to the Knapsack.
-    * @param maxVolume representing the maximum volume of items that can be added to the Knapsack.
+    * @param maxWeight representing the maximum weight of items that can be
+    *                  added to the Knapsack.
+    * @param maxVolume representing the maximum volume of items that can be
+    *                  added to the Knapsack.
     * @param scanner for user input.
-    * @return a boolean variable that confirms the continuation of the item input operation 
-    *         if the constraints are still met.
+    * @return a boolean variable that confirms the continuation of the item
+    *         input operation if the constraints are still met.
     */
-    protected boolean fillEssential(double maxWeight, double maxVolume, Scanner scanner){
+    protected boolean fillEssential(final double maxWeight,
+                                    final double maxVolume,
+                                    Scanner scanner) {
         
         boolean processRunning = true;
         System.out.println("INSERTION OF ESSENTIAL ITEMS\n"
@@ -190,27 +206,28 @@ class EssentialItems {
             MenuHandler.showStartingMenu();
             int userMenuChoice = getUserMenuChoice(scanner);
 
-            if (userMenuChoice == ADD_ITEM) {//User wants to add item
+            if (userMenuChoice == ADD_ITEM) {
                 addItem(scanner);
-            } else if (userMenuChoice == DELETE_ITEM) {//User wants to delete item(s)
+            } else if (userMenuChoice == DELETE_ITEM) {
                 ItemDeletionHandler.deleteItem(essentialItems, scanner);
             } else if (userMenuChoice == STOP_ADDING_NON_ESSENTIAL) {
                 //User wants to stop adding essential items
                 return true;
-            } else if (userMenuChoice == ABANDON_PROCESS) {//User wants to abandon process
+            } else if (userMenuChoice == ABANDON_PROCESS) {
                 essentialItems.clear();//Delete any inputed essential items
                 return false;
             }
 
-            /**
+            /*
              * Continue by checking state of constraints and if the user
              * wants to continue the process or not 
              */
-            boolean continueAddingItems = manageConstraints(maxWeight, maxVolume, scanner);
+            boolean continueAddingItems = manageConstraints(maxWeight,
+                                                            maxVolume, 
+                                                            scanner);
             if (!continueAddingItems) {
                 return false;
-            }
-             
+            }     
         }
         return false;//Unrechable code. Was put according to good practices 
     }
