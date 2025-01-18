@@ -20,10 +20,11 @@
  import java.util.Scanner;
 
  /**
-  * This class represents a suitcase with specified maximum weight and volume limits.
+  * This class represents a suitcase with specified 
+  * maximum weight and volume limits.
   * It uses the Singleton pattern to ensure only one instance is created.
   */
- public class CreateSuitcase {
+final class CreateSuitcase {
 
      /**
       * The single instance of CreateSuitcase.
@@ -46,10 +47,10 @@
       *
       * @param scanner A {@link Scanner} instance for reading user input.
       */
-     private CreateSuitcase(Scanner scanner) {
+     private CreateSuitcase(final Scanner scanner) {
          // Ask the customer about the weight limit of the suitcase
          System.out.println("Enter the desired weight"
-                        +" of the suitcase (in grams): ");
+                        + " of the suitcase (in grams): ");
          maxWeight = setSuitcaseCharacteristics(scanner);
 
          // Ask the dimensions of the suitcase in centimeters
@@ -59,7 +60,7 @@
          double width = setSuitcaseCharacteristics(scanner);
          System.out.println("Enter the height of the suitcase (in cm): ");
          double height = setSuitcaseCharacteristics(scanner);
- 
+
          // Calculate volume limit of the suitcase
          maxVolume = length * width * height;
      }
@@ -71,7 +72,7 @@
       * @param scanner A {@link Scanner} instance for reading user input.
       * @return The single instance of {@link CreateSuitcase}.
       */
-     public static CreateSuitcase getInstance(Scanner scanner) {
+     public static CreateSuitcase getInstance(final Scanner scanner) {
          if (instance == null) {
              instance = new CreateSuitcase(scanner);
          }
@@ -86,12 +87,13 @@
      }
 
      /**
-      * Prompts the user to input a positive double value and validates the input.
+      * Prompts the user to input a positive double value and validates
+      * the input.
       *
       * @param scanner A {@link Scanner} instance for reading user input.
       * @return A positive double value input by the user.
       */
-     private double setSuitcaseCharacteristics(Scanner scanner) {
+     private double setSuitcaseCharacteristics(final Scanner scanner) {
          while (true) {
              try {
                  double var = scanner.nextDouble();
@@ -99,11 +101,11 @@
                      return var;
                  } else {
                      System.out.println("Invalid input. The value must"
-                                    +" be positive. Try again.");
+                                    + " be positive. Try again.");
                  }
              } catch (InputMismatchException e) {
                  System.err.println("Invalid Input. Please"
-                                +" provide a valid double.");
+                                + " provide a valid double.");
                  scanner.nextLine();
              }
          }

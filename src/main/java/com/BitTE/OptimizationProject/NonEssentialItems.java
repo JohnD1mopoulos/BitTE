@@ -22,9 +22,10 @@ import java.util.Scanner;
 
 /**
  * Represents the management of non-essential items within the application.
- * Implements a singleton pattern to ensure a single instance is used throughout the program.
+ * Implements a singleton pattern to ensure a single instance
+ * is used throughout the program.
  */
-class NonEssentialItems {
+final class NonEssentialItems {
 
     /**
      * The single instance of the class.
@@ -32,16 +33,18 @@ class NonEssentialItems {
     private static NonEssentialItems instance;
 
     /**
-     * A list to store non-essential items, allowing polymorphism with PackingItem.
+     * A list to store non-essential items, allowing polymorphism
+     * with PackingItem.
      */
-    protected final ArrayList<PackingItem> nonEssentialItems = new ArrayList<>();
-    
+    protected final ArrayList<PackingItem> nonEssentialItems
+                                        = new ArrayList<>();
+
     /**
      * Private constructor to enforce the singleton pattern.
      */
     private NonEssentialItems() {
     }
-    
+
     /**
      * Provides access to the single instance of NonEssentialItems.
      * If the instance does not already exist, it is created.
@@ -54,68 +57,74 @@ class NonEssentialItems {
         }
         return instance;
     }
-    
+
     /**
-     * Handles the process of adding, managing, and deleting non-essential items.
+     * Handles the process of adding, managing, and deleting
+     * non-essential items.
      *
      * @param scanner the Scanner object for reading user input.
-     * @param essentialItemsManager the manager for essential items, used only in case of process termination.
-     * @return true if non-essential items were successfully added, false otherwise.
+     * @param essentialItemsManager the manager for essential items,
+     * used only in case of process termination.
+     * @return true if non-essential items were successfully added,
+     * false otherwise.
      */
-    public boolean fillNonEssentialItems(Scanner scanner, EssentialItems essentialItemsManager) {
+    public boolean fillNonEssentialItems(final Scanner scanner,
+                    EssentialItems essentialItemsManager) {
         System.out.println("----------------------------\n"
-        +"INSERTION OF NONESSENTIAL ITEMS\n"
-        +"----------------------------");
+        + "INSERTION OF NONESSENTIAL ITEMS\n"
+        + "----------------------------");
         boolean processRunning = true;
         while (processRunning) {
             MenuHandler.showNonEssentialItemsMenu();
             try {
                 int userChoice = scanner.nextInt();
-                if (userChoice == 1){
+                if (userChoice == 1) {
                     if (nonEssentialItems.isEmpty()) {
                         System.out.println("No nonessential items added.");
                         return false;
                     } else {
-                        System.out.println("All nonesential items have been added!!!");
+                        System.out.println("All nonesential items have"
+                                        + "been added!!!");
                         return true;
-                    } 
+                    }
                 } else if (userChoice == 2) {
                     addNonEssentials(scanner);
                 } else if (userChoice == 3) {
-                    ItemDeletionHandler.deleteItem(nonEssentialItems, scanner);//Delete item(s)
+                    ItemDeletionHandler.deleteItem(nonEssentialItems, scanner);
                 } else if (userChoice == 4) {
                     essentialItemsManager.essentialItems.clear();
                     nonEssentialItems.clear();
                     return false;
                 } else {
-                    System.err.println("Invalid input. Please press 1, 2, 3 or 4.");
+                    System.err.println("Invalid input. Please"
+                                    + "press 1, 2, 3 or 4.");
                 }
-                } catch (InputMismatchException e){
-                System.out.println("Invalid input. Please enter a valid integer.");
+                } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter"
+                                        + "a valid integer.");
                 scanner.nextLine();
             }
         }
-        return false;//Unrechable code, added for good practices
+        return false; //Unrechable code, added for good practices
     }
-    
+
     /**
-     * Facilitates the addition of non-essential items by prompting the user for input.
+     * Facilitates the addition of non-essential items by prompting
+     * the user for input.
      *
      * @param scanner the Scanner object for reading user input.
      */
-    protected void addNonEssentials(Scanner scanner) {
+    protected void addNonEssentials(final Scanner scanner) {
         //Display MENU for choosing type of Item
         MenuHandler.chooseItemType();
-        
-        // Determine the type of item. 
+
+        // Determine the type of item.
         int inputType = ItemInputHandler.setTypeOfItem(scanner);
 
-        /**
-         * If the item is clothing, prompt the user for the preferred gender
-         * and display the appropriate menu.
-         */
+        /* If the item is clothing, prompt the user for the preferred
+        gender and display the appropriate menu.*/
         char itemGender = 'X';
-        if (inputType == 1){
+        if (inputType == 1) {
             itemGender = ItemInputHandler.setGender(scanner);
             MenuHandler.showClothingMenu(itemGender);
         } else {
@@ -123,42 +132,45 @@ class NonEssentialItems {
         }
 
         // Get the specific item choice from the user.
-        String itemOfChoice = ItemInputHandler.setItemChoice(inputType, 
-                                                                itemGender, scanner);
-                                                            
+        String itemOfChoice = ItemInputHandler.setItemChoice(inputType,
+                                                    itemGender, scanner);
+
         // Get the item's size from user.
         char itemSize = ItemInputHandler.setSize(scanner);
 
         //Get the item's value from user.
         int value = setValue(scanner);
 
-
         /* Add the item to the non-essential items list. Have only one insertion
-        to account for differences in values given by the user for the same item*/
+        to account for differences in values given by the user for the same item
+        */
         ItemInputHandler.inputItem(nonEssentialItems, inputType,
-                                        itemOfChoice, itemGender, itemSize, value, 1);
+                    itemOfChoice, itemGender, itemSize, value, 1);
     }
 
     /**
-     * Prompts the user to enter the importance value for an item, ensuring it is between 1 and 10.
+     * Prompts the user to enter the importance value for an item,
+     * ensuring it is between 1 and 10.
      *
      * @param scanner the Scanner object for reading user input.
      * @return the validated importance value.
      */
-    protected int setValue(Scanner scanner) {
+    protected int setValue(final Scanner scanner) {
         System.out.println("Please enter the importance of this item for your"
-                +" trip on a scale from 1 to 10:(1 for the least important"
-                +" items - 10 for the most important items)");
-            while (true) {//Infinite loop until valid input is provided
+                + " trip on a scale from 1 to 10:(1 for the least important"
+                + " items - 10 for the most important items)");
+            while (true) { //Infinite loop until valid input is provided
             try {
                 int input = scanner.nextInt();
-                if (input < 1 || input > 10) {//If value is not in the accepted range
-                    System.out.println("Invalid input. Give me an integer ranging from 1 to 10.");
-                } else {//Item is in the accepted range
+                if (input < 1 || input > 10) { //value is in unacceptable range
+                    System.out.println("Invalid input. Give me an integer"
+                                    + "ranging from 1 to 10.");
+                } else { //Item is in the accepted range
                     return input;
                 }
             } catch (InputMismatchException e) {
-                System.err.println("Invalid input. Please select a valid integer");
+                System.err.println("Invalid input. Please select a"
+                                    + "valid integer");
                 scanner.nextLine();
             }
         }
