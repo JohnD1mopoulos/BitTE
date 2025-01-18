@@ -42,7 +42,6 @@ public class DatabaseTableCreation {
     private void initializeDatabase() {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-
             Logger.info("Connected to the database: {}", url);
 
             // Create tables
@@ -97,10 +96,15 @@ public class DatabaseTableCreation {
      * @throws SQLException if there is an error accessing the database
      */
     private boolean isTableEmpty(Connection conn, String tableName) throws SQLException {
-        try (ResultSet rs = conn.createStatement().executeQuery("SELECT EXISTS (SELECT 1 FROM " + tableName + ")")) {
-            return !rs.next() || rs.getInt(1) == 0;
+        String query = "SELECT COUNT(*) FROM " + tableName;
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                return rs.getInt(1) == 0;  // Returns true if count is 0, meaning the table is empty
+            }
+            return true; // Assume empty if something fails
         }
-    }
+    }         
 
     /**
      * Inserts initial data into the 'Extras' table.

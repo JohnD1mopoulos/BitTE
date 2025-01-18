@@ -26,9 +26,9 @@ import com.BitTE.OptimizationProject.DatabaseTableCreation;
 public class AppStart {
     public static void main(String[] args) throws SQLException {
         Logger.info("Starting the application...");
-
+        
+        new DatabaseConnection();
         new DatabaseTableCreation();
-        DatabaseConnection.getConnection();
 
         Scanner scanner = new Scanner(System.in);
 
