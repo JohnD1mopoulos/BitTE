@@ -22,31 +22,36 @@ import org.chocosolver.solver.variables.IntVar;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**  
- * Declaration of the class for the optimization problem
+/**
+ * SpaceOptimizer is a utility class designed to solve optimization problems
+ * related to space and weight constraints, such as knapsack problems.
+ * It uses the Choco Solver library to define
+ * and solve mathematical models for packing items within defined limits.
  */
 public class SpaceOptimizer {
 
-    /**  
-     * Class-level variable to store binary decision variables
-    */
+    /**
+     * Class-level variable to store binary decision variables.
+     */
     private IntVar[] binaryVars;
-    /**  
-     * Class-level variable to scale variables
-    */
+    /**
+     * Class-level variable to scale variables.
+     */
     private final int scale = 100;
 
     /**
-     * Create the Model for the problem
+     * Create the Model for the problem.
      * @param items
      * @param maxWeight
      * @param maxVolume
-     * @return
+     * @return a model {@link Model} for the solver.
      * @throws SQLException
      */
     @SuppressWarnings("deprecation")
     public Model createModel(
-        final ArrayList<PackingItem> items, final int maxWeight, final int maxVolume) throws SQLException {
+        final ArrayList<PackingItem> items,
+        final int maxWeight,
+        final int maxVolume) throws SQLException {
         Model model = new Model("Knapsack model");
 
         int n = items.size();
@@ -77,7 +82,8 @@ public class SpaceOptimizer {
 
         addConstraints(model, weightVars, volumeVars, maxWeight, maxVolume);
 
-        System.out.println("Model created with max possible total value: " + maxTotalValue);
+        System.out.println(
+            "Model created with max possible total value: " + maxTotalValue);
         System.out.println("Number of items: " + n);
         System.out.println("Max weight: " + maxWeight / scale + "gr");
         System.out.println("Max volume: " + maxVolume / scale + "cm3");
@@ -86,7 +92,7 @@ public class SpaceOptimizer {
     }
 
     /**
-     * Add the volume and weight constraints
+     * Add the volume and weight constraints.
      * @param model
      * @param weightVars
      * @param volumeVars
@@ -94,23 +100,29 @@ public class SpaceOptimizer {
      * @param maxVolume
      */
     public void addConstraints(
-        Model model, IntVar[] weightVars, IntVar[] volumeVars, int maxWeight, int maxVolume) {
+         final Model model, final IntVar[] weightVars,
+         final IntVar[] volumeVars,
+         final int maxWeight,
+         final int maxVolume) {
         model.sum(volumeVars, "<=", maxVolume).post();
         model.sum(weightVars, "<=", maxWeight).post();
     }
 
     /**
-     * Solve the model
+     * Solve the model.
      * @param items
      * @param maxWeight
      * @param maxVolume
-     * @return
+     * @return a list of {@link PackingItem} that are selected.
      * @throws SQLException
      */
     public ArrayList<PackingItem> solveModel(
-        ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
+        final ArrayList<PackingItem> items,
+        final double maxWeight,
+        final double maxVolume) throws SQLException {
         if (items.size() != 0) {
-        Model model = createModel(items, (int) (maxWeight * scale), (int) (maxVolume * scale));
+        Model model = createModel(
+            items, (int) (maxWeight * scale), (int) (maxVolume * scale));
 
         if (model.getSolver().solve()) {
             System.out.println("Solution found!");
