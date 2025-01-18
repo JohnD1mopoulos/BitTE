@@ -22,15 +22,31 @@ import org.chocosolver.solver.variables.IntVar;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-// Declaration of the class for the optimization problem
+/**  
+ * Declaration of the class for the optimization problem
+ */
 public class SpaceOptimizer {
 
-    // Class-level variable to store binary decision variables
+    /**  
+     * Class-level variable to store binary decision variables
+    */
     private IntVar[] binaryVars;
+    /**  
+     * Class-level variable to scale variables
+    */
+    private final int scale = 100;
 
-    // Create the Model for the problem
+    /**
+     * Create the Model for the problem
+     * @param items
+     * @param maxWeight
+     * @param maxVolume
+     * @return
+     * @throws SQLException
+     */
     @SuppressWarnings("deprecation")
-    public Model createModel(ArrayList<PackingItem> items, int maxWeight, int maxVolume) throws SQLException {
+    public Model createModel(
+        final ArrayList<PackingItem> items, final int maxWeight, final int maxVolume) throws SQLException {
         Model model = new Model("Knapsack model");
 
         int n = items.size();
@@ -49,8 +65,8 @@ public class SpaceOptimizer {
             scaledVars[i] = model.intScaleView(binaryVars[i], value);
             maxTotalValue += value;
 
-            int weight = (int) (item.getWeight() * 100);
-            int volume = (int) (item.getVolume() * 100);
+            int weight = (int) (item.getWeight() * scale);
+            int volume = (int) (item.getVolume() * scale);
             weightVars[i] = model.intScaleView(binaryVars[i], weight);
             volumeVars[i] = model.intScaleView(binaryVars[i], volume);
         }
@@ -63,21 +79,38 @@ public class SpaceOptimizer {
 
         System.out.println("Model created with max possible total value: " + maxTotalValue);
         System.out.println("Number of items: " + n);
-        System.out.println("Max weight: " + maxWeight / 100 + "gr");
-        System.out.println("Max volume: " + maxVolume / 100 + "cm3");
+        System.out.println("Max weight: " + maxWeight / scale + "gr");
+        System.out.println("Max volume: " + maxVolume / scale + "cm3");
 
         return model;
     }
 
-    // Add the volume and weight constraints
-    public void addConstraints(Model model, IntVar[] weightVars, IntVar[] volumeVars, int maxWeight, int maxVolume) {
+    /**
+     * Add the volume and weight constraints
+     * @param model
+     * @param weightVars
+     * @param volumeVars
+     * @param maxWeight
+     * @param maxVolume
+     */
+    public void addConstraints(
+        Model model, IntVar[] weightVars, IntVar[] volumeVars, int maxWeight, int maxVolume) {
         model.sum(volumeVars, "<=", maxVolume).post();
         model.sum(weightVars, "<=", maxWeight).post();
     }
 
-    public ArrayList<PackingItem> solveModel(ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
-        if(items.size()!=0){
-        Model model = createModel(items, (int) (maxWeight * 100), (int) (maxVolume * 100));
+    /**
+     * Solve the model
+     * @param items
+     * @param maxWeight
+     * @param maxVolume
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<PackingItem> solveModel(
+        ArrayList<PackingItem> items, double maxWeight, double maxVolume) throws SQLException {
+        if (items.size() != 0) {
+        Model model = createModel(items, (int) (maxWeight * scale), (int) (maxVolume * scale));
 
         if (model.getSolver().solve()) {
             System.out.println("Solution found!");
