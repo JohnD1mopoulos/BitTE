@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
  package com.BitTE.OptimizationProject;
 
  import java.sql.SQLException;
@@ -37,12 +36,12 @@
       * @param size the size of the item represented as a single character (e.g., 'S', 'M', 'L')
       * @param gender the gender specificity of the item (e.g., 'M' for male, 'F' for female)
       */
-<span class="fc" id="L40">     public PackingItem(int value, String type, char size, char gender) {</span>
-<span class="fc" id="L41">         this.value = value;</span>
-<span class="fc" id="L42">         this.type = type;</span>
-<span class="fc" id="L43">         this.size = size;</span>
-<span class="fc" id="L44">         this.gender = gender;</span>
-<span class="fc" id="L45">     }</span>
+<span class="fc" id="L39">     public PackingItem(int value, String type, char size, char gender) {</span>
+<span class="fc" id="L40">         this.value = value;</span>
+<span class="fc" id="L41">         this.type = type;</span>
+<span class="fc" id="L42">         this.size = size;</span>
+<span class="fc" id="L43">         this.gender = gender;</span>
+<span class="fc" id="L44">     }</span>
  
      /**
       * Constructs a new PackingItem for Essential items with specified type, size, and gender.
@@ -53,8 +52,8 @@
       * @param gender the gender specificity of the item (e.g., 'M' for male, 'F' for female)
       */
      public PackingItem(String type, char size, char gender) {
-<span class="fc" id="L56">         this(0, type, size, gender); // Default value is set to 0 for Essential items</span>
-<span class="fc" id="L57">     }</span>
+<span class="fc" id="L55">         this(0, type, size, gender); // Default value is set to 0 for Essential items</span>
+<span class="fc" id="L56">     }</span>
      
      /**
      * Returns the type of the packing item.
@@ -62,7 +61,7 @@
      * @return the type of the item as a string
      */
      public String getType() {
-<span class="fc" id="L65">         return this.type;</span>
+<span class="fc" id="L64">         return this.type;</span>
      }
  
      /**
@@ -71,7 +70,7 @@
      * @return the value of the item as an integer
      */
      public int getValue() {
-<span class="fc" id="L74">         return this.value;</span>
+<span class="fc" id="L73">         return this.value;</span>
      }
  
      /**
@@ -80,7 +79,7 @@
      * @return the size of the item as a character
      */
      public char getSize() {
-<span class="fc" id="L83">         return this.size;</span>
+<span class="fc" id="L82">         return this.size;</span>
      }
  
       /**
@@ -89,7 +88,7 @@
      * @return the gender of the item as a character
      */
      public char getGender() {
-<span class="fc" id="L92">         return this.gender;</span>
+<span class="fc" id="L91">         return this.gender;</span>
      }
  
      /**
@@ -99,11 +98,11 @@
      * @throws IllegalArgumentException if the attribute is not valid.
      */
      protected static void validateAttribute(String attribute) {
-<span class="fc" id="L102">         List&lt;String&gt; validAttributes = Arrays.asList(&quot;volume&quot;, &quot;weight&quot;);</span>
-<span class="fc bfc" id="L103" title="All 2 branches covered.">         if (!validAttributes.contains(attribute)) {</span>
-<span class="fc" id="L104">             throw new IllegalArgumentException(&quot;Invalid attribute: &quot; + attribute);</span>
+<span class="fc" id="L101">         List&lt;String&gt; validAttributes = Arrays.asList(&quot;volume&quot;, &quot;weight&quot;);</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">         if (!validAttributes.contains(attribute)) {</span>
+<span class="fc" id="L103">             throw new IllegalArgumentException(&quot;Invalid attribute: &quot; + attribute);</span>
          }
-<span class="fc" id="L106">     }</span>
+<span class="fc" id="L105">     }</span>
  
      /**
       * Abstract method to return the weight of the packing item.
@@ -124,10 +123,10 @@
      @Override
      public String toString() {
          try {
-<span class="nc" id="L127">             return String.format(&quot;PackingItem [value=%d, type=%s, size=%c, gender=%c, Weight=%.2f, Volume=%.2f]&quot;,</span>
-<span class="nc" id="L128">                                  value, type, size, gender, getWeight(), getVolume());</span>
-<span class="nc" id="L129">         } catch (SQLException e) {</span>
-<span class="nc" id="L130">             return &quot;PackingItem [Error retrieving weight/volume]&quot;;</span>
+<span class="nc" id="L126">             return String.format(&quot;PackingItem [value=%d, type=%s, size=%c, gender=%c, Weight=%.2f, Volume=%.2f]&quot;,</span>
+<span class="nc" id="L127">                                  value, type, size, gender, getWeight(), getVolume());</span>
+<span class="nc" id="L128">         } catch (SQLException e) {</span>
+<span class="nc" id="L129">             return &quot;PackingItem [Error retrieving weight/volume]&quot;;</span>
          }
      }
  } 

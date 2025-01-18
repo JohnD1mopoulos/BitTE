@@ -44,35 +44,59 @@ final class ItemInputHandler {
             &quot;This is a utility class and it shouldn't be instantiated&quot;);
     }
 
-    // Private clothing constants (unisex)
-    private static final int T_SHIRT = 1;
-    private static final int SHIRT = 2;
-    private static final int HOODIE = 3;
-    private static final int JEANS = 4;
-    private static final int SWEATPANTS = 5;
-    private static final int TROUSERS = 6;
+    // Constants for identifying types of clothing and accessories in the application.
 
-    // Private men's clothing constants
-    private static final int BOXERS = 7;
-    private static final int SHORTS = 8;
-    private static final int SNEAKERS = 9;
-    private static final int SANDALS = 10;
-    private static final int BOOTS = 11;
-    private static final int SOCKS = 12;
+// Unisex clothing constants
+/** Represents a T-shirt, applicable for all gender selections. */
+private static final int T_SHIRT = 1;
+/** Represents a Shirt, applicable for all gender selections. */
+private static final int SHIRT = 2;
+/** Represents a Hoodie, applicable for all gender selections. */
+private static final int HOODIE = 3;
+/** Represents Jeans, applicable for all gender selections. */
+private static final int JEANS = 4;
+/** Represents Sweatpants, applicable for all gender selections. */
+private static final int SWEATPANTS = 5;
+/** Represents Trousers, applicable for all gender selections. */
+private static final int TROUSERS = 6;
 
-    // Private women's clothing constants
-    private static final int SKIRT = 7;
-    private static final int PANTIES = 8;
-    private static final int SHORTS_W = 9;
-    private static final int SNEAKERS_W = 10;
-    private static final int SANDALS_W = 11;
-    private static final int BOOTS_W = 12;
-    private static final int SOCKS_W = 13;
+// Men's specific clothing constants
+/** Represents Boxers, specific to men's clothing options. */
+private static final int BOXERS = 7;
+/** Represents Shorts, specific to men's clothing options. */
+private static final int SHORTS = 8;
+/** Represents Sneakers, specific to men's clothing options. */
+private static final int SNEAKERS = 9;
+/** Represents Sandals, specific to men's clothing options. */
+private static final int SANDALS = 10;
+/** Represents Boots, specific to men's clothing options. */
+private static final int BOOTS = 11;
+/** Represents Socks, specific to men's clothing options. */
+private static final int SOCKS = 12;
 
-    // Private accessory constants
-    private static final int PASSPORT = 1;
-    private static final int LAPTOP = 2;
-    private static final int BOOK = 3;
+// Women's specific clothing constants
+/** Represents a Skirt, specific to women's clothing options. */
+private static final int SKIRT = 7;
+/** Represents Panties, specific to women's clothing options. */
+private static final int PANTIES = 8;
+/** Represents Shorts, specific to women's clothing options. */
+private static final int SHORTS_W = 9;
+/** Represents Sneakers, specific to women's clothing options. */
+private static final int SNEAKERS_W = 10;
+/** Represents Sandals, specific to women's clothing options. */
+private static final int SANDALS_W = 11;
+/** Represents Boots, specific to women's clothing options. */
+private static final int BOOTS_W = 12;
+/** Represents Socks, specific to women's clothing options. */
+private static final int SOCKS_W = 13;
+
+// Accessory constants
+/** Represents a Passport as an accessory item. */
+private static final int PASSPORT = 1;
+/** Represents a Laptop as an accessory item. */
+private static final int LAPTOP = 2;
+/** Represents a Book as an accessory item. */
+private static final int BOOK = 3;
 
     /**
     * Prompts the user to choose between inputting a clothing item or
@@ -91,19 +115,19 @@ final class ItemInputHandler {
         int choice;
         while (true) {
             try {
-<span class="fc" id="L94">                choice = scanner.nextInt();</span>
-<span class="pc bpc" id="L95" title="1 of 4 branches missed.">                if (choice == 1 || choice == 2) {</span>
-<span class="fc" id="L96">                    return choice;</span>
+<span class="fc" id="L118">                choice = scanner.nextInt();</span>
+<span class="pc bpc" id="L119" title="1 of 4 branches missed.">                if (choice == 1 || choice == 2) {</span>
+<span class="fc" id="L120">                    return choice;</span>
                 } else {
-<span class="fc" id="L98">                    System.out.println(&quot;Invalid input.&quot;</span>
+<span class="fc" id="L122">                    System.out.println(&quot;Invalid input.&quot;</span>
                     + &quot; Please give me 1 to input clothing or&quot;
                     + &quot; 2 to input an accessory.&quot;);
                 }
-<span class="nc" id="L102">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L103">                System.err.println(&quot;Invalid Input.&quot;</span>
+<span class="nc" id="L126">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L127">                System.err.println(&quot;Invalid Input.&quot;</span>
                                     + &quot; Please give me a valid integer.&quot;);
-<span class="nc" id="L105">                scanner.next();</span>
-<span class="pc" id="L106">            }</span>
+<span class="nc" id="L129">                scanner.next();</span>
+<span class="pc" id="L130">            }</span>
         }
     }
 
@@ -123,52 +147,52 @@ final class ItemInputHandler {
                                         final char itemGender,
                                         final Scanner scanner) {
 
-<span class="fc" id="L126">        int choiceOfItem = validateChoiceOfItem(itemType, itemGender, scanner);</span>
+<span class="fc" id="L150">        int choiceOfItem = validateChoiceOfItem(itemType, itemGender, scanner);</span>
 
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        if (itemType == 1) { //Item is a piece of Clothing</span>
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">        if (itemType == 1) { //Item is a piece of Clothing</span>
             //Return the appropriate item if the selected gender is Male
-<span class="pc bpc" id="L130" title="1 of 2 branches missed.">            if (itemGender == 'M') {</span>
-<span class="pc bpc" id="L131" title="12 of 13 branches missed.">                switch (choiceOfItem) {</span>
-<span class="fc" id="L132">                        case T_SHIRT : return &quot;T-Shirt&quot;;</span>
-<span class="nc" id="L133">                        case SHIRT : return &quot;Shirt&quot;;</span>
-<span class="nc" id="L134">                        case HOODIE : return &quot;Hoodie&quot;;</span>
-<span class="nc" id="L135">                        case JEANS : return &quot;Jeans&quot;;</span>
-<span class="nc" id="L136">                        case SWEATPANTS : return &quot;Sweatpants&quot;;</span>
-<span class="nc" id="L137">                        case TROUSERS : return &quot;Trousers&quot;;</span>
-<span class="nc" id="L138">                        case BOXERS : return &quot;Boxers&quot;;</span>
-<span class="nc" id="L139">                        case SHORTS : return &quot;Shorts&quot;;</span>
-<span class="nc" id="L140">                        case SNEAKERS : return &quot;Sneakers&quot;;</span>
-<span class="nc" id="L141">                        case SANDALS : return &quot;Sandals&quot;;</span>
-<span class="nc" id="L142">                        case BOOTS : return &quot;Boots&quot;;</span>
-<span class="nc" id="L143">                        case SOCKS : return &quot;Socks&quot;;</span>
-<span class="nc" id="L144">                        default: throw new IllegalArgumentException(</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">            if (itemGender == 'M') {</span>
+<span class="pc bpc" id="L155" title="12 of 13 branches missed.">                switch (choiceOfItem) {</span>
+<span class="fc" id="L156">                        case T_SHIRT : return &quot;T-Shirt&quot;;</span>
+<span class="nc" id="L157">                        case SHIRT : return &quot;Shirt&quot;;</span>
+<span class="nc" id="L158">                        case HOODIE : return &quot;Hoodie&quot;;</span>
+<span class="nc" id="L159">                        case JEANS : return &quot;Jeans&quot;;</span>
+<span class="nc" id="L160">                        case SWEATPANTS : return &quot;Sweatpants&quot;;</span>
+<span class="nc" id="L161">                        case TROUSERS : return &quot;Trousers&quot;;</span>
+<span class="nc" id="L162">                        case BOXERS : return &quot;Boxers&quot;;</span>
+<span class="nc" id="L163">                        case SHORTS : return &quot;Shorts&quot;;</span>
+<span class="nc" id="L164">                        case SNEAKERS : return &quot;Sneakers&quot;;</span>
+<span class="nc" id="L165">                        case SANDALS : return &quot;Sandals&quot;;</span>
+<span class="nc" id="L166">                        case BOOTS : return &quot;Boots&quot;;</span>
+<span class="nc" id="L167">                        case SOCKS : return &quot;Socks&quot;;</span>
+<span class="nc" id="L168">                        default: throw new IllegalArgumentException(</span>
                                         &quot;Invalid clothing choice&quot;);
                 }
             } else { //Return the appropriate item if the selected gender is 'F'
-<span class="nc bnc" id="L148" title="All 14 branches missed.">                switch (choiceOfItem) {</span>
-<span class="nc" id="L149">                        case T_SHIRT : return &quot;T-Shirt&quot;;</span>
-<span class="nc" id="L150">                        case SHIRT : return &quot;Shirt&quot;;</span>
-<span class="nc" id="L151">                        case HOODIE : return &quot;Hoodie&quot;;</span>
-<span class="nc" id="L152">                        case JEANS : return &quot;Jeans&quot;;</span>
-<span class="nc" id="L153">                        case SWEATPANTS : return &quot;Sweatpants&quot;;</span>
-<span class="nc" id="L154">                        case TROUSERS : return &quot;Trousers&quot;;</span>
-<span class="nc" id="L155">                        case SKIRT : return &quot;Skirt&quot;;</span>
-<span class="nc" id="L156">                        case PANTIES : return &quot;Panties&quot;;</span>
-<span class="nc" id="L157">                        case SHORTS_W : return &quot;Shorts&quot;;</span>
-<span class="nc" id="L158">                        case SNEAKERS_W : return &quot;Sneakers&quot;;</span>
-<span class="nc" id="L159">                        case SANDALS_W : return &quot;Sandals&quot;;</span>
-<span class="nc" id="L160">                        case BOOTS_W : return &quot;Boots&quot;;</span>
-<span class="nc" id="L161">                        case SOCKS_W : return &quot;Socks&quot;;</span>
-<span class="nc" id="L162">                        default: throw new IllegalArgumentException(</span>
+<span class="nc bnc" id="L172" title="All 14 branches missed.">                switch (choiceOfItem) {</span>
+<span class="nc" id="L173">                        case T_SHIRT : return &quot;T-Shirt&quot;;</span>
+<span class="nc" id="L174">                        case SHIRT : return &quot;Shirt&quot;;</span>
+<span class="nc" id="L175">                        case HOODIE : return &quot;Hoodie&quot;;</span>
+<span class="nc" id="L176">                        case JEANS : return &quot;Jeans&quot;;</span>
+<span class="nc" id="L177">                        case SWEATPANTS : return &quot;Sweatpants&quot;;</span>
+<span class="nc" id="L178">                        case TROUSERS : return &quot;Trousers&quot;;</span>
+<span class="nc" id="L179">                        case SKIRT : return &quot;Skirt&quot;;</span>
+<span class="nc" id="L180">                        case PANTIES : return &quot;Panties&quot;;</span>
+<span class="nc" id="L181">                        case SHORTS_W : return &quot;Shorts&quot;;</span>
+<span class="nc" id="L182">                        case SNEAKERS_W : return &quot;Sneakers&quot;;</span>
+<span class="nc" id="L183">                        case SANDALS_W : return &quot;Sandals&quot;;</span>
+<span class="nc" id="L184">                        case BOOTS_W : return &quot;Boots&quot;;</span>
+<span class="nc" id="L185">                        case SOCKS_W : return &quot;Socks&quot;;</span>
+<span class="nc" id="L186">                        default: throw new IllegalArgumentException(</span>
                                         &quot;Invalid clothing choice&quot;);
                 }
             }
         } else { //If item is an accessory
-<span class="nc bnc" id="L167" title="All 4 branches missed.">            switch (choiceOfItem) {</span>
-<span class="nc" id="L168">                case PASSPORT : return &quot;Passport&quot;;</span>
-<span class="nc" id="L169">                case LAPTOP : return &quot;Laptop&quot;;</span>
-<span class="nc" id="L170">                case BOOK : return &quot;Book&quot;;</span>
-<span class="nc" id="L171">                default: throw new IllegalArgumentException(</span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">            switch (choiceOfItem) {</span>
+<span class="nc" id="L192">                case PASSPORT : return &quot;Passport&quot;;</span>
+<span class="nc" id="L193">                case LAPTOP : return &quot;Laptop&quot;;</span>
+<span class="nc" id="L194">                case BOOK : return &quot;Book&quot;;</span>
+<span class="nc" id="L195">                default: throw new IllegalArgumentException(</span>
                                     &quot;Invalid accessory choice&quot;);
             }
         }
@@ -189,37 +213,37 @@ final class ItemInputHandler {
                                             final Scanner scanner) {
         /*Set accepted range of int choices depending of if the item is a piece
          of clothing or an accessory.*/
-<span class="fc" id="L192">        int minRange = 1;</span>
+<span class="fc" id="L216">        int minRange = 1;</span>
         int maxRange;
-<span class="pc bpc" id="L194" title="1 of 2 branches missed.">        if (itemType == 1) { //Item is a piece of clothing</span>
+<span class="pc bpc" id="L218" title="1 of 2 branches missed.">        if (itemType == 1) { //Item is a piece of clothing</span>
             /*Account for the difference in choices depending on the previously
              selected gender of choice.*/
-<span class="pc bpc" id="L197" title="1 of 2 branches missed.">            if (itemGender == 'M') {</span>
-<span class="fc" id="L198">                maxRange = 12;</span>
+<span class="pc bpc" id="L221" title="1 of 2 branches missed.">            if (itemGender == 'M') {</span>
+<span class="fc" id="L222">                maxRange = 12;</span>
             } else {
-<span class="nc" id="L200">                maxRange = 13;</span>
+<span class="nc" id="L224">                maxRange = 13;</span>
             }
         } else { //Item is an accessory
-<span class="nc" id="L203">            maxRange = 3;</span>
+<span class="nc" id="L227">            maxRange = 3;</span>
         }
-<span class="fc" id="L205">        System.out.println(&quot;Enter your choice:&quot;);</span>
+<span class="fc" id="L229">        System.out.println(&quot;Enter your choice:&quot;);</span>
         while (true) {
             try {
-<span class="fc" id="L208">                int choiceOfItem = scanner.nextInt();</span>
-<span class="fc" id="L209">                scanner.nextLine();</span>
+<span class="fc" id="L232">                int choiceOfItem = scanner.nextInt();</span>
+<span class="fc" id="L233">                scanner.nextLine();</span>
                 //If item is not in the accepted range
-<span class="pc bpc" id="L211" title="2 of 4 branches missed.">                if (choiceOfItem &lt; minRange || choiceOfItem &gt; maxRange) {</span>
-<span class="nc" id="L212">                    System.out.println(&quot;Invalid input. Give me an integer &quot;</span>
+<span class="pc bpc" id="L235" title="2 of 4 branches missed.">                if (choiceOfItem &lt; minRange || choiceOfItem &gt; maxRange) {</span>
+<span class="nc" id="L236">                    System.out.println(&quot;Invalid input. Give me an integer &quot;</span>
                             + &quot;ranging from &quot; + minRange + &quot; to &quot;
                             + maxRange + &quot;.&quot;);
                 } else { //Item is in the accepted range
-<span class="fc" id="L216">                    return choiceOfItem;</span>
+<span class="fc" id="L240">                    return choiceOfItem;</span>
                 }
-<span class="nc" id="L218">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L219">                System.out.println(&quot;Invalid input.&quot;</span>
+<span class="nc" id="L242">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L243">                System.out.println(&quot;Invalid input.&quot;</span>
                                     + &quot; Please give me a valid integer&quot;);
-<span class="nc" id="L221">                scanner.nextLine();</span>
-<span class="nc" id="L222">            }</span>
+<span class="nc" id="L245">                scanner.nextLine();</span>
+<span class="nc" id="L246">            }</span>
         }
     }
 
@@ -231,26 +255,26 @@ final class ItemInputHandler {
     *         ('M' for male, 'F' for female).
     */
     protected static char setGender(final Scanner scanner) {
-<span class="fc" id="L234">        System.out.println(&quot;Please enter your gender: &quot;</span>
+<span class="fc" id="L258">        System.out.println(&quot;Please enter your gender: &quot;</span>
                             + &quot;(M for Male, F for Female)&quot;);
         char gender;
         while (true) { // Infinite loop until valid input is provided
             // Read the entire line and trim whitespace
-<span class="fc" id="L239">            String input = scanner.nextLine().trim();</span>
-<span class="fc bfc" id="L240" title="All 2 branches covered.">            if (input.isEmpty()) { // Check for empty input</span>
-<span class="fc" id="L241">                System.err.println(&quot;No input detected. &quot;</span>
+<span class="fc" id="L263">            String input = scanner.nextLine().trim();</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">            if (input.isEmpty()) { // Check for empty input</span>
+<span class="fc" id="L265">                System.err.println(&quot;No input detected. &quot;</span>
                             + &quot;Please enter 'M' for Male or 'F' for Female.&quot;);
-<span class="fc" id="L243">                continue; // Prompt user again</span>
+<span class="fc" id="L267">                continue; // Prompt user again</span>
             }
-<span class="pc bpc" id="L245" title="1 of 2 branches missed.">            if (input.length() == 1) { // Ensure input is a single character</span>
-<span class="fc" id="L246">                gender = input.toUpperCase().charAt(0);</span>
-<span class="pc bpc" id="L247" title="3 of 4 branches missed.">                    if (gender == 'M' || gender == 'F') {</span>
-<span class="fc" id="L248">                        return gender;</span>
+<span class="pc bpc" id="L269" title="1 of 2 branches missed.">            if (input.length() == 1) { // Ensure input is a single character</span>
+<span class="fc" id="L270">                gender = input.toUpperCase().charAt(0);</span>
+<span class="pc bpc" id="L271" title="3 of 4 branches missed.">                    if (gender == 'M' || gender == 'F') {</span>
+<span class="fc" id="L272">                        return gender;</span>
                     }
             }
-<span class="nc" id="L251">            System.err.println(&quot;Invalid input. Please enter&quot;</span>
+<span class="nc" id="L275">            System.err.println(&quot;Invalid input. Please enter&quot;</span>
                                 + &quot; 'M' for Male or 'F' for Female.&quot;);
-<span class="nc" id="L253">            }</span>
+<span class="nc" id="L277">            }</span>
     }
 
     /**
@@ -261,50 +285,50 @@ final class ItemInputHandler {
     *         (S for Small, M for Medium, L for Large).
     */
     protected static char setSize(final Scanner scanner) {
-<span class="fc" id="L264">        System.out.println(&quot;Please enter your desired size: &quot;</span>
+<span class="fc" id="L288">        System.out.println(&quot;Please enter your desired size: &quot;</span>
                         + &quot;(S for Small, M for Medium, L for Large)&quot;);
 
         while (true) { //Infinite loop until valid input is provided
             //Read the entire line and trim whitespace
-<span class="fc" id="L269">            String input = scanner.nextLine().trim();</span>
-<span class="pc bpc" id="L270" title="1 of 2 branches missed.">            if (input.isEmpty()) { //Check for empty input</span>
-<span class="nc" id="L271">                System.err.println(&quot;No input detected.&quot;</span>
+<span class="fc" id="L293">            String input = scanner.nextLine().trim();</span>
+<span class="pc bpc" id="L294" title="1 of 2 branches missed.">            if (input.isEmpty()) { //Check for empty input</span>
+<span class="nc" id="L295">                System.err.println(&quot;No input detected.&quot;</span>
                             + &quot;Please enter 'S' for Small or 'M' for Medium&quot;
                             + &quot; or 'L' for Large.&quot;);
-<span class="nc" id="L274">                continue; //Prompt user again</span>
+<span class="nc" id="L298">                continue; //Prompt user again</span>
             }
-<span class="pc bpc" id="L276" title="1 of 2 branches missed.">            if (input.length() == 1) {</span>
-<span class="fc" id="L277">                char gender = input.toUpperCase().charAt(0);</span>
-<span class="pc bpc" id="L278" title="5 of 6 branches missed.">                if (gender == 'S' || gender == 'M' || gender == 'L') {</span>
-<span class="fc" id="L279">                    return gender;</span>
+<span class="pc bpc" id="L300" title="1 of 2 branches missed.">            if (input.length() == 1) {</span>
+<span class="fc" id="L301">                char gender = input.toUpperCase().charAt(0);</span>
+<span class="pc bpc" id="L302" title="5 of 6 branches missed.">                if (gender == 'S' || gender == 'M' || gender == 'L') {</span>
+<span class="fc" id="L303">                    return gender;</span>
                 } else {
-<span class="nc" id="L281">                    System.err.println(&quot;Invalid input. Please enter&quot;</span>
+<span class="nc" id="L305">                    System.err.println(&quot;Invalid input. Please enter&quot;</span>
                     + &quot; 'S' for Small or 'M' for Medium or 'L' for Large.&quot;);
                 }
-<span class="nc" id="L284">            } else {</span>
-<span class="nc" id="L285">                System.err.println(&quot;Invalid input. Please enter one letter:&quot;</span>
+<span class="nc" id="L308">            } else {</span>
+<span class="nc" id="L309">                System.err.println(&quot;Invalid input. Please enter one letter:&quot;</span>
                         + &quot; 'S' for Small or 'M' for Medium or 'L' for Large.&quot;);
             }
-<span class="nc" id="L288">        }</span>
+<span class="nc" id="L312">        }</span>
     }
 
     protected static int getNumberOfItems(final Scanner scanner) {
-<span class="nc" id="L292">        System.out.println(&quot;How many items like this would you like to pack?&quot;</span>
+<span class="nc" id="L316">        System.out.println(&quot;How many items like this would you like to pack?&quot;</span>
                             + &quot;(max 8)&quot;);
         while (true) { //Infinite loop until valid input is provided
             try {
-<span class="nc" id="L296">                int numberOfitems = scanner.nextInt();</span>
-<span class="nc bnc" id="L297" title="All 4 branches missed.">                if (numberOfitems &gt; 0 &amp;&amp; numberOfitems &lt; 9) {</span>
-<span class="nc" id="L298">                    return numberOfitems;</span>
+<span class="nc" id="L320">                int numberOfitems = scanner.nextInt();</span>
+<span class="nc bnc" id="L321" title="All 4 branches missed.">                if (numberOfitems &gt; 0 &amp;&amp; numberOfitems &lt; 9) {</span>
+<span class="nc" id="L322">                    return numberOfitems;</span>
                 } else {
-<span class="nc" id="L300">                    System.out.println(&quot;Invalid input. Give me an integer&quot;</span>
+<span class="nc" id="L324">                    System.out.println(&quot;Invalid input. Give me an integer&quot;</span>
                                         + &quot; ranging from 1 to 8.&quot;);
                 }
-<span class="nc" id="L303">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L304">                System.out.println(&quot;Invalid input. Give me an integer&quot;</span>
+<span class="nc" id="L327">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L328">                System.out.println(&quot;Invalid input. Give me an integer&quot;</span>
                                         + &quot;ranging from 1 to 8.&quot;);
-<span class="nc" id="L306">                scanner.nextLine(); //Clear the next line</span>
-<span class="nc" id="L307">            }</span>
+<span class="nc" id="L330">                scanner.nextLine(); //Clear the next line</span>
+<span class="nc" id="L331">            }</span>
         }
     }
 
@@ -327,14 +351,14 @@ final class ItemInputHandler {
                                         final char sex,
                                         final char size,
                                         final int value) {
-<span class="pc bpc" id="L330" title="1 of 2 branches missed.">        if (type == 1) {</span>
-<span class="pc bpc" id="L331" title="1 of 2 branches missed.">            return value == -1 ? new Clothing(choiceOfItem, size, sex)</span>
-<span class="fc" id="L332">                            : new Clothing(value, choiceOfItem, size, sex);</span>
-<span class="nc bnc" id="L333" title="All 2 branches missed.">        } else if (type == 2) {</span>
-<span class="nc bnc" id="L334" title="All 2 branches missed.">            return value == -1 ? new Extras(choiceOfItem, size, sex)</span>
-<span class="nc" id="L335">                            : new Extras(value, choiceOfItem, size, sex);</span>
+<span class="pc bpc" id="L354" title="1 of 2 branches missed.">        if (type == 1) {</span>
+<span class="pc bpc" id="L355" title="1 of 2 branches missed.">            return value == -1 ? new Clothing(choiceOfItem, size, sex)</span>
+<span class="fc" id="L356">                            : new Clothing(value, choiceOfItem, size, sex);</span>
+<span class="nc bnc" id="L357" title="All 2 branches missed.">        } else if (type == 2) {</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">            return value == -1 ? new Extras(choiceOfItem, size, sex)</span>
+<span class="nc" id="L359">                            : new Extras(value, choiceOfItem, size, sex);</span>
         } else {
-<span class="nc" id="L337">            throw new IllegalArgumentException(&quot;Invalid type: &quot;</span>
+<span class="nc" id="L361">            throw new IllegalArgumentException(&quot;Invalid type: &quot;</span>
                                                 + choiceOfItem);
         }
     }
@@ -360,11 +384,11 @@ final class ItemInputHandler {
                                     final int timesPacked) {
 
         //Insert a default value for value
-<span class="nc" id="L363">        PackingItem pack = createItem(type, choiceOfItem, sex, size, 0);</span>
-<span class="nc bnc" id="L364" title="All 2 branches missed.">        for (int i = 0; i &lt; timesPacked; i++) {</span>
-<span class="nc" id="L365">            items.add(pack);</span>
+<span class="nc" id="L387">        PackingItem pack = createItem(type, choiceOfItem, sex, size, 0);</span>
+<span class="nc bnc" id="L388" title="All 2 branches missed.">        for (int i = 0; i &lt; timesPacked; i++) {</span>
+<span class="nc" id="L389">            items.add(pack);</span>
         }
-<span class="nc" id="L367">    }</span>
+<span class="nc" id="L391">    }</span>
 
     /**
      * Overloaded version of inputItem that includes a value parameter.
@@ -388,10 +412,10 @@ final class ItemInputHandler {
                                     final int value,
                                     final int timesPacked) {
 
-<span class="fc" id="L391">        PackingItem pack = createItem(type, choiceOfItem, sex, size, value);</span>
-<span class="fc bfc" id="L392" title="All 2 branches covered.">        for (int i = 0; i &lt; timesPacked; i++) {</span>
-<span class="fc" id="L393">            items.add(pack);</span>
+<span class="fc" id="L415">        PackingItem pack = createItem(type, choiceOfItem, sex, size, value);</span>
+<span class="fc bfc" id="L416" title="All 2 branches covered.">        for (int i = 0; i &lt; timesPacked; i++) {</span>
+<span class="fc" id="L417">            items.add(pack);</span>
         }
-<span class="fc" id="L395">    }</span>
+<span class="fc" id="L419">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

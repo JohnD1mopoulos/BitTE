@@ -44,35 +44,59 @@ final class ItemInputHandler {
             "This is a utility class and it shouldn't be instantiated");
     }
 
-    // Private clothing constants (unisex)
-    private static final int T_SHIRT = 1;
-    private static final int SHIRT = 2;
-    private static final int HOODIE = 3;
-    private static final int JEANS = 4;
-    private static final int SWEATPANTS = 5;
-    private static final int TROUSERS = 6;
+    // Constants for identifying types of clothing and accessories in the application.
 
-    // Private men's clothing constants
-    private static final int BOXERS = 7;
-    private static final int SHORTS = 8;
-    private static final int SNEAKERS = 9;
-    private static final int SANDALS = 10;
-    private static final int BOOTS = 11;
-    private static final int SOCKS = 12;
+// Unisex clothing constants
+/** Represents a T-shirt, applicable for all gender selections. */
+private static final int T_SHIRT = 1;
+/** Represents a Shirt, applicable for all gender selections. */
+private static final int SHIRT = 2;
+/** Represents a Hoodie, applicable for all gender selections. */
+private static final int HOODIE = 3;
+/** Represents Jeans, applicable for all gender selections. */
+private static final int JEANS = 4;
+/** Represents Sweatpants, applicable for all gender selections. */
+private static final int SWEATPANTS = 5;
+/** Represents Trousers, applicable for all gender selections. */
+private static final int TROUSERS = 6;
 
-    // Private women's clothing constants
-    private static final int SKIRT = 7;
-    private static final int PANTIES = 8;
-    private static final int SHORTS_W = 9;
-    private static final int SNEAKERS_W = 10;
-    private static final int SANDALS_W = 11;
-    private static final int BOOTS_W = 12;
-    private static final int SOCKS_W = 13;
+// Men's specific clothing constants
+/** Represents Boxers, specific to men's clothing options. */
+private static final int BOXERS = 7;
+/** Represents Shorts, specific to men's clothing options. */
+private static final int SHORTS = 8;
+/** Represents Sneakers, specific to men's clothing options. */
+private static final int SNEAKERS = 9;
+/** Represents Sandals, specific to men's clothing options. */
+private static final int SANDALS = 10;
+/** Represents Boots, specific to men's clothing options. */
+private static final int BOOTS = 11;
+/** Represents Socks, specific to men's clothing options. */
+private static final int SOCKS = 12;
 
-    // Private accessory constants
-    private static final int PASSPORT = 1;
-    private static final int LAPTOP = 2;
-    private static final int BOOK = 3;
+// Women's specific clothing constants
+/** Represents a Skirt, specific to women's clothing options. */
+private static final int SKIRT = 7;
+/** Represents Panties, specific to women's clothing options. */
+private static final int PANTIES = 8;
+/** Represents Shorts, specific to women's clothing options. */
+private static final int SHORTS_W = 9;
+/** Represents Sneakers, specific to women's clothing options. */
+private static final int SNEAKERS_W = 10;
+/** Represents Sandals, specific to women's clothing options. */
+private static final int SANDALS_W = 11;
+/** Represents Boots, specific to women's clothing options. */
+private static final int BOOTS_W = 12;
+/** Represents Socks, specific to women's clothing options. */
+private static final int SOCKS_W = 13;
+
+// Accessory constants
+/** Represents a Passport as an accessory item. */
+private static final int PASSPORT = 1;
+/** Represents a Laptop as an accessory item. */
+private static final int LAPTOP = 2;
+/** Represents a Book as an accessory item. */
+private static final int BOOK = 3;
 
     /**
     * Prompts the user to choose between inputting a clothing item or
