@@ -16,55 +16,57 @@
 
  package com.BitTE.OptimizationProject;
 
- import java.sql.SQLException;
- import java.util.ArrayList;
- import java.util.Scanner;
- import org.tinylog.Logger;
- 
- /**
-  * Main entry point for the application.
-  * Initializes the database, connects to it, and manages the creation and processing
-  * of suitcases with packing items based on user input.
-  */
- public class AppStart {
-     
-     /**
-      * Starts the application, sets up the database, and handles user interaction
-      * to manage suitcase packing.
-      *
-      * @param args command-line arguments (not used)
-      * @throws SQLException if a database access error occurs
-      */
-     public static void main(String[] args) throws SQLException {
-         Logger.info("Starting the application...");
- 
-         // Initialize database tables and ensure the database connection is ready.
-         new DatabaseTableCreation();
-         DatabaseConnection.getConnection();
- 
-         Scanner scanner = new Scanner(System.in);
- 
-         // Setup suitcase based on user specifications.
-         CreateSuitcase suitcase = CreateSuitcase.getInstance(scanner);
-         final double maxVolume = suitcase.getMaxVolume();
-         final double maxWeight = suitcase.getMaxWeight();
- 
-         // Fill suitcase with essential items and possibly non-essentials if allowed by weight and volume.
-         EssentialItems essentialItemsManager = EssentialItems.getInstance();
-         boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
- 
-         ArrayList<PackingItem> selectedItems = null;
-         if (addNonEssentials) {
-             NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
-             if (nonEssentialItemsManager.fillNonEssentialItems(scanner, essentialItemsManager) == true) {
-                 SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
-                 selectedItems = spaceOptimizer.solveModel(
-                     nonEssentialItemsManager.nonEssentialItems, maxWeight, maxVolume);
-             }
-         }
-         // Display the results of the packing process to the user.
-         ResultPresenter.showResults(essentialItemsManager.essentialItems, selectedItems);
-         scanner.close();
-     }
- }
- 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import org.tinylog.Logger;
+
+/**
+ * Provides the main entry point for the application, initializing database connections,
+ * managing user input for suitcase creation, and displaying results.
+ */
+public class AppStart {
+    
+    /**
+     * Initializes the application, establishes database connectivity, processes user input
+     * for packing items in a suitcase, and displays the results.
+     *
+     * <p>This method sets up the necessary database tables, connects to the database, 
+     * and prompts the user to specify details for packing a suitcase. It handles essential
+     * and non-essential items based on available space and weight capacity.
+     *
+     * @param args the command-line arguments (not used)
+     * @throws SQLException if a database access error occurs
+     */
+    public static void main(String[] args) throws SQLException {
+        Logger.info("Starting the application...");
+
+        // Initialize the database and ensure the connection is ready.
+        new DatabaseTableCreation();
+        DatabaseConnection.getConnection();
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Configure suitcase based on user input.
+        CreateSuitcase suitcase = CreateSuitcase.getInstance(scanner);
+        final double maxVolume = suitcase.getMaxVolume();
+        final double maxWeight = suitcase.getMaxWeight();
+
+        // Attempt to fill the suitcase with essential items first.
+        EssentialItems essentialItemsManager = EssentialItems.getInstance();
+        boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);
+
+        ArrayList<PackingItem> selectedItems = null;
+        if (addNonEssentials) {
+            NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();
+            if (nonEssentialItemsManager.fillNonEssentialItems(scanner, essentialItemsManager) == true) {
+                SpaceOptimizer spaceOptimizer = new SpaceOptimizer();
+                selectedItems = spaceOptimizer.solveModel(
+                    nonEssentialItemsManager.nonEssentialItems, maxWeight, maxVolume);
+            }
+        }
+        // Present the final packing results to the user.
+        ResultPresenter.showResults(essentialItemsManager.essentialItems, selectedItems);
+        scanner.close();
+    }
+}
