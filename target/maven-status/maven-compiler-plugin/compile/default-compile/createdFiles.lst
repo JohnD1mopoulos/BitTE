@@ -10,6 +10,7 @@ com\BitTE\OptimizationProject\CreateSuitcase.class
 com\BitTE\OptimizationProject\ItemInputHandler.class
 com\BitTE\OptimizationProject\SpaceOptimizer.class
 com\BitTE\OptimizationProject\ItemDeletionHandler.class
+com\BitTE\OptimizationProject\package-info.class
 com\BitTE\OptimizationProject\EssentialItems.class
 com\BitTE\OptimizationProject\Extras.class
 com\BitTE\OptimizationProject\Clothing.class

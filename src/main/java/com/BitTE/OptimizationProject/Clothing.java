@@ -36,7 +36,6 @@ package com.BitTE.OptimizationProject;
      public Clothing(int value, String type, char size, char gender) {
          super(value, type, size, gender);
      }
- 
      /**
       * Constructs a new Clothing item with specified type, size, and gender.
       * Used for Non-Essential items with a default value of 0.
@@ -48,7 +47,6 @@ package com.BitTE.OptimizationProject;
      public Clothing(String type, char size, char gender) {
          super(type, size, gender);
      }
- 
      /**
       * Fetches a specified attribute from the database for this clothing item.
       *
@@ -61,7 +59,6 @@ package com.BitTE.OptimizationProject;
          String query = "SELECT " + attribute + " FROM CLOTHING WHERE Type = ? AND Size = ? AND Gender = ?";
          return executeQuery(query, attribute);
      }
- 
      /**
       * Executes a SQL query to retrieve a specific attribute for this clothing item.
       *
@@ -87,7 +84,6 @@ package com.BitTE.OptimizationProject;
              throw new SQLException("An error occurred while fetching " + attribute + " from the database: " + e.getMessage());
          }
      }
- 
       /**
      * Fetches the 'weight' attribute from the database for this clothing item.
      *
@@ -98,7 +94,6 @@ package com.BitTE.OptimizationProject;
      public double getWeight() throws SQLException {
          return fetchAttributeFromDB("weight");
      }
- 
      /**
      * Fetches the 'volume' attribute from the database for this clothing item.
      *
@@ -109,7 +104,6 @@ package com.BitTE.OptimizationProject;
      public double getVolume() throws SQLException {
          return fetchAttributeFromDB("volume");
      }
- 
     /**
     * Returns a string representation of this clothing item.
     *
@@ -117,7 +111,7 @@ package com.BitTE.OptimizationProject;
     */
      @Override
      public String toString() {
-         if (value == 0) { 
+         if (value == 0) {
              try {
                  return String.format("An essential %s item of type = %s, size = %c, gender = %c, value = %d, weight = %.2f, volume = %.2f",
                                       this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getGender(), this.getValue(), getWeight(), getVolume());
