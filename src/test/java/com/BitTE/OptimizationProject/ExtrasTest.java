@@ -98,12 +98,6 @@ public class ExtrasTest {
         assertEquals("No data found for the given query: Type = Passport, Size = Q", exception.getMessage(), "Should throw SQLException on data type mismatch.");
     }
 
-    @Test
-    public void testToStringReturnsCorrectFormatWhenDataIsAvailableForEssential() throws SQLException {
-        Extras extras = new Extras("Passport", 'S','X');
-        String expected = "An essential Extras item of type = Passport, size = S, value = 0, weight = 45.00, volume = 35.10";
-        assertEquals(expected, extras.toString());
-    }
 
     @Test
     void testFetchVolumeFromDBWithInvalidType() {

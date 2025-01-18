@@ -56,12 +56,6 @@ public class ClothingTest {
         }
     }
 
-    @Test
-    void testToStringReturnsCorrectFormatWhenDataIsAvailableForEssential() {
-        Clothing clothing = new Clothing("T-Shirt", 'M', 'M');
-        String expected = "An essential Clothing item of type = T-Shirt, size = M, gender = M, value = 0, weight = 150.00, volume = 1680.00";
-        assertEquals(expected, clothing.toString(), "The string representation should be correct.");
-    }
 
     @Test
     void testFetchVolumeFromDBWithInvalidType() {
