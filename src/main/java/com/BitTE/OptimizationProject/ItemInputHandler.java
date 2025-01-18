@@ -71,7 +71,7 @@ final class ItemInputHandler {
 
     // Private accessory constants
     private static final int PASSPORT = 1;
-    private static final int LAPTOP = 2;
+    private static final int COMPUTER = 2;
     private static final int BOOK = 3;
 
     /**
@@ -166,7 +166,7 @@ final class ItemInputHandler {
         } else { //If item is an accessory
             switch (choiceOfItem) {
                 case PASSPORT : return "Passport";
-                case LAPTOP : return "Laptop";
+                case COMPUTER : return "Computer";
                 case BOOK : return "Book";
                 default: throw new IllegalArgumentException(
                                     "Invalid accessory choice");
