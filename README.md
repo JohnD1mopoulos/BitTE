@@ -30,7 +30,9 @@ It is quite simpe to execute the program, access the target directory and then r
 java -jar BitTE-1.0-SNAPSHOT.jar
 ```
 
-The program will be launched immediately.
+The program will be launched immediately. In addition, a folder named sqlite will be created under the C: driver of the user's computer;
+
+this folder contains all database elements and can be viewed for extra information.
 
 ---
 
