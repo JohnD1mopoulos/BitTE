@@ -57,7 +57,7 @@ final class MenuHandler {
     };
 
     /**Array containing the extra items.*/
-    private static String[] extraItems = {"Passport", "Computer", "Book"};
+    private static String[] extraItems = {"Passport", "Laptop", "Book"};
 
     /**Displays the menu of the valid types of items 1.Clothing, 2.Accessory.*/
     protected static void chooseItemType() {
