@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.BitTE.OptimizationProject.ClothingTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.134 s -- in com.BitTE.OptimizationProject.ClothingTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.549 s -- in com.BitTE.OptimizationProject.ClothingTest
