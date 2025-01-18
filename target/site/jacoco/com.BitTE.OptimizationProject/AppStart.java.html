@@ -14,44 +14,60 @@
  * limitations under the License.
  */
 
-package com.BitTE.OptimizationProject;
+ package com.BitTE.OptimizationProject;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import org.tinylog.Logger;
 
-import com.BitTE.OptimizationProject.DatabaseTableCreation;
-
-
-<span class="nc" id="L26">public class AppStart {</span>
+/**
+ * Provides the main entry point for the application, initializing database connections,
+ * managing user input for suitcase creation, and displaying results.
+ */
+<span class="nc" id="L28">public class AppStart {</span>
+    
+    /**
+     * Initializes the application, establishes database connectivity, processes user input
+     * for packing items in a suitcase, and displays the results.
+     *
+     * &lt;p&gt;This method sets up the necessary database tables, connects to the database, 
+     * and prompts the user to specify details for packing a suitcase. It handles essential
+     * and non-essential items based on available space and weight capacity.
+     *
+     * @param args the command-line arguments (not used)
+     * @throws SQLException if a database access error occurs
+     */
     public static void main(String[] args) throws SQLException {
-<span class="nc" id="L28">        Logger.info(&quot;Starting the application...&quot;);</span>
+<span class="nc" id="L42">        Logger.info(&quot;Starting the application...&quot;);</span>
 
-<span class="nc" id="L30">        new DatabaseTableCreation();</span>
-<span class="nc" id="L31">        DatabaseConnection.getConnection();</span>
+        // Initialize the database and ensure the connection is ready.
+<span class="nc" id="L45">        new DatabaseTableCreation();</span>
+<span class="nc" id="L46">        DatabaseConnection.getConnection();</span>
 
-<span class="nc" id="L33">        Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L48">        Scanner scanner = new Scanner(System.in);</span>
 
-<span class="nc" id="L35">        CreateSuitcase suitcase = CreateSuitcase.getInstance(scanner);</span>
-<span class="nc" id="L36">        final double maxVolume = suitcase.getMaxVolume();</span>
-<span class="nc" id="L37">        final double maxWeight = suitcase.getMaxWeight();</span>
+        // Configure suitcase based on user input.
+<span class="nc" id="L51">        CreateSuitcase suitcase = CreateSuitcase.getInstance(scanner);</span>
+<span class="nc" id="L52">        final double maxVolume = suitcase.getMaxVolume();</span>
+<span class="nc" id="L53">        final double maxWeight = suitcase.getMaxWeight();</span>
 
-<span class="nc" id="L39">        EssentialItems essentialItemsManager = EssentialItems.getInstance();</span>
-<span class="nc" id="L40">        boolean addNonEssentials =</span>
-<span class="nc" id="L41">            essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);</span>
+        // Attempt to fill the suitcase with essential items first.
+<span class="nc" id="L56">        EssentialItems essentialItemsManager = EssentialItems.getInstance();</span>
+<span class="nc" id="L57">        boolean addNonEssentials = essentialItemsManager.fillEssential(maxWeight, maxVolume, scanner);</span>
 
-<span class="nc" id="L43">        ArrayList&lt;PackingItem&gt; selectedItems = null;</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (addNonEssentials) {</span>
-<span class="nc" id="L45">            NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (nonEssentialItemsManager.fillNonEssentialItems(scanner, essentialItemsManager) == true) {</span>
-<span class="nc" id="L47">            SpaceOptimizer spaceOptimizer = new SpaceOptimizer();</span>
-<span class="nc" id="L48">            selectedItems = spaceOptimizer.solveModel(</span>
-                nonEssentialItemsManager.nonEssentialItems, maxWeight, maxVolume);
+<span class="nc" id="L59">        ArrayList&lt;PackingItem&gt; selectedItems = null;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (addNonEssentials) {</span>
+<span class="nc" id="L61">            NonEssentialItems nonEssentialItemsManager = NonEssentialItems.getInstance();</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (nonEssentialItemsManager.fillNonEssentialItems(scanner, essentialItemsManager) == true) {</span>
+<span class="nc" id="L63">                SpaceOptimizer spaceOptimizer = new SpaceOptimizer();</span>
+<span class="nc" id="L64">                selectedItems = spaceOptimizer.solveModel(</span>
+                    nonEssentialItemsManager.nonEssentialItems, maxWeight, maxVolume);
             }
         }
-<span class="nc" id="L52">        ResultPresenter.showResults(essentialItemsManager.essentialItems,</span>
-                selectedItems);
-<span class="nc" id="L54">        scanner.close();</span>
-<span class="nc" id="L55">    }</span>
+        // Present the final packing results to the user.
+<span class="nc" id="L69">        ResultPresenter.showResults(essentialItemsManager.essentialItems, selectedItems);</span>
+<span class="nc" id="L70">        scanner.close();</span>
+<span class="nc" id="L71">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
