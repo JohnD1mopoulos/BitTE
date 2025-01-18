@@ -31,7 +31,7 @@ public class AppStart {
      * Initializes the application, establishes database connectivity, processes user input
      * for packing items in a suitcase, and displays the results.
      *
-     * <p>This method sets up the necessary database tables, connects to the database, 
+     * <p>This method sets up the necessary database tables, connects to the database,
      * and prompts the user to specify details for packing a suitcase. It handles essential
      * and non-essential items based on available space and weight capacity.
      *

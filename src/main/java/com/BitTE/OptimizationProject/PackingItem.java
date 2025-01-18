@@ -23,11 +23,22 @@
   * defining common properties such as type, size, and value, and requires the implementation of methods to retrieve weight and volume.
   */
  public abstract class PackingItem {
+     /**
+     * The numerical value associated with the packing item, typically used to indicate its importance or cost.
+     */
      protected int value;
+     /**
+     * The type of the packing item, describing what the item is, such as 'T-Shirt', 'Sneakers', etc.
+     */
      protected String type;
+     /**
+     * The size of the packing item, represented as a character (e.g., 'S' for small, 'M' for medium, 'L' for large).
+     */
      protected char size;
+     /**
+     * The gender specification for the packing item, indicating the intended gender use (e.g., 'M' for male, 'F' for female).
+     */
      protected final char gender;
- 
      /**
       * Constructs a new PackingItem for Non-Essential items with specified value, type, size, and gender.
       *
@@ -42,7 +53,6 @@
          this.size = size;
          this.gender = gender;
      }
- 
      /**
       * Constructs a new PackingItem for Essential items with specified type, size, and gender.
       * The value is default set to 0.
@@ -54,7 +64,6 @@
      public PackingItem(String type, char size, char gender) {
          this(0, type, size, gender); // Default value is set to 0 for Essential items
      }
-     
      /**
      * Returns the type of the packing item.
      *
@@ -63,7 +72,6 @@
      public String getType() {
          return this.type;
      }
- 
      /**
      * Returns the value of the packing item.
      *
@@ -72,7 +80,6 @@
      public int getValue() {
          return this.value;
      }
- 
      /**
      * Returns the size of the packing item.
      *
@@ -81,7 +88,6 @@
      public char getSize() {
          return this.size;
      }
- 
       /**
      * Returns the gender specification of the packing item.
      *
@@ -90,7 +96,6 @@
      public char getGender() {
          return this.gender;
      }
- 
      /**
      * Validates if the given attribute is acceptable (e.g., 'volume' or 'weight').
      *
@@ -100,10 +105,9 @@
      protected static void validateAttribute(String attribute) {
          List<String> validAttributes = Arrays.asList("volume", "weight");
          if (!validAttributes.contains(attribute)) {
-             throw new IllegalArgumentException("Invalid attribute: " + attribute);
+            throw new IllegalArgumentException("Invalid attribute: " + attribute);
          }
      }
- 
      /**
       * Abstract method to return the weight of the packing item.
       *
@@ -119,7 +123,6 @@
       * @throws SQLException if there is an issue retrieving the volume from the database
       */
      public abstract double getVolume() throws SQLException;
- 
      @Override
      public String toString() {
          try {

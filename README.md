@@ -20,6 +20,8 @@ mvn clean install
 
 This command will clean the target directory and then compile and package the application.
 
+Please use it twice. The second time the insertions of the database are commited
+
 ---
 
 ## Execution

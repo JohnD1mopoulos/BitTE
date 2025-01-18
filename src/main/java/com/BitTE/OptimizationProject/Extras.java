@@ -20,16 +20,11 @@
  import java.sql.PreparedStatement;
  import java.sql.ResultSet;
  import java.sql.SQLException;
- 
- import com.BitTE.OptimizationProject.DatabaseConnection;
-
- 
  /**
   * Represents specific non-essential or essential extras as a type of packing item
   * with functionality for fetching attributes from a database.
   */
  public class Extras extends PackingItem {
- 
      /**
       * Constructs a new Extras item with specified value, type, size, and gender.
       * Used for Non-Essential items.
@@ -42,7 +37,6 @@
      public Extras(int value, String type, char size, char gender) {
          super(value, type, size, gender);
      }
- 
      /**
       * Constructs a new Extras item with specified type, size, and gender.
       * Used for Essential items with a default value of 0.
@@ -54,7 +48,6 @@
      public Extras(String type, char size, char gender) {
          super(type, size, gender);
      }
- 
      /**
       * Fetches the specified attribute from the database for this extras item.
       *
@@ -67,7 +60,6 @@
          String query = "SELECT " + attribute + " FROM EXTRAS WHERE Type = ? AND Size = ?";
          return executeQuery(query, attribute);
      }
- 
      /**
       * Executes a SQL query to retrieve a specific attribute for this extras item.
       *
@@ -92,7 +84,6 @@
              throw e;
          }
      }
- 
      /**
       * Retrieves the weight of this extras item from the database.
       *
@@ -103,7 +94,6 @@
      public double getWeight() throws SQLException {
          return fetchAttributeFromDB("weight");
      }
- 
      /**
       * Retrieves the volume of this extras item from the database.
       *
@@ -114,7 +104,6 @@
      public double getVolume() throws SQLException {
          return fetchAttributeFromDB("volume");
      }
- 
      /**
       * Provides a string representation of the Extras item, detailing type, size, gender, value, weight, and volume,
       * with specific details about whether the item is essential or non-essential.
@@ -142,4 +131,3 @@
         }
     }
 }
- 

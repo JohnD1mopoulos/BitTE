@@ -138,7 +138,7 @@ final class ItemDeletionHandler {
                     return true;
                 } else if (userChoice == 2) {
                     System.out.println("Stopping deletion process.");
-                    return false;//Stop deletion of items
+                    return false; //Stop deletion of items
                 } else {
                     System.err.println("Invalid choice."
                                         + " Please press 1 to delete another "
