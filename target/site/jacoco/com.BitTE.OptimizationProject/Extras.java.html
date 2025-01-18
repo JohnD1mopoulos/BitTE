@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Extras.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">Extras.java</span></div><h1>Extras.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ package com.BitTE.OptimizationProject;
+
+ import java.sql.Connection;
+ import java.sql.PreparedStatement;
+ import java.sql.ResultSet;
+ import java.sql.SQLException;
+ 
+ import com.BitTE.OptimizationProject.DatabaseConnection;
+
+ 
+ /**
+  * Represents specific non-essential or essential extras as a type of packing item
+  * with functionality for fetching attributes from a database.
+  */
+ public class Extras extends PackingItem {
+ 
+     /**
+      * Constructs a new Extras item with specified value, type, size, and gender.
+      * Used for Non-Essential items.
+      *
+      * @param value the item's value
+      * @param type the type of the item
+      * @param size the size of the item
+      * @param gender the gender specification of the item
+      */
+     public Extras(int value, String type, char size, char gender) {
+<span class="fc" id="L43">         super(value, type, size, gender);</span>
+<span class="fc" id="L44">     }</span>
+ 
+     /**
+      * Constructs a new Extras item with specified type, size, and gender.
+      * Used for Essential items with a default value of 0.
+      *
+      * @param type the type of the item
+      * @param size the size of the item
+      * @param gender the gender specification of the item
+      */
+     public Extras(String type, char size, char gender) {
+<span class="fc" id="L55">         super(type, size, gender);</span>
+<span class="fc" id="L56">     }</span>
+ 
+     /**
+      * Fetches the specified attribute from the database for this extras item.
+      *
+      * @param attribute the attribute name to fetch (e.g., weight, volume)
+      * @return the value of the attribute
+      * @throws SQLException if a database access error occurs
+      */
+     private double fetchAttributeFromDB(String attribute) throws SQLException {
+<span class="fc" id="L66">         validateAttribute(attribute);</span>
+<span class="fc" id="L67">         String query = &quot;SELECT &quot; + attribute + &quot; FROM EXTRAS WHERE Type = ? AND Size = ?&quot;;</span>
+<span class="fc" id="L68">         return executeQuery(query, attribute);</span>
+     }
+ 
+     /**
+      * Executes a SQL query to retrieve a specific attribute for this extras item.
+      *
+      * @param query the SQL query string
+      * @param attribute the attribute to be retrieved
+      * @return the value of the requested attribute
+      * @throws SQLException if a database access error occurs or no data found
+      */
+     private double executeQuery(String query, String attribute) throws SQLException {
+<span class="fc" id="L80">         try (Connection conn = DatabaseConnection.getConnection();</span>
+<span class="fc" id="L81">              PreparedStatement stmt = conn.prepareStatement(query)) {</span>
+<span class="fc" id="L82">             stmt.setString(1, this.getType());</span>
+<span class="fc" id="L83">             stmt.setString(2, String.valueOf(this.getSize()));</span>
+<span class="fc" id="L84">             try (ResultSet rs = stmt.executeQuery()) {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                 if (rs.next()) {</span>
+<span class="fc" id="L86">                     return rs.getDouble(attribute);</span>
+                 } else {
+<span class="fc" id="L88">                     throw new SQLException(&quot;No data found for the given query: Type = &quot; + this.getType() + &quot;, Size = &quot; + this.getSize());</span>
+                 }
+             }
+<span class="fc" id="L91">         } catch (SQLException e) {</span>
+<span class="fc" id="L92">             throw e;</span>
+         }
+     }
+ 
+     /**
+      * Retrieves the weight of this extras item from the database.
+      *
+      * @return the weight of this extras item
+      * @throws SQLException if there is an error fetching the weight from the database
+      */
+     @Override
+     public double getWeight() throws SQLException {
+<span class="fc" id="L104">         return fetchAttributeFromDB(&quot;weight&quot;);</span>
+     }
+ 
+     /**
+      * Retrieves the volume of this extras item from the database.
+      *
+      * @return the volume of this extras item
+      * @throws SQLException if there is an error fetching the volume from the database
+      */
+     @Override
+     public double getVolume() throws SQLException {
+<span class="fc" id="L115">         return fetchAttributeFromDB(&quot;volume&quot;);</span>
+     }
+ 
+     /**
+      * Provides a string representation of the Extras item, detailing type, size, gender, value, weight, and volume,
+      * with specific details about whether the item is essential or non-essential.
+      *
+      * @return a string description of this Extras item
+      */
+     @Override
+    public String toString() {
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        if (value == 0) {//Essential Extras</span>
+            try {
+<span class="nc" id="L128">                return String.format(&quot;An essential %s item of type = %s, size = %c, value = %d, weight = %.2f, volume = %.2f&quot;,</span>
+<span class="nc" id="L129">                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue(), getWeight(), getVolume());</span>
+<span class="nc" id="L130">            } catch (SQLException e) {</span>
+<span class="nc" id="L131">                return String.format(&quot;An essential %s item of type = %s, size = %c, value = %d, but an error occurred while retrieving weight and volume.&quot;,</span>
+<span class="nc" id="L132">                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue());</span>
+            }
+        } else { //`Non-Essential Extras
+            try {
+<span class="nc" id="L136">                return String.format(&quot;A non-essential %s item of type = %s, size = %c, value = %d, weight = %.2f, volume = %.2f&quot;,</span>
+<span class="nc" id="L137">                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue(), getWeight(), getVolume());</span>
+<span class="nc" id="L138">            } catch (SQLException e) {</span>
+<span class="nc" id="L139">                return String.format(&quot;A non-essential %s item of type = %s, size = %c, value = %d, but an error occurred while retrieving weight and volume.&quot;,</span>
+<span class="nc" id="L140">                                    this.getClass().getSimpleName(), this.getType(), this.getSize(), this.getValue());</span>
+            }
+        }
+    }
+}
+ 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

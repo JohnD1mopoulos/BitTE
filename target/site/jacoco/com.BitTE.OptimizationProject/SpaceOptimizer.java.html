@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpaceOptimizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BitTE</a> &gt; <a href="index.source.html" class="el_package">com.BitTE.OptimizationProject</a> &gt; <span class="el_source">SpaceOptimizer.java</span></div><h1>SpaceOptimizer.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2025 BitTE Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.BitTE.OptimizationProject;
+
+import org.chocosolver.solver.Model;
+import org.chocosolver.solver.variables.IntVar;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+/**
+ * SpaceOptimizer is a utility class designed to solve optimization problems
+ * related to space and weight constraints, such as knapsack problems.
+ * It uses the Choco Solver library to define
+ * and solve mathematical models for packing items within defined limits.
+ */
+<span class="fc" id="L31">public class SpaceOptimizer {</span>
+
+    /**
+     * Class-level variable to store binary decision variables.
+     */
+    private IntVar[] binaryVars;
+    /**
+     * Class-level variable to scale variables.
+     */
+<span class="fc" id="L40">    private final int scale = 100;</span>
+
+    /**
+     * Create the Model for the problem.
+     * @param items
+     * @param maxWeight
+     * @param maxVolume
+     * @return a model {@link Model} for the solver.
+     * @throws SQLException
+     */
+    @SuppressWarnings(&quot;deprecation&quot;)
+    public Model createModel(
+        final ArrayList&lt;PackingItem&gt; items,
+        final int maxWeight,
+        final int maxVolume) throws SQLException {
+<span class="fc" id="L55">        Model model = new Model(&quot;Knapsack model&quot;);</span>
+
+<span class="fc" id="L57">        int n = items.size();</span>
+<span class="fc" id="L58">        binaryVars = new IntVar[n];  // Initialize the binaryVars array</span>
+
+<span class="fc" id="L60">        IntVar[] scaledVars = new IntVar[n];</span>
+<span class="fc" id="L61">        IntVar[] weightVars = new IntVar[n];</span>
+<span class="fc" id="L62">        IntVar[] volumeVars = new IntVar[n];</span>
+<span class="fc" id="L63">        int maxTotalValue = 0;</span>
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc" id="L66">            PackingItem item = items.get(i);</span>
+<span class="fc" id="L67">            binaryVars[i] = model.intVar(&quot;X&quot; + i, 0, 1);  // Store binary vars</span>
+
+<span class="fc" id="L69">            int value = item.getValue();</span>
+<span class="fc" id="L70">            scaledVars[i] = model.intScaleView(binaryVars[i], value);</span>
+<span class="fc" id="L71">            maxTotalValue += value;</span>
+
+<span class="fc" id="L73">            int weight = (int) (item.getWeight() * scale);</span>
+<span class="fc" id="L74">            int volume = (int) (item.getVolume() * scale);</span>
+<span class="fc" id="L75">            weightVars[i] = model.intScaleView(binaryVars[i], weight);</span>
+<span class="fc" id="L76">            volumeVars[i] = model.intScaleView(binaryVars[i], volume);</span>
+        }
+
+<span class="fc" id="L79">        IntVar totalValue = model.intVar(&quot;TotalValue&quot;, 0, maxTotalValue);</span>
+<span class="fc" id="L80">        model.sum(scaledVars, &quot;=&quot;, totalValue).post();</span>
+<span class="fc" id="L81">        model.setObjective(Model.MAXIMIZE, totalValue);</span>
+
+<span class="fc" id="L83">        addConstraints(model, weightVars, volumeVars, maxWeight, maxVolume);</span>
+
+<span class="fc" id="L85">        System.out.println(</span>
+            &quot;Model created with max possible total value: &quot; + maxTotalValue);
+<span class="fc" id="L87">        System.out.println(&quot;Number of items: &quot; + n);</span>
+<span class="fc" id="L88">        System.out.println(&quot;Max weight: &quot; + maxWeight / scale + &quot;gr&quot;);</span>
+<span class="fc" id="L89">        System.out.println(&quot;Max volume: &quot; + maxVolume / scale + &quot;cm3&quot;);</span>
+
+<span class="fc" id="L91">        return model;</span>
+    }
+
+    /**
+     * Add the volume and weight constraints.
+     * @param model
+     * @param weightVars
+     * @param volumeVars
+     * @param maxWeight
+     * @param maxVolume
+     */
+    public void addConstraints(
+         final Model model, final IntVar[] weightVars,
+         final IntVar[] volumeVars,
+         final int maxWeight,
+         final int maxVolume) {
+<span class="fc" id="L107">        model.sum(volumeVars, &quot;&lt;=&quot;, maxVolume).post();</span>
+<span class="fc" id="L108">        model.sum(weightVars, &quot;&lt;=&quot;, maxWeight).post();</span>
+<span class="fc" id="L109">    }</span>
+
+    /**
+     * Solve the model.
+     * @param items
+     * @param maxWeight
+     * @param maxVolume
+     * @return a list of {@link PackingItem} that are selected.
+     * @throws SQLException
+     */
+    public ArrayList&lt;PackingItem&gt; solveModel(
+        final ArrayList&lt;PackingItem&gt; items,
+        final double maxWeight,
+        final double maxVolume) throws SQLException {
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        if (items.size() != 0) {</span>
+<span class="fc" id="L124">        Model model = createModel(</span>
+            items, (int) (maxWeight * scale), (int) (maxVolume * scale));
+
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        if (model.getSolver().solve()) {</span>
+<span class="fc" id="L128">            System.out.println(&quot;Solution found!&quot;);</span>
+
+<span class="fc" id="L130">            ArrayList&lt;PackingItem&gt; selectedItems = new ArrayList&lt;&gt;();</span>
+
+            // Use binaryVars to check which items are selected
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            for (int i = 0; i &lt; items.size(); i++) {</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                if (binaryVars[i].getValue() == 1) {</span>
+<span class="fc" id="L135">                    selectedItems.add(items.get(i));</span>
+<span class="fc" id="L136">                    System.out.println(&quot;Selected item: &quot; + items.get(i));</span>
+                }
+            }
+
+<span class="fc" id="L140">            return selectedItems;</span>
+        } else {
+<span class="nc" id="L142">            System.out.println(&quot;No solution found.&quot;);</span>
+<span class="nc" id="L143">            return new ArrayList&lt;&gt;();</span>
+        }
+        } else {
+<span class="fc" id="L146">            return new ArrayList&lt;&gt;();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

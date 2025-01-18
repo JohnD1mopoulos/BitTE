@@ -52,10 +52,8 @@
       * @throws SQLException if a database access error occurs or the URL is null
       */
      public static Connection getConnection() throws SQLException {
-         Logger.info("Attempting to establish a database connection to: {}", DB_FILE);
          try {
              Connection connection = DriverManager.getConnection("jdbc:sqlite:" + DB_FILE);
-             Logger.info("Database connection established successfully to: {}", DB_FILE);
              return connection;
          } catch (SQLException e) {
              Logger.error("Failed to establish database connection: {}", e.getMessage(), e);
